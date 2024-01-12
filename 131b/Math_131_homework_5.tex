@@ -1,0 +1,104 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\title{\bf Math 131B: Homework 5}
+\date{5/12/2023}
+\author{\bf Owen Jones}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}[label=Problem \arabic*.]
+    \item \textbf{Exercise 2.4.2}\\
+    $f:X\rightarrow Y$ is clearly continuous if $f$ is the constant function, so we only need to show the other direction.
+    Let $f:X\rightarrow Y$ be a continuous function. 
+    Suppose $x_0\in X$. 
+    Let $V=f^{-1}(B_{d_Y}(f(x_0),1))$ which by the continuity of $f$ is open in $X$.
+    Suppose for the sake of contradiction, $X\setminus V\neq\emptyset$.
+    Let $U=\displaystyle{\bigcup_{x\in X\setminus V}}f^{-1}(B_{d_Y}(f(x),1))$ which by the continuity of $f$ is an open set equal to $X\setminus V$.
+    Since $X$ is connected and $U\cup V=X$, $U\cap V\neq\emptyset$. 
+    However, this is clearly impossible because any $x\in U\cap V$ cannot simultaneously have the property $f(x)=f(x_0)$, and $f(x)\neq f(x_0)$. 
+    Hence, $X\setminus V=\emptyset$ and $f$ is constant.\par 
+    QED
+    \item \textbf{Exercise 2.4.7}\\
+    Suppose $E$ is a path connected subset of $X$, and suppose for the sake of contradiction $E$ is disconnected.
+    Let $U$ and $V$ be disjoint non-empty relatively open subsets s.t $U\cup V=E$.
+    Let $x\in U$ and $y\in V$.
+    It follows there exists a continuous function $\gamma:[0,1]\rightarrow E$ s.t $\gamma(0)=x$ and $\gamma(1)=y$.
+    Let $a=sup\{z\in[0,1]:\gamma(z)\in U\}$ where $\gamma(a)\in E$.
+    Because $U$ is relatively open in $E$, $\gamma(a)\in U$ implies $\gamma(a)\neq y$ and there exists $\epsilon>0$ s.t $B_{(E,d_{E\times E})}(\gamma(a),\epsilon)\subseteq U$, but this is a contradiction because then $a$ cannot be an upper bound for $\{z\in[0,1]:\gamma(z)\in U\}$.
+    Thus, $\gamma(a)\in V$. Because $V$ is relatively open in $E$, $\gamma(a)\neq x$ and $\epsilon>0$ s.t $B_{(E,d_{E\times E})}(\gamma(a),\epsilon)\subseteq V$, but this is a contradiction because then $a$ cannot be the least upper bound for $\{z\in[0,1]:\gamma(z)\in U\}$.
+    Thus $\gamma(a)\notin U\cup V$ and $\gamma(a)\in E$, so $U\cup V\neq E$. Hence $E$ is not disconnected.\par  
+    QED
+    \item \textbf{Exercise 3.2.4}\\
+   Let $\epsilon=1$. Because $f_n$ converges uniformly to $f$, there exists $N>0$ s.t $d_Y(f_n(x),f(x))<1$ for every $n>N$ and $x\in X$. 
+   Because $f$ is bounded, there exists a ball $B_{(Y,d_Y)}(y_0,R_f)$ in $Y$ s.t $f(x)\in B_{(Y,d_Y)}(y_0,R_f)$ for all $x\in X$.
+   Because each $f_n$ for $n\in\{1...N\}$ is bounded, there exists a ball $B_{(Y,d_Y)}(y_n,R_n)$ in $Y$ s.t $f_n(x)\in B_{(Y,d_Y)}(y_n,R_n)$ for all $x\in X$.
+   It follows by the triangle innequality, $d_Y(y_0,f_n)\le d_Y(y_0,f)+d_Y(f,f_n)<R_f+1$ for every $x\in X$ and $n>N$, and $d_Y(y_0,f_n)\le d_Y(y_0,y_n)+d_Y(y_n,f_n)<R_n+d_Y(y_0,y_n)$ for every $x\in X$ and $n\le N$.
+   Let $R=max\{R_f+1,d_Y(y_0,y_1)+R_1,...,d_Y(y_0,y_n)+R_n\}$.
+   Thus, $f_n(x)\in B_{(Y,d_Y)}(y_0,R)$ for all $x\in X$ and all positive integers $n$.\par 
+   QED
+    \item \textbf{Exercise 3.3.6}\\
+    Suppose $(f^{(n)})_{n=1}^{\infty}$ is a sequence of bounded functions from one metric space $(X,d_X)$ to another $(Y,d_Y)$, and suppose this sequence converges uniformly to another function $f:X-\rightarrow Y$.
+    Since each $f^{(n)}(x)$ is bounded, there exists $B_{(Y,d_Y)}(y_n,R_n)$ in $Y$ s.t $f^{(n)}(x)\in B_{(Y,d_Y)}(y_n,R_n)$ for each $x\in X$.
+    Because $(f^{(n)})_{n=1}^{\infty}$ converges uniformly to $f(x)$, for all but finitely many $n$ $d_Y(f^{(n)}(x),f(x))<1$ for each $x\in X$.
+    It follows for any sufficiently large $n$, $d_Y(f(x),y_n)\le d_Y(f^{(n)}(x),f(x))+d_Y(f^{(n)}(x),y_n)<R_n+1$ for each $x\in X$.
+    Thus, for any sufficiently large $n$, $f(x)\in B_{(Y,d_Y)}(y_n,R_n+1)$ for each $x\in X$, so $f(x)$ is bounded.\par 
+    QED\\
+    $3.2.4$ assumes $f$ is bounded and shows that every function in the sequence is contained in a single ball, and $3.3.6$ proves that $f$ is bounded if it is the limit of a sequence of bounded functions.
+    \item \textbf{Exercise 3.3.7}\\
+    Let $f_n:(0,1)\rightarrow (\frac{n}{n+1},n)$ $f_n(x)=\frac{1}{x+\frac{1}{n}}$ which converges to $f:(0,1)\rightarrow (1,\infty)$ $f(x)=\frac{1}{x}$.
+    For every $x\in X$ and $\epsilon>0$, there exists $N=\frac{1}{x^2\epsilon}$ s.t if $n>N$ $d_Y(f_n(x),f(x))=|\frac{x+\frac{1}{n}}{x(x+\frac{1}{n})}-\frac{x}{x(x+\frac{1}{n})}|=|\frac{1}{x^2n+x}|<|\frac{1}{x^2n}|<\epsilon$.
+    Hence, $f_n$ converges pointwise to $f$, where each $f_n$ is bounded, but $f$ is unbounded.\par 
+    QED
+    \item \textbf{Exercise 3.3.8}\\
+    Because each $f_n(x)$ and $g_n(x)$ are uniformly bounded, Excercise $3.2.4$ states that there also exists some $M>0$ s.t $|f(x)|<M$ and $|g(x)|<M$.
+    Let $\epsilon>0$ and choose $N$ to be sufficiently large s.t $d(f_n(x),f(x))<\frac{\epsilon}{2M}$ and $d(f_n(x),f(x))<\frac{\epsilon}{2M}$ by the uniform convergence of $f_n$ and $g_n$.\\
+    If $n>N$, $d(f_n(x)g_n(x),f(x)g(x))=|f_n(x)g_n(x)-f(x)g(x)|\\=|f_n(x)g_n(x)-f_n(x)g(x)+f_n(x)g(x)-f(x)g(x)|\\\le |f_n(x)||g_n(x)-g(x)|+|g(x)||f_n(x)-f(x)|< M\frac{\epsilon}{2M}+M\frac{\epsilon}{2M}=\epsilon$.\\
+    Hence $f_n(x)g_n(x)$ converges uniformly to $f(x)g(x)$.\par 
+    QED 
+    \item \textbf{Exercise 3.4.1}\\
+    \begin{itemize}
+        \item [($d_\infty(f,f)=0$)] This is clearly true because $d_Y(f(x),f(x))=0$ for all $x\in X$, so $\sup\{d_Y(f(x),f(x)):x\in X\}=0$.\\ Thus, $d_\infty(f,f)=0$. 
+        \item [(Positivity)] $d_Y(f(x),g(x))\ge0$ for every $x\in X$, so $\sup\{d_Y(f(x),g(x)):x\in X\}\ge0$. If $f$ and $g$ are distinct, there exists at least one point where $g(x)\neq f(x)$, so $\sup\{d_Y(f(x),g(x)):x\in X\}>0$\\ Thus, $d_\infty(f,g)>0$ for distinct functions $f$ and $g$.
+        \item [(Symmetry)] $d_Y(f(x),g(x))=d_Y(g(x),f(x))$ for every $x\in X$, so\\ $\sup\{d_Y(f(x),g(x)):x\in X\}=\sup\{d_Y(g(x),f(x)):x\in X\}$. \\Thus, $d_\infty(f,g)=d_\infty(g,f)$.
+        \item [(Triangle innequality)] $d_Y(f(x),g(x))\le d_Y(f(x),h(x))+d_Y(h(x),g(x))$ for all $x\in X$,\\ 
+        so $\sup\{d_Y(f(x),g(x)):x\in X\}\le\sup\{d_Y(f(x),h(x))+d_Y(g(x),h(x)):x\in X\}$.\\
+        Because the sum of the supremums of two functions is greater than or equal to the supremum of the sum of two functions,\\
+        $\sup\{d_Y(f(x),g(x)):x\in X\}\le\sup\{d_Y(f(x),h(x)):x\in X\}+\sup\{d_Y(g(x),h(x)):x\in X\}$\\
+        Thus, $d_\infty(f,g)\le d_\infty(f,h)+d_\infty(g,h)$.
+    \end{itemize}
+    Hence, $B(X\rightarrow Y)$ is a metric space.
+    \item \textbf{Exercise 3.4.2}\\
+    Let $(f^{(n)})^{\infty}_{n=1}$ be a sequence of functions in the space $B(X\rightarrow Y)$ with metric $d_\infty$ and let $f$ be another function in $B(X\rightarrow Y)$. 
+    First we show that if $(f^{(n)}(x))^{\infty}_{n=1}$ converges to $f$ in the metric $d_\infty$, then $(f^{(n)})^{\infty}_{n=1}$ converges uniformly to $f$. 
+    If $\displaystyle{\lim_{n\infty}} d_\infty(f^{(n)},f)=0$, then for every $\epsilon>0$ there exists $N>0$ s.t $\sup\{d_Y(f^{(n)}(x),f(x)):x\in X\}<\epsilon$ whenever $n>N$. 
+    Since $\sup\{d_Y(f^{(n)}(x),f(x)):x\in X\}<\epsilon$ and $d_Y(f^{(n)}(x),f(x))\le\sup\{d_Y(f^{(n)}(x),f(x)):x\in X\}$ for each $x\in X$, $d_Y(f^{(n)}(x),f(x))<\epsilon$ for each $x\in X$.
+    Hence, $f^{(n)}$ converges uniformly to $f$.\\
+    Next we show that if $(f^{(n)})^{\infty}_{n=1}$ converges uniformly to $f$, then $(f^{(n)})^{\infty}_{n=1}$ converges to $f$ in the metric $d_\infty$.
+    If for every $\epsilon>0$, there exists $N>0$ s.t $d_Y(f^{(n)}(x),f(x))<\frac{\epsilon}{2}$ for every $n>N$ and $x\in X$, then $\sup\{d_Y(f^{(n)}(x),f(x)):x\in X\}\le \frac{\epsilon}{2}<\epsilon$. 
+    Thus, $d_\infty(f^{(n)},f)<\epsilon$.
+    Hence $(f^{(n)})^{\infty}_{n=1}$ converges to $f$ with respect to the metric $d_\infty$.
+    \newpage
+\item \textbf{Additional Problem}\\
+If $E$ is disconnected, there exist two open, non-empty, disjoint sets $A$ and $B$ s.t $A\cup B=E$.
+Using the fact that $A$ and $B$ are complements of each other in $E$, $B=\overline{B}\cap E$ and  $A=\overline{A}\cap E$ are closed in $E$.
+Because $A$ and $B$ are subsets of $E$, any point in $\overline{A}$ not in $E$ will not be in $B$ and vice-versa, so because $A$ and $B$ are disjoint, $A\cap\overline{B}=B\cap\overline{A}=\emptyset$.\\ 
+Suppose there exist sets $A$ and $B$ s.t $A\cup B=E$, $A\cap\overline{B}=\emptyset$, and $\overline{A}\cap B=\emptyset$.
+$A\subseteq\overline{A}$ and $\overline{A}\cap B=\emptyset$, so $A\cap B=\emptyset$.
+$B$ is open in $E$ because $\overline{A}\cap B=\emptyset$, $\overline{A}\cap E$ is closed in $E$, and $E\setminus\overline{A}=B$.
+The same logic holds to show $A$ is also open in $E$.
+Because $A$ and $B$ are disjoint, nonempty, open, and $A\cup B=E$, $E$ is disconnected.\\
+
+   
+   
+\end{enumerate}
+\end{document}

@@ -1,0 +1,148 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+\title{\bf Math 131B: Homework 8}
+\date{6/2/2023}
+\author{\bf Owen Jones}
+
+\begin{document}
+\maketitle
+\begin{enumerate}[label=Problem \arabic*.]
+    \item \textbf{Exercise 4.5.2}\\
+    (Lemma) If $n\ge3$ then $(n+k)!>2^kn!$ for all $k\in\mathbb{N}$\\
+    We will show this claim to be true by induction on $k$.\par 
+    For the base case of $k=1$ we have 
+    \begin{flalign*}
+        (n+1)!=(n+1)n!>3\cdot n!>2^1n!
+    \end{flalign*}
+    , so the claim holds for $k=1$. We assume the claim to be true for some arbitrary $k$. Thus, it remains to show the claim holds for $k+1$. Using the induction hypothesis, we obtain
+    \begin{flalign*}
+        (n+k+1)!=(n+k+1)(n+k)!>(n+k+1)2^kn!>3\cdot2^kn!>2^{k+1}n!
+    \end{flalign*}
+    , so the claim holds for $k+1$. Hence, by induction, the claim holds for all $k\in\mathbb{N}$\\
+    QED\\
+
+    We will show by induction on $n$ that the claim $\displaystyle 0<\sum_{k=1}^{\infty}\frac{1}{(n+k)!}<\frac{1}{n!}$ for all $n\ge3$\par 
+    For the base case of $n=3$ we have
+    \begin{flalign*}
+        \displaystyle 0<\sum_{k=1}^{\infty}\frac{1}{(3+k)!}   
+    \end{flalign*}
+    because each $\frac{1}{(3+k)!}$ is positive, and 
+    \begin{flalign*}
+        \displaystyle \sum_{k=1}^{\infty}\frac{1}{(3+k)!}<\sum_{k=1}^{\infty}\frac{1}{2^k3!}=\frac{\frac{1}{2\cdot3!}}{1-\frac{1}{2}}=\frac{1}{3!}
+    \end{flalign*}
+    by the sum of an infinite geometric series and the lemma proved above, so the claim holds for $n=3$. 
+    We assume the claim to be true for some arbitrary $n$. Thus, it remains to show the claim holds for $n+1$. 
+    \begin{flalign*}
+        \displaystyle 0<\sum_{k=1}^{\infty}\frac{1}{(n+1+k)!}   
+    \end{flalign*}
+    because each $\frac{1}{(n+1+k)!}$ is positive, and 
+    \begin{flalign*}
+        \displaystyle \sum_{k=1}^{\infty}\frac{1}{(n+1+k)!}<\sum_{k=1}^{\infty}\frac{1}{2^k(n+1)!}=\frac{\frac{1}{2\cdot(n+1)!}}{1-\frac{1}{2}}=\frac{1}{(n+1)!}
+    \end{flalign*}
+    by the sum of an infinite geometric series and the lemma proved above, so the claim holds for $n+1$. Hence, by induction, the claim holds for all $n\ge3$.\\
+    QED\\
+    
+    Next we show $n!e$ is not an integer for any $n\ge3$ by contradiction.
+    Assume for the sake of contradiction $n!e$ is an integer for some $n\ge3$. By the definition of $e$, $\displaystyle n!e=n! \sum_{k=0}^{\infty}\frac{1}{k!}=\sum_{k=0}^{n}\frac{n!}{k!}+n!\sum_{k=1}^{\infty}\frac{1}{(n+k)!}$.\\
+    $\displaystyle 0<n!\sum_{k=1}^{\infty}\frac{1}{(n+k)!}<\frac{n!}{n!}=1$ by Exercise 4.5.2, so it clearly is not an integer. $\displaystyle \sum_{k=0}^{n}\frac{n!}{k!}=\sum_{k=0}^{n}\prod_{i=k+1}^{n}i$ which is clearly an integer because each term is a product of integers which will also be an integer, and a finite sum of integers must be an integer. 
+    Thus, we have a contradiction because $\displaystyle \sum_{k=0}^{n}\frac{n!}{k!}<n!e<\sum_{k=0}^{n}\frac{n!}{k!}+1$, so $n!e$ is between two consecutive integers for any $n\ge3$. Hence, $n!e$ is not an integer for any $n\ge3$.\\
+    Because $n!e$ is not an integer for every $n\ge3$, it follows that $ne$ is not an integer for every $n\ge3$. If there was an $n$ s.t $ne$ was an integer, $ne(n-1)!$ would also be an integer which contradicts $n!e$ is not an integer for any $n\ge3$.
+    Since $a=ne$ is not an integer for all $n$, it follows $e$ cannot be expressed as a ratio of integers $\frac{a}{n}$, so $e$ must be irrational.
+    \item \textbf{Exercise 4.5.4}\\
+    We will show $f:\mathbb{R}\rightarrow\mathbb{R}$ is infinetly differentiable using cases.\\
+    \begin{enumerate}[label=Case \arabic*.]
+        \item $(x<0)$ $f$ is clearly differentiable for $x<0$ because the derivative of the zero function is the zero function, so by a simple induction $f^{(k)}(x)=0$ for every integer $k\ge0$ and $x<0$.
+        \item $(x>0)$ We show that $f$ is of the form $f^{(k)}(x)=P_{2k}(\frac{1}{x})e^{-\frac{1}{x}}$ for every integer $k\ge0$ and $x>0$ by induction on $k$.
+        For the base case of $k=1$, we obtain $f^{(1)}(x)=\frac{1}{x^2}e^{-\frac{1}{x}}$ by the chain rule, so the claim holds for $k=1$. 
+        Assume for some arbitrary $k$ the claim holds, so it remains to show the claim holds for $k+1$.
+        By the induction hypothesis, $f^{(k)}(x)=P_{2k}(\frac{1}{x})e^{-\frac{1}{x}}$ for some $k$, so we differentiate both sides to obtain $f^{(k+1)}(x)$.
+        By the product rule and chain rule 
+        \begin{flalign*}
+            f^{(k+1)}(x)=(P_{2k-1}(\frac{1}{x})(-\frac{1}{x^2}))e^{-\frac{1}{x}}+P_{2k}(\frac{1}{x})(\frac{1}{x^2}e^{-\frac{1}{x}})\\
+            =(P_{2k+1}(\frac{1}{x})+P_{2k+2}(\frac{1}{x}))e^{-\frac{1}{x}}\\
+            =P_{2(k+1)}(\frac{1}{x})e^{-\frac{1}{x}}   
+        \end{flalign*}
+        , so the claim holds for $k+1$.
+        Hence, by induction the claim holds for all k.
+        \item $(x=0)$ We will show $f$ is differentiable at $x=0$ and $f^{(k)}(0)=0$ by using the limit definition of the derivative and induction on $k$.
+        For the base case of $k=1$, we obtain
+        \begin{flalign*}
+        \displaystyle \lim_{x\rightarrow0}\frac{f(x)-f(0)}{x}=\frac{0}{0}\\
+        \lim_{x\rightarrow0^-}\frac{f(x)-f(0)}{x}=0 \text{ because }f(x)=0\text{ for all }x<0\\
+        \text{Thus, it suffices to show }\lim_{x\rightarrow0^+}\frac{e^{-\frac{1}{x}}}{x}=0\\
+        \text{By the continuity of }y=\frac{1}{x}\text{ on }\mathbb{R}^+\lim_{x\rightarrow0^+}\frac{e^{-\frac{1}{x}}}{x}=\lim_{y\rightarrow\infty}\frac{e^{-y}}{\frac{1}{y}}=\lim_{y\rightarrow\infty}\frac{y}{e^y}=\lim_{y\rightarrow\infty}\frac{0}{e^y}=0\text{ by L'H twice}
+        \end{flalign*}
+       , so the claim holds for $k=1$. We assume the claim to be true for some arbitrary $k$. Thus, it remains to show the claim holds for $k+1$. 
+       \begin{flalign*}
+        \displaystyle \lim_{x\rightarrow0}\frac{f^{(k)}(x)-f^{(k)}(0)}{x}=\frac{0}{0}\\
+        \lim_{x\rightarrow0^-}\frac{f^{(k)}(x)-f^{(k)}(0)}{x}=0 \text{ because }f^{(k)}(x)=0\text{ for all }x<0\\
+        \text{Thus, it suffices to show }\lim_{x\rightarrow0^+}\frac{P_{2k}(\frac{1}{x})e^{-\frac{1}{x}}}{x}=0\\
+        \text{By the continuity of }y=\frac{1}{x}\text{ on }\mathbb{R}^+\lim_{x\rightarrow0^+}\frac{P_{2k}(\frac{1}{x})e^{-\frac{1}{x}}}{x}=\lim_{y\rightarrow\infty}\frac{P_{2k}(y)e^{-y}}{\frac{1}{y}}\\
+        =\lim_{y\rightarrow\infty}\frac{P_{2k+1}(y)}{e^y}=\lim_{y\rightarrow\infty}\frac{0}{e^y}=0\text{ by L'H 2(k+1) times.}
+       \end{flalign*}
+       Thus, the claim holds for $k+1$, so by induction, the claim holds for all $k$.\\
+       If $f$ is real analytic at $x=0$, it must have a Taylor series centered at $0$ that converges to the function $f$.
+       However, as we know, $f^{(k)}(0)=0$ for all $k$, so its Taylor series centered at $0$ is the zero function, which is not the original function $f$.
+       Hence, $f$ is not real analytic at $x=0$
+    \end{enumerate}
+    \item \textbf{Exercise 4.5.5}\\
+    \begin{itemize}
+        \item [(a)] Because $\exp(x)$ and $\log(x)$ are inverses, $\exp(\log(x))=x$. Implicititely differentiating both sides, we obtain $(\exp(\log(x)))'=\exp(\log(x))\cdot \log'(x)=x\cdot \log'(x)=1$. Dividing both sides by $x$, we obtain our final solution $\log'(x)=\frac{1}{x}$. 
+        \item [(b)] Let $x,y\in(0,\infty)$. 
+        Because $\exp(x)$ and $\log(x)$ are inverses, $\log(xy)=\log(\exp^{\log(x)}\cdot \exp^{\log(y)})$. 
+        Using Theorem $4.5.2(d)$, $\log(\exp^{\log(x)}\cdot \exp^{\log(y)})=\log(\exp^{\log(x)+\log(y)})$, and because $\exp(x)$ and $\log(x)$ are inverses, $\log(\exp^{\log(x)+\log(y)})=\log(x)+\log(y)$ which is our desried result.
+        \item [(c)] By Theorem $4.5.2(e)$, $1=\exp(0)$, so $\log(1)=\log(\exp(0))=0$ because $\exp$ and $\log$ are inverses. $\frac{1}{x}=\frac{1}{exp(log(x))}$. By Theorem $4.5.2(e)$ we obtain $\frac{1}{\exp(\log(x))}=\exp(-\log(x))$. Thus, $\log(\frac{1}{x})=\log(\exp(-\log(x)))=-\log(x)$.
+        \item [(d)] Because $\exp(x)$ and $\log(x)$ are inverses, $\log(x^y)=\log((\exp(\log(x))^y))$. By properties of exponents, $\log((\exp(\log(x))^y))=\log(\exp(y\cdot \log(x)))$, and $\log(\exp(y\cdot \log(x)))=y\cdot \log(x)$ because $\exp(x)$ and $\log(x)$ are inverses.
+        \item [(e)] $\displaystyle\frac{1}{1-t}=\sum_{n=0}^{\infty}t^n$ for $t\in(-1,1)$. For any $x\in(-1,1)$ the series $\displaystyle\sum_{n=0}^{\infty}t^n$ coverges uniformly to $\frac{1}{1-t}$ on $[-|x|,|x|]$.
+        Thus, we can switch the order of integration and summation.
+        It follows $\displaystyle \log(1-x)=\log(1-x)-\log(1-0)=-\int_{0}^{x}\frac{1}{1-t}=-\sum_{n=0}^{\infty}\int_{0}^{x}t^n=-\sum_{n=0}^{\infty}\frac{t^{n+1}}{n+1}=-\sum_{n=1}^{\infty}\frac{x^{n}}{n}$.
+        Substituting $x$ for $1-x$, if $1-x\in(-1,1)$, then $\displaystyle \log(1-(1-x))=\log(x)=-\sum_{n=1}^{\infty}\frac{(1-x)^n}{n}=-\sum_{n=1}^{\infty}\frac{(-1)^n(x-1)^n}{n}=\sum_{n=1}^{\infty}\frac{(-1)^{n+1}(x-1)^n}{n}$, so $log(x)$ is analytic at $x=1$ with $R=1$
+    \end{itemize}
+    \item \textbf{Exercise 4.5.8}\\
+    Let $a\in(0,\infty)$.
+    $\displaystyle\frac{1}{x}=\frac{\frac{1}{a}}{1-\frac{a-x}{a}}=\sum_{n=0}^{\infty}\frac{(-1)^n}{a^{n+1}}(x-a)^n$ for $x\in(0,2a)$ by the sum of a geometric series.
+    For any $r<a$ the series $\displaystyle\sum_{n=0}^{\infty}\frac{(-1)^n}{a^{n+1}}(x-a)^n$ converges uniformly to $\frac{1}{x}$ on $[a-r,a+r]$, 
+    so $\displaystyle\log(x)=\log(a)+\int_{a}^{x}\frac{1}{t}=\log(a)+\sum_{n=0}^{\infty}\int_{a}^{x}\frac{(-1)^n}{a^{n+1}}(t-a)^n=\log(a)+\sum_{n=0}^{\infty}\frac{(-1)^n}{a^{n+1}(n+1)}(x-a)^{n+1}$ for $x\in[a-r,a+r]$.
+    Thus $\displaystyle\log(x)=\sum_{n=0}^{\infty}c_n(x-a)^n$ where $c_n=
+    \begin{cases}
+        \log(a) & \text{if } n=0\\
+        \frac{(-1)^{n+1}}{a^nn} & \text{if } n\neq0    
+    \end{cases}
+    $ for $x\in(0,2a)$.
+    Hence $\log(x)$ is real analytic for all $a\in(0,\infty)$.
+    \item \textbf{Additional Problem}\\
+    We will show that any analytic function where $f(x)=0$ for all $x<0$ is the zero function for all $x\in\mathbb{R}$ by contradiction.
+    Assume for the sake of contradiction $f(x)\neq0$ for some $x\in\mathbb{R}$.
+    Because $f$ is analytic, it is continuous and infinitely differentiable.
+    Let $a=\inf\{x\in\mathbb{R}:f(x)\neq0\}$, so $f(x)=0$ for all $x<a$.
+    We will show by induction on $k$ that $f^{(k)}(a)=0$ for all $k\in\mathbb{N}$.
+    Let $(x_n)_{n=1}^{\infty}$ be a sequence of real numbers less than $a$ s.t $\displaystyle\lim_{n\rightarrow\infty}x_n=a$.
+    For the base case $k=0$, we know by the continuity of $f$ that $\displaystyle\lim_{n\rightarrow\infty}x_n=a$ implies $\displaystyle\lim_{n\rightarrow\infty}f(x_n)=f(a)$. 
+    Since each $f(x_n)=0$, $f(a)=0$, so the base case holds. 
+    Let $k$ be arbitrary and assume $f^{(k)}(a)=0$. It remains to show $f^{(k+1)}(a)=0$.
+    For the case $k+1$, $f$ is infinitely differentiable, so $f^{(k+1)}$ exists. 
+    The derivative of the zero function is the zero function, so $f^{(k+1)}(x)=0$ for $x<a$. 
+    The continuity of $f^{(k+1)}$ tells us that $\displaystyle\lim_{n\rightarrow\infty}x_n=a$ implies $\displaystyle\lim_{n\rightarrow\infty}f^{(k+1)}(x_n)=f(a)$. 
+    Since each $f^{(k+1)}(x_n)=0$, $f^{(k+1)}(a)=0$, so the $k+1^{th}$ case holds.
+    Hence, by induction, $f^{(k)}(a)=0$ for all $k\ge0$. 
+    By the uniqueness of a power series and Taylor's formula, if $f$ is analytic at $a$, its power series centered at $a$ is equal to its Taylor series.
+    Since $f^{(k)}(a)=0$ for each of its derivatives, its Taylor series converges to the zero function.
+    However, we obtain a contradiction because for any $r>0$ there exists $x\in(a,a+r)$ s.t $f(x)\neq0$. 
+    This follows from the definition of $a$. If there exists $r>0$ s.t $\forall x\in(a,a+r)$ $f(x)=0$, there exists $b\in(a,a+r)$ s.t $b$ is a lower bound for $\{x\in\mathbb{R}:f(x)\neq0\}$ which contradicts our definition for $a$.
+    Hence, $f$ is not analytic on $\mathbb{R}$ if $f(x)\neq0$ for some $x\in\mathbb{R}$.\\
+
+    Let $g$ and $h$ be analytic real valued functions where $g(x)=h(x)$ for all $x<0$.
+    Let $f'$ be the difference of $g$ and $h$. It follows $f'(x)=0$ for all $x<0$.
+    By the previous parts of the problem, we showed that if $f'$ is analytic and $f'(x)=0$ for all $x<0$, then $f'(x)=0$ for all $x\in\mathbb{R}$.
+    Thus, $g(x)-h(x)=0\Rightarrow g(x)=h(x)$ for all $x\in(x)$.
+
+\end{enumerate}
+\end{document}

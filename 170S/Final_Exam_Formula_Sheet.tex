@@ -1,0 +1,91 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{multicol}
+\usepackage{pdfpages}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\title{\bf Math 170S Final Exam Cheet Sheet}
+\date{12/15/2023}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\section{Formulas}
+        \begin{enumerate}
+            \item [\bf Sample Mean:] $\overline{x}=\frac{1}{n}\sum_{i=1}^{n}x_i$, \textbf{Variance:} $\sigma^2=\frac{1}{n}\sum_{i=1}^{n}{(x_i-\overline{x})}^2$, \textbf{Sample Variance:} $s^2=\frac{1}{n-1}\sum_{i=1}^{n}{(x_i-\overline{x})}^2$
+            \item [\bf Linearity rules:] $\sum_{i=1}^{n}E[X_i]=E[\sum_{i=1}^{n}X_i],\sum_{i=1}^{n}Var[X_i]=Var[\sum_{i=1}^{n}X_i],E[nX]=nE[X],Var[nX]=n^2Var[X]\Rightarrow$ if $X\sim\mathcal{N}(\mu,\sigma^2)$, $\overline{x}=\frac{1}{n}\sum_{i=1}^{n}X_i\sim\mathcal{N}(\mu,\frac{\sigma^2}{n})$
+            \item [\bf Sample Percent.:] $\tilde{\pi_p}=y_r$ if there exists $y_r$ s.t $y_r=(n+1)p$, $\tilde{\pi_p}=y_r+\frac{a}{b}(y_{r+1}-y_r)$ for $(n+1)p=r+\frac{a}{b}$
+            \item [\bf Rel. Freq. Histogram:] $h(x)=\frac{f_i}{n(c_i-c_{i-1})}\quad c_{i-1}<x<c_i,i=1,2,\ldots k$ 
+            \item [\bf PDF Order Stat.:] $P(Y_r\le y)=G_r(y)=\begin{pmatrix}n\\k\end{pmatrix}\sum_{k=r}^{n}{[F(y)]}^k{[1-F(y)]}^{n-k}$
+            \item [\bf $100(1-\alpha)\%$ z:] $(\overline{x}-z_\frac{\alpha}{2}(\frac{\sigma}{\sqrt{n}}),\overline{x}+z_\frac{\alpha}{2}(\frac{\sigma}{\sqrt{n}}))$ \textbf{$100(1-\alpha)\%$ t:} $(\overline{x}-t^{n-1}_\frac{\alpha}{2}(\frac{s}{\sqrt{n}}),\overline{x}+t^{n-1}_\frac{\alpha}{2}(\frac{s}{\sqrt{n}}))$\\
+            \item [\bf Diff.\ of Means:] $(\overline{x}-\overline{y}-z_\frac{\alpha}{2}\sqrt{\frac{\sigma_x^2}{n}+\frac{\sigma^2_y}{m}},\overline{x}-\overline{y}+z_\frac{\alpha}{2}\sqrt{\frac{\sigma_x^2}{n}+\frac{\sigma^2_y}{m}})$
+            \item [\bf Unknown Var.:] $(\overline{x}-\overline{y}-t^{n+m-2}_\frac{\alpha}{2}\sqrt{\frac{\sigma_x^2}{n}+\frac{\sigma^2_y}{m}}\sqrt{\frac{(n-1)s_x^2}{\sigma_x^2(n+m-2)}+\frac{(m-1)s_y^2}{\sigma_y^2(n+m-2)}},\overline{x}-\overline{y}+t^{n+m-2}_\frac{\alpha}{2}\sqrt{\frac{\sigma_x^2}{n}+\frac{\sigma^2_y}{m}}\sqrt{\frac{(n-1)s_x^2}{\sigma_x^2(n+m-2)}+\frac{(m-1)s_y^2}{\sigma_y^2(n+m-2)}})$
+            \item [\bf Proportions:] $\frac{\hat{p}+\frac{z_\frac{\alpha}{2}^2}{2n}\pm z_\frac{\alpha}{2}\sqrt{\hat{p}(1-\hat{p})/n+z_\frac{\alpha}{2}^2/(4n^2)}}{1+z_\frac{\alpha}{2}^2/n}\Rightarrow \hat{p}\pm z_\frac{\alpha}{2}\sqrt{\frac{\hat{p}(1-\hat{p})}{n}}$ if $n$ is large.
+            \item [\bf Sample Size:] For C. interval $(\overline{x}-\epsilon,\overline{x}+\epsilon)$ we want $\frac{z_\frac{\alpha}{2}^2\sigma^2}{\epsilon^2}\le n$, $\frac{{(t^{n-1}_\frac{\alpha}{2})}^2s^2}{\epsilon^2}\le n$, or $\frac{z_\frac{\alpha}{2}^2\hat{p}(1-\hat{p})}{\epsilon^2}\le \frac{z_\frac{\alpha}{2}^2}{4\epsilon^2}\le n$
+            \item [\bf C.I for Percentile:] $P(Y_i<\pi_p<Y_j)=\sum_{k=i}^{j-1}\begin{pmatrix}n\\k\end{pmatrix} p^k{(1-p)}^{n-k}$
+        \end{enumerate}
+\section{Maximum Likelihood Estimator}
+$L(\theta)=L(\theta;x_1,x_2,\ldots,x_n)=\prod_{i=1}^{n}f(x_i;\theta)$ Goal: Find $\argmax_\theta L(\theta)\Leftrightarrow \argmax_\theta\log(L(\theta))$.
+\section{Regression}
+$Y=y(x;w)+\epsilon$ where $\epsilon\sim \mathcal{N}(0,\sigma^2)$. Use MLE to solve for $\sigma^2$ and $w$.\\
+$\hat{\alpha}=\overline{y}-\beta\overline{x},\hat{\beta}=\frac{\sum(y_i-\overline{y})(x_i-\overline{x})}{\sum{(x_i-\overline{x})}^2},\sigma^2=\frac{1}{n}\sum_{i=1}^{n}{(y_i-(\hat{\alpha}+\beta x_i))}^2$
+\section{Hypothesis Tests}
+$\alpha:=P(\text{reject }H_0|H_0\text{ is true}),\beta:=P(\text{accept }H_0|H_0\text{ is false})$, $\phi(z):=$ cdf standard normal variable., $z_\alpha:=$ a value s.t $P(Z\ge z_\alpha)=\alpha$ where $Z\sim\mathcal{N}(0,1)$
+\begin{itemize}
+    \item [$H_1:\mu_1>\mu_0$] $p:=P(z\ge\frac{\overline{x}-\mu}{\frac{\sigma}{\sqrt{n}}}|H_0)=1-\phi(\frac{\overline{x}-\mu_0}{\frac{\sigma}{\sqrt{n}}})$ reject if $p<\alpha$.
+    \item [$H_1:\mu_1<\mu_0$] $p:=P(z\le\frac{\overline{x}-\mu}{\frac{\sigma}{\sqrt{n}}}|H_0)=\phi(\frac{\overline{x}-\mu_0}{\frac{\sigma}{\sqrt{n}}})$ reject if $p<\alpha$. 
+    \item [$H_1:\mu_1\neq\mu_0$] $p:=P(|z|\ge|\frac{\overline{x}-\mu}{\frac{\sigma}{\sqrt{n}}}||H_0)=1-\phi(|\frac{\overline{x}-\mu_0}{\frac{\sigma}{\sqrt{n}}}|)+\phi(-|\frac{\overline{x}-\mu_0}{\frac{\sigma}{\sqrt{n}}}|)$ reject if $p<\alpha$.
+    \item [] For unknown variance and proportions, use $T:=\frac{\overline{x}-\mu}{\frac{s}{\sqrt{n}}}\sim t^{n-1}$ and $Z:=\frac{Y-np}{\sqrt{p(1-p)}}\sim \mathcal{N}(0,1)$. Difference of means and proporrtions use linearity rules.
+    \item [\bf Willcoxon Test]: $W=\sum_{i=1}^{n}sign(x_i-m)R_i$. $Z:=\frac{W}{\sqrt{\frac{n(n+1)(2n+1)}{6}}}\sim\mathcal{N}(0,1)$. reject if $p<\alpha$.
+    \item [\bf Statistical power:] $\beta=\beta(\theta)$. Define $K(\mu)=P(\text{reject }H_0|\mu)=1-\beta(\mu)\Leftrightarrow 1-\phi(\frac{c-\mu}{\frac{\sigma}{\sqrt{n}}})$ where $c:=\mu_0+z_\alpha\frac{\sigma}{\sqrt{n}}$ for $H_1:\mu>\mu_0$. Similar for different alternative hypotheses. 
+\end{itemize}
+\section{Best Critical Region}
+\begin{itemize}
+    \item [\bf Neyman-Pearson:] Let $X_1,\ldots,X_n$ be i.i.d r.v and let $\alpha\in(0,1)$. Assume $\mathcal{C}$ s.t \begin{itemize}
+        \item [(1.)] $P((x_1,\ldots,x_n)\in\mathcal{C}|H_0)=\alpha$
+        \item [(2.)] $\frac{L(\theta_0)}{L(\theta_1)}\le k$ for each $(x_1,\ldots,x_n)\in\mathcal{C}$
+        \item [(3.)] $\frac{L(\theta_0)}{L(\theta_1)}\ge k$ for each $(x_1,\ldots,x_n)\in\mathcal{C}^c$
+    \end{itemize} 
+    Then $\mathcal{C}$ is a best critical region.
+\end{itemize}
+\section{Likelihood Ratio}
+Goal is to develop a test for when $H_0$ and $H_1$ are composite.\\
+$H_0:\theta\in \omega\quad H_1:\theta\in\omega^c$ where $\Omega:=\omega\cup\omega^c$\\
+Let $\lambda:=\frac{L(\hat{\omega})}{L(\hat{\Omega})}$ where $\hat{\omega}:=\argmax_{\theta\in\omega}L(x_1,\ldots,x_n;\theta)$ and $\hat{\Omega}:=\argmax_{\theta\in\Omega}L(x_1,\ldots,x_n;\theta)$.\\
+By Neyman-Pearson $\lambda\le k$ for some $0<k<1$, so that a desired significance $\alpha$ is attained.
+\section{$\chi^2$ test}
+$H_0:p_i=p_{i0}$ for all $i=1\ldots k$
+$Q_{k-1}:=\sum_{i=1}^{k}\frac{{(Y_i-np_{i0})}^2}{np_{i0}}$ where $Y_i$ is the observed number of outcomes in $A_i$, $p_i=P(A_i)$, and $Y_k=n-y_1-y_2-\ldots-y_{k-1}$.\\
+$Q_{k-1}\sim\chi(k-1)$\\
+Contingency tables:
+$p_{ij}:=P(A_i)\quad j=1\ldots h$,
+$H_0:p_{i1}=p_{i2}=\ldots=p_{ih}$,
+$\hat{p_i}:=\frac{\sum_{j=1}^{h}Y_{ij}}{\sum_{j=1}^{h}n_{j}}$, $\hat{p_k}=1-\hat{p_1}-\ldots-\hat{p_{k-1}}$, $Q:=\sum_{i=1}^{k}\sum_{j=1}^{h}\frac{{(Y_{ij}-n_j\hat{p_i})}^2}{n_j\hat{p_i}}\sim\chi((h-1)(k-1))$.
+\section{ANOVA}
+Statistical test for all means are the same\\ 
+$\overline{X}:=\frac{1}{n}\sum_{i=1}^{m}\sum_{j=1}^{n_i}X_{ij}\quad n:\sum_{i=1}^{m}n_i$, $\overline{X_i}:=\frac{1}{n_i}\sum_{j=1}^{n_i}X_{ij}\quad i=1,\ldots,m$\\
+$(n-1)S^2_{grand}:=\sum_{i=1}^{m}\sum_{j=1}^{n_i}{(X_{ij}-\overline{X})}^2$,
+$(n_i-1)S^2_{i}:=\sum_{j=1}^{n_i}{(X_{ij}-\overline{X_i})}^2$
+$V:=\sum_{i=1}^{m}n_i{(\overline{X_i}-\overline{X})}^2$\\
+$(n-1)S^2_{grand}=\sum_{i=1}^{m}(n_i-1)S^2_{i}+V$\\
+$\frac{\frac{V}{m-1}}{\frac{\sum_{i=1}^{m}(n_i-1)S^2_{i}}{n-m}}\sim F(m-1,n-m)$
+\section{{Common PDFs}}
+\begin{itemize}
+    \item [\bf Normal] $f(z,\mu,\sigma^2)=\frac{1}{\sqrt{2\pi\sigma^2}}e^{-\frac{{(z-\mu)}^2}{2\sigma^2}}$
+    \item [\bf Gamma] $f(x;\alpha,\beta)=\frac{\beta^\alpha}{\Gamma(\alpha)}x^{\alpha-1}e^{-\beta x}$,$x>0$
+    \item [\bf Beta] $f(x;\alpha,\beta)=\frac{\Gamma(\alpha+\beta)}{\Gamma(\alpha)\Gamma(\beta)}x^{\alpha-1}{(1-x)}^{\beta-1}$
+    \item [\bf Binomial] $f(x;m,p)=\begin{pmatrix}m\\ x\end{pmatrix}p^x(1-p)^{m-x}$
+    \item [\bf Bernoulli] $f(x;p)=\begin{cases}
+        p & \text{for } x=1\\
+        1-p & \text{for } x=0
+    \end{cases}$
+\end{itemize}
+\includepdf[pages=-]{StatistialTables.pdf}
+\end{document}

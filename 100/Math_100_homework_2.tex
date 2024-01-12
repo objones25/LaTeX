@@ -1,0 +1,105 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 100: Problem Set 2}
+\date{10/18/2023}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}[label= (Q-\arabic*)]
+    \item \begin{itemize}
+        \item Using AM.GM innequality we obtain $(a+b)\ge2\sqrt{ab},(a+c)\ge2\sqrt{ac},(b+c)\ge2\sqrt{bc}$. It follows, $(a+b)(b+c)(a+c)\ge2\sqrt{ab}\cdot2\sqrt{bc}\cdot2\sqrt{ac}=8abc$.
+        \item $a^2b^2+b^2c^2+c^2a^2=\frac{a^2b^2+b^2c^2}{2}+\frac{b^2c^2+c^2a^2}{2}+\frac{c^2a^2+a^2b^2}{2}$. By AM.GM $\frac{a^2b^2+b^2c^2}{2}+\frac{b^2c^2+c^2a^2}{2}+\frac{c^2a^2+a^2b^2}{2}\ge ab^2c+abc^2+a^2bc=abc(a+b+c)$
+        \item If $a+b+c=1\Rightarrow{(a+b+c)}^2=1$. It follows ${(a+b+c)}^2=a^2+b^2+c^2+2ab+2bc+2ac=\frac{a^2+b^2}{2}+\frac{b^2+c^2}{2}+\frac{c^2+a^2}{2}+2ab+2bc+2ac$. 
+        By AM.GM $\frac{a^2+b^2}{2}+\frac{b^2+c^2}{2}+\frac{c^2+a^2}{2}+2ab+2bc+2ac\ge 3ab+3bc+3ac$.
+        Because $3ab+3bc+3ac\le {(a+b+c)}^2\le1\Rightarrow ab+bc+ac\le\frac{1}{3}$
+    \end{itemize}
+    \item $b^{n+1}-a^{n+1}=(b-a)\displaystyle\sum_{k=0}^{n}a^k b^{n-k}$. 
+    We rewrite $(n+1)(b-a)a^n=\displaystyle(b-a)\sum_{k=0}^{n}a^n$ and $(n+1)(b-a)b^n=\displaystyle(b-a)\sum_{k=0}^{n}b^n$. 
+    Observe for each $k$ $a^n\le a^k b^{n-k}\le b^n$. It follows that because $0<a<b$ there exists at least one $k$ s.t $a^n<a^k b^{n-k}<b^n$.
+    Hence, $(b-a)(n+1)a^n<b^{n+1}-a^{n+1}<b^{n+1}$
+    \item By AM.GM $\frac{a^2b+b^2c+c^2a}{3}\ge\sqrt[3]{a^2b\cdot b^2c\cdot c^2a}=\sqrt[3]{a^3b^3c^3}=abc$\\
+     and $\frac{a^2c+b^2a+c^2b}{3}\ge\sqrt[3]{a^2c\cdot b^2a\cdot c^2b}=\sqrt[3]{a^3b^3c^3}=abc$.\\ 
+    Hence, $9\cdot\frac{a^2b+b^2c+c^2a}{3}\frac{a^2c+b^2a+c^2b}{3}\\
+    =(a^2b+b^2c+c^2a)(a^2c+b^2a+c^2b)\ge 9a^2b^2c^2$
+    \item By AM.GM $\frac{a_1}{b_1}+\frac{a_2}{b_2}+\cdots+\frac{a_n}{b_n}=n\frac{\frac{a_1}{b_1}+\frac{a_2}{b_2}+\cdots+\frac{a_n}{b_n}=}{n}\ge n\sqrt[n]{\frac{a_1}{b_1}\frac{a_2}{b_2}\ldots\frac{a_n}{b_n}}=n\sqrt[n]{\frac{a_1a_2\ldots a_n}{b_1b_2\ldots b_n}}=n\sqrt[n]{\frac{a_1a_2\ldots a_n}{a_1a_2\ldots a_n}}\\
+    (\text{because }b_1,b_2,\ldots b_n\text{ is a rearrangement of }a_1,a_2\ldots a_n)\\
+    =n$\\
+    Hence, $\frac{a_1}{b_1}+\frac{a_2}{b_2}+\cdots+\frac{a_n}{b_n}\ge n$.
+    \item \begin{itemize}
+        \item WTS by induction $P(n):n!<{(\frac{n+1}{2})}^n$ is true for all integers $n>2$.\\
+        $P(3): 3!=6<{(\frac{3+1}{2})}^3=8$.
+        Assume for some $n>2$ the statement $P(n)$ holds.
+        First we show that $2\le{(1+\frac{1}{n+1})}^{n+1}$. 
+        Using binomial expansion $\displaystyle {(1+\frac{1}{n+1})}^{n+1}=\sum_{k=0}^{n+1}\begin{pmatrix}
+            n+1\\
+            k
+        \end{pmatrix}{(\frac{1}{n+1})}^k=1\cdot1+\frac{n+1}{n+1}+\cdots>2$ for $n>2$.
+        It follows ${(1+\frac{1}{n+1})}^{n+1}={(\frac{n+2}{n+1})}^{n+1}>2\Rightarrow \frac{{(n+1+1)}^{n+1}}{2^{n+1}}>\frac{{(n+1)}^{n+1}}{2^n}$.
+        $(n+1)!=(n+1)n!<(n+1){(\frac{n+1}{2})}^n$ by the induction hypothesis. Thus, $\frac{{(n+1+1)}^{n+1}}{2^{n+1}}>(n+1)\frac{{(n+1)}^{n}}{2^n}>(n+1)! $. 
+        Therefore, the claim holds for $P(n+1)$. Hence, by induction, the claim holds for all $n$.
+        \item WTS by induction $P(n):1\times3\times5\times\cdots\times(2n-1)<n^n$ for $n>2$.\\
+        $P(3):1\times3\times5=15<3^3=27$
+        Assume for some $n>2$ the statement $P(n)$ holds.
+        $1\times3\times5\times\cdots\times(2n-1)\times(2n+1)<2n^{n+1}+n^n$ by the induction hypothesis.
+        Thus, it suffices to show $2n^{n+1}+n^n<{(n+1)}^{n+1}$
+        It follows by binomial expansion ${(n+1)}^{n+1}=\displaystyle\sum_{k=0}^{n}\begin{pmatrix}
+            n+1\\
+            k
+        \end{pmatrix}n^k=n^{n+1}+(n+1)n^n+\cdots+1>2n^{n+1}+n^n$ for $n>2$. Thus, the claim holds for $P(n+1)$. Hence, by induction, the claim holds for all $n>2$.
+    \end{itemize}
+    \item \begin{itemize}
+        \item For each $i\in1\cdots n$ consider $p_i x_i$ as the sum of $p_i$ many $x_i's$.\\ 
+        Thus, we can consider $\frac{p_1x_1+p_2x_2+\cdots+p_nx_n}{p_1+p_2+\cdots+p_n}$ to be the arithmetic mean of $p_1+p_2+\cdots+p_n$ many positive numbers.
+        It follows that the geometric mean of $p_1+p_2+\cdots+p_n$ many positive numbers is $\displaystyle \sqrt[p_1+p_2+\cdots+p_n]{\prod_{i=1}^{n}\prod_{k=1}^{p_i}x_i}=\sqrt[p_1+p_2+\cdots+p_n]{x_1^{p_1}x_2^{p_2}\cdots x_n^{p_n}}$.
+        By AM.GM we obtain $\sqrt[p_1+p_2+\cdots+p_n]{x_1^{p_1}x_2^{p_2}\cdots x_n^{p_n}}\le\frac{p_1x_1+p_2x_2+\cdots+p_nx_n}{p_1+p_2+\cdots+p_n}$
+        \item If each $p_i$ is a positive rational number, then the denominators must have a least commmon multiple which we will call $y$. 
+        Then, for each $i$, $yp_i$ is an integer. Then, we can consider $yp_i x_i$ as the sum of $yp_i$ many $x_i's$.
+         It follows by the previous proof that\\ 
+        $\frac{p_1x_1+p_2x_2+\cdots+p_nx_n}{p_1+p_2+\cdots+p_n}=\frac{yp_1x_1+yp_2x_2+\cdots+yp_nx_n}{yp_1+yp_2+\cdots+yp_n}\\
+        \ge\sqrt[yp_1+yp_2+\cdots+yp_n]{x_1^{yp_1}x_2^{yp_2}\cdots x_n^{yp_n}}\\
+        =\sqrt[y(p_1+p_2+\cdots+p_n)]{{(x_1^{p_1}x_2^{p_2}\cdots x_n^{p_n})}^y}=\sqrt[p_1+p_2+\cdots+p_n]{x_1^{p_1}x_2^{p_2}\cdots +x_n^{p_n}}$
+    \end{itemize}
+    \item \begin{itemize}
+        \item For vectors $\vec{u}$ and $\vec{v}$, set $u_i=\sqrt{p_i}$ and $v_i=\sqrt{p_i}x_i$. 
+        It follows by the Cauchy-Schwarz innequality that $|\vec{u}\cdot\vec{v}|\le||\vec{u}||||\vec{v}||$.\\
+        Thus, $|\sqrt{p_1}^2x_1+\cdots+\sqrt{p_n}^2x_n|\le\sqrt{\sqrt{p_1}^2+\cdots+\sqrt{p_n}^2}\sqrt{\sqrt{p_1}^2x_1^2+\cdots\sqrt{p_n}^2x_n^2}$.\\ 
+        Since both sides of the innequality are positive, we obtain\\ ${(p_1 x_1+\cdots +p_n x_n)}^2\le(p_1+\cdots +p_n)(p_1 x_1^2+\cdots +p_n x_n^2)$ by squaring both sides.
+        \item For vectors $\vec{u}$ and $\vec{v}$, set $\vec{u}=(a\sqrt{b},b\sqrt{c},c\sqrt{a})$ and $\vec{v}=(c\sqrt{b},a\sqrt{c},b\sqrt{a})$
+        It follows by the Cauchy-Schwarz innequality that $|\vec{u}\cdot\vec{v}|\le||\vec{u}||||\vec{v}||$.\\
+        Thus, using the fact $a,b,c>0$, $3abc\le\sqrt{a^2 b+b^2 c+c^2 a}\sqrt{c^2 b+a^2 c+b^2 a}$.\\
+        Squaring both sides, we obtain $9a^2 b^2 c^2\le(a^2b+b^2c+c^2a)(c^2b+a^2c+b^2a)$.
+    \end{itemize}
+        \item Let $f(x)={(x+1)}^a$ where $x\neq0$. For the case where $x=0$, $1+a\cdot0={(1+0)}^a$.\\
+         It follows by MVT there exists some $c$ between $0$ and $x$ s.t $f'(c)=\frac{{(x+1)}^a-1^a}{x}$. 
+        It follows ${(x+1)}^a=a{(c+1)}^{a-1}x+1$. 
+        If $0<a<1$ then it suffices to show $a{(c+1)}^{a-1}x+1\le 1+ax$.\\
+        \begin{itemize}
+            \item [$x<0$] $0<c+1<1$, so $1<\frac{1}{c+1}$. Since $0<1-a<1$, $1<{(\frac{1}{c+1})}^{1-a}$. Thus, $a{(c+1)}^{a-1}x+1\le ax+1$.
+            \item [$x>0$] $1<c+1<2$, so $0<\frac{1}{c+1}<1$. Since $0<1-a<1$, $0<{(\frac{1}{c+1})}^{1-a}<1$. Thus, $a{(c+1)}^{a-1}x+1\le ax+1$.
+        \end{itemize}
+        If $a>1$ then $0<a-1$. It follows that for $x<0$, $0<c+1<1$, so $0<{(c+1)}^{a-1}<1$. Thus, $a{(c+1)}^{a-1}x+1\ge ax+1$. By similar argument, we have ${(c+1)}^{a-1}>1$ for $x>0$, so $a{(c+1)}^{a-1}x+1\ge ax+1$.\\
+        If $a<0$ then $a-1<-1$. It follows that for $x<0$, $0<c+1<1$, so $1<{(c+1)}^{a-1}$. Thus, $a{(c+1)}^{a-1}x+1\ge ax+1$ (using $ax>0$ because both are negative). By similar argument, we have $0<{(c+1)}^{a-1}<1$ for $x>0$, so $a{(c+1)}^{a-1}x+1\ge ax+1$ (using $ax<0$ because $a$ is negative and $x$ is positive).
+        \item Let $f(t)=\log(t+1)$. It follows by MVT that there exists $c$ between $0$ and $x$ s.t $f'(c)=\frac{\log(x+1)}{x}$. 
+        Since $0<c<x$, it follows that $f'(c)=\frac{1}{1+c}>\frac{1}{1+x}$. Thus, $\frac{x}{x+1}<\log(x+1)$ for $x>0$.
+        Moreover, there exists $c$ between $\frac{x^2+3x}{2}$ and $\frac{x}{2}$ s.t $f'(c)=\frac{2\log(x+1)}{x^2+2x}$.
+        It follows $\log(x+1)=\frac{x(x+2)}{2(c+1)}<\frac{x(x+2)}{2(x+1)}$
+        %Moreover, there exists $c$ between $x^2+2x$ and $0$ s.t $f'(c)=\frac{\log(x^2+2x+1)}{x^2+2x}$. 
+        %$\frac{1}{1+x}>\frac{2\log(1+x)}{{(1+x)}^2-1}\Rightarrow x+1-\frac{1}{x+1}>\log(x+1)\Rightarrow\frac{1}{x+1}<1<x+1-\log(x+1)$ which is true for $x>0$ because $0=\log(0+1)$ and $\frac{dx}{dx}>\frac{d\log(x+1)}{dx}$.
+        % Thus, $\log(x+1)=\frac{x^2+2x}{2(1+c)}<\frac{x^2+2x}{2(1+x)}$ 
+       
+        \item $\frac{\sin(a)-0}{a-0}=\cos(c_1)$ for some $0<c_1<a$ and $\frac{\sin(b)-0}{b-0}=\cos(c_2)$ for some $0<c_2<b$. $\frac{\cos(c_1)-\cos(c_2)}{c_1-c_2}=-sin(c_3)$ for some $c_3$ between $c_1$ and $c_2$, so because $\cos(x)$ is decreasing and $-\sin(c_3)$ $c_1>c_2$. Thus, $\cos(c_2)>\cos(c_1)\Rightarrow\frac{\sin(a)}{\sin(b)}<\frac{a}{b}$ because $\frac{\sin(a)}{a}<\frac{\sin(b)}{b}$.
+        $\frac{\tan(a)-0}{a-0}=\frac{1}{{\cos(c_4)}^2}$ for some $0<c_4<a$ and $\frac{\tan(b)-0}{b-0}=\frac{1}{{\cos(c_5)}^2}$ for some $0<c_5<b$. $\frac{\cos(c_4)-\cos(c_5)}{c_4-c_5}=-\sin(c_6)$ for some $c_6$ between $c_4$ and $c_5$, so $c_4>c_5$. Because $\cos(c_5)>\cos(c_4)>0\Rightarrow \frac{1}{{\cos(c_5)}^2}<\frac{1}{{\cos(c_4)}^2}\Rightarrow\frac{\tan(b)}{b}<\frac{\tan(a)}{a}\Rightarrow\frac{a}{b}<\frac{\tan(a)}{\tan(b)}$, so $\frac{\sin(a)}{\sin(b)}<\frac{a}{b}<\frac{\tan(a)}{\tan(b)}$
+\end{enumerate}
+\end{document}

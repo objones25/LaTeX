@@ -1,0 +1,60 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 100: Problem Set 5}
+\date{11/8/2023}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}[label= (Q-\arabic*)]
+\item If $a^{-1}ba=b^{-1}$ and $b^{-1}ab=a^{-1}$ then $(b^{-1}ab)ba=b^{-1}$. 
+It follows $ab^2a=1$. 
+We also observe that $b^{-1}ab=a^{-1}=(a^{-1}ba)ab=a^{-1}\Rightarrow ba^2b=1$.
+$b^{-1}ab=a^{-1}\Rightarrow b=aba$. Thus $ab^2a=a^2ba^2ba^2=1$. 
+Since $ba^2b=1$ $ab^2a=a^2ba^2ba^2=a^2(ba^2b)a^2=a^2\cdot a^2=a^4=1$.
+By similar logic, $a^{-1}ba=b^{-1}\Rightarrow a=bab$. 
+Thus, $ba^2b=b^2ab^2ab^2=1\Rightarrow b^2ab^2ab^2=b^2(ab^2a)b^2=b^2\cdot b^2=b^4=1$.
+\item Since $a'$ is a unique element s.t $aa'=1$, it follows for all $x\in R$ where $x\neq 0_R$, $ax\neq0_R$. 
+If such an $x$ existed $aa'+ax=a(a'+x)=1\Rightarrow a'$ is not unique.
+$a(a'a)=(aa')a=a$ by associativity. 
+It follows $a(a'a-1_R)=0$. 
+Therefore, $a'a-1_R=0$ because $ax\neq0_R$ for all $x\neq 0_R$. 
+Hence, $a'a=1$.
+\item \begin{itemize}
+    \item Fermat's Little Theorem states that for any $x$, $x^{p}-x\equiv0\mod(p)$. 
+    It follows that for each $x\in\mathbb{Z}_p$, $x$ is a root of $x^p-x$. 
+    Thus, because $\mathbb{Z}_p$ is a field, we can write $x^p-x$ as the product of its factors. $\displaystyle x^p-x=Q(x)\prod_{i=0}^{p-1}(x-i)$.
+    $Q(x)=1$ because $x^p-x$ can have at most $p$ factors.
+    \item Given $\displaystyle \prod_{i=0}^{p-1}(x-i)\equiv x^p-x\mod(p)$, we know for $x\neq0$ $\displaystyle \prod_{i=1}^{p-1}(x-i)\equiv x^{p-1}-1\mod(p)$. 
+    Take $x=p$. Thus, $\prod_{i=1}^{p-1}(p-i)=(p-1)!\equiv p^{p-1}-1\mod(p)$. Because $p^{p-1}$ is a multiple of $p$, $p^{p-1}-1\equiv-1\mod(p)$. 
+    Hence, $(p-1)!\equiv-1\mod(p)$.
+\end{itemize}
+\item Since $2^p-1$ and $2$ are primes, we can write the sum of $n$'s factors excluding $n$ as $\displaystyle \sum_{i=0}^{p-1}2^i+(2^p-1)\sum_{i=0}^{p-2}2^i=\frac{2^p-1}{2-1}+(2^p-1)\frac{2^{p-1}-1}{2-1}=2^{p-1}(2^p-1)$
+\item $\displaystyle\sum_{i=1}^{n}i\sum_{j=0}^{i-1}10^j=\sum_{i=1}^{n}i\frac{10^i-1}{10-1}=-\frac{n(n+1)}{18}+\frac{1}{9}\sum_{i=1}^{n}i10^i\\
+=\frac{n10^{n+1}}{81}-\frac{10^{n+1}-10}{729}-\frac{n(n+1)}{18}$
+\item Solving explicitely for $a_n=\frac{5\cdot 3^{n-1}-1}{2}$.\\ 
+It follows $\displaystyle\sum_{i=1}^{n}a_n=\frac{5}{2}\sum_{i=1}^{n}3^{n-1}-\frac{n}{2}=\frac{5(3^n-1)}{4}-\frac{n}{2}$
+\item $\sin(\theta)=\frac{e^{i\theta}-e^{-i\theta}}{2i}$. It follows $\displaystyle\sum_{k=1}^{n}\sin((2k-1)\theta)=\sum_{k=1}^{n}\frac{e^{i(2k-1)\theta}-e^{-i(2k-1)\theta}}{2i}\\
+=\frac{1}{2i}(e^{i\theta}\frac{e^{2i\theta\cdot n}-1}{e^{2i\theta}-1}-e^{-i\theta}\frac{e^{-2i\theta\cdot n}-1}{e^{-2i\theta}-1})=\frac{1}{2i}(\frac{e^{2i\theta\cdot n}-1}{e^{i\theta}-e^{-i\theta}}+\frac{e^{-2i\theta\cdot n}-1}{e^{i\theta}-e^{-i\theta}})=\frac{i(2-(e^{2i\theta\cdot n}+e^{-2i\theta\cdot n}))}{2(e^{i\theta}-e^{-i\theta})}=\frac{1-\cos (2n\theta)}{2\sin(\theta)}=\frac{{\sin}^2(n\theta)}{\sin(\theta)}$
+\item \begin{itemize}
+    \item [(a)] $\frac{k-1}{k!}=\frac{1}{(k-1)!}-\frac{1}{k!}\Rightarrow\sum_{k=2}^{n}\frac{k-1}{k!}=\sum_{k=2}^{n}(\frac{1}{(k-1)!}-\frac{1}{k!})=1-\frac{1}{n!}$
+    \item [(b)] $k\times k!=(k+1)!-k!\Rightarrow \sum_{k=1}^{n}k\times k!=(n+1)!-1$
+    \item [(c)] $\frac{2k}{k(k+1)(k+2)}=\frac{2}{(k+1)(k+2)}=\frac{2}{k+1}-\frac{2}{k+2}\Rightarrow\sum_{k=1}^{n}\frac{2k}{k(k+1)(k+2)}=1-\frac{2}{n+2}$
+\end{itemize}
+\item $1-\frac{1}{k^2}=\frac{k^2-1}{k^2}=\frac{(k-1)(k+1)}{k^2}\Rightarrow\prod_{k=2}^{n}\frac{(k-1)(k+1)}{k^2}\\
+=\frac{(1)(3)}{(2)(2)}\frac{(2)(4)}{(3)(3)}\frac{(3)(5)}{(4)(4)}\ldots\frac{(n-2)(n-1)}{(n-2)(n-2)}\frac{(n-2)(n)}{(n-1)(n-1)}\frac{(n-1)(n+1)}{(n)(n)}\\
+=\frac{1(n+1)}{2n}\Rightarrow\lim_{n\rightarrow\infty}\prod_{k=2}^{n}\frac{(k-1)(k+1)}{k^2}=\frac{1}{2}$
+\item We know $F_k=F_{k+1}-F_{k-1}\Rightarrow\sum_{k=1}^{n}F_{2k-1}=\sum_{k=1}^{n}F_{2k}-F_{2k-2}=F_{2n}-F_0=F_{2n}$
+\end{enumerate}
+\end{document}

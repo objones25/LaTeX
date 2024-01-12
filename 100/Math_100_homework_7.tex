@@ -1,0 +1,93 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 100: Problem Set 7}
+\date{11/22/2023}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}[label= (Q-\arabic*)]
+    \item $\frac{1}{x^2+5x+6}=\frac{1}{(x+2)(x+3)}=\frac{1}{x+2}-\frac{1}{x+3}$\\
+    $\displaystyle\frac{1}{x+2}=\sum_{i=0}^{\infty}\frac{1}{2}{(-\frac{x}{2})}^i$\\
+    $\displaystyle\frac{1}{x+3}=\sum_{i=0}^{\infty}\frac{1}{3}{(-\frac{x}{3})}^i$\\
+    $\displaystyle\frac{1}{x^2+5x+6}=\sum_{i=0}^{\infty}\frac{1}{2}{(-\frac{x}{2})}^i-\frac{1}{3}{(-\frac{x}{3})}^i=\sum_{i=0}^{\infty}x^i{(-1)}^i(\frac{1}{2^{i+1}}-\frac{1}{3^{i+1}})$
+    \item Let the characteristic polynomial for $a_n=4a_{n-1}-5a_{n-2}+3a_{n-3}$ be $z^3-4z^2+5z-2=0$. 
+    We use the rational roots theorem to guess roots $z=1$ and $z=2$. 
+    It follows ${(z-1)}^2(z-2)=z^3-4z^2+5z-2$.
+    If $a_n=(p+qn)+(r)2^n$, then solving the system of equations:
+    \begin{align*}
+        1=p+r\\
+        0=p+q+2r\Leftrightarrow -1=q+r\\
+        -5=p+2q+4r\Leftrightarrow -6=2q+3r\Leftrightarrow -4=r\\
+        p=5,q=3,r=-4
+    \end{align*}
+    gives us $a_n=(5+3n)+(-4)2^n$.
+    \item Let the characteristic polynomial for $a_n=7a_{n-1}-12a_{n-2}$ be $z^2-7z+12=(z-3)(z-4)$.
+    If $a_n=p3^n+q4^n$, then solving the system of equations:
+    \begin{align*}
+        2=p+q\\
+        17=3p+4q\\
+        p=-9,q=11
+    \end{align*}
+    gives us $a_n=11\cdot4^n-9\cdot3^n$.
+    Thus, $\displaystyle\sum_{i=0}^{n}11\cdot4^n-9\cdot3^n=11\frac{4^{n+1}-1}{3}-9\frac{3^{n+1}-1}{2}$.
+    \item Let $b_n=\sqrt{a_n}$. It follows $b_n=b_{n-1}+2b_{n-2}$. 
+    Let the characteristic polynomial for $b_n=b_{n-1}+2b_{n-2}$ be $z^2-z-2=(z-2)(z+1)=0$.
+    If $b_n=p{(-1)}^n+q2^n$, then solving the system of equations:
+    \begin{align*}
+        1=p+q\\
+        1=-p+2q\\
+        p=\frac{1}{3},q=\frac{2}{3}
+    \end{align*}
+    gives us $b_n=\frac{1}{3}{(-1)}^n+\frac{2}{3}2^n\Rightarrow a_n={(\frac{1}{3}{(-1)}^n+\frac{2}{3}2^n)}^2$.
+    \item Let $b_n=\ln(a_n)$. It follows $b_n=\frac{1}{2}(b_{n-1}-b_{n-2})$. 
+    Let the characteristic polynomial for $b_n=\frac{1}{2}(b_{n-2}-b_{n-1})$ be $z^2+\frac{1}{2}z-\frac{1}{2}=(z+1)(z-\frac{1}{2})$
+    If $b_n=p{(-1)}^n+q{(\frac{1}{2})}^n$ then solving the system of equations:
+    \begin{align*}
+       \log(8)=p+q\\
+       -\frac{1}{2}\log(8)=-p+\frac{q}{2}\\
+       p=\log(4),q=\log(2)
+    \end{align*}
+    gives us $a_n=4^{{(-1)}^n}2^{{(\frac{1}{2})}^n}$
+    \item Soolving the characteristic polynomial we obtain $y_n=p\cdot a^n+c(n)$ where $c(n)$ is a function of $n$
+    \begin{align*}
+        1=p+c(0)\\
+        a+b=p\cdot a+c(1)\\
+        p=\frac{a}{a-b}, c(n)=\frac{b^{n+1}}{b-a}
+    \end{align*}
+    which gives us $y_n=\frac{a^{n+1}-b^{n+1}}{a-b}$
+    \item We will prove the inclusion-exclusion principle by induction on $n$.\\
+    Base case: The case for $n=1$ is trivial, and we prove the case for $n=2$ because it will be useful in the induction step. $\displaystyle |A_1\cup A_2|=|A_1|+|A_2|-|A_1\cap A_2|$.\\
+    Induction hypothesis: assume for some arbitrary $n$ the inclusion-exclusion principle holds.\\
+    Induction step: $\displaystyle |A_1\cup\cdots\cup A_n\cup A_{n+1}|=|(A_1\cup\cdots\cup A_n)\cup A_{n+1}|=|A_1\cup\cdots\cup A_n|+|A_{n+1}|-|(A_1\cup\cdots\cup A_n)\cap A_{n+1}|$ by the inclusion-exclusion principle for $n=2$.\\
+    $\displaystyle |A_1\cup\ldots\cup A_n|=\sum_{i}|A_i|-\sum_{i<j}|A_i\cap A_j|+\sum_{i<j<k}|A_i\cap A_j\cap A_k|-\ldots+{(-1)}^{n-1}|A_1\cap\ldots\cap A_n|$ by the induction hypothesis.\\
+    Let $B_i=A_i\cap A_{n+1}$. By the distibutive property $|(A_1\cup\cdots\cup A_n)\cap A_{n+1}|=|B_1\cup\cdots\cup B_n|$\\
+    It follows $\displaystyle|B_1\cup\cdots\cup B_n|=\sum_{i}|B_i|-\sum_{i<j}|B_i\cap B_j|+\sum_{i<j<k}|B_i\cap B_j\cap B_k|-\ldots+{(-1)}^{n-1}|B_1\cap\ldots\cap B_n|$ by the induction hypothesis.\\
+    $\displaystyle=\sum_{i}|A_i\cap A_{n+1}|-\sum_{i<j}|A_i\cap A_j\cap A_{n+1}|+\sum_{i<j<k}|A_i\cap A_j\cap A_k\cap A_{n+1}|-\ldots+{(-1)}^{n-1}|A_1\cap\ldots\cap A_n\cap A_{n+1}|$\\
+    Thus, $\displaystyle |A_1\cup\cdots\cup A_n\cup A_{n+1}|=|A_1\cup\cdots\cup A_n|+|A_{n+1}|-|(A_1\cup\cdots\cup A_n)\cap A_{n+1}|\\
+    =\sum_{i}|A_i|-\sum_{i<j}|A_i\cap A_j|+\sum_{i<j<k}|A_i\cap A_j\cap A_k|-\ldots+{(-1)}^{n}|A_1\cap\ldots\cap A_n\cap A_{n+1}|$
+    \item $1000-\lfloor\frac{1000}{2}\rfloor-\lfloor\frac{1000}{3}\rfloor-\lfloor\frac{1000}{7}\rfloor+\lfloor\frac{1000}{6}\rfloor+\lfloor\frac{1000}{14}\rfloor+\lfloor\frac{1000}{21}\rfloor-\lfloor\frac{1000}{42}\rfloor\\
+    =1000-500-333-142+166+71+47-23=286$
+    \item $P((x+Y<1)\cap (XY<\frac{2}{9}))\\
+    =\int_{0}^{1}\int_{0}^{\min(1,1-x,\frac{2}{9x})}dydx=\int_{0}^{\frac{1}{3}}\int_{0}^{1-x}dydx+\int_{\frac{1}{3}}^{\frac{2}{3}}\int_{0}^{\frac{2}{9x}}dydx+\int_{\frac{2}{3}}^{1}\int_{0}^{1-x}dydx=\frac{1}{3}+\frac{2}{9}\log(2)$
+    \item $P(|X-Y|\ge\alpha)=1-P(|X-Y|<\alpha)\\
+    =1-\int_{0}^{1}\int_{\max(0,x-\alpha)}^{\min(x+\alpha,1)}dydx$\\
+    Case 1: $\alpha<\frac{1}{2}$\\
+    $1-\int_{0}^{1}\int_{\max(0,x-\alpha)}^{\min(x+\alpha,1)}dydx=1-\int_{0}^{\alpha}\int_{0}^{x+\alpha}dydx-\int_{\alpha}^{1-\alpha}\int_{x-\alpha}^{x+\alpha}dydx-\int_{1-\alpha}^{1}\int_{x-\alpha}^{1}dydx\\
+    ={(1-a)}^2$\\
+    Case 2: $\alpha\ge\frac{1}{2}$\\
+    $1-\int_{0}^{1}\int_{\max(0,x-\alpha)}^{\min(x+\alpha,1)}dydx=1-\int_{0}^{1-\alpha}\int_{0}^{x+\alpha}dydx-\int_{1-\alpha}^{\alpha}\int_{0}^{1}dydx-\int_{\alpha}^{1}\int_{x-\alpha}^{1}dydx\\
+    ={(1-a)}^2$
+\end{enumerate}
+\end{document}

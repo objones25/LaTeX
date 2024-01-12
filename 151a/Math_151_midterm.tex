@@ -1,0 +1,99 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+
+
+\title{\bf Math 151A: Midterm}
+\date{May 3rd, 2023}
+\author{\bf Owen Jones}
+
+\begin{document}
+\maketitle
+\begin{enumerate}[label=\bfseries Problem \arabic*:]
+    \item Solution
+    \begin{itemize}
+        \item [a)] $g(x)=x^\frac{1}{5}$. 
+        $g\in C[\frac{1}{5^{\frac{5}{4}}},\frac{3}{2}]$. 
+        $g$ assumes a minimum of $5^{-\frac{1}{4}}$ at the endpoint $x=\frac{1}{5^{\frac{5}{4}}}$ and a maximum of $(\frac{3}{2})^\frac{1}{5}$ at the endpoint $x=\frac{3}{2}$, so $g(x)\in[\frac{1}{5^{\frac{5}{4}}},\frac{3}{2}]$ for all $x\in[\frac{1}{5^{\frac{5}{4}}},\frac{3}{2}]$.
+        $|g'(x)|$ exists $\forall x\in(\frac{1}{5^{\frac{5}{4}}},\frac{3}{2})$, and $|g'(x)|<1$ $\forall x\in(\frac{1}{5^{\frac{5}{4}}},\frac{3}{2})$ because $|g'(x)|$ assumes a maximum of $1$ at the endpoint $x=\frac{1}{5^{\frac{5}{4}}}$, and $|g'(x)|$ is strictly decreasing over the interval $[\frac{1}{5^{\frac{5}{4}}},\frac{3}{2}]$. 
+        It follows by density of the real numbers, for each $x\in(\frac{1}{5^{\frac{5}{4}}},\frac{3}{2})$, there exists $k$ s.t $|g'(x)|\le k<1$.
+        By Theorem 2.3, there exists a unique fixed point in $[\frac{1}{5^{\frac{5}{4}}},\frac{3}{2}]$.
+        In addition, Theorem 2.4 states that for any $p_0\in[\frac{1}{5^{\frac{5}{4}}},\frac{3}{2}]$, the sequence $p_n=g(p_{n-1})$, $n\ge1$, converges to the unique fixed point in $[\frac{1}{5^{\frac{5}{4}}},\frac{3}{2}]$.  
+        \item [b)] $\displaystyle{\lim_{n\rightarrow\infty}}p_n=\displaystyle{\lim_{n\rightarrow\infty}}p_{n}^{\frac{1}{5}}=1^{\frac{1}{5}}=1$.\\
+        $p_n$ converges linearly to the point $1$ if $\displaystyle{\lim_{n\rightarrow\infty}}|\frac{g(p_n)-g(1)}{p_n-1}|=\lambda$ for some $\lambda<1$.\\ 
+        It follows $\displaystyle{\lim_{n\rightarrow\infty}}|\frac{g(p_n)-g(1)}{p_n-1}|=\displaystyle{\lim_{n\rightarrow\infty}}|\frac{p_{n}^{\frac{1}{5}}-1}{p_n-1}|\\
+        =\displaystyle{\lim_{n\rightarrow\infty}}|\frac{p_{n}^{\frac{1}{5}}-1}{(p_{n}^{\frac{1}{5}}-1)(p_{n}^{\frac{4}{5}}+p_{n}^{\frac{3}{5}}+p_{n}^{\frac{2}{5}}+p_{n}^{\frac{1}{5}}+1)}|\\
+        =\displaystyle{\lim_{n\rightarrow\infty}}|\frac{1}{p_{n}^{\frac{4}{5}}+p_{n}^{\frac{3}{5}}+p_{n}^{\frac{2}{5}}+p_{n}^{\frac{1}{5}}+1}|\\
+        =|\frac{1}{1^{\frac{4}{5}}+1^{\frac{3}{5}}+1^{\frac{2}{5}}+1^{\frac{1}{5}}+1}|
+        =\frac{1}{5}$\\
+        Thus, there exists a $\lambda=\frac{1}{5}<1$\\
+        $p_n$ only converges linearly if $\displaystyle{\lim_{n\rightarrow\infty}}\frac{|g(p_n)-g(1)|}{|p_n-1|^\alpha}$ diverges for all $\alpha>1$.\\
+        $\displaystyle{\lim_{n\rightarrow\infty}}\frac{|g(p_n)-g(1)|}{|p_n-1|^\alpha}=\displaystyle{\lim_{n\rightarrow\infty}}\frac{\frac{|g(p_n)-g(1)|}{|p_n-1|}}{|p_n-1|^{\alpha-1}}$ where $\alpha>1$.\\
+        $=\displaystyle{\lim_{n\rightarrow\infty}}\frac{\frac{1}{5}}{|p_n-1|^{\alpha-1}}=\infty$ because $|p_n-1|^{\alpha-1}$ converges to $0$.
+    \end{itemize}
+    \newpage
+    \item Solution
+    \begin{itemize}
+        \item [a)] $\displaystyle{\lim_{n\rightarrow\infty}}\frac{|g(p_n)-1|}{|p_n-1|}=\displaystyle{\lim_{n\rightarrow\infty}}\frac{|\frac{1}{2}e^{-p_n+1}(\cos(\pi p_n)^2+1)-1|}{|p_n-1|}\\
+        =\frac{|\frac{1}{2}e^{0}(\cos(\pi)^2+1)-1|}{|1-1|}=\frac{1}{|1-1|}\Rightarrow$ zero over zero.\\
+        By L'H $=\displaystyle{\lim_{x\rightarrow 1}}\frac{|-\frac{1}{2}e^{1-x}(\cos(\pi x)^2+1)-\pi e^{1-x}\cos(\pi x)\sin(\pi x)|}{|1|}\\
+        =|-\frac{1}{2}e^0(\cos(\pi)^2+1)-\pi e^0\cos(\pi)\sin(\pi)|=1$ (sublinearly)
+        \item [b)] $g(x)=x-\frac{e^{1-x}(\cos(\pi x)^2+1)-2x}{-e^{1-x}(\cos(\pi x)^2+2\pi\sin(\pi x)\cos(\pi x)+1)+2}$ (at least quadratically by Newton's method)
+        \item [c)] $\displaystyle{\lim_{n\rightarrow\infty}}\frac{|g(p_n)-1|}{|p_n-1|}=\displaystyle{\lim_{n\rightarrow\infty}}\frac{|\frac{19}{20}p_n+\frac{1}{40}e^{-p_n+1}(\cos(\pi p_n)^2+1)-1|}{|p_n-1|}$ (zero over zero)\\
+        By L'H $=\displaystyle{\lim_{x\rightarrow1}}|\frac{19}{20}-\frac{1}{40}e^{-x+1}(\cos(\pi x)^2+2\pi\sin(\pi x)\cos(\pi x)+1)|=\frac{18}{20}$ (linearly)
+        \item [d)] $\displaystyle{\lim_{n\rightarrow\infty}}\frac{|g(p_n)-1|}{|p_n-1|}=\displaystyle{\lim_{n\rightarrow\infty}}\frac{|3p_n-e^{-p_n+1}(\cos(\pi p_n)^2+1)-1|}{|p_n-1|}$ (zero over zero)\\
+        By L'H $=\displaystyle{\lim_{x\rightarrow 1}}|3+e^{-x+1}(\cos(\pi x)^2+2\pi\sin(\pi x)\cos(\pi x)+1)|=5$ (diverges)
+    \end{itemize} 
+    b) fastest, c) second, a) third, d) slowest. 
+    \newpage
+    \item Solution 
+    \begin{itemize}
+        \item [a)]table\\
+       
+        \begin{tiny}
+        \begin{tabular}{c c c c c c}
+        & $0$ & $1$ & $2$ & $3$ & $4$\\
+        $-1$ & $33$ \\
+        $0$ & $\frac{51}{20}$ & $-\frac{609}{20}x+\frac{51}{20}$\\ 
+        $3$ & $-3$ & $-\frac{37}{20}x+\frac{51}{20}$ & $\frac{143}{20}x^2-\frac{466}{20}x+\frac{51}{20}$ \\
+        $2$ & $-\frac{21}{20}$ & $-\frac{39}{20}x+\frac{57}{20}$ & $-\frac{1}{20}x^2-\frac{34}{20}x+\frac{51}{20}$ &$-\frac{48}{20}x^3+\frac{239}{20}x^2-\frac{322}{20}x+\frac{51}{20}$\\
+        $5$ & $q$ & $-\frac{21+20q}{60}x+\frac{21+8q}{12}$ & $\frac{69+10q}{60}x^2-\frac{462-50q}{60}x+\frac{585+60q}{60}$ & $\frac{72+10q}{300}x^3-\frac{375-50q}{300}x^2+\frac{-78+60}{300}x+\frac{51}{20}$\\
+        \end{tabular}
+        \end{tiny}
+        \\$\frac{q}{180}x^4-\frac{q}{45}x^3+\frac{11}{25}x^4+\frac{q}{180}x^2-\frac{104}{25}x^3+\frac{q}{30}x+\frac{1239}{100}x^2-\frac{673}{50}x+\frac{51}{20}$\\
+        $q=504/5$\\
+        $P_4(x)=x^4-\frac{32}{5}x^3+\frac{259}{20}x^2-\frac{101}{10}x+\frac{51}{20}$.
+        \item [b)] $g(x)=x-\frac{P_4(x)}{P'_4(x)}$. Starting at $x=1.211$ we get $p_{100}=0.500$.
+    \end{itemize}
+    \newpage
+    \item Solution 
+    \begin{itemize}
+        \item [a)] 
+        Let $g(x)=\frac{1}{2}(x+\frac{\alpha}{x})$. $g\in C[\min\{p_0,\frac{\sqrt{3\alpha}}{3}\},\max\{p_0,g(p_0),\frac{2\sqrt{3\alpha}}{3}\}]$. 
+        $g$ assumes a minimum of $\sqrt{\alpha}$ at $x=\sqrt{\alpha}$ when $g'(x)=0$, and $g$ assumes a maximum of $\frac{2\sqrt{3\alpha}}{3}$ when $\frac{\sqrt{3\alpha}}{3}\le p_0\le \sqrt{3a}$ and a maximum of $g(p_0)$ otherwise.
+        Thus, $g$ maps onto itself.
+        Want to show $|p_{n+1}-\sqrt{\alpha}|\le|p_n-\sqrt{\alpha}|$ for all $n>1$.
+        $|p_{n+1}-\sqrt{\alpha}|=|\frac{1}{2}(p_n+\frac{\alpha}{p_n})-\sqrt{\alpha}|=|\frac{p_n-\sqrt{\alpha}}{2p_n}||p_n-\sqrt{\alpha}|$.
+        This implies $|p_{n+1}-\sqrt{\alpha}|\le|p_n-\sqrt{\alpha}|$ if $|\frac{p_n-\sqrt{\alpha}}{2p_n}|\Rightarrow p_n>\frac{\sqrt{a}}{3}$.
+        If $p_0\le\frac{\sqrt{a}}{3}$, then $p_1=\frac{1}{2}(p_0+\frac{\alpha}{p_0})>\frac{\alpha}{2\frac{\sqrt{a}}{3}}=\frac{3\sqrt{a}}{2}>\frac{\sqrt{a}}{3}$.\\
+        By induction $|p_n-\sqrt{\alpha}|=|\frac{p_{n-1}-\sqrt{\alpha}}{2p_{n-1}}||p_{n-1}-\sqrt{\alpha}|=...=\prod_{i=1}^{n-1}|\frac{p_{i}-\sqrt{\alpha}}{2p_{i}}||p_1-\sqrt{\alpha}|$.
+        $|\frac{p_{i}-\sqrt{\alpha}}{2p_{i}}|=|\frac{p_{i-1}-\sqrt{\alpha}}{2p_{i-1}}||\frac{p_{i-1}-\sqrt{\alpha}}{p_{i-1}+\frac{\alpha}{p_{i-1}}}|\le|\frac{p_{i-1}-\sqrt{\alpha}}{2p_{i-1}}|$ because $|\frac{p_{i-1}-\sqrt{\alpha}}{p_{i-1}+\frac{\alpha}{p_{i-1}}}|<1$ ($-\sqrt{\alpha}<\frac{\alpha}{p_{i-1}},p_{i-1}>\sqrt{\alpha}$ and $\sqrt{\alpha}-p_{i-1}<p_{i-1}+\frac{\alpha}{p_{i-1}},p_{i-1}<\sqrt{\alpha}$).\\
+        It follows $|\frac{p_1-\sqrt{\alpha}}{2p_1}|$ is an upper bound for $|\frac{p_n-\sqrt{\alpha}}{2p_n}|$\\
+        Thus, $\displaystyle{\lim_{n\rightarrow\infty}}|p_n-\sqrt{\alpha}|\le|\frac{p_1-\sqrt{\alpha}}{2p_1}|^{n-1}|p_1-\sqrt{\alpha}|=0$ by the squeeze theorem. Hence $p_n$ converges for all $p_0>0$.
+        \item [b)] If $p_0<0$, $p_n$ converges to $-\sqrt{\alpha}$. The proof is similar to how we show $p_n$ converges to $\sqrt{\alpha}$ for $p_0>0$. $g\in C[\min\{p_0,g(p_0),-\frac{2\sqrt{3\alpha}}{3},\max\{p_0,-\frac{\sqrt{3\alpha}}{3}\}\}]$. $g$ assumes a maximum of $\sqrt{\alpha}$ and minimum of $g(p_0)$ or $-\frac{2\sqrt{3\alpha}}{3}$. 
+        Then, we show $|\frac{p_1+\sqrt{\alpha}}{2p_1}|<1$ and an upper bound for $|\frac{p_n+\sqrt{\alpha}}{2p_n}|$ for $n>1$.
+        Then, we use the squeze theorem as we did previously to show $\displaystyle{\lim_{n\rightarrow\infty}}|p_n+\sqrt{\alpha}|$ converges to $0$.
+    \end{itemize}
+\end{enumerate}
+
+\end{document}
+
+≠≠

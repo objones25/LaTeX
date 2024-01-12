@@ -1,0 +1,93 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+\title{\bf Math 170E: Homework 1}
+\date{7/2/2023}
+\author{\bf Owen Jones}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}[label=\textbf{Problem \arabic*.}]
+    \item \begin{itemize}
+        \item [(1)] $S=\{HHH, HHT, HTH, HTT, THH, THT, TTH, TTT\}$
+        \item [(2)] 
+        \begin{itemize}
+            \item [$\bullet$] $P(A)=P(\{HTT, THT, TTH\})=\frac{3}{8}$
+            \item [$\bullet$] $P(B)=P(\{HHH,HTH,THH,TTH\})=\frac{1}{2}$
+            \item [$\bullet$] $P(C)=P(\{HHH, HTT, THT, TTH\})=\frac{1}{2}$
+        \end{itemize}
+    \end{itemize}
+    \item \begin{itemize}
+        \item [(1)]
+        $N(S)=N(\{(1,1),(1,2),(1,3),(1,4),(1,5),(1,6),\\
+                 (2,1),(2,2),(2,3),(2,4),(2,5),(2,6),\\
+                 (3,1),(3,2),(3,3),(3,4),(3,5),(3,6),\\
+                 (4,1),(4,2),(4,3),(4,4),(4,5),(4,6),\\
+                 (5,1),(5,2),(5,3),(5,4),(5,5),(5,6),\\
+                 (6,1),(6,2),(6,3),(6,4),(6,5),(6,6)\})=36$
+        \item [(2)] $\{(1,4),(2,2),(2,4),(2,6),(3,4),(4,1),(4,2),(4,3),(4,4),(4,5),(4,6),(5,4),(6,2),(6,4),(6,6)\}$
+        \item [(3)] $P(x:\text{sum equal to 7})=P(\{(1,6),(2,5),(3,4),(4,3),(5,2),(6,1)\})=\frac{1}{6}$
+    \end{itemize}
+    \item $(A\cap B)\subseteq A$ and $0\le P(A\cap B)$, so $0\le P(A\cap B)\le P(A)$.
+    Given $P(A\cup B)=P(A)+P(B)-P(A\cap B)$, it follows $P(B)\le P(A\cup B)\le P(A)+P(B)$. Hence, $P(A\cup B)$ assumes a maximum when $A$ and $B$ are mutually exclusive, and $P(A\cup B)$ assumes a minimum when $A\subset B$.
+    \item \begin{itemize}
+        \item [(1)] $P(\{6,7,8,9\})=\frac{N(\{6,7,8,9\})}{10^4}=\frac{4!}{10^4}=0.0024$
+        \item [(2)] $P(\{7,7,8,8\})=\frac{N(\{7,7,8,8\})}{10^4}=\frac{\frac{4!}{2!2!}}{10^4}=0.0012$
+        \item [(3)] $P(\{7,8,8,8\})=\frac{N(\{7,8,8,8\})}{10^4}=\frac{\frac{4!}{1!3!}}{10^4}=0.0004$
+    \end{itemize}
+    \item \begin{itemize}
+        \item [(1)] $2^8-2^5=224$
+        \item [(2)] $\frac{3!}{2!\cdot1!}\frac{5!}{5!\cdot0!}+\frac{3!}{2!\cdot1!}\frac{5!}{4!\cdot1!}=18$
+    \end{itemize}
+    \item \begin{itemize}
+        \item [(1)] $\displaystyle\sum_{r=0}^{n}(-1)^r
+        \begin{pmatrix}
+            n\\
+            r
+        \end{pmatrix}
+        =\sum_{r=0}^{n}(-1)^r(1)^{n-r}
+        \begin{pmatrix}
+            n\\
+            r
+        \end{pmatrix}=
+        (1+(-1))^n=0^n=0$ for all natural numbers $n$ by the binomial theorem.
+        \item [(2)] Consider the parity of $r$. When $r$ is odd, $(-1)^r
+        \begin{pmatrix}
+            n\\
+            r
+        \end{pmatrix}$ is negative, and when $r$ is even, $(-1)^r
+        \begin{pmatrix}
+            n\\
+            r
+        \end{pmatrix}$ is positive.
+        $\begin{pmatrix}
+            n\\
+            r
+        \end{pmatrix}$ denotes the number of ways in which subsets of size $r$ can be created from a set of size $n$. 
+        Because $(-1)^r
+        \begin{pmatrix}
+            n\\
+            r
+        \end{pmatrix}$ is positive when $r$ is even, the sum of the positive terms will yield the total number of subsets containing an even number of elements. Likewise, $(-1)^r
+        \begin{pmatrix}
+            n\\
+            r
+        \end{pmatrix}$ is negative when $r$ is odd, so the sum of the negative terms will yield the total number of subsets containing an odd number of elements. 
+        Because $\displaystyle\sum_{r=0}^{n}(-1)^r
+        \begin{pmatrix}
+            n\\
+            r
+        \end{pmatrix}
+        =0$, it follows the sum of the positive terms equal the sum of the negative terms of the series.
+        Hence, the number of subsets containing an even number of elements equal the number of subsets containing an odd number of elements.
+    \end{itemize}
+\end{enumerate}
+\end{document}

@@ -1,0 +1,106 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 151b: Problem Set 1}
+\date{1/17/2024}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}[label=\bf{Problem \arabic*}]
+    \item $y(t)=e^{\lambda t}=e^{(a+bi)t}=e^{at} e^{bit}=e^{at}\cos(bt)+e^{at}i\sin(bt)$. 
+    The modulus $|y(t)|=\sqrt{{(e^{at}\cos(bt))}^2+{(e^{at}\sin(bt))}^2}=\sqrt{e^{2at}(\cos^2(bt)+\sin^2(bt))}=\sqrt{e^{2at}}=|e^{at}|=e^{at}$\\
+    $|y(t)|=\begin{cases}
+        \infty & \text{if } a>0 \quad \lim_{t\rightarrow \infty}e^{at}=\lim_{t\rightarrow \infty}\sum_{i=0}^{\infty}\frac{{(at)}^i}{i!}\ge\lim_{t\rightarrow \infty}t+1=+\infty\\
+        0 & \text{if } a<0 \quad \lim_{t\rightarrow \infty}e^{at}=\lim_{t\rightarrow \infty}\frac{1}{e^{|a|t}}=\frac{1}{\infty}=0\\
+        1 & \text{if } a=0 \quad \lim_{t\rightarrow \infty}e^{at}=\lim_{t\rightarrow \infty}1=1
+    \end{cases}$
+    \item \begin{itemize}
+        \item [(a)] Because $f\in C^1(D)$, we can say that $f_y$ is continuous on $(c,d)$. 
+        It follows by the MVT that for any points $y_1,y_2\in[c,d]$, there exists some $\xi$ between $y_1$ and $y_2$ s.t $\frac{f(y_1,t)-f(y_2,t)}{y_1-y_2}=f_y(\xi)$. 
+        Because $D$ is a closed region, $f_y$ assumes a maximum and a minimum. 
+        Thus, there exists some $L$ s.t $\lvert f_y\rvert\le L$ for all $(y,t)\in D$. 
+        Moreover, $\frac{\lvert f(y_1,t)-f(y_2,t)\rvert}{\lvert y_1-y_2\rvert}\le L\Rightarrow \lvert f(y_1,t)-f(y_2,t)\rvert\le L\lvert y_1-y_2\rvert$. Hence $f$ is Lipschitz continuous in $D$.
+        \item [(b)] $f_y(y,t)=\frac{2yt^2}{t^2+1}\le \frac{2\delta t_f^2}{t_f^2+1}$ assuming time to be positive. 
+        In the case where $t$ is some other variable, we replace $t_f$ with $\max(\lvert t_0\rvert,\lvert t_f\rvert)$.
+        Thus, $\lvert f(y_1,t)-f(y_2,t)\rvert\le \frac{2\delta t_f^2}{t_f^2+1}\lvert y_1-y_2\rvert$. 
+        Hence $f$ is Lipschitz continuous in $D$. 
+    \end{itemize}
+    \item \begin{itemize}
+        \item [(a)] $y_n=y_{n-1}+\lambda y_{n-1}h=y_{n-1}(1-10h)$ from Euler's method. 
+        Solving the characteric equation $x-(1-10h)=0$ for our linear recurrence, we obtain $y_n=c{(1-10h)}^n$. 
+        Using our initial condition $y_0=1$, we find $c=1$. 
+        Hence, $y_n={(1-10h)}^n$.
+        \item [(b)] $y_1,y_2,y_3=
+        \begin{cases}
+            -\frac{2}{3},\frac{4}{9},-\frac{296}{999} & \text{for }h=\frac{1}{6}\\
+            \frac{1}{6},\frac{1}{36},\frac{1}{216} & \text{for }h=\frac{1}{12}
+        \end{cases}$. $h=\frac{1}{6}$ oscilates between positive and negative while $h=\frac{1}{12}$ stays positive because $1-10h>0$.
+        \item [(c)] So long $h<\frac{1}{10}$ $y_n$ will be positive for all $n\ge 1$. 
+    \end{itemize}
+    \item \begin{itemize}
+        \item [(a)] Let $u:=y(t)$ and $v(t):=y'(t)$. We substitute in $u$ and $v(t)$ to obtain $v'(t)+u\cdot v(t)+4u=t^2$. Because $u'=v(t)$ we obtain the following system:\\
+        \begin{align*}
+            v'=t^2-u\cdot v(t)-4u\\
+            u'=v(t)
+        \end{align*}
+        \item [(b)] $\begin{bmatrix}
+            u_n\\
+            v_n
+        \end{bmatrix}=\begin{bmatrix}
+            u_{n-1}\\
+            v_{n-1}
+        \end{bmatrix}+\begin{bmatrix}
+            u_{n-1}'\\
+            v_{n-1}'
+        \end{bmatrix}h$\\
+        $\Rightarrow \begin{bmatrix}
+            u_n\\
+            v_n
+        \end{bmatrix}=\begin{bmatrix}
+            u_{n-1}\\
+            v_{n-1}
+        \end{bmatrix}+\begin{bmatrix}
+            v_{n-1}\\
+            {[(n-1)h]}^2-u_{n-1}v_{n-1}-4u_{n-1}
+        \end{bmatrix}h$\\
+        $\begin{bmatrix}
+            u_1\\
+            v_1\\
+        \end{bmatrix}=\begin{bmatrix}
+            0\\
+            1
+        \end{bmatrix}+0.1\begin{bmatrix}
+            1\\
+            0
+        \end{bmatrix}=\begin{bmatrix}
+            0.1\\
+            1
+        \end{bmatrix}$\\
+        $\begin{bmatrix}
+            u_2\\
+            v_2
+        \end{bmatrix}=\begin{bmatrix}
+            0.1\\
+            1
+        \end{bmatrix}+0.1\begin{bmatrix}
+            1\\
+            {0.1}^2-0.1\cdot 1-4\cdot 0.1
+        \end{bmatrix}=\begin{bmatrix}
+            0.2\\
+            0.951
+        \end{bmatrix}$\\
+        which gives us $u(0.2)\approx 0.2,v(0.2)\approx 0.951$ as approximations.
+    \end{itemize}
+\end{enumerate}
+\end{document}

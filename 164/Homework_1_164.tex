@@ -1,0 +1,76 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 164: Problem Set 1}
+\date{1/12/2024}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item [\bf{2.6}] \begin{align*}
+        x_1+x_2+2x_3+x_4=1\\
+        x_1-2x_2-x_4=-2
+    \end{align*} can be expressed in the form $Ax=b$ with matrix $A$ and vectors $x$ and $b$.\\
+    $\begin{bmatrix}
+       1 && 1 && 2 && 1\\
+       1 && -2 && 0 && -1
+    \end{bmatrix}\begin{bmatrix}
+        x_1\\
+        x_2\\
+        x_3\\
+        x_4
+    \end{bmatrix}=\begin{bmatrix}
+        1\\
+        -2
+    \end{bmatrix}$\\
+    We denote the columns of $A:=[a_1,a_2,a_3,a_4]$. 
+    $a_i,b\in\mathbb{R}^2,i=1\ldots4\Rightarrow rankA,rank[A,b]\le 2$. $a_1,a_2$ are linearly independent, so $rankA=rank[A,b]=2$
+    It follows from theorem $2.1$ there exists a solution $x$ to the equation $Ax=b$.\\
+    Rewrite the equation $Ax=b$ as $x_1a_1+x_2a_2=b-x_3a_3-x_4a_4$ and assign arbitrary values to $x_3,x_4$. Let $B:=[a_1,a_2]\in \mathbb{R}^{2\times2}$. 
+    Because $B$ is an invertible matrix, we can solve for $x_1,x_2$ by computing 
+    $\begin{bmatrix}
+        x_1\\
+        x_2
+    \end{bmatrix}=B^{-1}(b-x_3a_3-x_4a_4)$ to find the general solution for the system. 
+    \item [\bf{2.8}] $\langle x,y\rangle_2=2x_1y_1+3x_2y_1+3x_1y_2+5x_2y_2\Leftrightarrow x^T\begin{bmatrix}
+        2 && 3\\
+        3 && 5
+    \end{bmatrix}y$\\ 
+    Note: for two vectors $x,y$ of the same dimension, their Euclidean inner product is $x^T\cdot y=x\cdot y^T$. Moreover, $\langle x,x\rangle={\lVert x\rVert}^2$
+    \begin{itemize}
+        \item [Positivity:] Let $A:=\begin{bmatrix}
+            1 && 1\\
+            1 && 2
+        \end{bmatrix}$. Observe $\begin{bmatrix}
+            1 && 1\\
+            1 && 2
+        \end{bmatrix}^2=\begin{bmatrix}
+            2 && 3\\
+            3 && 5
+        \end{bmatrix}$. $x^T A^T={(Ax)}^T\Rightarrow x^T A^2 x={(Ax)}^T(Ax)={\lVert Ax\rVert}^2\ge 0$ because $A$ is symmetric and the square of any number is non-negative.
+        Also, $\langle x,x\rangle_2=0\Leftrightarrow {\lVert Ax\rVert}^2=0\Rightarrow Ax=0\Rightarrow x=A^{-1}0=0$ because $A$ is invertible ($\det A=1$). 
+        \item [Symmetry:] $\langle x,y\rangle_2={(Ax)}^T(Ay)={(Ay)}^T(Ax)=\langle y,x\rangle_2$ because ${(Ax)}^T(Ay)\in \mathbb{R}^{1\times1}$, so ${(Ay)}^T(Ax)={({(Ay)}^T(Ax))}^T$. 
+        \item [Additivity:] $\langle x+y,z\rangle_2={(x+y)}^T A^2z=x^T A^2z+y^TA^2z=\langle x,z\rangle_2+\langle y,z\rangle_2$
+        \item [Homogeneity:] $\langle \alpha x,y\rangle_2={(\alpha x)}^T A^2y=\alpha x^T A^2y=\alpha \langle x,y\rangle_2$
+    \end{itemize}
+    \item [\bf{2.9}] $\mathbf{x}=(\mathbf{x}-\mathbf{y})+\mathbf{y}$.
+    By the triangle innequality $\lVert \mathbf{x}\rVert\le \lVert \mathbf{x}-\mathbf{y}\rVert +\lVert \mathbf{y}\rVert$.
+    Similarly $\mathbf{y}=(\mathbf{y}-\mathbf{x})+\mathbf{x}$. 
+    By the triangle innequality $\lVert \mathbf{y}\rVert\le \lVert \mathbf{y}-\mathbf{x}\rVert +\lVert \mathbf{x}\rVert$. 
+    $\lVert \mathbf{x}-\mathbf{y}\rVert=\lVert \mathbf{y}-\mathbf{x}\rVert$. 
+    Observe $\lVert \mathbf{y}\rVert-\lVert \mathbf{x}\rVert,\lVert \mathbf{x}\rVert-\lVert \mathbf{y}\rVert\le \lVert \mathbf{y}-\mathbf{x}\rVert$ by bringing $\lVert \mathbf{y}\rVert$ or $\lVert \mathbf{x}\rVert$ to the other side. 
+    $\max(\lVert \mathbf{y}\rVert-\lVert \mathbf{x}\rVert,\lVert \mathbf{x}\rVert-\lVert \mathbf{y}\rVert)=|\lVert \mathbf{y}\rVert-\lVert \mathbf{x}\rVert|$.
+    Thus, $|\lVert \mathbf{y}\rVert-\lVert \mathbf{x}\rVert|\le \lVert \mathbf{y}-\mathbf{x}\rVert$.
+\end{enumerate}
+\end{document}

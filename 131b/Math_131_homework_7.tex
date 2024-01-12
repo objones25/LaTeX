@@ -1,0 +1,45 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+\title{\bf Math 131B: Homework 7}
+\date{5/19/2023}
+\author{\bf Owen Jones}
+
+\begin{document}
+\maketitle
+\begin{enumerate}[label=Problem \arabic*.]
+    \item \textbf{Exercise 4.2.2}\\
+Let $x_0\in\mathbb{R}\setminus1$. We want to show $\displaystyle\sum_{n=0}^{\infty}\frac{1}{(1-x_0)^{n+1}}{(x-x_0)}^n=\frac{1}{1-x}$ for $x$ between $1$ and $2x_0-1$.
+To show this we use the formula for the sum of a geometric series $\displaystyle\sum_{n=0}^{\infty}a\cdot r^n=\frac{a}{1-r}$ for $r\in(-1,1)$.
+It follows $\displaystyle\sum_{n=0}^{\infty}\frac{1}{(1-x_0)^{n+1}}(x-x_0)^n=\displaystyle\sum_{n=0}^{\infty}\frac{1}{(1-x_0)}(\frac{x-x_0}{1-x_0})^n=\frac{\frac{1}{(1-x_0)}}{1-\frac{x-x_0}{1-x_0}}=\frac{1}{(1-x_0)-(x-x_0)}=\frac{1}{1-x}$ for $x$ between $1$ and $2x_0-1$.
+Hence $f(x)$ is analytic for all $x\in\mathbb{R}\setminus1$.
+    \item \textbf{Exercise 4.2.3}\\
+We want to show by induction on $k$ that function $f(x)=\displaystyle\sum_{n=0}^{\infty}c_n(x-a)^n$ which is real-analytic at $a$ has a $k^{th}$ derivative given by $f^{(k)}(x)=\displaystyle\sum_{n=0}^{\infty}c_{n+k}\frac{(n+k)!}{n!}(x-a)^n$.
+For the base case $k=0$ we obtain $f^{(0)}(x)=\displaystyle\sum_{n=0}^{\infty}c_{n+0}\frac{(n+0)!}{n!}(x-a)^n=f(x)$, so the claim holds for $k=0$.
+Now assume for some arbitrary $k\ge0$ the claim $f^{(k)}(x)=\displaystyle\sum_{n=0}^{\infty}c_{n+k}\frac{(n+k)!}{n!}(x-a)^n$ holds.
+To show the $k+1^{st}$ case, we differentiate both sides giving us $f^{(k+1)}(x)=\displaystyle\sum_{n=1}^{\infty}c_{n+k}\frac{(n+k)!}{n!}\cdot n\cdot(x-a)^{n-1}=\sum_{n=1}^{\infty}c_{n+k}\frac{(n+k)!}{(n-1)!}(x-a)^{n-1}$.
+Reindexing the variable $n$ s.t each $n=n-1$ we obtain $\displaystyle\sum_{n=1}^{\infty}c_{n+k}\frac{(n+k)!}{(n-1)!}(x-a)^{n-1}=\sum_{n=0}^{\infty}c_{n+k+1}\frac{(n+k+1)!}{n!}(x-a)^{n}$.
+Thus, the claim holds for $k+1$
+Hence, by induction, the claim holds for all $k$.
+    \item \textbf{Exercise 4.2.5}\\
+Let $a,b$ be real numbers and let $n\ge0$ be an integer.
+It follows $(x-a)^n=((x-b)+(b-a))$.
+Using the binomial formula we can expand $\displaystyle (x-a)^n=((x-b)+(b-a))^n=\sum_{m=0}^{n}\frac{n!}{m!(n-m)!}(x-b)^m\cdot (b-a)^{n-m}$.
+Hence, $\displaystyle (x-a)^n=\sum_{m=0}^{n}\frac{n!}{m!(n-m)!}(x-b)^m\cdot {(b-a)}^{n-m}$, so we obtain our desired solution.\\
+Writing a Taylor's expansion of the function $f(x)=(x-a)^n$ centered at $x=b$, we obtain $\displaystyle f(x)=\sum_{m=0}^{\infty}\frac{f^{(m)}(b)}{m!}(x-b)^m=\sum_{m=0}^{\infty}\frac{(b-a)^{n-m}n!}{m!(n-m)!}(x-b)^m$ because $f^{(n)}(b)=\frac{(b-a)^{n-m}n!}{(n-m)!}$ by a simple induction (or taking for granted Exercise 4.2.1 is true).
+Thus, Exercise 4.2.5 is consistent with Taylor's Theorem and Exercise 4.2.1.\\
+    \item \textbf{Exercise 4.2.6}\\
+Let $P_n(x)$ be a polynomial of degree $n$ and let $a$ be a real number.
+We can express $P_n(x)=\displaystyle\sum_{k=0}^{n}b_k x^k$ as a sum of monomials.
+Using Exercise 4.2.5, we can express $P_n(x)=\displaystyle\sum_{k=0}^{n}b_k x^k=\sum_{k=0}^{n}b_k\sum_{m=0}^{k}\frac{k!}{m!(k-m)!}(x-a)^m\cdot (a)^{k-m}$.
+It follows, we can express $P_n(x)=\displaystyle\sum_{m=0}^{\infty}c_m(x-a)^m$ where $c_m=\displaystyle\sum_{k=m}^{n}b_k\frac{k!}{m!(k-m)!}(a)^{k-m}$.
+Hence, $P_n(x)$, an arbitrary polynomial of degree $n$, is analytic at an arbitrary real number $a$, so any polynomial is analytic on $\mathbb{R}$.
+\end{enumerate}
+\end{document}

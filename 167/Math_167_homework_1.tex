@@ -1,0 +1,86 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multirow}
+
+\title{\bf Math 167: Homework 1}
+\date{8/15/2023}
+\author{\bf Owen Jones}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+    \item [\textbf{Exercise 1.a}] Define $Z$ to be those positions with Nim-sum zero for the odd-numbered steps. We will show that:
+    \begin{itemize}
+        \item [(a)] From every position in $Z$, all moves lead to $Z^c$
+        \item [(b)] From every position in $Z^c$, there exists a move to $Z$.
+    \end{itemize}\par 
+(a) Let $x=(x_1,\dots,x_k)\in Z\setminus\mathbf{0}$, and let $x^*$ be a vector consisting of the odd elements of $x$. It follows by how we defined $x$ that $x^*$ has a Nim-sum of zero. 
+Suppose we move $s$ coins from step $j$ to $j-1$ for $j\le k$. 
+For odd $j$, subtracting from step $j$ will cause some digit of the binary representation of $x_j$ to change from $0$ to $1$ or vice-versa. Otherwise the adding to step $j-1$ will cause some digit of the binary representation of $x_{j-1}$ to change from $0$ to $1$ or vice-versa. 
+In either case, the Nim-sum of $x^*$ will become non-zero because the parity of the sum of ones for at least one column must change from even to odd.
+Thus, $(x_1,\dots,x_{j-1}+s,x_j-s,\dots,x_k)\in Z^c$.\par
+(b) Let $x=(x_1,\dots,x_k)\in Z^c$, and let $x^*$ be a vector consisting of the odd elements of $x$. As shown in Figure 1.7, we can treat the elements of $x^*$ as stacks of coins in a game of regular Nim. From the proof of Bouton's Theorem (b), we know there exists a move from position $x^*$ to a position in $Z$. In other words, for some odd $j$, we can move some number of coins from step $j$ to $j-1$ such that the resulting Nim-sum of $x^*$ is $0$. Thus, there exists a move from postion $x$ to a position in $Z$.\par
+For $k$ steps and $n$ coins, $B(x)\le nk$ for any position $x$. This follows from the worst case scenario where all $n$ coins are stacked on the $k^{th}$ step. We show by induction on $i$ that the postions of $Z$ and $Z^c$ coincide with the positions of $\mathbf{N}$ and $\mathbf{P}$. 
+The case with $0$ coins clearly resides in $\mathbf{P}$ and $Z$. We assume for some $i$ that if position $x$ has $B(x)\le nk\le i$, then the postions $\mathbf{N}$ and $\mathbf{P}$ coincide with $Z^c$ and $Z$. 
+Now suppose $x$ has $B(x)\le nk\le i+1$. If $x\in Z^c$, then there exists a move to some position $x'\in Z$ where $B(x')\le i$, and since $x'\in \mathbf{P}$ by the induction hypothesis, $x\in \mathbf{N}$ because there exists a move to a position in $\mathbf{P}$. If $x\in Z$ then every move results in some position $x'\in Z^c$ where $B(x')\le i$, and because $x'\in \mathbf{N}$ by the induction hypothesis, $x\in \mathbf{P}$ because every move leads to a position in $\mathbf{N}$. Thus, by induction, postions $\mathbf{N}$ and $\mathbf{P}$ coincide with $Z^c$ and $Z$. 
+
+    \item [\textbf{Exercise 1.b}] We will prove by induction on $n$ that in any progressively bounded combinatorial game with no ties allowed, all positions $(x,i)$ with $B(x,i)\le n$ lie in $\mathbf{N}_n\cup \mathbf{P}_n$.\\
+    If $B(x,i)=0$, then the position $(x,i)\in \mathbf{P}_0$. Assume that for any $(x,i)$ s.t $B(x,i)\le n$, $(x,i)\in \mathbf{N}_n\cup \mathbf{P}_n$. Suppose that for some position $(x,i)$ $B(x,i)\le n+1$. It follows either each move from $(x,i)$ leads to a position in $\mathbf{N}_n$, or there exists a move $(w,i^c)\notin \mathbf{N}_n$. In the first case $(x,i)\in P_{n+1}$ by definition. Otherwise, because $B(w,i^c)\le n$, the inductive hypothesis tells us $B(w,i^c)\in \mathbf{P}_n$. Thus, $B(x,i)\in N_{n+1}$ Hence, by induction, all positions lie in $\mathbf{N}\cup \mathbf{P}$. Moreover, if the first player's position lies in $N$, they have the winning position. Otherwise, the second player does.  
+\item [\textbf{Exercise 1.1}]
+\begin{itemize}
+    \item [(a)] Because the Nim sum is non-zero, this is a winning position for next player. The winning move is to subtract $4$ from the pile containing $12$ coins.
+    \begin{align*}
+        & 9=2^3+2^0\\
+        & 10=2^3+2^1\\
+        & 11=2^3+2^1+2^0\\
+        & 12=2^3+2^2\\
+        & =4
+    \end{align*}
+    \item [(b)] Even with the additional rule, this is still a winning position because $4<9$.
+\end{itemize}
+\item [\textbf{Exercise 1.2}] Let $m=5i+a$ be the first pile where $i$ and $a$ are non-negative integers and $0\le a\le 4$. Let $n=6j+b$ be the second pile where $j$ and $b$ are positive integers and $0\le b\le 5$. We want to show:
+\begin{itemize}
+    \item [(a)] If the game has a starting position where $a$ and $b$ are equal, the second player wins. 
+    \item [(b)] If the game has a starting position where $a$ and $b$ are not equal, the first player wins.
+\end{itemize}
+(a) No matter what move the first player makes, the second player can take from at least one of the piles to make it s.t $m\mod5=n\mod6$. Suppose the first player subtracts $x$ from one of the piles. If $x\le a=b$, then Player II subtracts $x$ from the other pile. If $x>a=b$ then Player II takes $5-x$ if from pile 1 or $6-x$ if from pile 2. Repeat until player II wins.\\ 
+(b) If $a>b$ Player I subtracts $a-b$ from pile 1. Otherwise subtract $b-a$ from pile 2. Whatever move Player II makes, compare the new $a$ and $b$ and repeat the first step until Player I wins.
+ 
+\item [\textbf{Exercise 1.3}] Let $X=\{x_1,x_2,\ldots,x_m\}$ be the set of all coins and let $N=\{1,2,\ldots,n\}$ be the set of slots. For each $x_j\in X$ in slot $i\in N$, suppose $x_j$ is a stack with $i-1$ coins. Moving coin $x_j$ $y$ spaces to the left is equivalent to removing $y$ coins from stack $x_j$.
+Thus, by Bouton's Theorem, the starting position is a losing position iff $x_1\oplus x_2\oplus\ldots\oplus x_m$ has a Nim-sum of $0$.
+\item [\textbf{Exercise 1.4}] For $S_1$ $\mathbf{P}=\{2i+5j:i,j\in \mathbb{N}\cup\{0\}\}$. 
+For $S_2$ $\mathbf{P}=\{8i:i\in \mathbb{N}\cup\{0\}\}$. 
+For $S_3$ $\mathbf{P}=\{21i:i\in \mathbb{N}\cup\{0\}\}$. 
+Suppose we divide $G_1+G_2+G_3$ into two subgames $G_1+G_2$ and $G_3$. 
+$G_1+G_2$ is a win by Lemma $1.1.9$ because $G_1$ is a loss and $G_2$ is a win. 
+Player 1 can force Player 2 to win $G_3$ by leaving piles of size $x\in\{21i+1:i\in\mathbb{N}\cup{0}\}$. 
+Because Player 1 can guarantee a win of $G_1+G_2$ and guarantee a loss of $G_3$, they have a winning strategy by Lemma $1.1.9$. 
+\item [\textbf{Exercise 1.5}] We will prove the following:\\
+\begin{itemize}
+    \item [(Symmetry)] Suppose $(G_1,x_1)$ and $(G_2,x_2)$ are equivalent. It follows the outcome $(x_1,x_3)$ in game $G_1+G_3$ is the same as the outcome $(x_2,x_3)$ in game $G_2+G_3$. Thus, the outcome $(x_2,x_3)$ in game $G_2+G_3$ is the same as the outcome $(x_1,x_3)$ in game $G_1+G_3$. Hence, $(G_2,x_2)$ is equivalent to $(G_1,x_1)$.
+    \item [(transitivity)] Suppose $(G_1,x_1)$ and $(G_2,x_2)$ are equivalent as well as $(G_2,x_2)$ and $(G_4,x_4)$ are equivalent. It follows the outcome $(x_1,x_3)$ in game $G_1+G_3$ is the same as the outcome $(x_2,x_3)$ in game $G_2+G_3$, and the outcome $(x_2,x_3)$ in game $G_2+G_3$ is the same as the outcome $(x_4,x_3)$ in game $G_4+G_3$. Thus, the outcome $(x_1,x_3)$ in game $G_1+G_3$ is the same as the outcome $(x_4,x_3)$ in game $G_4+G_3$. Hence, $(G_1,x_1)$ is equivalent to $(G_4,x_4)$.
+    \item [(Reflexivity)] The outcome $(x_1,x_3)$ in game $G_1+G_3$ is the same as the outcome $(x_1,x_3)$ in game $G_1+G_3$. Hence, $(G_1,x_1)$ is equivalent to $(G_1,x_1)$. 
+\end{itemize}
+\item [\textbf{Exercise 1.6}] We prove $(x_1,x_2)\in\mathbf{P}\Rightarrow (G_1,x_1)$ and $(G_2,x_2)$ are equivalent by contrapositive. Suppose $(G_1,x_1)$ and $(G_2,x_2)$ are not equivalent. It follows there exists some $G_3$ and position $x_3$ s.t $(x_1,x_3)$ in $G_1+G_3$ and $(x_2,x_3)$ in $G_2+G_3$ have different outcomes. If $(G_3,x_3)\in\mathbf{P}$ then $(G_1,x_1)\in\mathbf{P}$ and $(G_2,x_2)\in\mathbf{N}$ or vice versa by the sum of games property. Thus, $(x_1,x_2)\in\mathbf{N}$ in $G_1+G_2$. If $(G_3,x_3)\in\mathbf{N}$ then we have to consider the following cases:\par 
+(a) $(G_1,x_1)\in\mathbf{P}$ and $(G_2,x_2)\in\mathbf{N}$ where $(x_2,x_3)\in\mathbf{P}$ in $G_2+G_3$ or vice versa.\par
+(b) $(G_1,x_1),(G_2,x_2)\in\mathbf{N}$ where $(x_1,x_3)\in\mathbf{P}$ in $G_1+G_3$ and $(x_2,x_3)\in\mathbf{N}$ in $G_2+G_3$ or vice versa.\par 
+$(x_1,x_2)$ in $G_1+G_2$ is clearly in $\mathbf{N}$ for (a) by sum of games. Because $(x_1,x_3)\in\mathbf{P}$ in $G_1+G_3$ and $(x_2,x_3)\in\mathbf{N}$ in $G_2+G_3$ for (b), it follows $(x_1,x_2,x_3,x_3)\in\mathbf{N}$ in $G_1+G_2+G_3+G_3$. $(x_3,x_3)\in\mathbf{P}$ in $G_3+G_3$ because the previous player always has the option to copy the next player's move on the opposite game until we obtain $(G_3,x_3')\in\mathbf{N}_1\Rightarrow(x_3',x_3')\in\mathbf{P}_2$ in $G_3+G_3$. Thus $(x_1,x_2)\in\mathbf{N}$ in $G_1+G_2$ by sum of games.
+Hence, in each case we obtain $(x_1,x_2)\in\mathbf{N}$ in $G_1+G_2$.\\
+
+We prove $(G_1,x_1)$ and $(G_2,x_2)$ are equivalent $\Rightarrow (x_1,x_2)\in\mathbf{P}$ directly. $(G_1,x_1),(G_2,x_2)$ must either both be in $\mathbf{P}$ or $\mathbf{N}$ because otherwise if $(G_3,x_3)\in\mathbf{P}$ then $(x_1,x_3)$ and $(x_2,x_3)$ would have different outcomes. If $(G_1,x_1),(G_2,x_2)\in\mathbf{P}$ then $(x_1,x_2)\in\mathbf{P}$ in $G_1+G_2$ by sum of games. If $(G_1,x_1),(G_2,x_2)\in\mathbf{N}$ then $(x_1,x_2)\in\mathbf{P}$ in $G_1+G_2$ because $(x_1,x_1)\in\mathbf{P}$ ins $G_1+G_1$ by the reasoning we used in the other direction and $(G_1,x_1)$ and $(G_2,x_2)$ are equivalent.
+Hence, $(x_1,x_2)\in\mathbf{P}$ in $G_1+G_2$. 
+\item [\textbf{Exercise 1.7}] Let the Up-and-Down Rooks game be represented as a Nim position with $8$ piles where the number of coins in each stack be the space between the rooks in each column. The starting position of the game has a Nim-sum of $0$. Suppose Player I makes their first move with Nim-sum $s\neq0$. Player II's optimal move is to subtract $s$ from some stack (Player II should never move backward) to make the Nim-sum $0$ again. This pattern repeats until the end of game. Eventually, Player I will reach a game position where their only choice of move for any rook is to move backward. Player II inevitably forces each white rook to the bottom row by keeping the distance between each rook $0$ (maintaining a Nim-sum of $0$).
+\item [\textbf{Exercise 1.8}] \begin{itemize}
+    \item [(a)] Player I should place the first domino on the $3^{rd}$ and $4^{th}$ position of the $11\times1$ board. This move leaves the $1^{st}$ and $2^{nd}$ positions open and a $7\times1$ board. The $7\times1$ board can have at most $3$ dominoes placed on it, so regardless of where Player II plays, Player I can win on their $3^{rd}$ turn if they leave two non-adjacent $2\times1$ spaces on their $2^{nd}$ turn.
+    \item [(b)] Player I should place their first move in the middle of the board splitting the game into 2 equal sized $(\frac{n}{2}-1)\times1$ boards. Then following every move Player II makes, Player I plays the same move on the other board. Since the number of dominoes placed on the first $(\frac{n}{2}-1)$ spaces will equal the number of dominoes on the last $(\frac{n}{2}-1)$ spaces, there will be an odd number of turns, so Player I will play the last domino.
+\end{itemize}
+\end{itemize}
+\end{document}

@@ -1,0 +1,206 @@
+%-----------------------------------------------------------------------------------------------
+\documentclass[addpoints, 11pt]{exam}
+\usepackage[margin=.75in]{geometry}
+\usepackage{etex}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{enumerate}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{patterns}
+\usepackage{pstricks-add}
+%\usepackage{pst-func}
+%\usepackage{pst-plot}
+%\usepackage{pst-spectra}
+\usepackage{multido}
+\usepackage{lastpage}
+\usepackage{ulem}
+\usepackage[outside]{coordsys}
+\usepackage{float}
+\usetikzlibrary{pgfplots.statistics}
+\usetikzlibrary{positioning, shapes.geometric}
+%-------------------------------------------------------------------------------------------------
+\setlength{\columnsep}{.5cm}
+\setlength{\columnseprule}{1pt}
+\newcommand{\ds}{\displaystyle}
+\newcommand{\work}{{\bf{No Work $\Leftrightarrow$ No Points }}}
+\newcommand{\neat}{{\bf{Use Pencil Only $\Leftrightarrow$ Be Neat \& Organized }}}
+\newcommand{\answer}{\large\bf Ans: \underline{\hspace{1.5in}}}
+\newcommand{\la}{\lambda}
+\newcommand{\zz}{\mathbb{Z}}
+\newcommand{\rr}{\mathbb{R}}
+\newcommand{\nn}{\mathbb{N}}
+\newcommand{\qq}{\mathbb{Q}}
+\newcommand{\cc}{\mathbb{C}}
+\newcommand{\cyclic}[1]{\langle #1 \rangle}
+\newcommand{\lcm}{{\rm{lcm}}}
+\renewcommand{\solutiontitle}{\noindent\textbf{Answer:}\par\noindent}
+%------------------------------------------------------------------------------------------------
+\begin{document}
+%------------------------------------------------------------------------------------------------
+\cfoot{UCLA: C. Johnson}
+%	\rfoot{Total Points: \numpoints}
+\rfoot{Page \thepage\ of \pageref{LastPage}}
+%------------------------------------------------------------------------------------------------
+\begin{center}
+\fbox{%
+	\parbox{1\linewidth}{%
+		\noindent \Large\bfseries \\[.05in] Math 142: Modeling{\hspace{1.2in}{\Large\bfseries Name:{\hrulefill}}\\[.2cm]
+			\noindent \Large\bfseries Homework \# 6 \hspace{2.8in}{Due:} Friday Nov 17
+		}\\[.025in]
+	}%
+}
+\end{center}
+\addpoints
+
+
+\vspace{.25cm}
+
+
+%------------------------------------------------------------------------------------------------
+\noindent  {\bf Directions} Complete the exercises. Your solutions to the exercises should be submitted to Gradescope before the indicated due date above. Please follow rules regarding Gradescope submission as described in the syllabus. \\
+
+
+\noindent{\bf References} Except for the help of the instructor or TAs and the class textbooks and notes, if you use any resources, for example, a book, a website, or you discussed with your friends, please acknowledge them in this References section. 
+\begin{itemize}
+\item I discussed Problem ?? with STUDENT A, STUDENT B, $\ldots$
+\item I used BOOK/WEBSITE to help me do Problem ??.
+\end{itemize}
+\vspace{.05cm}
+%\hrule
+%----------------------------------------------------------------------------------------------  
+\noindent {\bf Exercises}
+%\begin{multicols*}{2}
+\begin{questions}
+%----------------------------------------------------------------------------------------------  
+%----------------------------------------------------------------------------------------------  
+\question  Interpretation of SIS models In class, we introduced the SIS model for epidemics, and showed that a disease is predicted to die out within a population if the reproductive number $R_0 \equiv \frac{p b}{c}>1$. In this question we will discuss in a bit more length, the interpretation of the model.
+\begin{parts}
+	\part In class we analyzed the differential equation for $\frac{d I}{d t}$, and ignored the differential equation for $S$. Show explicitly that $\frac{d}{d t}(S+I)=0$. (In other words, if we assume $S=N-I$, then if the equation for $\frac{d I}{d t}$ is satisfied, then so, automatically, is the equation for $\left.\frac{d S}{d t}\right)$.\\
+	If $S=N-I$ where $S$ and $I$ are functions of $t$ and $N$ is a constant, then the sum of $S$ and $I$ is a constant function. It follows that the derivative of any constant function is $0$. Hence, $\frac{d}{d t}(S+I)=0$.
+	\part Imagine that we start off with a set of replicate populations, each with $N$ individuals, and all starting with exactly one infectious person.
+	\begin{enumerate}
+		\item[(i)] Explain why, at time, $t$, the likelihood that the initially infectious person is still infectious is $e^{-c t}$\\
+		We assume that a fraction $c$ of infected people recover in each unit of time. 
+		We model the recovery rate $\frac{dI}{dt}=-cI\Rightarrow f(t)=c_1e^{-ct}$. 
+		Because we only care about about the initially infectious person, $c_1=1$ and $E[I_0]=1\cdot P(I_0=1)+0\cdot P(I_0=0)=e^{-ct}\Rightarrow P(I_0=1)=e^{-ct}$
+		\item[(ii)] Note that this person infects others at average rate $r=\frac{b p}{N} S e^{-c t}$, since almost the entire population is susceptible, $S \approx N$, so $r \approx b p e^{-c t}$. Find the total number of susceptibles infected by the person, before they recover from the disease.
+		This calculation allows us to identify $R_0$ as the average number of people infected by each susceptible.\\
+		$R_0\approx \int_{0}^{\infty}bpe^{-ct}dt=\frac{bp}{-c}e^{-\infty}+\frac{bp}{c}e^{0}=\frac{bp}{c}$
+	\end{enumerate}
+\end{parts}
+%----------------------------------------------------------------------------------------------   
+\question Evolutionary game theory and snowdrift games The focus of this exercise is deriving your own mathematical model, given a real world situation.
+
+Evolutionary game theory is the study of how the frequency of different behaviors changes within a population over time. For example, it has been used to study why organisms cooperate with each other: on one hand, individuals can benefit from working together, on the other hand if other organisms are sharing their labors, a single individual may be able to shirk work (defect), letting others do the work for it. An example of this kind of cooperation is what is called the snowdrift game. Organisms are divided into cooperators and defectors. Each interaction between organisms leads to benefits and costs. If two defectors meet then nothing happens. If either organism is a cooperator, then both receive an identical benefit $b$. The total cost of cooperating is $c$ : if both organisms are cooperators, costs are split between both (i.e. both pay a cost $c / 2$ ) if only one is a cooperator then it alone must pay the full $\operatorname{cost} c$. In one unit of time, suppose that each organism meets exactly one other organism. The birth rate for each organism is proportional to the net benefit - cost from its interactions. Suppose that the fraction of organisms that are cooperators is $x$ and the fraction that are defectors is $y$. Then for a first model we might write down:
+
+\begin{eqnarray*}\dot{x}&=&x \times (\text{net benefit of meeting a cooperator } \times \text{ fraction of meetings with cooperators }\\
+	&&+ \text{ net benefit of meeting a defector }\times\text{ fraction of meetings with defectors}) \end{eqnarray*}
+\begin{parts}
+	\part Explain why the above equation, written in math, becomes:
+	$$
+	\dot{x}=x \cdot((b-c / 2) x+(b-c) y)
+	$$
+	The net benefit of a cooperator meeting another cooperator is $b-c / 2$, the fraction of meetings with cooperators is $x$, the net benefit of meeting a defector $b-c$, and the fraction of meetings with defectors is $y$. 
+	Substituting variables for their respective words, we get out desired equation.
+	\part Similarly explain why:
+	$$
+	\dot{y}=y \cdot(b x)
+	$$
+	The net benefit of a defector meeting another defector is $0$, and the net benefit of meeting a cooperator is $b$, so if we assume 
+	\begin{eqnarray*}\dot{y}&=&y \times (\text{net benefit of meeting a cooperator } \times \text{ fraction of meetings with cooperators }\\
+		&&+ \text{ net benefit of meeting a defector }\times\text{ fraction of meetings with defectors}) \end{eqnarray*} then we plug in our variables for words to get our desired equation.
+	\part Suppose that the total number of organisms present is constrained (that is it neither increases or decreases with time). Then $x+y=1$. Explain why this requires that $\dot{x}+\dot{y}=0$. We must modify our equations to account for this constraint. Suppose that each time a new organism is added, then another one must be removed from the total pool. Thus both types of organisms also die at a rate $r$. Then our two equations become:
+	$$
+	\begin{aligned}
+		&\dot{x}=x((b-c / 2) x+(b-c) y-r) \\
+		&\dot{y}=y(b x-r)
+	\end{aligned}
+	$$
+	Calculate an expression for $r$ that makes $x+y=1$ and $\dot{x}+\dot{y}=0$.\\
+	If the total population stays constant, then the rate of change of the population is $0$. It follows the rate of change of the proportion of the population which is $x$ must be the negative of the rate of change of the proportion of the population which is $y$. \\
+	$$
+	\begin{aligned}
+		&y=1-x\Rightarrow \dot{x}=x((b-c / 2) x+(b-c) (1-x)-r)=x((b-c)+(c / 2)x-r)\\
+		&y=1-x\Rightarrow \dot{y}=(1-x)(b x-r)\\
+		&\dot{y}+\dot{x}=0\Rightarrow x((b-c)+(c / 2)x-r)+(1-x)(b x-r)=0\\
+		&\Rightarrow x((b-c)+(c / 2)x)+(1-x)(b x)=r\\
+		&\Rightarrow r=(c / 2 -b)x(x-2)
+	\end{aligned}
+	$$
+	\part Since $y=1-x$, we only need to analyze the differential equation for $\dot{x}$ to understand how the proportions of both types of organisms will change over time. Find all of the fixed points of this differential equation (Hint: we know that $x=0$ and $x=1$ are fixed points of the differential equation).\\
+		$\dot{x}=x((b-c / 2) x+(b-c) (1-x)-(c / 2 -b)x(x-2))$\\
+		$=(b-c / 2)x(1-x)((b-c)/(b-c/2)-x)$\\
+		, so we have fixed points at $x=0,(b-c)/(b-c/2),1$
+	\part Determine the stability of the fixed points that you calculated in part (d), assuming (i) $b>c$ and (ii) $c / 2<b<c$, and explain briefly what your conclusions mean for the fate of cooperators in the population.\\
+	(i) $x=(b-c)/(b-c/2)$ is stable, $x=0,1$ are unstable\\
+	(ii) $x=0$ is stable, $x=1$ is unstable, $x=(b-c)/(b-c/2)$ is outside the range of $[0,1]$
+\end{parts}
+%----------------------------------------------------------------------------------------------   
+\question (Insulin pump) The data in this question is taken from Lauritzen et al. Diabetologia (1983). Patients with Type I diabetes are unable to produce insulin, which is needed to regulate levels of sugar in their body. One treatment for this condition is to implant an insulin pump in the fatty tissue either at a patient's abdomen or their thigh. Although these pumps are now quite sophisticated, we will consider an early model pump which continuously releases insulin into the patient's body. Let's consider a simple model for the insulin pump, whereby the insulin pump releases insulin at a constant rate $a$ into the patient's blood. Assume that $a=0.84 \mathrm{IU} / \mathrm{hr}$ (IU is a unit for the amount of a drug). At the same time, the drug is constantly eliminated from the patient's blood at a rate, $k_e$ (that is, a fraction $k_e$ of insulin is eliminated from the blood, by the kidneys and liver, in each unit of time).
+\begin{parts}
+	\part Derive a compartment model (i.e. an ODE) for the amount of insulin in the patient's blood, $x$ as a function of time, $t$.\\
+	$\frac{dx}{dt}=a-k_ex$
+
+	\part It is found that for a real patient, the equilibrium level of insulin in the patient's blood is $0.12$ IU. From your model, estimate the elimination rate $k_e$.\\
+	$\frac{dx}{dt}=0\Rightarrow k_e=\frac{a}{x}$ we are given $a=0.84 \mathrm{IU} / \mathrm{hr}$ and $x=0.12$ IU. Thus, $k_e=7/hr$
+\end{parts}
+%---------------------------------------------------------------------------------------------- 
+\question For each of the following functions calculate the specified partial derivative: \begin{parts}
+	\part
+	
+	$$
+	f(x, y)=x^2+x y+y^2 \quad, \quad \frac{\partial f}{\partial x}
+	$$
+	$$
+	\frac{\partial f}{\partial x}=2x+y
+	$$
+	\part
+	$$
+	\rho(x, t)=1+\epsilon \sin (x-2 t) \quad, \quad \frac{\partial \rho}{\partial t}
+	$$
+	$$
+	\frac{\partial \rho}{\partial t}=-2\epsilon\cos(x-2t)
+	$$
+	\part
+	$$
+	\rho(x, t)=e^{-x^2 / t} \quad, \frac{\partial^2 \rho}{\partial x^2} .
+	$$
+	$$
+	\frac{\partial^2 \rho}{\partial x^2}=-(2/t)e^{-x^2 / t}+(4x^2 / t^2)e^{-x^2 / t}
+	$$
+\end{parts}
+%----------------------------------------------------------------------------------------------
+\question An autocatalytic reaction is one in which a molecule $A$ is transformed into a molecule $X$, by contact with another molecule of $X$. In chemical reaction notation we represent the reaction as:
+$$
+A+X \underset{k_b}{\stackrel{k_f}{\rightleftharpoons}} 2 X
+$$
+here $k_f$ is the rate constant for the forward reaction $A+X \rightarrow 2 X$ and $k_b$ the rate constant for the reverse reaction $2 X \rightarrow A+X$. Assume that at time $t=0$ there are $a$ molecules of $A$, and the same number of $X$ molecules, present.
+\begin{parts}
+	\part Assuming the reactions obey the mass action laws, and carefully explaining your arguments, show that the number of $X$ molecules present, $x(t)$, obeys a differential equation:
+	$$
+	\frac{d x}{d t}=k_f x(2 a-x)-k_b x^2
+	$$
+	Let $[A]$ be the number of $A$ molecules at time $t$. By the conservation of mass, the total number of molecules must stay constant, so $x(0)+[A]=2a\Rightarrow [A]=2a-x$\\
+	It follows $\frac{d x}{d t}=(\text{rate of the foward reaction})\times(\text{amount of X at time t})\times(\text{amount of A at time t})-(\text{rate of the reverse reaction})\times(\text{amount of X at time t})\times(\text{amount of X at time t})$\\
+	$\Rightarrow \frac{d x}{d t}=k_f x(2 a-x)-k_b x^2$
+	\part Starting with a vector field plot of your differential equation from (a), explain find the limit that $x(t)$ approaches as $t \rightarrow \infty$.\\
+	\begin{figure}[H]
+		\centering
+		\includegraphics[scale=0.5]{Screenshot 2023-11-16 at 11.36.40 AM.png}
+	\end{figure}
+	$x(t)$ has a stable fixed point at $x=\frac{k_f2a}{k_f+k_r}$ and an unstable fixed point at $x=0$, so over time, $x(t)$ will approach $x=\frac{k_f2a}{k_f+k_r}$.
+\end{parts}
+%----------------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------------
+\question Submit the code you used for any and all of the problems. (Print pdf the code) Either lump it all together at the end or when matching problems on Gradescope, select all pages of pdf that has code if you included code within the solution to each answer.
+%----------------------------------------------------------------------------------------------
+
+\end{questions}
+%\end{multicols*}
+\end{document}                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         

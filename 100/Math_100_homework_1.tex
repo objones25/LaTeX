@@ -1,0 +1,158 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 100: Problem Set 1}
+\date{10/11/2023}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}[label= (Q-\arabic*)]
+    \item \begin{itemize}
+        \item [(a)] Pf by induction: WTS $P(n):\displaystyle\sum_{k=1}^{n}\frac{1}{\sqrt{k}}<2\sqrt{n}$ for all $n$.\\
+    Base case: $P(1):\frac{1}{\sqrt{1}}<2\sqrt{1}$ is trivially true, so the case holds for $n=1$.\\
+    Induction hypothesis: assume for some $n\ge1$ the statement $P(n)$ is true.\\
+    Induction step: Since we know that 
+    $$
+    \displaystyle\sum_{k=1}^{n}\frac{1}{\sqrt{k}}+\frac{1}{\sqrt{n+1}}=\sum_{k=1}^{n+1}\frac{1}{\sqrt{k}}<2\sqrt{n}+\frac{1}{\sqrt{n+1}}
+    $$
+     by the induction hypothesis, it suffices to show that 
+     $$
+     2\sqrt{n}+\frac{1}{\sqrt{n+1}}<2\sqrt{n+1}
+     $$
+    Subtracting $2\sqrt{n}$ from both sides and multiplying the top and bottom of the RHS by $\frac{\sqrt{n+1}+\sqrt{n}}{\sqrt{n+1}+\sqrt{n}}$ we obtain, 
+    $$
+    2\sqrt{n+1}-2\sqrt{n}=\frac{2}{\sqrt{n+1}+\sqrt{n}}
+    $$. 
+    Because $n<n+1$, it follows 
+    $$
+    \frac{1}{\sqrt{n+1}+\sqrt{n+1}}<\frac{1}{\sqrt{n+1}+\sqrt{n}}
+    $$
+    , so 
+    $$
+    \frac{1}{\sqrt{n+1}}=\frac{2}{\sqrt{n+1}+\sqrt{n+1}}<\frac{2}{\sqrt{n}+\sqrt{n+1}}=2\sqrt{n+1}-2\sqrt{n}
+    $$. 
+    Because $\frac{1}{\sqrt{n+1}}<2\sqrt{n+1}-2\sqrt{n}$, it follows 
+    $$
+    \sum_{k=1}^{n+1}\frac{1}{\sqrt{k}}<2\sqrt{n}+\frac{1}{\sqrt{n+1}}<2\sqrt{n+1}
+    $$.
+    Thus, $P(n)\Rightarrow P(n+1)$.
+    Hence, by induction, the claim holds for all $n$.
+        \item [(b)] Pf by induction: WTS $P(n):\displaystyle\prod_{k=1}^{n}(2k)!\ge{((n+1)!)}^n$\\
+        Base case: $P(1):(2\cdot1)!\ge{((1+1)!)}^1\Leftrightarrow 2!=2!$, so the claim holds for $n=1$.
+        Induction hypothesis: Induction hypothesis: assume for some $n\ge1$ the statement $P(n)$ is true.\\
+        $\displaystyle\prod_{k=1}^{n}(2k)!\ge{((n+1)!)}^n$ by the induction hypothesis, so $\displaystyle\prod_{k=1}^{n+1}(2k)!\ge(2n+2)!{((n+1)!)}^n$.
+        We rewrite the RHS of $P(n+1)$ as 
+        $$
+        {(((n+1)+1)!)}^{n+1}={(n+2)}^{n+1}{((n+1)!)}^{n+1}
+        $$,
+        so it suffices to show 
+        $$
+        (2n+2)!\ge {(n+2)}^{n+1}(n+1)!
+        $$
+        Rewriting the LHS of the innequality 
+        $(2n+2)!=\displaystyle(n+1)!\prod_{k=n+2}^{2n+2}k$ which is clearly greater than ${(n+2)}^{n+1}(n+1)!$ because $\displaystyle\prod_{k=n+2}^{2n+2}k$ consists of $n+1$ terms which are each greater than or equal to $n+2$.\\ 
+        Thus, $(2n+2)!\ge {(n+2)}^{n+1}(n+1)!\Rightarrow \displaystyle\prod_{k=1}^{n+1}(2k)!\ge{(((n+1)+1)!)}^{n+1}$.
+        Hence, by induction, the statement $\displaystyle\prod_{k=1}^{n}(2k)!\ge{((n+1)!)}^n$ holds for all $n$.
+    \end{itemize}
+    \item We will prove that $P(n):$ it is possible to the label the players in such a way that $P_1$ defeated $P_2$, $P_2$ defeated $P_3,\ldots$, $P_{n-1}$ defeated $P_n$ for each $n$ by induction.\\
+        Base case: $P(2)$ (we can't have any games with only one player) since one of the two players has to win and the other has to lose, we label the winner $P_1$ and the loser $P_2$.\\
+        Induction hypothesis: We assume for some $n\ge2$ the statement $P(n)$ is true.\\
+        Induction step: We know by the induction hypothesis that any subset of the $n+1$ players of size $n$ can be labeled in a way s.t $P(n)$ holds.
+        Take the remaining player which we will label as $P^*$. 
+        We obtain two cases. 
+        Either $P^*$ lost to every player and we can label the player $P_{n+1}$, or there exists a smallest player $P_i$ s.t $P^*$ beat $P_i$. 
+        Since $P_i$ is the smallest player $P^*$ beat, $P^*$ lost to $P_{i-1}$. Therefore, we can place $P^*$ in between $P_{i-1}$ and $P_i$ and relabel the players after $P_{i-1}$ accordingly.
+        Thus, $P(n+1)$ holds. Hence, by induction, the claim holds for all $n$.
+    \item We will show by induction $P(n)$: If a round-robin tournament has $2n-1$, $n\in\mathbb{N}$ teams, it is possible for every team to
+    win exactly half its games.\\
+    Base case $P(1)$: Since a single team has no one to play against, that team will play $0$ games. Since half of $0$ is $0$, each team wins exactly half their games.
+    Induction hypothesis: Assume for some $n\ge1$ the claim $P(n)$ holds.
+    Induction step: For a tournament with $2n+1$ teams, we know by the induction hypothesis that each team can win exactly half their games for a tournament with $2n-1$ teams. 
+    Suppose the $2n^{th}$ team wins against teams $1-n$ and loses to teams $(n+1)-(2n-1)$ and $2n+1$. 
+    Next, the ${(2n+1)}^{st}$ loses to teams $1-n$ and wins against teams $(n+1)-2n$. 
+    Thus, each of the first $2n-1$ teams gain an additional win and loss maintaining equal numbers of each, and the last two teams win exactly $n$ of their $2n$ games. 
+    Thus, the claim holds for $2n+1$ teams. Hence, by induction, the claim holds for all $n$.
+    \item We will prove for all $0\le x\le \pi$ and all non-negative integers $n$ $P(n): |\sin nx|\le n\sin x$ by induction.\\
+    Base case $P(0)$: $0$ times anything anything is $0$ and $\sin(0)=0$, so both sides of the innequality are $0$, so the claim holds.\\
+    Induction hypothesis: Assume for some $n\ge0$ the claim $P(n)$ holds.\\
+    Induction step: $|\sin ((n+1)x)|=|\sin nx \cos x+\sin x\cos nx|$ by the sum formula for $\sin\theta$. 
+    $|\sin nx \cos x+\sin x\cos nx|\le|\sin nx\cos x|+|\sin x \cos nx|$ by the triangle innequality.
+    $\cos$ is bounded above by $1$, so $|\sin nx\cos x|+|\sin x \cos nx|\le|\sin nx|+|\sin x|$.
+    $|\sin nx|\le n\sin x$ by the induction hypothesis, so $|\sin((n+1)x)|\le |\sin nx|+|\sin x|\le n\sin x+|\sin x|$.
+    $|\sin x|=\sin x$ on the interval $[0,\pi]$ because $\sin x\ge 0$.
+    Thus, $|\sin((n+1)x)|\le(n+1)\sin x$.
+    Hence, by induction $P(n)$ holds for all $n$ and $0\le x\le \pi$.
+    \item We want to show by induction that $P(n)$: every number less than or equal to $F_n$ can be written by the sum of distinct Fibonacci numbers where $F_0=0,F_1=1,\ldots$\\
+    Base case: $P(1)$ $1\le F_1=1$ is the only positive integer less than or equal to $F_1$ and can trivially expressed as the sum of a single Fibonacci number. \\
+    Induction hypothesis: Assume for some $n\ge1$ $P(n)$ is true.\\
+    Induction step: We want to show that the claim holds for $P(n+1)$. \\
+    Because $F_{n+1}=F_n+F_{n-1}$ and $F_n\ge F_{n-1}$, it follows $F_n\le F_{n+1}=F_n+F_{n-1}$. \\
+    Pick some arbitrary integer $k\le F_{n+1}$. \\
+    If $k\le F_n$, we're done.
+    If $k=F_{n+1}$, we're also done.
+    Otherwise, we express $k=m+F_n$ where $m<F_{n-1}$.\\
+    Since $m< F_{n-1}\le F_n$, it can be expressed as a sum of distinct Fibonacci numbers that does not include $F_n$. \\
+    Thus, $F_n+m$ will also be a sum of distinct Fibonacci numbers.\\
+    Hence, by induction, $k\le F_n$ can be expressed as a sum of distinct Fibonacci numbers for all $n$.\\
+    It follows for any positive number $k$ choose $n$ large enough s.t $k\le F_n$. 
+    By the previous proof, $k$ can be expressed as a sum of distinct Fibonacci numbers.
+    \item The arithmetic progression $1,4,7,\ldots,100$ consists of $34$ distinct integers. 
+    We can also express the arithmetic progression as the set $B=\{52+3k:-17\le k\le 16,k\in\mathbb{Z}\}$. 
+    For each $b_k\in B$ s.t $k\neq-17,0$, there exists a $b_{-k}\in B$ s.t $b_k+b_{-k}=104$.
+    Thus, by the pigeonhole principle, there can be at most $18$ distinct integers in the set $A$ s.t no two integers add up to $104$.
+    \item \begin{itemize}
+        \item [(a)]Lemma: The area of a triangle inscribed inside a $1\times1$ square is bounded above by $\frac{1}{2}$.\\
+        Recall the formula for the area of a triangle $\frac{1}{2}bh$.
+        We assume that the area of the triangle is maximized when two vertices are placed in adjacent corners and the third vertex is placed on the edge parallel to the line created to the first two vertices.
+        WLOG let $b$ be the distance between the first and second vertex, and let $h$ be the minimum distance from the third vertex to the edge of the triangle between the first and second vertex.
+        We can increase the area of a triangle where at least one vertex is not on the edge of the square by moving away from the edge of the triangle between the other two vertices.
+        When all three vertices are on an edge, as we increase $b$ by moving either vertex $1$ or $2$ from an adjacent corner to an opposite corner (the furthest two points can be from each other), we can move vertex $3$ to one of the corners adjacent to the vertex not being moved to maximize $h$ in response to changing $b$.
+        Regardless of how we change $b$, we will still have two vertices on adjacent corners and the third vertex somewhere on the edge parallel to the line created to the first two vertices. 
+        Hence, using the formula for a triangle calling the line between vertices on adjacent corners $b=1$ and the distance between parallel edges of a square $h=1$, the area of the triangle is maximized with $A=\frac{1}{2}$.\\
+    
+        Pf: Divide the square region $S$ into $4$ equally sized $1\times1$ square regions.
+        By the pigeonhole principle, at least $1$ of the $4$ regions must contain at least $3$ points. 
+        The area of a triangle inscribed inside a square of side length $s$ is bounded above by $\frac{1}{2}s^2$, so the area inside the $1\times1$ square is at most $\frac{1}{2}$.
+        \item [(b)] First we divide the hexagon into $6$ equalateral triangles with side length $1$. 
+        By the pigeonhole principle, there must be at least $1$ region containing at least $4$ darts.
+        We divide the region with zt least $4$ darts into $3$ congruent kites by drawing lines from the midpoint of each side of the triangle to the center.
+        Once again we use the pigeonhole principle to deduce there must be at least one region containing $2$ darts.
+        The furthest two points can be within the kite sized region is the distance between the vertex and the center of the triangle.
+        Constructing a $30-60-90$ triangle using the vertex of the triangle region, the center, and the midpoint of a side connected to the vertex as vertices. 
+        It follows the distance between the vertex and the center is $\frac{1}{2\cos(30)}=\frac{\sqrt{3}}{3}$.
+
+    \end{itemize}
+    \item There are $15$ possible ways the table can rotated. A guest will see a different card in front of them for each of the possible rotations.
+    Since we know that no one is currently seeing the correct card, every guest will see their correct card in one of the $14$ other rotations.
+    It follows that because we have $15$ guests and $14$ possible rotations where a player can see their card placed correctly in front of them, there must be at least one rotation where at least two guests will see their names placed correctly in front of them at the same time.
+    \item For any real number $X$, we can express the number as the sum its floor and its fractional part $X=\lfloor X\rfloor+\{X\}$. 
+    Since any integer times an integer yields an integer, we only have to consider values of $\{kX\}\in[0,1)$.
+    Assume for the sake of contradiction that for all $k\in\{1,2,\ldots,n-1\}$ $\{kX\}\notin[0,\frac{1}{n})$ and $\{kX\}\notin[1-\frac{1}{n},1)$.
+    It follows that each $\{X\},\{2X\},\ldots,\{(n-1)X\}$ must be distributed among $[\frac{1}{n},\frac{2}{n}),[\frac{2}{n},\frac{3}{n}),\ldots,[\frac{n-2}{n},\frac{n-1}{n})$.
+    Since we have $n-1$ possible values of $k$ and $n-2$ intervals, there must be two integers $k_1,k_2$ in the same interval. 
+    WLOG let $k_2>k_1$. It follows $|\{k_2X\}-\{k_1X\}|<\frac{1}{n}$, so $\{(k_2-k_1)X\}\in[0,\frac{1}{n})$ and $(k_2-k_1)\in\{1,2,\ldots,n-1\}$. 
+    Thus, we obtain a contradiction, so in fact, there must ecist a $k\in\{1,2,\ldots,n-1\}$ s.t $kX$ is within $\frac{1}{n}$ of an integer.
+    \item Consider any one of the $6$ people in a group. We'll call this person $P$. 
+    We label the other players "red" if they know $P$ and "blue" if they don't.
+    Since we are considering $5$ people and $2$ categories, either "red" or "blue" will have at least $3$ people in that group.
+    Suppose the "red" group has $3$ or more people. 
+    If any $2$ people know each other, then we have a group of mutual friends with $P$. 
+    Otherwise, there are $3$ mutual strangers because no $2$ people know each other.
+    Now suppose the "blue" group has $3$ or more people.
+    If any $2$ people are strangers, then we have a group of mutual strangers with $P$.
+    Otherwise, there are $3$ mutual friends because no $2$ people are strangers to each other.
+    Hence, there are always $3$ mutual friends or $3$ mutual strangers.
+\end{enumerate}
+
+\end{document}

@@ -1,0 +1,115 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Final 2015}
+\date{12/8/2023}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}[label= (Q-\arabic*)]
+    \item Base case: $(1+\frac{1}{1^2})(1+\frac{1}{2^2})=2\cdot\frac{5}{4}=\frac{5}{2}\le 5(1-\frac{1}{2})=\frac{5}{2}$\\
+    Induction hypothesis: assume $\prod_{i=1}^{n}(1+\frac{1}{i^2})\le 5(1-\frac{1}{n})$\\
+    Induction step: suffices to show $5(1-\frac{1}{n})(1+\frac{1}{{(n+1)}^2})\le 5(1-\frac{1}{n+1})$.\\
+    $-2\le0\Rightarrow n^3+n^2-2\le n^3+n^2\Rightarrow (n-1)({(n+1)}^2+1)\le n^2(n+1)\Rightarrow {n-1}{n}\frac{{(n+1)}^2+1}{{(n+1)}^2}\le\frac{n}{n+1}\Rightarrow 5(1-\frac{1}{n})(1+\frac{1}{{(n+1)}^2})\le 5(1-\frac{1}{n+1})$
+    \item given vector $(a,b,c)$ and $(1,2,2)$, $(a+2b+2c)^2\le (a^2+b^2+c^2)(1^2+2^2+2^2)=9\Rightarrow |a+2b+2c|\le 3$. Want $(a,b,c)\parallel (1,2,2)$ Thus, $(\frac{1}{3},\frac{2}{3},\frac{2}{3})$ will achieve the maximum value of $3$.
+    \item $\gcd(4,3)=1$, so there exist $x,y$ s,t $4x-3y=1$. By Euclidean algorithm, $x=1,y=1$ gives specific solution, and $4(x+1)-3(y+1)=1$ gives $x=1+3k,y=1+4k$ as our general solution.
+    \item $a+b+c=-2,ab+bc+ac=-9,abc=1$. $p_2=-ab-bc-ac=9,p_1=ab^2c+a^2bc+abc^2=1\cdot-2=-2,p_0=1,x^3+9x^2-2x-1$
+    \item $\frac{1}{F_{n-1}F_{n+1}}=\frac{F_{n+1}-F_{n-1}}{F_{n-1}F_{n+1}(F_{n+1}-F_{n-1})}=\frac{1}{F_{n-1}(F_{n+1}-F_{n-1})}-\frac{1}{F_{n+1}(F_{n+1}-F_{n-1})}=\frac{1}{F_{n-1}F_n}-\frac{1}{F_{n+1}F_n}$\\
+    $\lim_{n\rightarrow\infty}\sum_{k=2}^{n}\frac{1}{F_{k-1}F_{k+1}}=\lim_{n\rightarrow\infty}\sum_{k=2}^{n}\frac{1}{F_{k-1}F_k}-\frac{1}{F_{k+1}F_k}=\frac{1}{F_{1}F_2}-\frac{1}{F_{3}F_2}+\frac{1}{F_{2}F_3}-\frac{1}{F_{3}F_2}\ldots=\frac{1}{F_{1}F_2}-\frac{1}{F_{n+1}F_n}=1$
+    \item $9r^2-6r+1\Rightarrow r=\frac{1}{3}\Rightarrow a_n=\alpha \frac{1}{3^n}+\beta n\frac{1}{3^n}\Rightarrow a_n=\frac{6}{3^n}+\frac{9n}{3^n}$
+    \item ${|PA|}^2+{|PB|}^2+{|PC|}^2+{|PD|}^2$, ${|PA|}^2=r^2+\frac{1}{2}d^2-\vec{OP}\cdot\vec{OA}$. By symmetry ${|PA|}^2+{|PB|}^2+{|PC|}^2+{|PD|}^2=4r^2+2d^2$
+    \item Let $f(x)=ax+b\frac{x^2}{2}+c\frac{x^3}{3}-\sin(x)$. $f(\frac{\pi}{2})=f(0)=0$, so by rolle's theorem, $f'(x)=a+bx+cx^2-\cos(x)=0$ for some $0\le x\le \frac{\pi}{2}$.
+    \item $\lim_{n\rightarrow\infty}\sum_{k=1}^{n}\frac{1}{4n+k}=\lim_{n\rightarrow\infty}\frac{1}{n}\sum_{k=1}^{n}\frac{1}{4+\frac{k}{n}}=\lim_{n\rightarrow\infty}\frac{1}{n}\sum_{k=1}^{n}f(4+\frac{k}{n})=\int_4^5\frac{1}{x}dx=\log(5)-\log(4)=\log(\frac{5}{4})$.
+    \item $1\le 2\sqrt{2}$\\
+    Suffices to show $2\sqrt{n}+\frac{1}{\sqrt{n+1}}\le 2\sqrt{n+1}$
+    If $2\sqrt{n}+\frac{1}{\sqrt{n+1}}\le 2\sqrt{n+1}\Rightarrow \frac{1}{\sqrt{n+1}}\le 2(\sqrt{n+1}-\sqrt{n})\Rightarrow\frac{1}{\sqrt{n+1}}\le 2\frac{1}{\sqrt{n+1}+\sqrt{n}}$ which is true because $\frac{1}{\sqrt{n+1}}=\frac{2}{2\sqrt{n+1}}\le\frac{2}{\sqrt{n}+\sqrt{n+1}}$
+    \item By AM-GM $\sqrt{ab}\cdot\sqrt{2bc}\cdot\sqrt{5cd}\cdot\sqrt{10ad}=10|abcd|\le (a+b)(b+2c)(c+5d)(a+10d)\Rightarrow 5000\le (a+b)(b+2c)(c+5d)(a+10d)$. Solve for when $a=b=2c=10d\Rightarrow 500=500d^4\Rightarrow a=10,b=10,c=5,d=1$ 
+    \item By inspection, $(-2,4)$ gives us a solution. It follows $(-2+5k,4-9k)$ gives us the set of all integer solutions.
+    \item $P(x)=(x+1)(x+2)Q(x)+R(x)$ where the degree of $R(x)$ is less than $Q(x)$. It follows $P(-1)=R(-1)=1-a+b$ and $P(-2)=R(-2)=2^{50}-2a+b$. Setting $R(-1)=R(-2)=0$, we find $a-1=b\Rightarrow a=2^{50}-1,b=2^{50}-2$.
+    \item $\lim_{n\rightarrow\infty} \sum_{k=1}^{n}\frac{1}{(2k-1)(2k+1)}=\lim_{n\rightarrow\infty}\sum_{k=1}^{n}\frac{\frac{1}{2}((2k+1)-(2k-1))}{(2k-1)(2k+1)}=\lim_{n\rightarrow\infty}\sum_{k=1}^{n}\frac{\frac{1}{2}}{(2k-1)}-\frac{\frac{1}{2}}{(2k+1)}=\lim_{n\rightarrow\infty}\frac{1}{2}\frac{1}{1}-\frac{1}{2}\frac{1}{2n+1}=\frac{1}{2}$
+    \item $\int_{y=0}^{y=10}\int_{x=0}^{x=\min(10,12-y)}dxdy=100-\int_{y=2}^{10}\int_{x=12-y}^{10}dxdy=100-\int_{y=2}^{y=10}y-2dy=100-\frac{1}{2}y^2-2y|_{y=2}^{y=10}=100-30-2=68\Rightarrow P(x+y\le12)=\frac{17}{25}$
+    \item WLOG let $G$ be the centroid of $\triangle ABC$. Let $\vec{a}=\vec{GA},\vec{b}=\vec{GB},\vec{c}=\vec{GC}$. We are given $\vec{d}=\frac{1}{3}(\vec{c}-\vec{b}),\vec{e}=\frac{1}{3}(\vec{a}-\vec{c}),\vec{f}=\frac{1}{3}(\vec{b}-\vec{a})$. We defined $\frac{\vec{a}+\vec{b}+\vec{c}}{3}=\vec{0}$. Clearly $\frac{\vec{d}+\vec{e}+\vec{f}}{3}=\frac{\frac{1}{3}(\vec{c}-\vec{b})+\frac{1}{3}(\vec{a}-\vec{c})+\frac{1}{3}(\vec{b}-\vec{a})}{3}=\vec{0}$
+    \item A simple induction shows $f(\sum_{i=1}^{n}x_i)=\sqrt{\sum_{i=1}^{n}{f(x_i)}^2}$. 
+    $f(0)=f(n\cdot 0)=\sqrt{n{f(0)}^2}=\sqrt{n}|f(0)|\Rightarrow f(0)=0$ or $\sqrt{n}=\pm 1$. 
+    $\sqrt{n}\neq\pm1$ unless $n=1$. Thus, $f(0)=0$. $f(0)=f(x+(-x))=\sqrt{{f(x)}^2+{f(-x)}^2}=0\Rightarrow {f(x)}^2=-{f(-x)}^2$ which can only be true if $f(x)=0$ because $f(x)\in \mathbb{R}$.
+    \item Let $I:=\int_{x=0}^{x=1}\frac{e^{x+3}}{e^{x+3}+e^{4-x}}dx$. Let $y=1-x\Rightarrow dy=-dx\Rightarrow I=\int_{y=1}^{y=0}\frac{e^{4-y}}{e^{4-y}+e^{y+3}}(-dy)=\int_{y=0}^{y=1}\frac{e^{4-y}}{e^{4-y}+e^{y+3}}dy$. Because $y$ is a dummy variable $I=\int_{x=0}^{x=1}\frac{e^{4-x}}{e^{4-x}+e^{x+3}}dx\Rightarrow I+I=\int_{x=0}^{x=1}\frac{e^{4-x}}{e^{4-x}+e^{x+3}}dx+\int_{x=0}^{x=1}\frac{e^{x+3}}{e^{4-x}+e^{x+3}}dx=\int_{x=0}^{x=1}\frac{e^{x+3}+e^{4-x}}{e^{4-x}+e^{x+3}}dx=1\Rightarrow I=\frac{1}{2}$
+    \item $1\ge\sqrt{1}$. WTS $\frac{1}{\sqrt{n+1}}+\sqrt{n}\ge \sqrt{n+1}$. $\frac{1}{\sqrt{n+1}}\ge \sqrt{n+1}-\sqrt{n}=\frac{1}{\sqrt{n+1}+\sqrt{n}}$ which is clearly true.
+    \item Let $1,\omega,\omega^2$ be the roots of unity. $P(x)=(x^2+x^1)Q(x)+R(x)$. $P(\omega)=R(\omega)$ and $P(\omega^2)=R(\omega^2)$ because $\omega,\omega^2$ are the roots of $x^2+x^1$. It follows $P(\omega)=\omega^{3a}+\omega^{3b+1}+\omega^{3c+2}=1+\omega+\omega^2=0,P(\omega^2)=\omega^{6a}+\omega^{6b+2}+\omega^{6c+4}=1+\omega^2+\omega=0$
+    \item $\int_{y=0}^{y=1}\int_{x=\min(\frac{1}{4y},1)}^{x=1}dxdy=\int_{y=\frac{1}{4}}^{y=1}\int_{x=\frac{1}{4y}}^{x=1}dxdy=\int_{y=\frac{1}{4}}^{1}1-\frac{1}{4y}dy=y-\frac{1}{4}\log(y)|_\frac{1}{4}^1=1-(\frac{1}{4}-\frac{1}{4}\log(\frac{1}{4}))=\frac{3}{4}-\frac{1}{2}\log(2)$
+    \item Pf by induction:\\
+    $n=2$ there are $2$ players, so there is only one game with a loser and a winner. Label the winner $P_1$ and the loser $P_2$.\\
+    By the induction hypothesis, there exists a way to order $n$ many players s.t $P_1$ defeated $P_2$ etc. 
+    For the $n+1st$ player $P^*$, let $W$ be the set of players defeated by $P^*$. Since this set is finite, it must have a minimum. Let $P_i$ be the minimum of the set $W$.
+    It follows, we can place $P^*$ between $P_{i-1}$ and $P_i$ if $i>1$ or before $P_1$ if $i=1$.
+    \item $|\sin(x)|\le \sin(x)$ trivially.\\
+    Assume $|\sin(nx)|\le n\sin(x)$. $|\sin((n+1)x)|=|\sin(nx)\cos(x)+\cos(nx)\sin(x)|\le|\sin(nx)||\cos(x)|+|\cos(nx)||\sin(x)|\le|\sin(nx)|+|\sin(x)|\le n\sin(x)+\sin(x)=(n+1)\sin(x)$
+    \item Divide $S$ into $4$ regions of equal size. By the pigeonhole principle, one of the $4$ regions contains $3$ points. The maximum area of a triangle inscribed inside a square is half the area of the square. WLOG let $p_1,p_2,p_3$ be on the region $[0,1]\times[0,1]$.\\ 
+    Let $b:=|\vec{p_1p_2}|$ and let $h:=\min(\sqrt{{((p_{2x}-p_{1x})t+p_{1x}-p_{3x})}^2+{((p_{2y}-p_{1y})t+p_{1y}-p_{3y})}^2})$.
+    If $b\le \frac{\sqrt{2}}{2}$ and $A=\frac{1}{2}bh$
+    \item $\frac{a_1}{b_1}+\frac{a_2}{b_2}+\ldots+\frac{a_n}{b_n}\ge n\sqrt{\frac{a_1}{b_1}\frac{a_2}{b_2}\ldots\frac{a_n}{b_n}}=n$ 
+    \item $r^3-r^2-r+1=(r+1)(r^2-2r+1)=(r+1)(r-1)^2=0\\
+    \alpha_1 {(-1)}^n+\alpha_2+\alpha_3 n\\
+    \alpha_1+\alpha_2=1\\
+    \alpha_2+\alpha_3-\alpha_1=2\\
+    \alpha_1+\alpha_2+2\alpha_3=4\\
+    \alpha_1=\frac{1}{4},\alpha_2=\frac{3}{4},\alpha_3=\frac{3}{2}\\
+    \frac{1}{4}{(-1)}^n+\frac{3}{4}+\frac{3}{2}n
+    $
+    \item let $b_n:=\sqrt{a_n}\\
+    r^2-r-2=0\Rightarrow (r-1)(r+2)=0\Rightarrow b_n=\alpha_1+\alpha_2{(-2)}^n\\
+    \Rightarrow a_n={(\alpha_1+\alpha_2{(-2)}^n)}^2\\
+    1={(\alpha_1+\alpha_2)}^2\Rightarrow 1=\alpha_1^2+2\alpha_1\alpha_2+\alpha_2^2\\
+    1={(\alpha_1-2\alpha_2)}^2\Rightarrow 1=\alpha_1^2-4\alpha_1\alpha_2+4\alpha_2^2\\
+    a_n={(\frac{1}{3}+\frac{2}{3}{(-2)}^n)}^2$
+    \item $1000-(\lfloor\frac{1000}{2}\rfloor+\lfloor\frac{1000}{3}\rfloor+\lfloor\frac{1000}{7}\rfloor-\lfloor\frac{1000}{6}\rfloor-\lfloor\frac{1000}{14}\rfloor-\lfloor\frac{1000}{21}\rfloor+\lfloor\frac{1000}{42}\rfloor)\\
+    1000-(500+333+142-166-71-47+23)=286$
+    \item $\sin(z)=\frac{e^{iz}-e^{-iz}}{2i}\Rightarrow \sum_{k=1}^{n}\sin((2k-1)\theta)
+    =\sum_{k=1}^{n}\frac{e^{i((2k-1)\theta)}-e^{-i((2k-1)\theta)}}{2i}
+    =\sum_{k=1}^{n}\frac{e^{-i\theta}}{2i}{(e^{2i\theta})}^k-\frac{e^{i\theta}}{2i}{(e^{-2i\theta})}^k
+    =\frac{e^{-i\theta}}{2i}\frac{e^{2in\theta}-1}{e^{2i\theta}-1}-\frac{e^{i\theta}}{2i}\frac{e^{-2in\theta}-1}{e^{-2i\theta}-1}
+    =\frac{e^{2in\theta}-1}{2i(e^{i\theta}-e^{-i\theta})}+\frac{e^{-2in\theta}-1}{2i(e^{i\theta}-e^{-i\theta})}
+    =\frac{2i}{(e^{i\theta}-e^{-i\theta})}\frac{2-(e^{2in\theta}+e^{-2in\theta})}{4}
+    =\frac{1-\cos(2n\theta)}{2\sin(\theta)}
+    =\frac{\sin^2(n\theta)}{\sin(\theta)}$
+    \item $(1+\frac{1}{1^2})(1+\frac{1}{2^2})=\frac{5}{2}\le\frac{5}{2}=5(1-\frac{1}{2})$\\
+    Assume $\prod_{k=1}^{n}(1+\frac{1}{k^2})\le 5(1-\frac{1}{n})$\\
+    Show $5(1-\frac{1}{n})(1+\frac{1}{{(n+1)}^2})\le 5(1-\frac{1}{n+1})$
+    $5(1-\frac{1}{n+1})-5(1-\frac{1}{n})=5(\frac{1}{n}-\frac{1}{n+1})=\frac{5}{n(n+1)}\ge \frac{5}{{(n+1)}^2}\ge 5(1-\frac{1}{n})\frac{1}{{(n+1)}^2}$\\
+    \item ${(a+2b+2c)}^2\le(a^2+b^2+c^2)(1^2+2^2+2^2)=3^2\Rightarrow |a+2b+2c|\le 3$. Choose $(a,b,c)\parallel (1,2,2)$. $(a,b,c)=(k,2k,2k)\Rightarrow 9k^2=1\Rightarrow k=\frac{1}{3}\Rightarrow (a,b,c)=(\frac{1}{3},\frac{2}{3},\frac{2}{3})$
+    \item $x^3-(a+b+c)x^2+(ab+bc+ac)x-abc=x^3+2x^2-9x-1=0\Rightarrow a+b+c=-2,ab+bc+ac=-9,abc=1$.\\
+    $\Rightarrow x^3-(ab+bc+ac)x^2+(ab^2+a^2bc+abc^2)x-a^2b^2c^2=x^3+9x^2-2x-1=0$
+    \item $\frac{1}{F_{n-1}F_{n+1}}=\frac{F_n}{F_{n-1}F_n F_{n+1}}=\frac{F_{n+1}-F_{n-1}}{F_{n-1}F_n F_{n+1}}=\frac{F_{n+1}}{F_{n-1}F_n F_{n+1}}-\frac{F_{n-1}}{F_{n-1}F_n F_{n+1}}=\frac{1}{F_{n-1}F_n}-\frac{1}{F_n F_{n+1}}\\
+    \sum_{n=2}^{infty}\frac{1}{F_{n-1}F_{n+1}}=\sum_{n=2}^{\infty}\frac{1}{F_{n-1}F_n}-\frac{1}{F_n F_{n+1}}=\frac{1}{F_1 F_2}-\frac{1}{F_\infty F_{\infty+1}}=1$
+    $F_n=F_{n-1}+F_{n-2}\Rightarrow r^2-r-1=0\Rightarrow (r-\frac{1+\sqrt{5}}{2})(r-\frac{1-\sqrt{5}}{2})\\
+    F_n=\alpha_1{(\frac{1+\sqrt{5}}{2})}^n+\alpha_2{(\frac{1-\sqrt{5}}{2})}^n\\
+    0=\alpha_1+\alpha_2\\
+    1=\alpha_1\frac{1+\sqrt{5}}{2}+\alpha_2\frac{1-\sqrt{5}}{2}\\
+    1=\alpha_1(\frac{1+\sqrt{5}}{2}-\frac{1-\sqrt{5}}{2})\Rightarrow \alpha_1=\frac{\sqrt{5}}{5},\alpha_2=-\frac{\sqrt{5}}{5}$
+    \item $9a_n=6a_{n-1}-a_{n-2}\Rightarrow (r-\frac{1}{3})=0\Rightarrow a_n\frac{\alpha_1}{3^n}+\frac{\alpha_2n}{3^n}\Rightarrow 6=\alpha_1\Rightarrow 5=2+\frac{\alpha_2}{3}\Rightarrow\alpha_2=9\Rightarrow a_n=\frac{2}{3^{n-1}}+\frac{n}{3^{n-2}}$
+    \item Let $P:=re^{i\theta}$ and $A,B,C,D:=\frac{d}{\sqrt{2}},-\frac{d}{\sqrt{2}},\frac{d}{\sqrt{2}}i,-\frac{d}{\sqrt{2}}i$.\\
+    ${|PA|}^2=\frac{d^2}{2}-\sqrt{2}rd\cos(\theta)+r^2\cos^2(\theta)+r^2\sin^2(\theta)\\
+    {|PB|}^2=\frac{d^2}{2}+\sqrt{2}rd\cos(\theta)+r^2\cos^2(\theta)+r^2\sin^2(\theta)\\
+    {|PC|}^2=\frac{d^2}{2}-\sqrt{2}rd\sin(\theta)+r^2\cos^2(\theta)+r^2\sin^2(\theta)\\
+    {|PD|}^2=\frac{d^2}{2}+\sqrt{2}rd\sin(\theta)+r^2\cos^2(\theta)+r^2\sin^2(\theta)\\
+    {|PA|}^2+{|PB|}^2+{|PC|}^2+{|PD|}^2=2d^2+4r^2$
+    \item Let $f(x):=ax+\frac{b}{2}x^2+\frac{c}{3}x^3-\sin(x)$. $f(\frac{\pi}{2})=f(0)=0$, so there exists some $0<\xi<\frac{\pi}{2}$ s.t $f'(\xi)=0$. Thus, $0=f'(\xi)=a+b\xi+c\xi^2-\cos(\xi)\Rightarrow \cos(\xi)=a+b\xi+c\xi^2$ for some real value $\xi$.
+    \item $\sum_{k=0}^{r}\begin{pmatrix} r\\k \end{pmatrix} \begin{pmatrix} s\\n+k\end{pmatrix}
+    =\begin{pmatrix} r\\0 \end{pmatrix} \begin{pmatrix} s\\n\end{pmatrix}+\begin{pmatrix} r\\r \end{pmatrix} \begin{pmatrix} s\\n+r\end{pmatrix}+\sum_{k=1}^{r-1}(\begin{pmatrix} r-1\\k \end{pmatrix}+\begin{pmatrix} r-1\\k-1 \end{pmatrix}) \begin{pmatrix} s\\n+k\end{pmatrix}\\
+    =\begin{pmatrix} r\\0 \end{pmatrix} \begin{pmatrix} s\\n\end{pmatrix}+\sum_{k=1}^{r-1}\begin{pmatrix} r-1\\k \end{pmatrix} \begin{pmatrix} s\\n+k\end{pmatrix}+\sum_{k=1}^{r-1}\begin{pmatrix} r-1\\k-1 \end{pmatrix} \begin{pmatrix} s\\n+k\end{pmatrix}+\begin{pmatrix} r\\r \end{pmatrix} \begin{pmatrix} s\\n+r\end{pmatrix}\\
+    =\sum_{k=0}^{r-1}\begin{pmatrix} r-1\\k \end{pmatrix} \begin{pmatrix} s\\n+k\end{pmatrix}+\sum_{k=0}^{r-1}\begin{pmatrix} r-1\\k \end{pmatrix} \begin{pmatrix} s\\n+k+1\end{pmatrix}\\
+    \sum_{k=0}^{r-1}\begin{pmatrix} r-1\\k \end{pmatrix} \begin{pmatrix} s+1\\n+k+1\end{pmatrix}$.
+    We can repeat this sequence of steps untill we obtain $\sum_{k=0}^{r-r}\begin{pmatrix} r-r\\k \end{pmatrix} \begin{pmatrix} s+r\\n+k+r\end{pmatrix}=\begin{pmatrix} s+r\\n+r\end{pmatrix}=\begin{pmatrix} s+r\\s+r-(n+r)\end{pmatrix}=\begin{pmatrix} s+r\\s-n\end{pmatrix}$
+    \item Consider a checker board of size $r\times s$. Want to find the number of ways to get to the line made by $(k,n+k)$
+\end{enumerate}
+\end{document}

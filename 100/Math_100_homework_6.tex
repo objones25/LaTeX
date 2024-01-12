@@ -1,0 +1,127 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 100: Problem Set 6}
+\date{11/15/2023}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}[label= (Q-\arabic*)]
+    \item Suppose we express $n$ as a sum of $n$ many $1$s. 
+    Between any two $1$s, we can choose whether or not to split the sum and start a new number. 
+    For example, we place a single split between the $k-th$ and the $k+1-st$ $1$s. 
+    Thus, we express $n$ as $k,n-k$.
+    Since we can place any number of splits between $0$ and $n-1$, the number of ways to express $n$ as a sum of positive integers is $\displaystyle\sum_{k=0}^{n-1}\begin{pmatrix}
+        n-1\\
+        k
+    \end{pmatrix}=2^{n-1}$ by the binomial formula.
+    \item We can equivalently express this problem as we have $14$ $1$s (because we can have groups of $0$) and we have to make $4$ splits. Thus, the number of ways can be written as $\begin{pmatrix}
+        14\\
+        4
+    \end{pmatrix}=1001$
+    \item Consider a set of $n$ objects with ordered subset of size $k$ with elements $x_1,x_2,x_3,\ldots, x_{k-1},x_k$. 
+    Let $x_1^*,x_2^*,x_3^*,\ldots, x_{k-1}^*$ be the successors of the first $k-1$ elements of the subset.
+    The subset is unfriendly if $x_i^*\neq x_{i+1}$ for all $1\le i<k$. 
+    Thus, to create a subset of size $k$, we can only choose from a pool of $n-(k-1)$ objects because none of $x_1^*,x_2^*,x_3^*,\ldots, x_{k-1}^*$ can be chosen.
+    It follows the number of unfriendly subsets is given by $\begin{pmatrix}
+        n-k+1\\
+        k
+    \end{pmatrix}$.
+    \item $_1P_1=1!=1$. The only permutation of $S_1$ is $\{1\}$ where $a_1=1$, so $g_1=0$.\\
+    $_2P_2=2!=2$. The two permutations of $S_2$ are $\{1,2\}$ and $\{2,1\}$, so the only derangement is $\{2,1\}$ where $a_1=2$, and $a_2=1$. Thus, $g_2=1$.\\
+    We use the PIE to show $g_n=\displaystyle \sum_{k=0}^{n}{(-1)}^k {_nP_{n-k}}=n!\sum_{k=0}^{n}\frac{{(-1)}^k}{k!}$.\\
+    We know there are $_nP_n$ permutations of $S_n$, so we subtract $_nP_{n-1}$, the number of permutations with at least one fixed point, and then alternate adding and subtracting ${(-1)}^k_nP_{n-k}$ to avoid double counting.
+    $_nP_{n-k}$ is the number of permutations with $k$ fixed points because we fix $k$ out of $n$ elements of $S_n$ and find the number of permutations for any $k$ elements fixed.\\
+    WTS $\displaystyle n!\sum_{k=0}^{n}\frac{{(-1)}^k}{k!}=(n-1)((n-1)!\sum_{k=0}^{n-1}\frac{{(-1)}^k}{k!}+(n-2)!\sum_{k=0}^{n-2}\frac{{(-1)}^k}{k!})\\
+    =(n-1)\frac{{(-1)}^{n-1}}{(n-1)!}(n-1)!+(n-1)((n-1)!+(n-2)!)\sum_{k=0}^{n-2}\frac{{(-1)}^k}{k!}\\
+    =(n-1){(-1)}^{n-1}+n!\sum_{k=0}^{n-2}\frac{{(-1)}^k}{k!}=\frac{n!}{(n-1)!}{(-1)}^{n-1}+\frac{n!}{n!}{(-1)}^{n}+n!\sum_{k=0}^{n-2}\frac{{(-1)}^k}{k!}\\
+    =n!\sum_{k=0}^{n}\frac{{(-1)}^k}{k!}$
+    \item $\displaystyle\sum_{k=0}^{n}{(-1)}^k{(1)}^{n-k}\begin{pmatrix}
+        n\\
+        k
+    \end{pmatrix}={(1+(-1))}^n=0$ by the binomial formula.
+    \item $(k-1)\times k\begin{pmatrix}
+        n\\
+        k
+    \end{pmatrix}=\frac{n!}{(n-k)!(k-2)!}=n(n-1)\begin{pmatrix}
+        n-2\\
+        k-2
+    \end{pmatrix}\\
+    \Rightarrow \displaystyle n(n-1)\sum_{k=2}^{n}\begin{pmatrix}
+        n-2\\
+        k-2
+    \end{pmatrix}=n(n-1)2^{n-2}$
+    \item ${(1+x)}^n=\displaystyle\sum_{k=0}^{n}x^k\begin{pmatrix}
+        n\\
+        k
+    \end{pmatrix}\\
+    \Rightarrow \frac{d}{dx}{(1+x)}^n=n{(1+x)}^{n-1}=\sum_{k=1}^{n}kx^{k-1}\begin{pmatrix}
+        n\\
+        k
+    \end{pmatrix}\\
+    \Rightarrow nx{(x+1)}^{n-1}=\sum_{k=1}^{n}kx^{k}\begin{pmatrix}
+        n\\
+        k
+    \end{pmatrix}\\
+    \Rightarrow\frac{d}{dx}nx{(x+1)}^{n-1}=n{(x+1)}^{n-1}+n(n-1)x{(x+1)}^{n-2}=\sum_{k=1}^{n}k^2x^{k-1}\begin{pmatrix}
+        n\\
+        k
+    \end{pmatrix}\\
+    \Rightarrow n(n+1)2^{n-2}=\sum_{k=1}^{n}k^2\begin{pmatrix}
+        n\\
+        k
+    \end{pmatrix}$
+    \item $\displaystyle n{(x+1)}^{n-1}+n(n-1)x{(x+1)}^{n-2}=\sum_{k=1}^{n}k^2x^{k-1}\begin{pmatrix}
+        n\\
+        k
+    \end{pmatrix}\\
+    \Rightarrow n{(-1+1)}^{n-1}+n(n-1)(-1){(-1+1)}^n{n-2}=\sum_{k=1}^{n}{(-1)}^{k-1} k^2\begin{pmatrix}
+        n\\
+        k
+    \end{pmatrix}\\
+    =
+    \begin{cases}
+    1 & \text{ for }n=1\\
+    -2 & \text{ for }n=2\\
+    0 & \text{ for }n\ge3    
+    \end{cases}$
+    \item Lemma: $\begin{pmatrix} n\\ k \end{pmatrix}=\begin{pmatrix} n-1\\ k \end{pmatrix}+\begin{pmatrix} n-1\\ k-1 \end{pmatrix}$\\ 
+    $\begin{pmatrix} n\\ k \end{pmatrix}=\frac{n!}{k!(n-k)!}=\frac{k(n-1)!}{k!(n-k)!}+\frac{(n-k)(n-1)!}{k!(n-k)!}\\
+    =\frac{(n-1)!}{(k-1)!((n-1)-(k-1))!}+\frac{(n-1)!}{k!((n-1)-k)!}\\
+    =\begin{pmatrix} n-1\\ k \end{pmatrix}+\begin{pmatrix} n-1\\ k-1 \end{pmatrix}$\\
+
+    WTS by induction on $k$ that $\displaystyle \begin{pmatrix}s+r\\ s-n \end{pmatrix}=\sum_{i=0}^{k}\begin{pmatrix}s+r-k\\ n+r-i \end{pmatrix}\begin{pmatrix}k\\ i\end{pmatrix}$\\
+    Base case: $P(1)$: $\displaystyle\begin{pmatrix}s+r\\ s-n \end{pmatrix}=\begin{pmatrix}s+r\\ s+r-(n+r) \end{pmatrix}=\begin{pmatrix}s+r\\ n+r \end{pmatrix}\\
+    =\begin{pmatrix}s+r-1\\ n+r \end{pmatrix}+\begin{pmatrix}s+r-1\\ n+r-1 \end{pmatrix}=\begin{pmatrix}1\\ 0 \end{pmatrix}\begin{pmatrix}s+r-1\\ n+r \end{pmatrix}+\begin{pmatrix}1\\ 1 \end{pmatrix}\begin{pmatrix}s+r-1\\ n+r-1 \end{pmatrix}\\
+    \displaystyle\sum_{i=0}^{1}\begin{pmatrix}s+r-1\\ n+r-i \end{pmatrix}\begin{pmatrix}1\\ i\end{pmatrix}$\\
+    Induction hypothesis: Let $0\le k<r$ be arbitrary. Assume $\displaystyle\sum_{i=0}^{k}\begin{pmatrix}s+r-k\\ n+r-i \end{pmatrix}\begin{pmatrix}k\\ i\end{pmatrix}$ holds for $k$.\\
+    Induction step: Expand each term of the series:\\
+    $\begin{pmatrix}s+r-k\\ n+r-i \end{pmatrix}\begin{pmatrix}k\\ i\end{pmatrix}=\begin{pmatrix}s+r-k-1\\ n+r-i \end{pmatrix}\begin{pmatrix}k\\ i\end{pmatrix}+\begin{pmatrix}s+r-k-1\\ n+r-i-1 \end{pmatrix}\begin{pmatrix}k\\ i\end{pmatrix}$\\
+    Separate into two different series and reindex\\
+    $\displaystyle\sum_{i=0}^{k}\begin{pmatrix}s+r-k-1\\ n+r-i-1 \end{pmatrix}\begin{pmatrix}k\\ i\end{pmatrix}\rightarrow\sum_{i=1}^{k+1}\begin{pmatrix}s+r-k-1\\ n+r-i \end{pmatrix}\begin{pmatrix}k\\ i-1\end{pmatrix}$\\
+    This implies $\displaystyle \sum_{i=0}^{k}\begin{pmatrix}s+r-k-1\\ n+r-i \end{pmatrix}\begin{pmatrix}k\\ i\end{pmatrix}+\sum_{i=1}^{k+1}\begin{pmatrix}s+r-k-1\\ n+r-i \end{pmatrix}\begin{pmatrix}k\\ i-1\end{pmatrix}\\
+    =\begin{pmatrix}s+r-k-1\\ n+r-0 \end{pmatrix}\begin{pmatrix}k\\ 0\end{pmatrix}+\begin{pmatrix}s+r-k-1\\ n+r-k \end{pmatrix}\begin{pmatrix}k\\ k\end{pmatrix}+\sum_{i=1}^{k}\begin{pmatrix}s+r-k-1\\ n+r-i \end{pmatrix}\begin{pmatrix}k+1\\ i\end{pmatrix}\\
+    =\sum_{i=0}^{k+1}\begin{pmatrix}s+r-k-1\\ n+r-i \end{pmatrix}\begin{pmatrix}k+1\\ i\end{pmatrix}$\\
+    because $\begin{pmatrix}k\\ 0\end{pmatrix}=\begin{pmatrix}k\\ k\end{pmatrix}=\begin{pmatrix}k+1\\ 0\end{pmatrix}=\begin{pmatrix}k+1\\ k+1\end{pmatrix}=1$.\\
+    Since our claim holds for any $0\le k\le r$ by induction set $k=r$.\\
+    It follows $\begin{pmatrix}s+r\\ s-n \end{pmatrix}\\
+    =\displaystyle\sum_{i=0}^{r}\begin{pmatrix}s\\ n+r-i \end{pmatrix}\begin{pmatrix}r\\ i\end{pmatrix}\\
+    =\sum_{i=0}^{r}\begin{pmatrix}s\\ n+r-i \end{pmatrix}\begin{pmatrix}r\\ r-i\end{pmatrix}\\
+    =\sum_{i=0}^{r}\begin{pmatrix}s\\ n+i \end{pmatrix}\begin{pmatrix}r\\ i\end{pmatrix}$ by reindexing $i\rightarrow r-i$
+    \item  We take $r=s=n$ and $n=0$. Thus, $\displaystyle\begin{pmatrix}
+        2n\\
+        n
+    \end{pmatrix}=\sum_{i=0}^{n}\begin{pmatrix}n\\i\end{pmatrix}^2$ by what we found in (Q-9). 
+\end{enumerate}
+\end{document}

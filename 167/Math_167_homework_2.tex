@@ -1,0 +1,91 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multirow}
+
+
+\title{\bf Math 167: Homework 2}
+\date{8/15/2023}
+\author{\bf Owen Jones}
+
+\begin{document}
+\maketitle
+
+\begin{itemize}
+    \item [\textbf{Exercise 1.9}] We know one of the two players has a winning strategy because we are playing a progressively bounded game with no ties. 
+    We assume for the sake of contradiction that Player II has a winning strategy which we will call $S$. 
+    Player I places their first hexagon in an arbitrary space.
+    After Player II places their first hexagon, Player I ignores their initial placement and plays strategy S rotated $120^\circ$ which we will call $S^*$. 
+    If Player I's first placement is not included in $S^*$ or the center hexagon is included in strategy $S$, Player I chooses a different arbitrary hexagon or the center space respectively for their first placement.
+    Thus, because the first placement can only help Player I, they must also have a winning strategy which is a contradiction because only one player can have a winning strategy. Hence, Player I must have a winning strategy.
+    \item [\textbf{Exercise 2.1}] Let $(i^*,j^*)$ be a saddle point for matrix $A_{m\times n}$. 
+    Suppose for the sake of contradiction there exists another saddle point $(i^+,j^+)$ such that $a_{i^*j^*}\neq a_{i^+j^+}$.
+    If $(i^+,j^+)$ is a saddle point, then for each $i$ and $j$ $a_{i^+j}\ge a_{i^+j^+}\ge a_{ij^+}$. It follows $a_{i^+j^*}\ge a_{i^+j^+}\ge a_{i^*j^+}$. Since $(i^*,j^*)$ is also a saddle point, then for each $i$ and $j$ $a_{i^*j}\ge a_{i^*j^*}\ge a_{ij^*}$. It follows $a_{i^*j^+}\ge a_{i^*j^*}\ge a_{i^+j^*}$. However, this implies $a_{i^*j^*}\ge a_{i^+j^+}\ge a_{i^*j^*}$ which is a contradiction because $a_{i^*j^*}\neq a_{i^+j^+}$.
+    Hence, all saddle points must have the same payoff for each player.
+    \item [\textbf{Exercise 2.9}] 
+    $\frac{3}{4}x_1+0x_2+0x_3=0x_1+\frac{1}{4}x_2+0x_3=0x_1+0x_2+\frac{1}{2}x_3\\
+    x_1+x_2+x_3=1\\
+    x_1=\frac{2}{11},x_2=\frac{6}{11},x_3=\frac{3}{11}$\\
+    Symmetric, so payoff probabilities same for $y$\\
+    
+
+    \begin{table}[h!]
+        \begin{tabular}{|l|l|l|l|}
+        \hline
+          & 1   & 2   & 3   \\ \hline
+        1 & 3/4 & 0   & 0   \\ \hline
+        2 & 0   & 1/4 & 0   \\ \hline
+        3 & 0   & 0   & 1/2 \\ \hline
+        \end{tabular}
+        \end{table}
+    \item [\textbf{Exercise 2.11}] 
+    $-4x_1+6(1-x_1)=6x_1-9(1-x_1)\\
+    x_1=\frac{3}{5},x_2=\frac{2}{5}$\\
+    Symmetric, so same for $y$
+    \begin{table}[h!]
+    \begin{tabular}{llll}
+                                                                                        &                        & \multicolumn{2}{l}{P2}                            \\ \cline{2-4} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{2}  & \multicolumn{1}{l|}{3}  \\ \cline{2-4} 
+    \multicolumn{1}{l|}{\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}P\\ 1\end{tabular}}} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{-4} & \multicolumn{1}{l|}{6}  \\ \cline{2-4} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{6}  & \multicolumn{1}{l|}{-9} \\ \cline{2-4} 
+    \end{tabular}
+    \end{table}
+    \item [\textbf{Exercise 2.12}] 
+    The below matrix has a saddle point at $(C,RL)$, so the game has a value of $\frac{1}{4}$
+    \begin{table}[h!]
+    \begin{tabular}{llllllll}
+                                                                                        &                        & \multicolumn{6}{l}{P2}                                                                                                                                            \\ \cline{2-8} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{RR}  & \multicolumn{1}{l|}{RC}   & \multicolumn{1}{l|}{RL}  & \multicolumn{1}{l|}{LL}  & \multicolumn{1}{l|}{LC}   & \multicolumn{1}{l|}{CC}  \\ \cline{2-8} 
+    \multicolumn{1}{l|}{\multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}P\\ 1\end{tabular}}} & \multicolumn{1}{l|}{R} & \multicolumn{1}{l|}{1/3} & \multicolumn{1}{l|}{3/16} & \multicolumn{1}{l|}{1/4} & \multicolumn{1}{l|}{1/2} & \multicolumn{1}{l|}{3/8}  & \multicolumn{1}{l|}{3/8} \\ \cline{2-8} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{L} & \multicolumn{1}{l|}{1/2} & \multicolumn{1}{l|}{3/8}  & \multicolumn{1}{l|}{1/4} & \multicolumn{1}{l|}{1/3} & \multicolumn{1}{l|}{3/16} & \multicolumn{1}{l|}{3/8} \\ \cline{2-8} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{C} & \multicolumn{1}{l|}{5/8} & \multicolumn{1}{l|}{5/16} & \multicolumn{1}{l|}{1/4} & \multicolumn{1}{l|}{5/8} & \multicolumn{1}{l|}{5/16} & \multicolumn{1}{l|}{1/3} \\ \cline{2-8} 
+    \end{tabular}
+    \end{table}
+    \item [\textbf{Exercise 2.13}] 
+    $\begin{pmatrix}
+        p & 1-p
+    \end{pmatrix}
+    \begin{pmatrix}
+        5000 & 1000\\
+        1000 & 6000
+    \end{pmatrix}
+    \begin{pmatrix}
+     \frac{1}{2}\\
+     \frac{1}{2}   
+    \end{pmatrix}=
+    \begin{pmatrix}
+        p & 1-p
+    \end{pmatrix}
+    \begin{pmatrix}
+        3000\\
+        3500
+    \end{pmatrix}
+    =3500-500p\Rightarrow p=0$
+    \end{itemize}
+\end{document}

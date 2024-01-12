@@ -1,0 +1,183 @@
+\documentclass[10pt]{article}[H]
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{float}
+
+
+\title{\bf Math 167: Homework 3}
+\date{8/27/2023}
+\author{\bf Owen Jones}
+
+\begin{document}
+\maketitle
+\begin{itemize}
+    \item [\textbf{Exercise 3.12}] The plane can cover the entire island in $\frac{2r}{w}$ flights. Paths closer to the center of the center cover more area than those that are further away, so the plane should choose those paths more often. Thus, the thief should choose paths toward the edge of the circle.
+    
+    \item [\textbf{Exercise 3.13}] Consider the $p$ reversal strategy for $G_2$. The battleship moves left with probability $p$ and right with probability $1-p$ for its first move and continues in its chosen direction with probability $p$ and changes direction with probability $1-p$. 
+    From example $3.4$, we know the battleship chooses $p=\frac{2}{1+\sqrt{5}}$ to maximize its chances for survival. If the bomber chooses $x-2,x,$ and $x+2$ with equal probability where $x$ is the battleship's position at time $2$, the bomber can guarantee a payoff of $\frac{1}{3}$.
+    \begin{table}[H]
+        \begin{tabular}{lllll}
+                                &                          & P2                         &                            &                               \\ \cline{2-5} 
+        \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}    & \multicolumn{1}{l|}{$p^2$} & \multicolumn{1}{l|}{$1-p$} & \multicolumn{1}{l|}{$p(1-p)$} \\ \cline{2-5} 
+        \multicolumn{1}{l|}{P1} & \multicolumn{1}{l|}{x-2} & \multicolumn{1}{l|}{1}     & \multicolumn{1}{l|}{0}     & \multicolumn{1}{l|}{0}        \\ \cline{2-5} 
+        \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{x}   & \multicolumn{1}{l|}{0}     & \multicolumn{1}{l|}{1}     & \multicolumn{1}{l|}{0}        \\ \cline{2-5} 
+        \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{x+2} & \multicolumn{1}{l|}{0}     & \multicolumn{1}{l|}{0}     & \multicolumn{1}{l|}{1}        \\ \cline{2-5} 
+        \end{tabular}
+        \end{table}
+    \item [\textbf{Exercise 4.1}] 
+    \begin{align*}
+       x_1(1-p-Mp^2)+(1-x_1)(p-1-Mp)=x_1(2-2p-Mp)+(1-x_1)(-M)\\
+       x_1(2Mp-Mp^2-M)=1+Mp-M-p\\
+       x_1=\frac{1}{1-p}(1-\frac{1}{M}),x_2=\frac{1}{1-p}\frac{1-Mp}{M}\\
+       V=\frac{2-2p-Mp}{1-p}(1-\frac{1}{M})+\frac{-M}{1-p}\frac{1-Mp}{M}=\frac{1}{1-p}(1-p-\frac{2-2p}{M})=1-\frac{2}{M}
+    \end{align*}
+    \begin{table}[H]
+        \begin{tabular}{llll}
+                                &                        & P2                                                                         &                                       \\ \cline{2-4} 
+        \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{S}                                                     & \multicolumn{1}{l|}{D}                \\ \cline{2-4} 
+        \multicolumn{1}{l|}{P1} & \multicolumn{1}{l|}{S} & \multicolumn{1}{l|}{($1-p-Mp^2$,$1-p-Mp^2$)} & \multicolumn{1}{l|}{($p-1-Mp$,$2-2p-Mp$)} \\ \cline{2-4} 
+        \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{D} & \multicolumn{1}{l|}{($2-2p-Mp$,$p-1-Mp$)}                                      & \multicolumn{1}{l|}{($-M,-M$)}          \\ \cline{2-4} 
+        \end{tabular}
+        \end{table}
+    , so each player swerves with probability $\frac{1}{1-p}(1-\frac{1}{M})$ and drives with probability $\frac{1}{1-p}\frac{1-Mp}{M}$ with an expected payoff of $1-\frac{2}{M}$
+    \item [\textbf{Exercise 4.2}]
+    $(W,P)$ is a saddle point because $\displaystyle 3=\max_x x^T Ay^*$ and $\displaystyle 10=\max_y (x^*)^T Ay$. $(W,P)$ is a saddle point because $\displaystyle 10=\max_x x^T Ay^*$ and $\displaystyle 3=\max_y (x^*)^T Ay$.
+   \begin{align*}
+    8x_1+3(1-x_1)=10x_1\\
+    \Rightarrow x_1=\frac{3}{5},x_2=\frac{2}{5}
+   \end{align*}
+   By symmetry and equilizing payoffs, each player should work with probability $\frac{3}{5}$ and party with probability $\frac{2}{5}$ with expected payoff of $6$ for each player.
+    \begin{table}[H]
+        \begin{tabular}{llll}
+                                &                        & P2                          &                             \\ \cline{2-4} 
+        \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{W}      & \multicolumn{1}{l|}{P}      \\ \cline{2-4} 
+        \multicolumn{1}{l|}{P1} & \multicolumn{1}{l|}{W} & \multicolumn{1}{l|}{(8,8)}  & \multicolumn{1}{l|}{(3,10)} \\ \cline{2-4} 
+        \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{P} & \multicolumn{1}{l|}{(10,3)} & \multicolumn{1}{l|}{(0,0)}  \\ \cline{2-4} 
+        \end{tabular}
+        \end{table}
+    \item [\textbf{Exercise 4.3}] 
+    \begin{itemize}
+        \item [$\bullet$] Let $x$ be the probability Player I plays strategy A and let $y$ be the probability Player II plays strategy C. We set $x$ s.t $E[C]=E[D]$ and set $y$ s.t $E[A]=E[B]$
+        \begin{align*}
+            E[A]=6y,E[B]=4y+1(1-y)\Rightarrow y=\frac{1}{3}\\
+            E[C]=-10x+1(1-x),E[D]=10x\Rightarrow x=\frac{1}{21}\\
+        \end{align*}
+        Because we have chosen $x$ s.t Player II is indifferent to their choice of $y$ and vice versa, neither player can be better off by altering their strategy. Thus, we obtain a unique Nash equilibrium.
+        \item [$\bullet$] Player I's expected payoff for $x^*=\begin{pmatrix}
+            \frac{1}{21}\\
+            \frac{20}{21}
+        \end{pmatrix}$ is $\frac{6+0+80+40}{63}=2$. 
+        Player II's expected payoff for $y^*=\begin{pmatrix}
+            \frac{1}{3}\\
+            \frac{2}{3}
+        \end{pmatrix}$ is $\frac{-10+20+20}{63}=\frac{10}{21}$.
+        Suppose Player I plays $x^+=\begin{pmatrix}
+            \frac{1}{21}+\epsilon\\
+            \frac{20}{21}-\epsilon
+        \end{pmatrix}$ for $\epsilon>0$
+        and Player II plays $y^+=\begin{pmatrix}
+            \frac{1}{3}+\delta\\
+            \frac{2}{3}-\delta
+        \end{pmatrix}$. 
+        We want to show there exists a $\delta$ s.t ${(x^+)}^T Py^+>{(x^*)}^T Py^*$ and ${(x^+)}^T Qy^+>{(x^*)}^T Qy^*$ where $P$ are the payoffs for Player I and $Q$ are the players for Player II.\\
+        $(\frac{1}{21}+\epsilon)(\frac{1}{3}+\delta)6+(\frac{20}{21}-\epsilon)(\frac{1}{3}+\delta)4+(\frac{20}{21}-\epsilon)(\frac{2}{3}-\delta)=2+3\epsilon\delta+\frac{22}{7}\delta$.\\
+        $(\frac{1}{21}+\epsilon)(\frac{1}{3}+\delta)(-10)+(\frac{1}{21}+\epsilon)(\frac{2}{3}-\delta)10+(\frac{20}{21}-\epsilon)(\frac{1}{3}+\delta)=\frac{10}{21}-21\epsilon\delta+3\epsilon$.\\
+        If $0<\delta<\frac{1}{7}$ then both players benefit.
+        \item [$\bullet$] Suppose Player I plays $x^+=\begin{pmatrix}
+            \frac{1}{21}+\epsilon\\
+            \frac{20}{21}-\epsilon
+        \end{pmatrix}$
+        and Player II plays $y^+=\begin{pmatrix}
+            \frac{1}{3}+\delta\\
+            \frac{2}{3}-\delta
+        \end{pmatrix}$ for $\delta<0$. 
+        We want to show there exists an $\epsilon$ s.t ${(x^+)}^T Py^+>{(x^*)}^T Py^*$ and ${(x^+)}^T Qy^+>{(x^*)}^T Qy^*$ where $P$ are the payoffs for Player I and $Q$ are the players for Player II.\\
+        $(\frac{1}{21}+\epsilon)(\frac{1}{3}+\delta)6+(\frac{20}{21}-\epsilon)(\frac{1}{3}+\delta)4+(\frac{20}{21}-\epsilon)(\frac{2}{3}-\delta)=2+3\epsilon\delta+\frac{22}{7}\delta$.\\
+        $(\frac{1}{21}+\epsilon)(\frac{1}{3}+\delta)(-10)+(\frac{1}{21}+\epsilon)(\frac{2}{3}-\delta)10+(\frac{20}{21}-\epsilon)(\frac{1}{3}+\delta)=\frac{10}{21}-21\epsilon\delta+3\epsilon$.\\
+        If $\epsilon<\frac{-22}{21}$ then Player I benefits which is impossible and if $\delta>\frac{1}{7}$ for $\epsilon<0$ or if $\delta<\frac{1}{7}$ for $\epsilon>0$ Player II benefits. In either case both players cannot benefit simultaneously.
+    \end{itemize}
+    \item [\textbf{Exercise 4.4}] Suppose the Prisoner's Dilemma game is played once. We know trivially that the dominant strategy is to confess for each Player. 
+    Asumme for some $k$ rounds it is the dominant strategy to confess for each of the $k$ rounds. 
+    Suppose each player knows that they will play the Prisoner's Dilemma $k+1$ rounds. 
+    The last round is equilivalent to playing the game once, so each player will choose to confess.
+    Since each player knows the outcome of the last round, we only need to consider the outcome of the first $k$ rounds, but since we know by the induction hypothesis confessing is the dominant strategy for both players during the first $k$ rounds. 
+    By induction, it is the dominant strategy to confess in every round for all $k$. 
+    \item [\textbf{Exercise 4.5}] We have 2 pure Nash equilibria $(L,S)$ and $(S,L)$ because $s>t>\frac{l}{2}(\frac{2l-s}{l+s})+s(\frac{2s-l}{s+l})>\frac{l}{2}$ when the other player chooses $L$ and $l>\frac{s}{2},l>t$ when the other player chooses $S$.
+    \begin{table}[H]
+        \begin{tabular}{lllll}
+                                &                        & P2                             &                                &                                \\ \cline{2-5} 
+        \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{L}         & \multicolumn{1}{l|}{S}         & \multicolumn{1}{l|}{T}         \\ \cline{2-5} 
+        \multicolumn{1}{l|}{P1} & \multicolumn{1}{l|}{L} & \multicolumn{1}{l|}{(l/2,l/2)} & \multicolumn{1}{l|}{(1,s)}     & \multicolumn{1}{l|}{(l,t)}     \\ \cline{2-5} 
+        \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{S} & \multicolumn{1}{l|}{(s,l)}     & \multicolumn{1}{l|}{(s/2,s/2)} & \multicolumn{1}{l|}{(s,t)}     \\ \cline{2-5} 
+        \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{T} & \multicolumn{1}{l|}{(t,l)}     & \multicolumn{1}{l|}{(t,s)}     & \multicolumn{1}{l|}{(t/2,t/2)} \\ \cline{2-5} 
+        \end{tabular}
+    \end{table}
+        Suppose Player I chooses L with probability $x_1$, S with probability $x_2$, and T with probability $1-x_1-x_2$. Then, by equalizing payoffs for Player II we obtain:
+        \begin{align*}
+        L(x_1,x_2)=\frac{l}{2}x_1+l(1-x_1), S(x_1,x_2)=\frac{s}{2}x_2+s(1-x_2), T(x_1,x_2)=\frac{t}{2}(1+x_1+x_2)\\
+        L(x_1,x_2)=S(x_1,x_2)\Leftrightarrow x_1=\frac{sx_2+2l-2s}{l}\Rightarrow T(x_1,x_2)=\frac{stx_2+ltx_2+3lt-2st}{2l}\\
+        T(x_1,x_2)=S(x_1,x_2)\Leftrightarrow x_2=\frac{2sl-3lt+2st}{ts+tl+sl}\\
+        \Rightarrow x_1=\frac{2sl-3st+2lt}{ts+tl+sl}\\
+        \Rightarrow 1-x_1-x_2=\frac{2st+2lt-3sl}{st+sl+lt}
+        \end{align*}
+       * By symmetry, Player I and Player II will have the same optimal strategies.
+    \item [\textbf{Exercise 4.7}] Equalize $E(volunteering)=E(not\_volunteering)\Rightarrow 1000=1500(1-{(1-p_n)}^{n-1})+0{(1-p_n)}^{n-1}\Rightarrow p_n=1-\sqrt[n-1]{\frac{1}{3}}\Rightarrow p_2=\frac{2}{3}$\\
+    $\displaystyle \lim_{n\rightarrow\infty}np_n=\lim_{n\rightarrow\infty}\frac{1-\sqrt[n-1]{\frac{1}{3}}}{\frac{1}{n}}=(\text{By L'H})\lim_{n\rightarrow\infty}\frac{\frac{-\ln(3)\sqrt[n-1]{\frac{1}{3}}}{{(n-1)}^2}}{\frac{-1}{n^2}}=\lim_{n\rightarrow\infty}\ln(3)\sqrt[n-1]{\frac{1}{3}}\frac{n^2}{{(n-1)}^2}=\ln(3)\cdot1\cdot1=\ln(3)$
+    \item [\textbf{Exercise 4.8}] Equalize $E[morning]=E[evening]$ Let $a$ be the probability a firm advertizes in the morning. Thus, we find $a$ s.t $200K{(1-a)}^2=300K a^2\Rightarrow a=-2+\sqrt{6}$.
+    \item [\textbf{Exercise 4.11}] Since the matrix has no saddlepoint, there exists no pure Nash equilibria. Let $x$ be the probability the Gov. gives John aid and let $y$ be the probability John tries. We first choose $x$ to equalize John's expected payoffs and then choose $y$ to equalize the Gov's expected payoffs.
+    \begin{align*}
+        E[try]=2x+1(1-x),E[not\_try]=3x\Rightarrow x=\frac{1}{2}
+        E[aid]=3y-1(1-y),E[no\_aid]=-1y+0(1-y)\Rightarrow y=\frac{1}{5}
+    \end{align*}
+    Thus, the Gov will give aid with prob. $\frac{1}{2}$ and John will try with prob. $\frac{1}{5}$
+    \item [\textbf{Exercise 4.13}] We have two pure Nash equilibria of $(D,H)$ and $(H,D)$ because $D$ is the best response to $H$ and $H$ is the best response to $D$. Let $x$ be the probability a player plays $D$.
+    \begin{align*}
+        E[D]=1x+0(1-x),E[H]=3x-4(1-x)\Rightarrow x=\frac{2}{3}
+    \end{align*}
+    , so each player should play $D$ with prob. $\frac{2}{3}$ in the mixed Nash equilibrium. 
+    \item [\textbf{Exercise 4.14}] Let $\{s_i:i\in\{1,\ldots,n\}\}$ be the set of $n$ players' choices of integers where each $s_i\in\{1,\ldots,100\}$. It follows for each player $i$, the optimal choice is the integer closest to $\frac{\displaystyle\sum_{j\neq i}s_j}{n-1}$. 
+    If each player $i$ chooses this strategy, then $\frac{\displaystyle\sum_{i=1}^{n}s_i}{n}=\frac{\displaystyle\sum_{i=1}^{n}\frac{\displaystyle\sum_{j\neq i}s_j}{n-1}}{n}=\frac{n-1}{n-1}\frac{\displaystyle\sum_{i=1}^{n}s_i}{n}=\frac{\displaystyle\sum_{i=1}^{n}s_i}{n}$. Thus, each player is incentivized to choose the same number.
+    If each player selects the same number except for one player with $n>2$, the other player will always be further away from the mean than the other players, so that player should never choose any other number than what the other players play. 
+    \item [\textbf{Exercise 4.15}] The expected cost of firm III purifying is $E[purify]=1(1-{(1-p)}^2)+4{(1-p)}^2=1+3{(1-p)}^2$ and the expected cost of firm II polluting is $E[pollute]=3(1-p^2)$.
+    $E[pollute]<E[purify]\Rightarrow 3-3p^2<4-6p+3p^2\Rightarrow 0<1-6p+6p^2\Rightarrow \frac{1}{12}<(p-\frac{1}{2})^2 \Rightarrow \frac{\sqrt{3}}{6}<|p-\frac{1}{2}|\Rightarrow E[pollute]>E[purify]$ if $\frac{\sqrt{3}}{6}>|p-\frac{1}{2}|$
+    \item [\textbf{Exercise 4.17}] We obtain the pure Nash equilibrium of $(ABC,BCD)$. $BCD$ dominates $BAD$, so Player II will choose $BCD$ with prob. $1$ and Player I has the same payoff regardless of what path they take.
+    \begin{table}[H]
+        \begin{tabular}{llll}
+                                &                          & P2                         &                            \\ \cline{2-4} 
+        \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{}    & \multicolumn{1}{l|}{BCD}   & \multicolumn{1}{l|}{BAD}   \\ \cline{2-4} 
+        \multicolumn{1}{l|}{P1} & \multicolumn{1}{l|}{ABC} & \multicolumn{1}{l|}{(5,4)} & \multicolumn{1}{l|}{(7,7)} \\ \cline{2-4} 
+        \multicolumn{1}{l|}{}   & \multicolumn{1}{l|}{ADC} & \multicolumn{1}{l|}{(5,5)} & \multicolumn{1}{l|}{(7,8)} \\ \cline{2-4} 
+        \end{tabular}
+        \end{table}
+    \item [\textbf{Exercise 4.18}] Let $c=(c_1,c_2,\ldots,c_k)$ denote a strategy profile for the $k$ basketball teams where $c_i$ is the city chosen by team $i$. 
+    We want to show that $\Phi(c_i,c_{-i})-\Phi(c_i',c_{-i})=u_i(c_i,c_{-i})-u_i(c_i',c_{-i})$ for some change in strategy for team $i$.
+    Suppose $i$ chooses city $j_i$. It follows that $u_i(c)=\frac{v_{j_i}}{n_{j_i}(c)}$ because we know each team in city $j_i$ obtains utility $\frac{v_{j_i}}{\ell}$  and $n_j(c)$ is the number of teams in city $j$. $\Phi(c_{-i})=\displaystyle\sum_{j\in\mathcal{C}}\sum_{\ell=1}^{n_{j}(c_{-i})}\frac{v_j}{\ell}$. Because $n_{j}(c)=n_j(c_{-i})$ for every $j\neq j_i$, we can write $\Phi(c_{-i})=\displaystyle\sum_{j\in\mathcal{C}\setminus\{j_i\}}\sum_{\ell=1}^{n_{j}(c)}\frac{v_j}{\ell}+\sum_{\ell=1}^{n_{j_i}(c)-1}\frac{v_{j_i}}{\ell}$. Thus, $\Phi(c_{-i})+u_i(c)=\displaystyle\sum_{j\in\mathcal{C}\setminus\{j_i\}}\sum_{\ell=1}^{n_{j}(c)}\frac{v_j}{\ell}+\sum_{\ell=1}^{n_{j_i}(c)-1}\frac{v_{j_i}}{\ell}+\frac{v_{j_i}}{n_{j_i}(c)}=\Phi(c)$.
+    Suppose instead $i$ chooses city $j_i^*$, so we denote $i$'s new strategy $c_i'$. It follows $u_i(c_i',c_{-i})=\frac{v_{j_i^*}}{n_{j_i^*}(c_i',c_{-i})}$.
+    $\Phi(c_i',c_{-i})=\displaystyle\sum_{j\in\mathcal{C}}\sum_{\ell=1}^{n_j(c_i',c_{-i})}\frac{v_j}{\ell}=\sum_{j\in\mathcal{C}\setminus\{j_i,j_i^*\}}\sum_{\ell=1}^{n_j(c_i',c_{-i})}\frac{v_j}{\ell}+\sum_{\ell=1}^{n_{j_i}(c_i',c_{-i})-1}\frac{v_{j_i}}{\ell}+\sum_{\ell=1}^{n_{j_i^*}(c_i',c_{-i})+1}\frac{v_{j_i^*}}{\ell}$ because $i$ moves from city $j_i$ to city $j_i^*$.
+    Thus, $\Phi(c)-\Phi(c_i',c_{-i})=\displaystyle\sum_{j\in\mathcal{C}}\sum_{\ell=1}^{n_j(c)}\frac{v_j}{\ell}-\sum_{j\in\mathcal{C}\setminus\{j_i,j_{i^*}\}}\sum_{\ell=1}^{n_j(c)}\frac{v_j}{\ell}-\sum_{\ell=1}^{n_{j_i^*}(c_i',c_{-i})+1}\frac{v_{j_i^*}}{\ell}+\sum_{\ell=1}^{n_{j_i}(c_i,c_{-i})}\frac{v_{j_i}}{\ell}=u_i(c)-u_i(c_i',c_{-i})$
+ 
+    \item [\textbf{Exercise 4.20}] Let $b=(b_1,b_2,\ldots,b_n)$ denote a strategy profile for the $n$ players. 
+    We define $\Phi(b)=\frac{1}{2}\displaystyle\sum_{j=1}^{n}D_j(b)$ which counts the total weighted disagreements between players.
+    It follows $\Phi(b_{-i})=\frac{1}{2}\displaystyle\sum_{j=1,j\neq i}^{n}D_j(b_{-i})$ which is the number of disagreements on edges excluding $i$.
+    $u_i(b)=D_i(b)=\frac{1}{2}\sum_{j\in N(i)}|b_i-b_j|w_{ij}$.
+    It follows $\Phi(b_{-i})=\frac{1}{2}\displaystyle\sum_{j=1,j\neq i}^{n}D_j(b)-\frac{1}{2}D_i(b)$ because $D_j(b_{-i})=\sum_{k\in N(j)\setminus\{i\}}|b_k-b_j|=D_j(b)-\sum_{k\in N(j)\cap\{i\}}|b_j-b_k|$.
+    Thus, $\Phi(b)=\Phi(b_{-i})+u_i(b)$
+    Suppose player $i$ switches from strategy $b_i$ to $b_i'$.
+    $u_i(b_i',b_{-i})=D_i(b_i',b_{-i})=\frac{1}{2}\sum_{j\in N(i)}|b_i'-b_j|w_{ij}$.
+    It follows $\Phi(b_{-i})=\frac{1}{2}\displaystyle\sum_{j=1,j\neq i}^{n}D_j(b_i',b_{-i})-\frac{1}{2}D_i(b_i',b_{-i})$ because $D_j(b_{-i})=\sum_{k\in N(j)\setminus\{i\}}|b_k-b_j|=D_j(b_i',b_{-i})-\sum_{k\in N(j)\cap\{i\}}|b_j-b_k|$.
+    Thus, $\Phi(b_i',b_{-i})=\Phi(b_{-i})+u_i(b_i',b_{-i})$. 
+    Hence, $\Phi(b)-\Phi(b_i',b_{-i})=u_i(b)-u_i(b_i',b_{-i})$.
+    Suppose each player who would improve their payoff by switching their bit does so simultaneously. We show this converges to a cycle of at most $2$.
+    Let $b^t=(b_1^t,b_2^t,\ldots,b_n^t)$ be the strategy profile at time $t$. We define $f_t=\sum_{i}\sum_{j\in N(i)}|b_j^t-b_i^t|w_{ij}$. $\sum_{j\in N(i)}|b_j^{t}-b_i^{t+1}|w_{ij}\le\sum_{j\in N(i)}|b_j^{t}-b_i^{t-1}|w_{ij}$ because Player $i$ only switches its decision to minimize the left side.
+    We obtain equality if $b_i^{t+1}=b_i^{t-1}$ i.e player $i$ has no incentive to change their strategy. 
+    Summing over $i$ we obtain $f_{i+1}\le f_i$ which reaches its minimum when $b_i^{t+1}=b_i^{t-1}$ for all $i$.
+    \item [\textbf{Exercise 4.21}] $\Phi(b)$ can't be a potential function if $w_{ij}\neq w_{ji}$ because then each disagreement would have two different weights, so in the sum of all disagreements between neighbors, we'd have conflicting information about how much each pair cares about the disagreement.
+\end{itemize}
+\end{document}

@@ -1,0 +1,186 @@
+\documentclass[10pt]{article}[H]
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multirow}
+\usepackage{float}
+
+
+\title{\bf Math 167: Homework 3}
+\date{8/27/2023}
+\author{\bf Owen Jones}
+
+\begin{document}
+\maketitle
+\begin{itemize}
+    \item [\textbf{Exercise 2.14}]
+    Row and column $1$ dominate rows/columns $4-n$, so the matrix below reduces to
+    \begin{table}[H]
+    \begin{tabular}{lllllllll}
+                                                                                        &                          & \multicolumn{6}{l}{P2}                                                                                                                                          &                          \\ \cline{2-9} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{}    & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{2}   & \multicolumn{1}{l|}{3}   & \multicolumn{1}{l|}{4}   & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{n-1} & \multicolumn{1}{l|}{n}   \\ \cline{2-9} 
+    \multicolumn{1}{l|}{\multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}P\\ 1\end{tabular}}} & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{2}   & \multicolumn{1}{l|}{2}   & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{2}   & \multicolumn{1}{l|}{2}   \\ \cline{2-9} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{2}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{2}   & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{2}   & \multicolumn{1}{l|}{2}   \\ \cline{2-9} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{3}   & \multicolumn{1}{l|}{-2}  & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{2}   & \multicolumn{1}{l|}{2}   \\ \cline{2-9} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{4}   & \multicolumn{1}{l|}{-2}  & \multicolumn{1}{l|}{-2}  & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{..}  & \multicolumn{1}{l|}{2}   & \multicolumn{1}{l|}{2}   \\ \cline{2-9} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} \\ \cline{2-9} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{n-1} & \multicolumn{1}{l|}{-2}  & \multicolumn{1}{l|}{-2}  & \multicolumn{1}{l|}{-2}  & \multicolumn{1}{l|}{-2}  & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{-1}  \\ \cline{2-9} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{n}   & \multicolumn{1}{l|}{-2}  & \multicolumn{1}{l|}{-2}  & \multicolumn{1}{l|}{-2}  & \multicolumn{1}{l|}{-2}  & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   \\ \cline{2-9} 
+    \end{tabular}
+    \end{table}
+\begin{table}[H]
+    \begin{tabular}{lllll}
+                                                                                        &                        & P2                      &                         &                         \\ \cline{2-5} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{2}  & \multicolumn{1}{l|}{3}  \\ \cline{2-5} 
+    \multicolumn{1}{l|}{\multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}P\\ 1\end{tabular}}} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{0}  & \multicolumn{1}{l|}{-1} & \multicolumn{1}{l|}{2}  \\ \cline{2-5} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{0}  & \multicolumn{1}{l|}{-1} \\ \cline{2-5} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{-2} & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{0}  \\ \cline{2-5} 
+    \end{tabular}
+    \end{table}
+    Since the game is anti-symmetric, the value of the game is $0$, and for $\mathbf{x}$ to be optimal, $\mathbf{x}^T A\mathbf{y}\ge V$ for all $\mathbf{y}\in\Delta_n$. Equalizing the payoffs of $y_1,y_2,y_3$, we obtain the optimal strategy for player I using the following system of equations,
+    \begin{align*}
+       0x_1+1x_2+(-2)x_3\ge0\\
+       (-1)x_1+0x_2+x_3\ge0\\
+       2x_1+(-1)x_2+0x_3\ge0\\
+       x_1+x_2+x_3=1\\
+       x_1,x_2,x_3\ge0
+    \end{align*}
+    Adding the first, twice the second, and the third equations yields, $0\ge0$, so if any of the first three equations are greater than $0$, we would obtain a contradiction because $0\ngtr0$. Solving the above system equations we obtain $x_1=x_3=\frac{1}{4},x_2=\frac{1}{2}$. By symmetry, we obtain $x_1=y_1,x_2=y_2,x_3=y_3$.
+    \item [\textbf{Exercise 2.15}] Using symmetry we can reduce the $9\times12$ matrix to a more manageable $3\times3$ matrix. 
+    The $\frac{1}{4}$ results from there being $4$ corners, midsides, corner-counterclockwise, and corner-clockwise selections with an equal probability of selecting $1$ of the $4$. 
+    E.g if Player I selects a corner at random and Player II places the submarine in a random corner-counterclockwise placement, there is a $\frac{1}{4}$ chance Player I hits Player II's submarine ($4\times\frac{1}{4}\times\frac{1}{4}$).
+    Since Player II can't place a submarine in a corner-clockwise location, we remove the column from the matrix. The midside row dominates the corner row. It follows the corner-counterclockwise column dominates the center column. Thus, the optimal strategy for Player II is to place a submarine in one of the corner-counterclockwise placements. 
+    \begin{table}[H]
+    \begin{tabular}{llll}
+                                                                                        &                              & P2                          &                                              \\ \cline{2-4} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{}        & \multicolumn{1}{l|}{center} & \multicolumn{1}{l|}{corner-counterclockwise} \\ \cline{2-4} 
+    \multicolumn{1}{l|}{\multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}P\\ 1\end{tabular}}} & \multicolumn{1}{l|}{corner}  & \multicolumn{1}{l|}{0}      & \multicolumn{1}{l|}{1/4}                     \\ \cline{2-4} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{midside} & \multicolumn{1}{l|}{1/4}    & \multicolumn{1}{l|}{1/4}                     \\ \cline{2-4} 
+    \multicolumn{1}{l|}{}                                                               & \multicolumn{1}{l|}{middle}  & \multicolumn{1}{l|}{1}      & \multicolumn{1}{l|}{0}                       \\ \cline{2-4} 
+    \end{tabular}
+    \end{table}
+    \item [\textbf{Exercise 2.16}]
+    \begin{itemize}
+        \item [(a)] The following table represents the payoff matrix for Player I
+            \begin{table}[H]
+            \begin{tabular}{llllll}
+                                                                                                      &                        & P2 (Z)                   &                          &                          &                          \\ \cline{2-6} 
+            \multicolumn{1}{l|}{}                                                                     & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{a}   & \multicolumn{1}{l|}{b}   & \multicolumn{1}{l|}{c}   & \multicolumn{1}{l|}{d}   \\ \cline{2-6} 
+            \multicolumn{1}{l|}{\multirow{3}{*}{\begin{tabular}[c]{@{}l@{}}P\\ 1\\ (C)\end{tabular}}} & \multicolumn{1}{l|}{a} & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1/2} & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{0}   \\ \cline{2-6} 
+            \multicolumn{1}{l|}{}                                                                     & \multicolumn{1}{l|}{b} & \multicolumn{1}{l|}{1/2} & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1/2} & \multicolumn{1}{l|}{0}   \\ \cline{2-6} 
+            \multicolumn{1}{l|}{}                                                                     & \multicolumn{1}{l|}{c} & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{1/2} & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1/2} \\ \cline{2-6} 
+            \multicolumn{1}{l|}{}                                                                     & \multicolumn{1}{l|}{d} & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{1/2} & \multicolumn{1}{l|}{1}   \\ \cline{2-6} 
+            \end{tabular}
+            \end{table}
+        \item [(b)] We can reduce the $4\times4$ into a $2\times2$ by calling $a$ and $d$ outer where $a$ and $d$ are picked with equal probability and $b$ and $c$ inner where $b$ and $c$ are picked with equal probability. We can do this by symmetry.
+        \begin{table}[H]
+            \begin{tabular}{llll}
+                                                                                     &                            & P2 (Z)                     &                            \\ \cline{2-4} 
+            \multicolumn{1}{l|}{}                                                    & \multicolumn{1}{l|}{}      & \multicolumn{1}{l|}{inner} & \multicolumn{1}{l|}{outer} \\ \cline{2-4} 
+            \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}P\\ 1\\ (C)\end{tabular}} & \multicolumn{1}{l|}{inner} & \multicolumn{1}{l|}{3/4}   & \multicolumn{1}{l|}{1/4}   \\ \cline{2-4} 
+            \multicolumn{1}{l|}{}                                                    & \multicolumn{1}{l|}{outer} & \multicolumn{1}{l|}{1/4}   & \multicolumn{1}{l|}{1/2}   \\ \cline{2-4} 
+            \end{tabular}
+            \end{table} 
+        \item [(c)] Equalizing payoffs for Player I we obtain $\frac{3}{4}I_n+\frac{1}{4}O_u=\frac{1}{4}I_n+\frac{1}{2}O_u,I_n+O_u=1\Rightarrow I_n=\frac{1}{3},O_u=\frac{2}{3}$ for Player I with value $\frac{5}{12}$, and by symmetry Player II optimum strategy is $I_n=\frac{1}{3},O_u=\frac{2}{3}$. It follows it's optimum for each player to choose $a=d=\frac{1}{3}$ and $b=c=\frac{1}{6}$.
+    \end{itemize} 
+    \item [\textbf{Exercise 2.18}] (Went to Prof's office hours and said we could leave it in recursive form) $\Gamma_1$ has a saddlepoint for the inspector to always inspect and Trumm to always be honest, so $\Gamma_1=0$. For $n\ge2$, $\Gamma_n$ doesn't have a pure Nash Equilibrium if $\Gamma_{n-1}>-1$, so we want to show $\Gamma_n>-1$ for all $n\ge2$ by induction. This is trivial for $n=2$ because we already found $\Gamma_1=0$. Assume for some $n\ge2$ $\Gamma_{n-1}>-1$. It follows $\Gamma_n$ doesn't have a pure Nash Equilibrium. 
+    Solving the following system of equations we obtain the optimal strategy for Player I.
+    \begin{align*}
+        x_1-x_2=\Gamma_{n-1}x_2-x_1\\
+        x_1+x_2=1
+    \end{align*}
+    Thus, the optimal strategy for Player I is to inspect with probability $x_1=\frac{\Gamma_{n-1}+1}{\Gamma_{n-1}+3}$ and wait with probability $x_2=\frac{2}{\Gamma_{n-1}+3}$. 
+    By symmetry, Player II should cheat with probability $y_1=\frac{\Gamma_{n-1}+1}{\Gamma_{n-1}+3}$ and be honest with probability $y_2=\frac{2}{\Gamma_{n-1}+3}$, giving a game value of $\Gamma_{n}=\frac{\Gamma_{n-1}-1}{\Gamma_{n-1}+3}$. 
+    Since $\Gamma_{n-1}>-1$ then $\Gamma_n>\frac{-1-1}{-1+3}=-1$. Hence, $\Gamma_{n+1}$ doesn't have a Nash Equilibrium. Thus, by induction, $\Gamma_n$ doesn't have a Nash Equilibrium for all $n$, and each player should play the strategies discussed in the induction proof.
+    \item [\textbf{Exercise 2.22}] Taking the original payoff matrix
+    \begin{table}[H]
+        \begin{tabular}{llllllllll}
+                                                                           &                          & P2                       &                          &                          &                          &                          &                          &                          &                          \\ \cline{2-10} 
+        \multicolumn{1}{l|}{}                                              & \multicolumn{1}{l|}{}    & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{2}   & \multicolumn{1}{l|}{3}   & \multicolumn{1}{l|}{4}   & \multicolumn{1}{l|}{5}   & \multicolumn{1}{l|}{6}   & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{n}   \\ \cline{2-10} 
+        \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}P\\ 1\end{tabular}} & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{1}   \\ \cline{2-10} 
+        \multicolumn{1}{l|}{}                                              & \multicolumn{1}{l|}{2}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{1}   \\ \cline{2-10} 
+        \multicolumn{1}{l|}{}                                              & \multicolumn{1}{l|}{3}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{1}   \\ \cline{2-10} 
+        \multicolumn{1}{l|}{}                                              & \multicolumn{1}{l|}{4}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{1}   \\ \cline{2-10} 
+        \multicolumn{1}{l|}{}                                              & \multicolumn{1}{l|}{5}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{1}   \\ \cline{2-10} 
+        \multicolumn{1}{l|}{}                                              & \multicolumn{1}{l|}{6}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{1}   \\ \cline{2-10} 
+        \multicolumn{1}{l|}{}                                              & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} \\ \cline{2-10} 
+        \multicolumn{1}{l|}{}                                              & \multicolumn{1}{l|}{n}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{0}   \\ \cline{2-10} 
+        \end{tabular}
+        \end{table}
+        Row/column $1$ dominates all rows/columns greater than $4$. Row/column $4$ dominates row/column $3$. Thus, we can reduce the original payoff matrix as follows:
+        \begin{table}[H]
+            \begin{tabular}{lllll}
+                                                                               &                        & P2                      &                         &                         \\ \cline{2-5} 
+            \multicolumn{1}{l|}{}                                              & \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{2}  & \multicolumn{1}{l|}{4}  \\ \cline{2-5} 
+            \multicolumn{1}{l|}{\begin{tabular}[c]{@{}l@{}}P\\ 1\end{tabular}} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{0}  & \multicolumn{1}{l|}{-1} & \multicolumn{1}{l|}{1}  \\ \cline{2-5} 
+            \multicolumn{1}{l|}{}                                              & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{0}  & \multicolumn{1}{l|}{-1} \\ \cline{2-5} 
+            \multicolumn{1}{l|}{}                                              & \multicolumn{1}{l|}{4} & \multicolumn{1}{l|}{-1} & \multicolumn{1}{l|}{1}  & \multicolumn{1}{l|}{0}  \\ \cline{2-5} 
+            \end{tabular}
+            \end{table}
+            The matrix is skew-symmetric, therefore has a value of $0$, and there exists no pure Nash Equilibrium. Thus, we use the following system of equations to find the optimun strategy for Player I.
+            \begin{align*}
+                x_2-x_4\ge V=0\\
+                -x_1+x_4\ge V=0\\
+                x_1-x_2\ge V=0\\
+                x_1+x_2+x_4=1
+            \end{align*}
+            Taking the sum of the LHS and RHS of the first three equations, we obtain $0\ge0$, so if the LHS of any of the first three equations is greater than $0$, we obtain a contradition. Thus, we obtain $x_1=x_2=x_4=\frac{1}{3}$ by simple algebra, and because the matrix is skew-symmetric, Player II has the same optimal strategy.
+    \item [\textbf{Exercise 2.23}] Since each natural number has a successor, no matter high of a number a player chooses, there exists a strategy, the successor of their number, that is greater than their choice of number. 
+    Thus, regardless of either player's strategy, there is always a reason for both players to deviate, so there can't be a pure Nash Equilibrium.
+    \begin{table}[H]
+        \begin{tabular}{lllllllll}
+                               &                          & P                        & 2                        &                          &                          &                          &                          &                          \\ \cline{2-9} 
+        \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{}    & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{2}   & \multicolumn{1}{l|}{3}   & \multicolumn{1}{l|}{4}   & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{n}   & \multicolumn{1}{l|}{n+1} \\ \cline{2-9} 
+        \multicolumn{1}{l|}{P} & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  \\ \cline{2-9} 
+        \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  \\ \cline{2-9} 
+        \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{3}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  \\ \cline{2-9} 
+        \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{4}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{-1}  & \multicolumn{1}{l|}{-1}  \\ \cline{2-9} 
+        \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{...} \\ \cline{2-9} 
+        \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{n}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{0}   & \multicolumn{1}{l|}{-1}  \\ \cline{2-9} 
+        \multicolumn{1}{l|}{}  & \multicolumn{1}{l|}{n+1} & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{...} & \multicolumn{1}{l|}{1}   & \multicolumn{1}{l|}{0}   \\ \cline{2-9} 
+        \end{tabular}
+        \end{table}
+    For mixed strategies, for any $n$, row/column $n$ dominates rows/columns $1-(n-1)$, so it follows that Player I and II will choose each natural number with probability $0$. This is a contradiction because the sum of the probabilities will add up to $0$ and not $1$. Thus, there are no optimal mixed strategies and no mixed Nash Equilibrium. 
+    Since Player II can always choose the successor to Player I's choice, Player I can only guarantee to lose a dollar regardless of what they play i.e obtain a payoff of $-1$. 
+    This logic follows for Player II obtaining a payoff of $1$.
+    \item [\textbf{Exercise 3.1}] First we find the effective resistance between the beginning and end to find the value of the game. We will split the game into three Top $(T)$, Middle $(M)$, and Bottom $(B)$. 
+    The effective resistance of $T=1+\frac{1}{1+1+\frac{1}{2}+1}=\frac{9}{7}$. The effective resistance of $M=\frac{1}{1+\frac{1}{1+\frac{1}{2}}}+\frac{1}{1+\frac{1}{2}}=\frac{19}{15}$. The effective resistance of $B=1$. Thus, $V=\frac{1}{\frac{1}{T}+\frac{1}{M}+\frac{1}{B}}=\frac{171}{439}$.\\
+    \begin{align*}
+        P(T_1)=\frac{\frac{7}{9}}{\frac{7}{9}+\frac{15}{19}+1}\cdot\frac{1}{1+1+\frac{1}{2}+1}=\frac{38}{439}\\
+        P(T_2)=\frac{\frac{7}{9}}{\frac{7}{9}+\frac{15}{19}+1}\cdot\frac{\frac{1}{2}}{1+1+\frac{1}{2}+1}=\frac{19}{439}\\
+        P(T_3)=\frac{\frac{7}{9}}{\frac{7}{9}+\frac{15}{19}+1}\cdot\frac{1}{1+1+\frac{1}{2}+1}=\frac{38}{439}\\
+        P(T_4)=\frac{\frac{7}{9}}{\frac{7}{9}+\frac{15}{19}+1}\cdot\frac{1}{1+1+\frac{1}{2}+1}=\frac{38}{439}\\
+        P(M_1)=\frac{\frac{15}{19}}{\frac{7}{9}+\frac{15}{19}+1}\cdot\frac{1}{1+\frac{1}{1+\frac{1}{2}}}\cdot\frac{1}{1+\frac{1}{2}}=\frac{54}{439}\\
+        P(M_2)=\frac{\frac{15}{19}}{\frac{7}{9}+\frac{15}{19}+1}\cdot\frac{1}{1+\frac{1}{1+\frac{1}{2}}}\cdot\frac{\frac{1}{2}}{1+\frac{1}{2}}=\frac{27}{439}\\
+        P(M_3)=\frac{\frac{15}{19}}{\frac{7}{9}+\frac{15}{19}+1}\cdot\frac{\frac{1}{1+\frac{1}{2}}}{1+\frac{1}{1+\frac{1}{2}}}\cdot\frac{1}{2}\cdot\frac{1}{1+\frac{1}{2}}=\frac{18}{439}\\
+        P(M_4)=\frac{\frac{15}{19}}{\frac{7}{9}+\frac{15}{19}+1}\cdot\frac{\frac{1}{1+\frac{1}{2}}}{1+\frac{1}{1+\frac{1}{2}}}\cdot\frac{1}{2}\cdot\frac{1}{1+\frac{1}{2}}=\frac{18}{439}\\
+        P(M_5)=\frac{\frac{15}{19}}{\frac{7}{9}+\frac{15}{19}+1}\cdot\frac{\frac{1}{1+\frac{1}{2}}}{1+\frac{1}{1+\frac{1}{2}}}\cdot\frac{1}{2}\cdot\frac{\frac{1}{2}}{1+\frac{1}{2}}=\frac{9}{439}\\
+        P(M_6)=\frac{\frac{15}{19}}{\frac{7}{9}+\frac{15}{19}+1}\cdot\frac{\frac{1}{1+\frac{1}{2}}}{1+\frac{1}{1+\frac{1}{2}}}\cdot\frac{1}{2}\cdot\frac{\frac{1}{2}}{1+\frac{1}{2}}=\frac{9}{439}\\
+        P(B)=\frac{171}{439}
+    \end{align*} 
+   By symmetry, the probabilities will be the same for the troll and traveller.
+    \item [\textbf{Exercise 3.2}] Let $n$ and $k$ be arbitrary s.t $k\le n$. We want to show for any subset $S\subseteq\{1,2,\ldots,n\}, |S|\le|f(S)|$ where $f(S)$ is the set of vetices $S$ is connected to.
+    Since each vertex in $S$ has $k$ edges incindent to it, we need to distribue $k\times|S|$ edges amongst $|f(S)|$ vertices. 
+    Since each vertex in $f(S)$ can have at most $k$ edges incindent to it from vertices in $S$, there must be at least one vertex in $f(S)$ for every $k$ edges. Thus, by the pigeonhole princple, $|f(S)|$ must be at least the size of $S$. 
+    Thus, by Hall's Marriage Theorem, any k-regular $n\times n$ graph must have perfect matching.
+    \item [\textbf{Exercise 3.5}] Since this game is progressively bounded with $B(x)\le 2n$ and can't end in a tie, one of the players must have a winning strategy. 
+    Let $A_r$ be the set of actors, let $A_s$ be the set of actresses, and let $E$ be the set of edges that connect $A_r$ to $A_s$. 
+    Suppose $G=(A_r,A_s,E)$ has a perfect matching.
+    WLOG Player I picks actor $i\in A_r$. 
+    Let $A_r'=A_r\setminus\{i\}$.
+    Since every subset of $A_r'$ is a subset of $A_r$ and there exists a perfect matching between $A_r$ and $A_s$, $A_r'$ has a matching with $A_s$ of size $n-1$ by Hall's Marriage Theorem.
+    We show $(A_r',A_s',E')$ has a perfect matching of $n-1$ where $j=A_s\setminus A_s'\in f(i)$ where $f(i)$ is the set of vertices connected to $i$. 
+    Since there exists a perfect matching $M$ between $A_r$ and $A_s$, there must be some $e\in M\subseteq E$ that connects $i$ and some $j\in f(i)$. If we take $M'=M\setminus e$, we will obtain a perfect matching between $A_r'$ and $A_s'=A_s\setminus j$. 
+    Player II now selects actress $j$ and can do this for every subsequent $i'$ Player I selects.
+
+    Suppose $G=(A_r,A_s,E)$ does not have a perfect matching. Let $M$ be the maximum matching between $A_r$ and $A_s$.
+    Choose $i\in A_r$ s.t no $e\in M$ is incindent on $i$. It follows that for every $j\in f(i)$ there exists a $e\in M$ incindent on $j$. If this were not the case, $M$ could not be a maximum matching because we would be able to add an edge to connect $i$ and $j$.
+    We then play the subgame $G^*=(A_r',A_s',E')$ where $A_r'$ and $A_s'$ are the vertices in the maximum matching betwe $A_r$ and $A_s$. 
+    Now we are playing a game with a perfect matching with Player II going first, so Player I has a winning strategy.
+\end{itemize}
+\end{document}

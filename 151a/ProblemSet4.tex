@@ -1,0 +1,145 @@
+\documentclass[12pt]{article}
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage[table]{xcolor}
+\usepackage{graphicx}
+\usepackage{listings}
+\newcommand{\Adv}{{\mathbf{Adv}}}       
+\newcommand{\prp}{{\mathrm{prp}}}             
+\newcommand{\calK}{{\cal K}}
+\newcommand{\outputs}{{\Rightarrow}}                
+
+
+
+% Use \textbf{Solution:}\\ to begin your solution.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{\bf Math 151A: Problem Set 4}
+\date{ }
+\author{\bf Prof. Schaeffer}
+
+\begin{document}
+\maketitle
+
+
+{\small \textbf{Instructions}:
+\begin{itemize}
+\item Due on Friday, May 12th by 1pm 
+\item Late HW will not be accepted (but this assignment will be accepted until Monday, May 15th by 1pm)
+\item Write down all of the details and attach your code to the end of the assignment for full credit (as a PDF).  
+\item If you LaTeX your solutions, you will get $5\%$ extra credit. 
+\item (T) are ``pencil-and-paper'' problems and (C) means that the problem includes a computational/programming component. 
+\end{itemize}}
+
+%Add \newpage  between problems if you are using this to LaTex your solutions
+\vspace{1em}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{enumerate}[label=\bfseries Problem \arabic*:]
+
+
+
+
+
+
+ 
+\item \textbf{(T) Lagrange Polynomials and Neville's Method}\\
+Use Neville's method to obtain approximations to $f(0.1)$ using the Lagrange interpolating polynomials of degrees one, two, and three  if\\
+ $f(0)=1$, $f(0.25)=1.65$, $f(0.5)=2.72$, and $f(0.75)=4.48$. You should explicitly compute the table associated with Neville's method:
+ \begin{table}[h]
+\centering
+\rowcolors{1}{lightgray}{lightgray}
+\resizebox{\textwidth}{!}{\begin{tabular}{|c|c|c|c|c|c|c|}\hline
+    $x_i$ & $x-x_i$&  $Q_{i,0}$ & $Q_{i,1}$ & $Q_{i,2}$ & $Q_{i,3}$    \\ \hline
+    $0$ & $0.1$ & $1$  & - & - & -    \\ \hline
+    $0.25$ & $0.1-0.25$ & $1.65$  & $\frac{f(0.25)0.1-f(0)(0.1-0.25)}{0.25-0}$ & - &-    \\ \hline
+    $0.5$ & $0.1-0.5$ & $2.72$  & $\frac{f(0.5)(0.1-0.25)-f(0.25)(0.1-0.5)}{0.5-0.25}$ & $\frac{\frac{1.07\cdot0.1+0.145}{0.25}(0.1)-\frac{0.65\cdot0.1+0.25}{0.25}(0.1-0.5)}{0.5-0}$ & -    \\ \hline
+    $0.75$ & $0.1-0.75$ & $4.48$  & $\frac{f(0.75)(0.1-0.5)-f(0.5)(0.1-0.75)}{0.75-0.5}$ & $\frac{\frac{1.76\cdot0.1-0.2}{0.25}(0.1-0.25)-\frac{1.07\cdot0.1+0.145}{0.25}(0.1-0.75)}{0.75-0.25}$ & $\frac{\frac{0.69(0.1)^2+0.0175\cdot0.1+0.15875}{0.125}(0.1)-\frac{0.42(0.1)^2+0.22\cdot0.1+0.125}{0.125}(0.1-0.75)}{0.75-0}$     \\ \hline
+\end{tabular}}   
+\end{table}\\
+$P_3(x)=2.88x^3+1.2x^2+2.12x+1$, $P_3(0.1)=1.22688$\\
+(The true value is $f(0.1)=1.2214$.)
+
+\vspace{1em}
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\item \textbf{(T) Lagrange Polynomials and Neville's Method}\\
+Suppose $x_j=j$, for $j=0, 1, 2, 3$, and it is known that:
+
+\begin{center} 
+$P_{0,1}(x)=2x+1$, $P_{0,2}(x)=x+1$, $P_{1,2,3}(2.5)=3$ 
+\end{center}
+Determine $P_{0,1,2,3}(2.5)$.
+
+
+\vspace{1em}
+\textbf{Solution:}\par
+$P_{0,1,2}(2.5)=\frac{P_{0,2}(2.5)(2.5-1)-P_{0,1}(2.5)(2.5-2)}{2-1}$\\
+$P_{0,1,2,3}(2.5)=\frac{P_{1,2,3}(2.5)(2.5)-P_{0,1,2}(2.5)(2.5-3)}{3-0}=\frac{(3)(2.5)-((3.5)(1.5)-(6)(0.5))}{3}=2.875$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+\item \textbf{(T) Lagrange Polynomials and Neville's Method}\\
+Suppose $x_j=2\,j$, for $j=0, 1, 2, 3, 4$  and it is known that:
+
+\begin{center} 
+$P_{1,2}(1)=2$, \hspace{1em} $P_{1,2,3}(1)=1$,\hspace{1em}  $P_{1,4}(1)=6$.
+\end{center}
+Determine $P_{1,2,3,4}(1)$.
+
+\vspace{1em}
+\textbf{Solution:}\par
+$P_{1,2,4}(1)=\frac{P_{1,4}(1)(1-2)-P_{1,2}(1)(1-4)}{4-2}$\\
+$P_{1,2,3,4}(1)=\frac{P_{1,2,4}(1)(1-3)-P_{1,2,3}(1)(1-4)}{4-3}=\frac{(6)(-1)-(2)(-3)}{2}(-2)-(1)(-3)=3$
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+ \item \textbf{(T) Newton's Divided Differences}
+ \begin{itemize}
+\item[a)] Find the degree-2 interpolating polynomial via Newton's divided difference for $f(x)  = \frac{x}{1+x}$ using nodes $x_0=0$, $x_1=1$, and $x_2=2$.
+\item[b)] What are the degree-2 interpolating polynomials associated with Lagrange's construction and Neville's construction? Compare them to the solution of Part (a).
+ \end{itemize}
+ 
+
+
+
+\vspace{1em}
+\textbf{Solution:}\par
+\begin{itemize}
+    \item [a)] Using nodes $x_0=0$, $x_1=1$, and $x_2=2$, $P_2(x)=f(x_0)+\frac{f(x_1)-f(x_0)}{x_1-x_0}(x-x_0)+\frac{\frac{f(x_2)-f(x_1)}{x_2-x_1}-\frac{f(x_1)-f(x_0)}{x_1-x_0}}{x_2-x_0}(x-x_0)(x-x_1)\\
+    =0+\frac{\frac{1}{2}-0}{1-0}(x-0)+\frac{\frac{\frac{2}{3}-\frac{1}{2}}{2-1}-\frac{\frac{1}{2}-0}{1-0}}{2-0}(x-0)(x-1)\\
+    =\frac{2}{3}x-\frac{1}{6}x^2$
+    \item [b)] Nevilles's:$P_2(x)=\frac{2}{3}x-\frac{1}{6}x^2$\\
+    Lagrange:$P_2(x)=\frac{2}{3}x-\frac{1}{6}x^2$\\
+    The degree-2 interpolating polynomials associated with Lagrange's and Neville's construction will be the same by uniqueness.
+\end{itemize}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
+
+
+
+ \item \textbf{(T) Numerical Differentiation/Finite Difference}\\
+Show that the following finite difference formula is first-order accurate:
+\begin{align*}
+f^{(2)}(x)= \frac{ f(x+2\, h)-2 f(x+h)+\,f(x)}{h^2}+{O}(h).
+\end{align*}
+\textit{For full credit, you must state any assumptions on $f(x)$ and justify each step in your solution. Hint: Apply Taylor's theorem to each of the terms on the right-hand side. }\\
+
+\textbf{Solution:}\par
+Suppose $x\in(a,b)$ where $f\in C^3[a,b]$ and $h\neq 0$ is sufficiently small to ensure $x+h,x+2h\in(a,b)$\\
+Taylor expansions of $f(x+2h)$ and $f(x+h)$ about $x$:\\
+$f(x+h)=f(x)+h\cdot f'(x)+\frac{h^2}{2}\cdot f''(x)+\frac{h^3}{6}\cdot f'''(\xi_1(x))$\\
+$f(x+2h)=f(x)+2h\cdot f'(x)+\frac{4h^2}{2}\cdot f''(x)+\frac{8h^3}{6}\cdot f'''(\xi_2(x))$\\
+$\Rightarrow f(x+2h)-2f(x+h)+f(x)=h^2\cdot f''(x)+h^3\cdot (\frac{4}{3}f'''(\xi_2(x))-\frac{1}{3}f'''(\xi_1(x)))$\\
+$\Rightarrow f''(x)=\frac{f(x+2h)-2f(x+h)+f(x)}{h^2}-h\cdot (\frac{4}{3}f'''(\xi_2(x))-\frac{1}{3}f'''(\xi_1(x)))$ by algebra.\\
+Thus, $O(h)=-h\cdot (\frac{4}{3}f'''(\xi_2(x))-\frac{1}{3}f'''(\xi_1(x)))$ which is linear.\\
+Hence $f''(x)=\frac{f(x+2h)-2f(x+h)+f(x)}{h^2}+O(h)$ is first order accurate.
+\end{enumerate}
+
+\end{document}
+
+

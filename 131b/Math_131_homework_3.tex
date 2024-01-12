@@ -1,0 +1,89 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+\title{\bf Math 131B: Homework 3}
+\date{4/28/2023}
+\author{\bf Owen Jones}
+
+\begin{document}
+\maketitle
+\begin{enumerate}[label=Problem \arabic*.]
+    \item \textbf{Exercise 1.5.4}\par 
+    Let $f:\mathbb{R}\rightarrow\mathbb{R}$ $f(x)=0$. $\mathbb{R}$ is open, but $\{0\}$ is not open because $0$ is a boundary point.\par 
+    QED
+    \item \textbf{Exercise 1.5.5}\par 
+    Let $f:[1,\infty)\rightarrow(0,1]$ $f(x)=\frac{1}{x}$. $[1,\infty)$ is closed because it contains all of its boundary points, $1$, but $(0,1]$ is not closed because $0\notin(0,1]$.\par 
+    QED
+    
+    \item \textbf{Exercise 1.5.10 (b)}\par 
+    First we show that if $(X,d)$ is a compact metric space, then $(X,d)$ is complete. 
+    Let $(x^{(n)})_{n=m}^{\infty}$ be an arbitrary Cauchy sequence in $(X,d)$. Since $(X,d)$ is compact, there exists a subsequence $(x^{(n_j)})_{j=1}^{\infty}$ that converges to some value $x_0\in X$. 
+    It follows by Lemma $1.4.9$ that $(x^{(n)})_{n=m}^{\infty}$ also converges to $x_0$. 
+    Because any arbitrary Cauchy sequence in $(X,d)$ is convergent in $(X,d)$, $(X,d)$ is a complete metric space.\par 
+    Next we show that $(X,d)$ must also be totally bounded. 
+    Assume for the sake of contradiction that $(X,d)$ is compact but not totally bounded. 
+    Therefore, $\exists\epsilon>0$ s.t no finite number of balls of radius-$\epsilon$ will cover $X$.
+    Because $X$ requires infinitely many $\epsilon$-balls to be covered entirely, $X\setminus(\displaystyle{\bigcup_{i=1}^{n}}B(x^{(i)},\epsilon))\neq \emptyset$ for all $n$. 
+    Thus, we can construct a sequence $(x^{(n)})_{n=1}^{\infty}$ in $(X,d)$ where $x^{(n)} \notin \displaystyle{\bigcup_{i=1}^{n-1}}B(x^{(i)},\epsilon)$.
+    Since each term of the sequence is at least distance-$\epsilon$ from every other term of the sequence, $(x^{(n)})_{n=1}^{\infty}$ has no convergent subsequences. 
+    We obtain a contradiction because $(x^{(n)})_{n=1}^{\infty}$ is a sequence in $(X,d)$ and $(X,d)$ is compact, so $(x^{(n)})_{n=1}^{\infty}$ must have a convergent subsequence.
+    Hence, $(X,d)$ must be totally bounded.\par 
+    QED
+    \item \textbf{Exercise 2.1.1}
+    We will show a, b, and c are logically equivalent by showing $a\Rightarrow b$, $b \Rightarrow a$, $a\Rightarrow c$, and $c\Rightarrow a$.
+    \begin{itemize}
+        \item [$(a\Rightarrow b)$] Suppose $f$ is continuous at $x_0$, and let $(x^{(n)})_{n=1}^{\infty}$ be a sequence in $X$ that converges to $x_0$. 
+        Because $f$ is continuous at $x_0$, there exists $\delta>0$ for every $\epsilon>0$ s.t $d_Y(f(x^{(n)}),f(x_0))<\epsilon$ whenever $d_X(x^{(n)},x_0)<\delta$.
+        Given $\epsilon>0$ choose $N$ to be sufficiently large s.t $n\ge N\Rightarrow d_X(x^{(n)},x_0)<\delta$.
+        Thus, $d_Y(f(x^{(n)}),f(x_0))<\epsilon$ by the continuity of $f$.
+        Hence, $(f(x^{(n)}))_{n=1}^{\infty}$ converges to $f(x_0)$.
+       
+        \item [$(b\Rightarrow a)$] Suppose the sequence $(f(x^{(n)}))_{n=1}^{\infty}$ converges to $f(x_0)$ with respect to the metric $d_Y$ whenever a sequence $(x^{(n)})_{n=1}^{\infty}$ in $X$ converges to $x_0$ with respect to the metric $d_X$, and assume for the sake of contradiction that $f$ is not continuous at $x_0$.
+        Because $f$ is not continuous at $x_0$, $\exists\epsilon>0$ s.t $\forall\delta>0$ $d(x,x_0)<\delta$ yet $d(f(x),f(x_0))\ge\epsilon$.
+        Let $(x^{(n)})_{n=1}^{\infty}$ be a sequence in $X$ s.t $d_X(x^{(n)},x_0)<\frac{1}{n}$ while $d_Y(f(x^{(n)}),f(x_0))\ge\epsilon$.
+        We obtain a contradiction because we have a convergent sequence $(x^{(n)})_{n=1}^{\infty}$ where $(f(x^{(n)}))_{n=1}^{\infty}$ doesn't converge.
+        Hence, $f$ must be continuous at $x_0$.
+       
+        \item [$(a\Rightarrow c)$] Suppose $f$ is continuous at $x_0$, and let $V\subset Y$ be an open set that contains $f(x_0)$. 
+        Because $f$ is continuous at $x_0$, there exists $\delta>0$ for every $\epsilon>0$ s.t $d_Y(f(x),f(x_0))<\epsilon$ whenever $d_X(x,x_0)<\delta$. 
+        By Proposition 1.2.15 (a), $\exists r_y>0$ s.t $B_{(Y,d_Y)}(f(x_0),r_y)\subseteq V$.
+        It follows $\exists r_x>0$ s.t $f(x)\in B_{(Y,d_Y)}(f(x_0),r_y)$ whenever $x\in U=B_{(X,d_X)}(x_0,r_x)$.
+        Hence, we have $U\subseteq X$ s.t $f(U)\subseteq V$.
+
+        \item [$(c\Rightarrow a)$] Suppose for every open set $V\subset Y$ that contains $f(x_0)$, there exists an open set $U\subset X$ containing $x_0$ s.t $f(U)\subseteq V$, and assume for the sake of contradiction that $f$ is not continuous at $x_0$.
+        Because $f$ is not continuous at $x_0$, $\exists\epsilon>0$ s.t $\forall\delta>0$ $d(x,x_0)<\delta$ yet $d(f(x),f(x_0))\ge\epsilon$.
+        Let $V=B_{(Y,d_Y)}(y_0,\epsilon)$. It follows there exists an open set $U\subset X$ s.t $f(U)\subseteq V$.
+        By Proposition 1.2.15 (a), $\exists r>0$ s.t $B_{(X,d_X)}(x_0,r)\subseteq U$. 
+        Because $f$ is not continuous at $x_0$, there exists $x\in B_{(X,d_X)}(x_0,r)$ s.t $f(x)\notin B_{(Y,d_Y)}(y_0,\epsilon)$ which implies $f(U)\not\subset V$. Hence, we obtain a contradiction, so $f$ must be continuous at $x_0$.
+    \end{itemize}
+    Thus, by transitivity, a,b, and c are logically equivalent.
+
+    \item \textbf{Exercise 2.1.4}
+    \begin{itemize}
+        \item [a)] $f: \mathbb{R}\rightarrow\mathbb{R}$ $f(x)= \begin{cases}
+           x & \text{if } x\in \mathbb{Q}\\
+           x+1 & \text{if } x\in \mathbb{R}\setminus\mathbb{Q}
+       \end{cases}$, 
+        $g: \mathbb{R}\rightarrow\mathbb{R}$ $g(x)=0$, $g\circ f(x)=0$
+       \item [b)] $f: \mathbb{R}\rightarrow\mathbb{R}$ $f(x)=0$, $g: \mathbb{R}\rightarrow\mathbb{R}$ $g(x)= \begin{cases}
+        x & \text{if } x\in \mathbb{Q}\\
+        x+1 & \text{if } x\in \mathbb{R}\setminus\mathbb{Q}
+    \end{cases}$, $g\circ f(x)=0$
+        \item [c)] $f: \mathbb{R}\rightarrow\mathbb{R}$ $f(x)= \begin{cases}
+            x & \text{if } x\in \mathbb{Q}\\
+            x+1 & \text{if } x\in \mathbb{R}\setminus\mathbb{Q}
+        \end{cases}$, $g: \mathbb{R}\rightarrow\mathbb{R}$ $g(x)= \begin{cases}
+            x+1 & \text{if } x\in \mathbb{Q}\\
+            x & \text{if } x\in \mathbb{R}\setminus\mathbb{Q}
+        \end{cases}$, $g\circ f(x)=x+1$
+    \end{itemize}\par 
+    Corrolary 2.1.7 is not an iff statement. Neither a) nor b) discuss when either $f(x)$ or $g(x)$ are discontinuous. Each of parts a),b), and c) of Exercise 2.1.7 include at least 1 discontinuous function for $f(x)$ or $g(x)$.
+\end{enumerate}
+\end{document}

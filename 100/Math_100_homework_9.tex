@@ -1,0 +1,95 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 100: Problem Set 9}
+\date{12/6/2023}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}[label= (Q-\arabic*)]
+    \item Show $f(2^\frac{n}{2})={[f(1)]}^{2^n}$ by induction.\\
+    Base case: $f(\sqrt{1^2+1^2})=f(2^\frac{1}{2})=f(1)f(1)={[f(1)]}^{2^1}$\\
+    Induction hypothesis: Assume for some $n$ $f(2^\frac{n}{2})={[f(1)]}^{2^n}$\\
+    Induction step: WTS claim holds for $n\pm 1$.\\
+    $(n-1): {[f(1)]}^{2^{n-1}}={({[f(1)]}^{2^n})}^\frac{1}{2}={(f(2^\frac{n}{2}))}^\frac{1}{2}={(f(\sqrt{2^{n-1}+2^{n-1}}))}^\frac{1}{2}={(f(2^{\frac{n-1}{2}})f(2^{\frac{n-1}{2}}))}^\frac{1}{2}=f(2^{\frac{n-1}{2}})$\\
+    $(n+1): f(2^\frac{n+1}{2})=f(\sqrt{2^n+2^n})={f(2^\frac{n}{2})}^2={{[f(1)]}^{2^n}}^2={[f(1)]}^{2^{n+1}}$\\
+    Lemma: $f(\sqrt{x_1^2+x_2^2+\cdots+x_n^2})=f(x_1)f(x_2)\cdots f(x_n)$\\
+    Base case: $f(\sqrt{x^2+y^2})=f(x)f(y)$ is given.\\
+    Induction hypothesis: Assume $f(\sqrt{x_1^2+x_2^2+\cdots+x_n^2})=f(x_1)f(x_2)\cdots f(x_n)$\\
+    Induction step: $f(\sqrt{x_1^2+x_2^2+\cdots+x_n^2+x_{n+1}^2})=f({(\sqrt{x_1^2+x_2^2+\cdots+x_n^2})}^2+x_{n+1}^2)=f(\sqrt{x_1^2+x_2^2+\cdots+x_n^2})f(x_{n+1})=f(x_1)f(x_2)\cdots f(x_n)f(x_{n+1})$\\
+    Thus, the claim holds for all $n$.\\
+    WTS $f(\sqrt{\frac{m}{2^n}})={[f(1)]}^{\frac{m}{2^n}}$ by induction on $m$\\
+    Base case: $f(\sqrt{2^{-n}})={[f(1)]}^{2^{-n}}$ by previous proof.\\
+    Induction hypothesis: Assume for some $m$ $f(\sqrt{\frac{m}{2^n}})={[f(1)]}^{\frac{m}{2^n}}$ is true.\\
+    Induction step: WTS claim holds for $m\pm 1$\\
+    $(m+1): f(\sqrt{\frac{m+1}{2^n}})=f(\sqrt{\frac{m}{2^n}+\frac{1}{2^n}})={[f(1)]}^{\frac{m}{2^n}}{[f(1)]}^\frac{1}{2^n}={[f(1)]}^\frac{m+1}{2^n}$\\
+    $(m-1): {[f(1)]}^\frac{m-1}{2^n}={({[f(1)]}^\frac{m}{2^n})}^\frac{m-1}{m}={(f(\sqrt{\frac{m}{2^n}}))}^\frac{m-1}{m}={({(f(\sqrt{\frac{1}{2^n}}))}^m)}^\frac{m-1}{m}={({[f(1)]}^{\frac{1}{2^n}})}^{m-1}={[f(1)]}^{\frac{m-1}{2^n}}$\\
+    For any $x\in\mathbb{R}$ we can can construct a sequence $S_{k}$ where each $s_k$ is of the form $\sqrt{\frac{m}{2^n}}$ that converges to $x$. By the continuity of $f$, $\lim_{k\rightarrow\infty} S_k=x\Rightarrow \lim_{k\rightarrow\infty}f(S_k)=f(x)$.
+    \item \begin{itemize}
+        \item [(a)] Let $x_0\in[0,1]\cap\mathbb{Q}$ be arbitrary, and let $\epsilon=f(x_0)$. Suppose $\delta>0$. 
+        By the denseness of real numbers, there exists $x\in\mathbb{I}$ s.t $|x-x_0|<\delta$. 
+        It follows $|f(x)-f(x_0)|=f(x_0)\ge\epsilon$. Hence, $f(x)$ is discontinuous for all rationals in $[0,1]$.\\
+        \item [(b)] Let $x_0\in[0,1]\cap\mathbb{I}$ be arbitrary and let $\epsilon>0$.\\ 
+        On the interval $(0,1)$, there are $q-1$ values of $x$ such that $f(x)=\frac{1}{q}$.
+        Since there are finitely many values of $x$ s.t $f(x)=\frac{1}{q}$ for all $q\in\mathbb{N}$, we can pick a $\delta>0$ small enough s.t for all $|x-x_0|<\delta,|f(x)-f(x_0)|<\frac{1}{q}$ for all $q\in\mathbb{N}$. 
+        Thus, we can make $|f(x)-f(x_0)|<\epsilon$.
+        Hence, $f(x)$ is continuous for $x\in[0,1]\cap\mathbb{I}$.
+    \end{itemize}
+    \item We assume $f(0)>0$ and $f(1)<1$. 
+    If either $f(0)=0$ or $f(1)=1$ are true, we are done. 
+    Let $g(x):=f(x)-x$. 
+    It follows $g(0)=f(0)-0>0$ and $g(1)=f(1)-1<0$, so $g(1)<0<g(0)$.
+    Note $x\in[0,1]$.
+    By the continuity of $g$, there exists $\delta>0$ s.t $|g(x)-g(0)|<|g(0)|\Rightarrow g(x)<0$ for all $0<x<\delta$.
+    Moreover, there exists $\delta>0$ s.t $|g(x)-g(1)|<g(1)\Rightarrow 0<g(x)$ for all $0<1-x<\delta$.
+    Let $S:=\{x\in[0,1]:g(x)>0\}$, and let $c:=\sup(S)$.
+    By the definition of $c$, there exists some $x_0\in(c-\delta,c)$ for $\delta>0$ s.t $g(x_0)>g(c)\ge0$. 
+    If there wasn't, $\sup(S)<c$.
+    In addition, for all $x\in(c,c+\delta)$ $g(x)\le0$.
+    It follows $g(c+\delta)\le0\le g(c)<g(x_0)$.
+    By continuity, there exists $\delta>0$ s.t $0\le g(c)\le |g(c+\delta)-g(c)|<\epsilon\Rightarrow g(c)=0\Rightarrow f(c)=c$.
+    \item Let $f:[7am,5pm]\times[0,1]$ and $g:[7am,5pm]\times[0,1]$ be continuous functions for the path the hiker takes from the bottom to the top and top to bottom. 
+        WTS there is a point $c\in[7am,5pm]$ where $f(c)=g(c)$. Let $h(x):=g(x)-f(x)\Rightarrow h(7am)=1,h(5pm)=-1$. 
+        By the IVT, there exists $c\in(7am,5pm)$ s.t $h(c)=0\Rightarrow f(c)=g(c)$.
+    \item \begin{itemize}
+        \item [(a)] $g'(0)=\lim_{h\rightarrow 0}\frac{g(h)-g(0)}{h}=\lim_{h\rightarrow 0}\frac{h+2h^2\sin(\frac{1}{h})-0}{h}=\lim_{h\rightarrow 0}1+2h\sin(\frac{1}{h})$.
+        Since we are taking the limit as $h$ goes to $0$, we can assume $h$ is small, i.e $|h|<\frac{1}{2}$. $\sin(x)$ is bounded between $-1$ and $1$, so $|2h\sin(\frac{1}{h})|<1\Rightarrow g'(0)>1$.
+        \item [(b)] WTS for $\delta>0$ there exists $0<|c|<\delta$ s.t $g'(c)<0$. $g'(c)=c+4c\sin(\frac{1}{c})-2\cos(\frac{1}{c})$. Let $c=\frac{1}{2\pi k}$ for $k\in\mathbb{N}$ sufficiently large s.t $c<\delta$. Thus, $g(c)=\frac{1}{2\pi k}-2<0$. 
+    \end{itemize}
+    \item \begin{itemize}
+        \item [(a)] Let $f(x):=5x^4-4x+1$. It follows $f(\frac{1}{2})=5{(\frac{1}{2})}^4-4(\frac{1}{2})+1=\frac{5}{16}-2+1=\frac{21}{16}-2<0$ and $f(1)=2$. It follows by the IVT, there exists a root between $[\frac{1}{2},1]$.
+        \item [(b)] Let $f(x):=a_0+a_1x+\cdots+a_n x^n$ where $a_0+\frac{a_1}{2}+\cdots+\frac{a_n}{n+1}=0$. 
+        Let $g(x):\frac{a_0}{1}+\frac{a_1}{2}x+\cdots+\frac{a_nx^{n+1}}{n+1}$ be an antiderivative of $f(x)$. 
+        Observe $g(0)=g(1)=0$. 
+        It follows by Rolle's Theorem that there exists a point on the interval $[0,1]$ s.t $g'(x)=f(x)=0$
+    \end{itemize}
+    \item $\lim_{n\rightarrow\infty}4^n(1-\cos(\frac{\theta}{2^n}))\\
+    =\lim_{n\rightarrow\infty}4^n(1-\sum_{k=0}^{\infty}\frac{{(\frac{\theta}{2^n})}^{2k}{{(-1)}^k}}{(2k)!})\\
+    =\lim_{n\rightarrow\infty}4^n(\sum_{k=1}^{infty}\frac{{(\frac{\theta}{2^n})}^{2k}{{(-1)}^{k-1}}}{(2k)!})\\
+    =\lim_{n\rightarrow\infty}\sum_{k=1}^{infty}\frac{{\theta}^{2k}{{(-1)}^{k-1}}}{{4^n}^{k-1}(2k)!}\\
+    =\lim_{n\rightarrow\infty}\frac{\theta^2}{2}+\sum_{k=2}^{infty}\frac{{\theta}^{2k}{{(-1)}^{k-1}}}{{4^n}^{k-1}(2k)!}=\frac{\theta^2}{2}+0=\frac{\theta^2}{2}$
+    \item $L=\lim_{x\rightarrow\infty}x\int_{0}^{x}e^{t^2-x^2}dt=\infty\cdot 0$ because $\lim_{x\rightarrow\infty}x\int_{0}^{x}e^{t^2}dt=\infty$ and $\lim_{x\rightarrow\infty}e^{-x^2}=0$.
+    It follows by LH $\lim_{x\rightarrow\infty}x\int_{0}^{x}e^{t^2-x^2}dt=\lim_{x\rightarrow\infty}\frac{xe^{x^2}+\int_{0}^{x}e^{t^2}dt}{2xe^{x^2}}=\frac{\infty}{\infty}$. 
+    By L'H $\lim_{x\rightarrow\infty}\frac{xe^{x^2}+\int_{0}^{x}e^{t^2}dt}{2xe^{x^2}}=\lim_{x\rightarrow\infty}\frac{2e^{x^2}+2x^2e^{x^2}}{2e^{x^2}+4x^2e^{x^2}}=\lim_{x\rightarrow\infty}\frac{1+x^2}{1+2x^2}=\frac{1}{2}$.
+    \item \begin{itemize}
+        \item [(a)] $\lim_{n\rightarrow\infty}\sum_{k=1}^{n}\frac{n}{k^2+n^2}$. Observe $\frac{n}{k^2+n^2}\ge\frac{n}{2n^2}=\frac{1}{2n}$. The sum $\lim_{n\rightarrow\infty}\sum_{k=1}^{n}\frac{1}{2k}$ diverges, so $\lim_{n\rightarrow\infty}\sum_{k=1}^{n}\frac{n}{k^2+n^2}$ diverges.
+        \item [(b)] Let $L=\lim_{n\rightarrow\infty}{(\prod_{k=1}^{n}(1+\frac{k}{n}))}^\frac{1}{n}\Rightarrow \log(L)=\lim_{n\rightarrow\infty}\frac{1}{n}\sum_{k=1}^{n}\log(1+\frac{k}{n})=\int_{1}^{2}\log(x)dx=\log(\frac{4}{e})\Rightarrow L=\frac{4}{e}$ 
+    \end{itemize}
+    \item Let $f(x):=2x-\int_{0}^{x}f(t)dt-1$. WTS there is one root on the interval $[0,1]$. 
+    It suffices to show where $f'(x)=0$. 
+    $f'(x)=2-f(x)\Rightarrow e^x f'(x)+e^x f(x)=2e^x\Rightarrow e^x f(x)=2e^x+c\Rightarrow f(x)=2+ce^{-x}$.
+    To find $c$ we use $f(0)=-1\Rightarrow c=-3\Rightarrow f(x)=2-3e^{-x}$. 
+    Because $f'(x)=3e^{-x}>0$, $f$ is strictly increasing. Solving for $f(x)=2-3e^{-x}=0$, $2=3e^{-x}\Rightarrow x=\log(3/2)$.
+\end{enumerate}
+    \end{document}

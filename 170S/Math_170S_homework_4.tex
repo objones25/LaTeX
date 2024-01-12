@@ -1,0 +1,42 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{float}
+\DeclareMathOperator*{\argmax}{arg\,max}
+\DeclareMathOperator*{\argmin}{arg\,min}
+\title{\bf Math 170S: Homework 4}
+\date{11/7/2023}
+\author{\bf Owen Jones}
+
+\begin{document}
+\maketitle
+\begin{enumerate}[label=\textbf{Problem \arabic*.}]
+    \item Since each $X_i\sim\mathcal{N}(\mu_X,\sigma^2_X),Y_i\sim\mathcal{N}(\mu_Y,\sigma^2_Y)$, and $W_i\sim\mathcal{N}(\mu_W,\sigma^2_W)$,\\ 
+    it follows that $\displaystyle \sum_{i=1}^{n_X}X_i\sim\mathcal{N}(n_X\mu_X,n_X\sigma^2_X)$, $\displaystyle \sum_{i=1}^{n_Y}Y_i\sim\mathcal{N}(n_Y\mu_Y,n_Y\sigma^2_Y)$, and $\displaystyle \sum_{i=1}^{n_W}W_i\sim\mathcal{N}(n_W\mu_W,n_W\sigma^2_W)$ by the linearity of mean and variance.\\
+    Using $E[nX]=nE[X]$ and $Var[nX]=nVar[\frac{X}{n}]$ $\displaystyle \overline{X}=\frac{1}{n_X}\sum_{i=1}^{n_X}X_i\sim\mathcal{N}(\mu_X,\frac{\sigma^2_X}{n_X})$, $\displaystyle \overline{Y}=\frac{1}{n_Y}\sum_{i=1}^{n_Y}Y_i\sim\mathcal{N}(\mu_Y,\frac{\sigma^2_Y}{n_Y})$, and $\displaystyle \overline{W}=\frac{1}{n_W}\sum_{i=1}^{n_W}W_i\sim\mathcal{N}(\mu_W,\frac{\sigma^2_W}{n_W})$.\\
+    By the linearity of mean and variance, $\overline{X}-\overline{Y}-\overline{W}\sim\mathcal{N}(\mu_X-\mu_Y-\mu_W,\frac{\sigma^2_X}{n_X}+\frac{\sigma^2_Y}{n_Y}+\frac{\sigma^2_W}{n_W})$.
+    It follows $\frac{\overline{X}-\overline{Y}-\overline{W}-(\mu_X-\mu_Y-\mu_W)}{\sqrt{\frac{\sigma^2_X}{n_X}+\frac{\sigma^2_Y}{n_Y}+\frac{\sigma^2_W}{n_W}}}\sim\mathcal{N}(0,1)$. 
+    Choose $z_\frac{\alpha}{2}$ s.t $P(|\frac{\overline{X}-\overline{Y}-\overline{W}-(\mu_X-\mu_Y-\mu_W)}{\sqrt{\frac{\sigma^2_X}{n_X}+\frac{\sigma^2_Y}{n_Y}+\frac{\sigma^2_W}{n_W}}}|<z_\frac{\alpha}{2})=1-\alpha$.
+    Thus, $((\overline{X}-\overline{Y}-\overline{W})-z_\frac{\alpha}{2}\sqrt{\frac{\sigma^2_X}{n_X}+\frac{\sigma^2_Y}{n_Y}+\frac{\sigma^2_W}{n_W}},(\overline{X}-\overline{Y}-\overline{W})+z_\frac{\alpha}{2}\sqrt{\frac{\sigma^2_X}{n_X}+\frac{\sigma^2_Y}{n_Y}+\frac{\sigma^2_W}{n_W}})$ is a $100(1-\alpha)\%$ confidence interval.
+    \item We know $(\overline{X}-\overline{Y}-t^{(4)}_\frac{\alpha}{2}\sqrt{\frac{s^2_x+s^2_y}{5}},\overline{X}-\overline{Y}+t^{(4)}_\frac{\alpha}{2}\sqrt{\frac{s^2_x+s^2_y}{5}})$ is a confidence interval for the difference of two means with unknown variance. 
+    $\displaystyle\overline{X}-\overline{Y}=\frac{1}{5}\sum_{i=1}^{n}x_i-y_i=-20.2$, $s^2_x+s^2_y=\frac{\displaystyle\sum_{i=1}^{5}{(x_i-\overline{X})}^2+{(y_i-\overline{Y})}^2}{4}=11986.5$, $\sqrt{\frac{s^2_x+s^2_y}{5}}=48.96$.
+    $t^{(4)}_{0.05}=2.13185$.
+    Thus, we obtain the confidence interval $(-124.57997,84.17997)$.
+    \item \begin{itemize}
+        \item [1.] $\hat{p}=\frac{24}{642}\Rightarrow (\frac{24}{642}-1.960\cdot\sqrt{\frac{\frac{24}{642}(1-\frac{24}{642})}{642}},\frac{24}{642}+1.960\cdot\sqrt{\frac{\frac{24}{642}(1-\frac{24}{642})}{642}})\Rightarrow(0.02271,0.05206)$ gives us an approximate $95\%$ confidence interval for $p$.
+        \item [2.] $\hat{p}=\frac{24}{642}\Rightarrow (\frac{\frac{24}{642}+\frac{{(1.960)}^2}{2\cdot642}-1.960\sqrt{\frac{\frac{24}{642}(1-\frac{24}{642})}{642}+\frac{{(1.960)}^2}{4*{642}^2}}}{1+\frac{{(1.960)}^2}{642}},\frac{\frac{24}{642}+\frac{{(1.960)}^2}{2\cdot642}+1.960\sqrt{\frac{\frac{24}{642}(1-\frac{24}{642})}{642}+\frac{{(1.960)}^2}{4*{642}^2}}}{1+\frac{{(1.960)}^2}{642}})\\
+        \Rightarrow (0.02525,0.05502)$ is a $95\%$ confidence interval for $p$.
+    \end{itemize}
+    \item\begin{itemize}
+        \item [$\bullet$] We want to choose $n$ s.t $z_{0.025}\sqrt{\frac{p(1-p)}{n}}\le0.03$. $z_{0.025}\sqrt{\frac{p(1-p)}{n}}\le z_{0.025}\frac{0.5}{\sqrt{n}}$, so $\frac{z_{0.025}}{2\cdot 0.03}\le\sqrt{n}$. Since both sides are positive, ${(\frac{z_{0.025}}{2\cdot 0.03})}^2\le n\Rightarrow$ choose $1068=n$.
+        \item [$\bullet$] We want to choose $n$ s.t $z_{0.025}\sqrt{\frac{p(1-p)}{n}}\le0.02$. $z_{0.025}\sqrt{\frac{p(1-p)}{n}}\le z_{0.025}\frac{0.5}{\sqrt{n}}$, so $\frac{z_{0.025}}{2\cdot 0.02}\le\sqrt{n}$. Since both sides are positive, ${(\frac{z_{0.025}}{2\cdot 0.02})}^2\le n\Rightarrow$ choose $2401=n$.
+    \end{itemize}
+    \item $\overline{X}-\overline{Y}\pm z_{0.05}\sqrt{\frac{\sigma^2_X+\sigma^2_Y}{n}}$ is a $90\%$ confidence interval for $\mu_x-\mu_y$. We want to choose the smallest $n$ s.t $z_{0.05}\sqrt{\frac{\sigma^2_X+\sigma^2_Y}{n}}\le4$. Because both sides are positive we want $\frac{z_{0.05}^2(15^2+25^2)}{16}\le n\Rightarrow 144\le n$, so we choose $n=144$
+\end{enumerate}
+\end{document}

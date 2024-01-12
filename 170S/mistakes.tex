@@ -1,0 +1,27 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb}
+\begin{document}
+Dear All,
+
+Here are some common mistakes on Homework 3:
+
+3 I did not penalize points for this, but almost every student made the following mistake in computing the Bayes factor.
+
+Recall the Bayes factor is
+
+\begin{equation} B = \frac{\mathbb{P}[x|H0]}{\mathbb{P}[x|H1]}. \end{equation}
+
+We have $$\mathbb{P}[x|H0]$$ represents the chance of seeing our data under the null hypothesis $$H0$$. In particular, if $$H0 = \{ a \leq \theta \leq b \}$$ then
+
+\begin{equation} \mathbb{P}[x|H0] = \int_a^b f_X(x|\theta, H_0) \pi(\theta | H0) d \theta \end{equation}. The main mistake is most students assumed for #3 that $$ \pi(\theta | H0) $$ is a uniform distributed over $$[0,1]$$ so its density is 1. This is not true! This is the prior conditioned on $$H0$$, which in that problem was $$\{ 0 \leq \theta \leq \frac{1}{2} \}$$. When you condition a uniform $$(0,1)$$ r.v. to be at most $$1/2$$, you will end up with a uniform$$(0,1/2)$$ r.v., which has a density of 2. Similar for $$\pi(\theta|H1)$$, but most students got the right answer since the 2 divided away in the Bayes factor.
+
+5 A lot of students seemed to be confused about the difference between $$\mathbb{P}[x|H0] $$ and $$\mathbb{P}[H0|x]$$. So this problem gave you the posterior, so you want to compute $$\mathbb{P}[H0|x]$$. This quantity is the chance of the null hypothesis being true under the posterior measure. So we have if $$f(\theta|x)$$ is the posterior density and $$H_0 = \{ a \leq \theta \leq b \}$$ then
+
+\begin{equation} \mathbb{P}[H0|x] =  \int_a^b f(\theta|x) d\theta. \end{equation}
+
+In this problem you were given the posterior is $$\mathcal{N}(\mu_1,\sigma_1^2)$$ and $$H_0 = \{ \theta \leq 175 \}$$, so you just integrate the density of a $$\mathcal{N}(\mu_1,\sigma_1^2)$$  over the region $$(-\infty,175)$$ to compute $$\mathbb{P}[H0|x]$$. And for $$\mathbb{P}[H1|x]$$ just compute the integral of that $$\mathcal{N}(\mu_1,\sigma_1^2)$$  density over $$(175,\infty)$$.
+
+Best,
+
+Raymond
+\end{document}

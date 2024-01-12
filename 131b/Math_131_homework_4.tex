@@ -1,0 +1,135 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\title{\bf Math 131B: Homework 3}
+\date{5/5/2023}
+\author{\bf Owen Jones}
+
+\begin{document}
+\maketitle
+\begin{enumerate}[label=Problem \arabic*.]
+    \item \textbf{Exercise 2.2.4}\par 
+        Let $\epsilon>0$ and choose $\delta=\epsilon$.
+        If $d((x_1,y_1),(x_2,y_2))<\delta$, then\\ 
+        $\Rightarrow d((x_1,y_1),(x_2,y_2))=\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}<\delta$\\
+        $\Rightarrow (x_1-x_2)^2+(y_1-y_2)^2<\delta^2$\\
+        Because the square of a number is non-negative, $|x_1-x_2|<\delta=\epsilon$ and $|y_1-y_2|<\delta=\epsilon$.\\
+        $\Rightarrow d(\pi_1(x_1,y_1),\pi_1(x_2,y_2))<\epsilon$ and $d(\pi_2(x_1,y_1),\pi_2(x_2,y_2))<\epsilon$\\
+        Hence, $\pi_1$ and $\pi_2$ are continuous.\\
+        Since $\pi_1:\mathbb{R}^2\rightarrow\mathbb{R}$ is continuous, $\pi_2:\mathbb{R}^2\rightarrow\mathbb{R}$ is continuous, and $f:\mathbb{R}\rightarrow X$ is continuous, their compositions $f\circ\pi_1:\mathbb{R}^2\rightarrow X$ and $f\circ\pi_2:\mathbb{R}^2\rightarrow X$ are also continuous. 
+        Because $g_1(x,y):=f(\pi_1(x,y))=f(x)$ and $g_2(x,y):=f(\pi_2(x,y))=f(y)$, $g_1(x,y)$ and $g_2(x,y)$ are continuous.\par 
+        QED
+        \item \textbf{Exercise 2.2.10}\par 
+        Let $g_{y}:\mathbb{R}\rightarrow \mathbb{R}^2$ $g_{y}(x)=(x,y)$ for some $y\in\mathbb{R}$ and let $g_{x}:\mathbb{R}\rightarrow \mathbb{R}^2$ $g_{x}(y)=(x,y)$ for some $x\in\mathbb{R}$.\par 
+        We want to show $f_y(x)=f\circ g_{y}(x)$ and $f_x(y)=f\circ g_{x}(y)$ are continuous.\par 
+        Let $\epsilon>0$ and choose $\delta=\epsilon$.\\    
+        \begin{minipage}{0.5\textwidth}
+            If $d(x_1,x_2)<\delta$, then\\ 
+            $\Rightarrow |x_1-x_2|<\delta$\\
+            $\Rightarrow \sqrt{(x_1-x_2)^2+(y-y)^2}<\delta=\epsilon$\\
+            $\Rightarrow d(g_{y}(x_1),g_{y}(x_2))<\epsilon$\\
+            Hence $g_{y}$ is continuous. 
+        \end{minipage}
+        \begin{minipage}{0.5\textwidth}
+            If $d(y_1,y_2)<\delta$, then\\ 
+            $\Rightarrow |y_1-y_2|<\delta$\\
+            $\Rightarrow \sqrt{(x-x)^2+(y_1-y_2)^2}<\delta=\epsilon$\\
+            $\Rightarrow d(g_{x}(y_1),g_{x}(y_2))<\epsilon$\\
+            Hence $g_{x}$ is continuous. 
+        \end{minipage}
+        Due to continuity preserved by composition, $f_x(y)$ and $f_y(x)$ are continuous. 
+        Since $x$ and $y$ are chosen arbitrarily, $y\rightarrowtail f(x,y)$ $\forall x\in \mathbb{R}$ and $x\rightarrowtail f(x,y)$ $\forall y\in \mathbb{R}$ are continuous separately. 
+    \item \textbf{Exercise 2.2.11}\par
+        Let $g_y(x)$ and $g_x(y)$ be the functions defined in the previous problem.\par 
+        We want to show $f(g_y(x))$ and $f(g_x(y))$ are continuous, but $f(x,y)$ is not continuous.\par
+        \begin{minipage}{0.5\textwidth}
+            Let $y$ and $x_0$ be arbitrary.\\
+            Let $\epsilon>0$ and choose $\delta=\min\{|\frac{x_0}{2}|,\frac{\epsilon x_{0}^2}{2y}\}$\\ 
+            If $d(x,x_0)<\delta$ then\\
+            $d(f(g_y(x)),f(g_y(x_0)))=|\frac{xy}{x^2+y^2}-\frac{x_0y}{x_{0}^{2}+y^2}|\\
+            =|\frac{(x-x_0)yxx_0}{(x^2+y^2)(x_{0}^{2}+y^2)}|\le |\frac{(x-x_0)y}{(xx_{0})}|\\
+            \le |\frac{(x-x_0)2y}{x_{0}^{2}}|<|\frac{\delta2y}{x_{0}^{2}}|\le|\frac{\epsilon2y(x_{0}^{2})}{2y(x_{0}^{2})}|=\epsilon$\\
+            Hence, $f(g_y(x))$ is continuous at $x_0$.  
+        \end{minipage}
+        \begin{minipage}{0.5\textwidth}
+            Let $x$ and $y_0$ be arbitrary.\\
+            Let $\epsilon>0$ and choose $\delta=\min\{|\frac{y_0}{2}|,\frac{\epsilon y_{0}^2}{2x}\}$\\ 
+            If $d(y,y_0)<\delta$ then\\
+            $d(f(g_x(y)),f(g_x(y_0)))=|\frac{xy}{x^2+y^2}-\frac{xy_0}{x^{2}+y_{0}^2}|\\
+            =|\frac{(y-y_0)xyy_0}{(x^2+y^2)(y_{0}^{2}+x^2)}|\le |\frac{(y-y_0)x}{(yy_{0})}|\\
+            \le |\frac{(y-y_0)2x}{y_{0}^{2}}|<|\frac{\delta2x}{y_{0}^{2}}|\le|\frac{\epsilon2x(y_{0}^{2})}{2x(y_{0}^{2})}|=\epsilon$\\
+            Hence, $f(g_x(y))$ is continuous at $y_0$. 
+        \end{minipage}
+        Next, we will show $f(x,y)$ is not continuous at the origin.\\
+        Let $\epsilon=\frac{1}{2}$ and set $y=x$.
+        If $(x,y)=(\frac{\sqrt{2}\delta}{4},\frac{\sqrt{2}\delta}{4})$ then $d((x,y),(0,0))=\frac{\delta}{2}<\delta$.
+        It follows $\frac{(\frac{\sqrt{2}\delta}{4})^2}{(\frac{\sqrt{2}\delta}{4})^2+(\frac{\sqrt{2}\delta}{4})^2}=\frac{1}{2}$.
+        Hence for all $\delta>0$ there exists $d(f(x,y),f(0,0))\ge\frac{1}{2}$. Therefore, $f(x,y)$ is not continuous.\\
+        QED
+    \item \textbf{Exercise 2.2.12}\par 
+    Let $(x,y)$ be arbitrary. Let $\epsilon>0$ and choose $\delta=\frac{\epsilon y}{x^2}$.
+    If $|t|<\delta$ then $|f(xt,yt)|=|\frac{(xt)^2}{yt}|=|\frac{x^2t}{y}|<\frac{\epsilon yx^2}{yx^2}=\epsilon$. Hence, $\displaystyle{\lim_{t\rightarrow 0}}f(xt,yt)=0$.\\
+    $f$ is continuous if $\displaystyle{\lim_{(x,y)\rightarrow (0,0)}}f(x,y)=f(0,0)$ for all paths.
+    To show $f(x,y)$ is discontinuous at $(0,0)$, we will show $\displaystyle{\lim_{t\rightarrow 0}}f(t,t^2)\neq 0$. 
+    Let $\epsilon=\frac{1}{2}$ and let $\delta>0$.
+    If $\sqrt{t^2+t^4}\le \delta$ then $|t|\le\sqrt{\frac{-1+\sqrt{1+4\delta^2}}{2}}$. It follows $|f(\sqrt{\frac{-1+\sqrt{1+4\delta^2}}{2}},\frac{-1+\sqrt{1+4\delta^2}}{2})-f(0,0)|=|\frac{\frac{-1+\sqrt{1+4\delta^2}}{2}}{\frac{-1+\sqrt{1+4\delta^2}}{2}}-0|=1>\epsilon$.\\
+    Moreover, for every $\delta>0$ there exists a $(x',y')$ within $\delta$ of some $(x,y)$ s.t $d((f(x'),f(y')),(f(x),f(y)))\ge\epsilon$.\\
+    QED
+    \item \textbf{Exercise 2.3.3}\par 
+    Let $f:X\rightarrow Y$ be uniformly continuous. For every $\epsilon>0$ there exists $\delta>0$ s.t $d(f(x_1),f(x_2))<\epsilon$ whenever $d(x_1,x_2)<\delta$. Let $x_0\in X$. 
+    Then for every $\epsilon>0$ $d(f(x),f(x_0))<\epsilon$ whenever $d(x,x_0)<\delta$ by uniform continuity. Hence, $f$ is continuous.\\
+    Let $g(x,y)=x^2+y^2+x-y$.\\
+    Let $\epsilon>0$ and choose $\delta=\min\{1,\frac{\epsilon}{2(2+|x_0|+|y_0|)}\}$.
+    If $d((x,y),(x_0,y_0))<\delta$ then $|x-x_0|<\delta$ and $|y-y_0|<\delta$.
+    It follows $|x+x_0+1||x-x_0|<|x+x_0+1|\delta\le2(|x_0|+1)\delta$ and $|y+y_0-1||y-y_0|<|y+y_0-1|\delta\le2(|y_0|+1)\delta$ by the triangle innequality. 
+    Thus, $d(g(x,y),g(x_0,y_0))=|x^2-x_{0}^2+y^2-y_{0}^2+x-x_0-y+y_0|\le|x+x_0+1||x-x_0|+|y+y_0-1||y-y_0|\le 2\delta(2+|x_0|+|y_0|)\le \frac{2(2+|x_0|+|y_0|)\epsilon}{2(2+|x_0|+|y_0|)}<\epsilon$. Hence, $g$ is continuous.\\
+    However $|(x+\frac{\sqrt{2\delta}}{2})^2-(x)^2+(y+\frac{\sqrt{2\delta}}{2})^2-(y)^2+(x+\frac{\sqrt{2\delta}}{2})-x+y-(y+\frac{\sqrt{2\delta}}{2})|=|\frac{\sqrt{2\delta}}{2}(2x+\frac{\sqrt{2\delta}}{2})+\frac{\sqrt{2\delta}}{2}(2y+\frac{\sqrt{2\delta}}{2})|=|\sqrt{2\delta}(x+y)+\delta|\ge\epsilon$ whenever $|x+y|$ is sufficiently large.
+    Moreover, for every $\delta>0$ there exists a $(x',y')$ within $\delta$ of some $(x,y)$ s.t $d((f(x'),f(y')),(f(x),f(y)))\ge\epsilon$. 
+    Hence, $g$ is not uniformly continuous.\\
+    QED
+    \item \textbf{Exercise 2.3.4}\par
+    Let $\epsilon>0$. By the uniform continuity of $g$, there exists a $\delta_1>0$ s.t $d(g(x),g(x'))<\epsilon$ whenever $d(x,x')<\delta_1$. 
+    By the uniform continuity of $f$, choose $\delta>0$ to be small enough s.t $d(f(x),f(x'))<\delta_1$ whenever $d(x,x')<\delta$. 
+    Because $d(f(x),f(x'))<\delta_1$, we obtain $d(g(f(x)),g(f(x')))<\epsilon$.
+    Hence, $g\circ f$ is uniformly continuous.\\
+    QED
+    \item \textbf{Exercise 2.3.5}\par
+    \textit{Not a homework problem but used in the solution for 2.3.6}\par
+    Let $\epsilon>0$. By the uniform continuity of $f$ and $g$, choose $\delta$ to be small enough so $d(f(x),f(x'))<\frac{\epsilon}{\sqrt{2}}$ and $d(g(x),g(x'))<\frac{\epsilon}{\sqrt{2}}$.
+    It follows $d((f(x),g(x)),(f(x'),g(x')))=\sqrt{(g(x)-g(x'))^2+(f(x)-f(x'))^2}<\sqrt{2\frac{\epsilon^2}{2}}=\epsilon$ whenever $d(x,x')<\delta$.
+    \item \textbf{Exercise 2.3.6}\par 
+    Let $\epsilon>0$ and choose $\delta=\frac{\epsilon}{2}$.
+    If $d((x,y),(x',y'))<\delta$, this implies $|x-x'|<\delta$ and $|y-y'|<\delta$.
+    It follows $|(x+y)-(x'+y')|=|(x-x')+(y-y')|\le|x-x'|+|y-y'|<2\delta=2\frac{\epsilon}{2}=\epsilon$.
+    Hence, addition is uniformly continuous.\\
+    Let $\epsilon>0$ and choose $\delta=\frac{\epsilon}{2}$.
+    If $d((x,y),(x',y'))<\delta$, this implies $|x-x'|<\delta$ and $|y-y'|<\delta$.
+    It follows $|(x-y)-(x'-y')|=|(x-x')-(y-y')|\le|x-x'|+|y'-y|<2\delta=2\frac{\epsilon}{2}=\epsilon$.
+    Hence, subtraction is uniformly continuous.\\
+    $|(\frac{\sqrt{2\delta}}{2}+x)|(\frac{\sqrt{2\delta}}{2}+y)-(xy)|=|\frac{\sqrt{2\delta}}{2}(x+y)+\frac{\delta}{2}|\ge \epsilon$ whenever $|x+y|$ is sufficiently large. 
+    Hence, multiplication is not uniformly continuous.\\
+    By exercise 2.3.5, we know that the direct sum preserves uniform continuity. 
+    Because the addition and subtraction functions are uniformly continuous from $\mathbb{R}^2\rightarrow\mathbb{R}$, $f+g$ and $f-g$ are uniformly continuous if $f$ and $g$ are uniformly continuous from $X\rightarrow\mathbb{R}$.\\
+    Let $f(x)=x+2$, $g(x)=\frac{x}{2}$. $|(x+\frac{\sqrt{2\delta}}{2}+2)(\frac{x+\frac{\sqrt{2\delta}}{2}}{2})-(x+2)(\frac{x}{2})|=|\frac{\sqrt{2\delta}}{2}(x+2+\frac{x}{2})+\frac{\delta}{4}|\ge\epsilon$ whenever $|x+2+\frac{x}{2}|$ is sufficiently large.\\
+    $max(f,g)$, $min(f,g)$, and $cf$ are uniformly continuous if $f$ and $g$ are uniformly continuous, but $f/g$ is not nexessarily uniformly continuous. 
+    For $max$ and $min$ you can choose a $\delta$ small enough so that it works for both $f$ and $g$. 
+    For $cf$ you choose a $\delta$ small enough so that the difference in $fs$ is less than $\frac{\epsilon}{c}$. 
+    If $f(x)=x$ and $g(x)=\frac{1}{1+x^2}$ $f/g$ is not uniform continuous while $f$ and $g$ both are.
+    QED
+    \item \textbf{Additional Problem}\par  
+    \begin{itemize}
+        \item [a)] $f$ is uniformly continuous because for every $\epsilon>0$, if $\delta=\epsilon$, $|f(x)-f(y)|<\epsilon$ whenever $|x-y|<\delta$. 
+        \item [b)] $f$ is not uniformly continuous because if $\epsilon<1$ there exist $x\neq y$ for every $\delta>0$ which implies there exists $d_{disc}(f(x),f(y))=1>\epsilon$.
+        \item [c)] $f$ is uniformly continuous because for every $\epsilon>0$, if $\delta=1$, $|f(x)-f(y)|=0<\epsilon$ whenever $d_{disc}(x,y)<\delta$.
+        \item [d)] $f$ is uniformly continuous because for every $\epsilon>0$, if $\delta=1$, $d_{disc}(f(x),f(y))=0<\epsilon$ whenever $d_{disc}(x,y)<\delta$.
+    \end{itemize}
+\end{enumerate}
+\end{document}

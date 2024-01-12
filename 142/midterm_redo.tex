@@ -1,0 +1,41 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Midterm Redo}
+\date{12/13/2023}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}[label= (Q-\arabic*)]
+    \item \begin{enumerate}
+        \item $N_0^{k+1}=\frac{1}{2}N_0^k+\frac{1}{10}N_1^k+\frac{1}{10}N_2^k\\
+        N_1^{k+1}=(1-\frac{1}{2})N_0^k+0N_1^k+0N_2^k\\
+        N_2^{k+1}=0N_0^k+(1-\frac{1}{5}+\frac{1}{10})N_1^k+(1-\frac{1}{10})N_2^k\\
+        \begin{bmatrix}
+            N_0^{k+1}\\
+            N_1^{k+1}\\
+            N_2^{k+1}
+        \end{bmatrix}=\begin{bmatrix}
+            \frac{1}{2} && \frac{1}{10} && \frac{1}{10}\\
+            \frac{1}{2} && 0 && 0\\
+            0 && \frac{9}{10} && \frac{9}{10}
+        \end{bmatrix}$
+        \item $N^{(k)}=L^k N^{(0)}$
+            \end{enumerate}
+    \item $\lim_{k\rightarrow\infty}N^{(k)}=\lambda_2^k v_2=\infty$ because there exists a dominant eigenvalue greater than $1$, so we obtain exponential growth.\\
+    $\lim_{k\rightarrow\infty}\frac{v_{21}}{sum(v_{2i})}=\frac{0.904455}{0.904455+0.408457+0.122975}$
+    \item $a_{k+1}=a_k+100mg/L-0.2a_k=0.8a_k+100$ $a_0=0$
+    \item $\rho_t-D\rho_{xx}=b\rho(x,t)$ with B.C $q(-1,t)=q(1,t)=0$. Using boundary conditions $\rho(t)=\frac{N_0}{2}e^{bt}$ for $-1<x<1$ and $\rho(t)=0$ elsewhere.
+\end{enumerate}
+\end{document}

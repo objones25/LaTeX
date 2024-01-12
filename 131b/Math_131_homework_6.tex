@@ -1,0 +1,82 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\title{\bf Math 131B: Homework 6}
+\date{5/19/2023}
+\author{\bf Owen Jones}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}[label=Problem \arabic*.]
+\item \textbf{Exercise 3.6.1}\\
+We want to show $\int_{a}^{b}\displaystyle{\sum_{n=1}^{\infty}}f^{(n)}=\displaystyle{\sum_{n=1}^{\infty}}\int_{a}^{b}f^{(n)}$.
+Let $(s^{(n)})^\infty_{n=1}$ be the sequence of partial sums for the sequence $(f^{(n)})^\infty_{n=1}$
+Given the series $\displaystyle{\sum_{n=1}^{\infty}}f^{(n)}$ converges uniformly, it follows $(s^{(n)})^\infty_{n=1}$ converges to $f$.
+By theorem $3.6.1$, $\displaystyle{\int_{a}^{b}\lim_{n\rightarrow\infty}}s^{(n)}=\displaystyle{\lim_{n\rightarrow\infty}}\int_{a}^{b}s^{(n)}$.
+We use the linearity of the integral to switch the order of integration and summation for finitely many terms:
+$\displaystyle{\lim_{n\rightarrow\infty}}\int_{a}^{b}s^{(n)}=\displaystyle{\lim_{n\rightarrow\infty}}\sum_{i=1}^{n}\int_{a}^{b}f^{(i)}$.
+It follows $\displaystyle{\lim_{n\rightarrow\infty}}\sum_{i=1}^{n}\int_{a}^{b}f^{(i)}$ is equivalent to $\displaystyle{\sum_{n=1}^{\infty}}\int_{a}^{b}f^{(n)}$, so we obtain our desired result.
+\item \textbf{Exercise 3.7.1}\\
+We use the beginning of the proof given in the textbook. 
+It remains to show the sequence of functions $(f_n)^{\infty}_{n=1}$ converges uniformly to the function $f:[a,b]\rightarrow\mathbb{R}$ $f(x):=L-\displaystyle{\int_{a}^{x_0}}g+\displaystyle{\int_{a}^{x}}g$ for all $x\in[a,b]$ and that $f$ is differentiable with derivative $g$.\\
+Let $\epsilon>0$. By the uniform convergence of $f'_n$ to $g$, we can use theorem $3.6.1$ to choose an $N$ large enough s.t $d(\displaystyle{\int_{a}^{x_0}}f'_n,\int_{a}^{x_0}g)<\frac{\epsilon}{3}$, $\displaystyle d(\int_{a}^{x}f'_n,\int_{a}^{x}g)<\frac{\epsilon}{3}$, and $\displaystyle d(f_n(x_0),L)<\frac{\epsilon}{3}$ whenever $n>N$ and $x\in[a,b]$.
+It follows $\displaystyle d(f(x),f_n(x_0)-\int_{a}^{x_0}f'_n+\int_{a}^{x}f'_n)<\epsilon$ by the triangle innequality. 
+The fundamental theorem of calculus gives us $\displaystyle f_n(x_0)-\int_{a}^{x_0}f'_n+\int_{a}^{x}f'_n=f_n(x_0)-(f_n(x_0)-f_n(a))+(f_n(x)-f_n(a))=f_n(x)$, so $d(f(x),f_n(x))<\epsilon$ for any arbitrary $x\in[a,b]$.
+Hence, $(f_n)^{\infty}_{n=1}$ converges uniformly to $f$.\\
+$\displaystyle\int_{a}^{x}g-\int_{a}^{x_0}g=\int_{x_0}^{x}g=f(x)-f(x_0)$ by algebra and because $f'_n(x_0)$ converges to $f(x_0)$. $g$ is integrable on $[a,b]$, so by the fundamental theorem of calculus, $g$ must be the derivative of $f$ because $f$ is the antiderivative of $g$. Hence, $f$ is differentiable with derivative $g$.
+$f'_n(x)=\frac{x}{\sqrt{\frac{1}{n^2}+x^2}}$ diverges at $x=0$, so $f'_n(x)$ does not converge uniformly. Hence, theorem 3.7.1 doesn't apply.
+%Next we show $\displaystyle{\lim_{h\rightarrow0}}\frac{f(x+h)-f(x)}{h}=g(x)$.\\ 
+%Let $\epsilon>0$. By the uniform convergence of $f_n$ and $f'_n$ as well as the differentiability of $f_n$, choose $N$ to be large enough s.t $d(f,f_n)<\frac{h\cdot\epsilon}{6}$ and $d(g,f'_n)<\frac{\epsilon}{3}$ whenever $n>N$, and choose $\delta$ small enough s.t $d(\frac{f_n(x+h)-f_n(x)}{h},f'_n(x))<\frac{\epsilon}{3}$ whenever $0<|h|<\delta$.\\
+%It follows $d(\frac{f(x+h)-f(x)}{h},\frac{f_n(x+h)-f_n(x)}{h})=|\frac{f(x+h)-f_n(x+h)-f(x)+f_n(x)}{h}|<\frac{\frac{2h\cdot\epsilon}{6}}{h}=\frac{\epsilon}{3}$.\\
+%Thus, by the triangle innequality\\ 
+    %$d(\frac{f(x+h)-f(x)}{h},g(x))\le d(\frac{f(x+h)-f(x)}{h},f'_n(x))+d(f'_n(x),g(x))\\\le d(\frac{f(x+h)-f(x)}{h},\frac{f_n(x+h)-f_n(x)}{h})+d(f'_n(x),\frac{f(x+h)-f(x)}{h})+d(f'_n(x),g(x))<\frac{3\epsilon}{3}=\epsilon$\\
+    %Hence $\displaystyle{\lim_{h\rightarrow0}}\frac{f(x+h)-f(x)}{h}=g(x)$, so $f$ is differentiable with derivative $g$.   
+\item \textbf{Exercise 3.7.3}\\
+Let $(s^{(n)})^\infty_{n=1}$ be the sequence of partial sums for the sequence $(f^{(n)})^\infty_{n=1}$.
+Because there exists $x_0\in[a,b]$ s.t $s^{(n)}(x_0)$ is convergent and $s'^{(n)}=\displaystyle{\sum_{i=1}^{n}}f'_i$ is uniformly convergent by the Weierstrass M-test, we can use Theorem 3.7.1 to exchange the order of limits and differentiation.
+It follows $\frac{d}{dx}\displaystyle{\lim_{n\rightarrow\infty}}s^{(n)}=\displaystyle{\lim_{n\rightarrow\infty}}\frac{d}{dx}s^{(n)}$.
+Since each $f^{(n)}$ is differentiable, we can exchange the order of summation and differentiation for finitely many $n$ to obtain $\frac{d}{dx}\displaystyle{\lim_{n\rightarrow\infty}}s^{(n)}=\displaystyle{\lim_{n\rightarrow\infty}}\frac{d}{dx}s^{(n)}=\displaystyle{\lim_{n\rightarrow\infty}}\frac{d}{dx}\sum_{i=1}^{n}f^{(i)}=\displaystyle{\lim_{n\rightarrow\infty}}\sum_{i=1}^{n}\frac{d}{dx}f^{(i)}=\sum_{n=1}^{\infty}\frac{d}{dx}f^{(n)}$ which is our desired result.
+\item \textbf{Exercise 4.1.1}
+\begin{itemize}
+    \item [(a)] Suppose $x\in\mathbb{R}$ s.t  $|x-a|>R$. The Root test states $\displaystyle\sum_{n=1}^{\infty}c_n(x-a)^n$ diverges if $\limsup|c_n(x-a)^n|^\frac{1}{n}>1$.
+    $\limsup|c_n(x-a)^n|^\frac{1}{n}>\limsup|c_n\cdot R^n|^\frac{1}{n}=\limsup|c_n|^\frac{1}{n}|R|=1$, so $\displaystyle\sum_{n=1}^{\infty}c_n(x-a)^n$ diverges if $|x-a|>R$.
+    \item [(b)] Suppose $x\in\mathbb{R}$ s.t  $|x-a|<R$. The Root test states $\displaystyle\sum_{n=1}^{\infty}c_n(x-a)^n$ converges if $\limsup|c_n(x-a)^n|^\frac{1}{n}<1$.
+    $\limsup|c_n(x-a)^n|^\frac{1}{n}<\limsup|c_n\cdot R^n|^\frac{1}{n}=\limsup|c_n|^\frac{1}{n}|R|=1$, so $\displaystyle\sum_{n=1}^{\infty}c_n(x-a)^n$ converges if $|x-a|<R$.
+    \item [(c)] $\displaystyle\sum_{n=1}^{\infty}c_n(x-a)^n$ converges uniformly on $[a-r,a+r]$ for $0<r<R$ if $\displaystyle\sum_{n=1}^{\infty}||c_n(x-a)^n||_\infty$ is convergent by Weierstrass M-test.
+    It follows $\limsup|c_n(r)^n|^\frac{1}{n}=\frac{r}{R}<\frac{R}{R}=1$, so $\displaystyle\sum_{n=1}^{\infty}c_n(r)^n$ converges by the Root test.
+    Thus, $\displaystyle\sum_{n=1}^{\infty}c_n(x-a)^n$ converges uniformly on $[a-r,a+r]$ for $0<r<R$. 
+    Let $x_0\in(a-R,a+R)$. It follows there exists $r_1$ between $0$ and $R$ s.t $x_0\in[a-r_1,a+r_1]$. 
+    Since $\displaystyle\sum_{n=1}^{\infty}c_n(x-a)^n$ converges uniformly on $[a-r_1,a+r_1]$ and $c_n(x-a)^n$ is continuous at $x_0$ for each $n$, the limiting function $f$ must also be continuous at $x_0$. 
+    Hence, $f$ is continuous for $x\in(a-R,a+R)$
+    \item [(d)] For any $0<r<R$, $\limsup|nc_n(r)^{n-1}|^\frac{1}{n}<\limsup|n|^\frac{1}{n}|c_n|^\frac{1}{n}|(R)^\frac{n-1}{n}|=1$, so $\displaystyle\sum_{n=1}^{\infty}||nc_n(x-a)^{n-1}||_\infty$ converges. By the Weierstrass M-test, $nc_n(x-a)^{n-1}$ converges uniformly to some function $f'$ on $[a-r,a+r]$.
+    Pick $x_0\in(a-R,a+R)$. It follows there exists $0<r_x<R$ s.t $x_0\in[a-r_x,a+x]$. Because each $c_n(x-a)^n$ is differentiable, $\displaystyle \sum_{n=1}^{\infty}nc_n(x-a)^{n-1}$ converges uniformly to some function $f'$ on $[a-r,a+r]$, and $\displaystyle\sum_{n=1}^{\infty}c_n(x_0-a)^n$ converges to some value $L$, Theorem 3.7.1 states $\displaystyle\sum_{n=1}^{\infty}c_n(x-a)^n$ converges uniformly to some differentiable function $f$ whose derivative is $f'$.
+    Because this holds for any $x_0\in(a-R,a+R)$, $f$ is differentiable over $(a-R,a+R)$.
+    \item [(e)] $\displaystyle\sum_{n=1}^{\infty}c_n(x-a)^n$ converges uniformly on $[y,z]$ to $f$ by $(c)$ because $[y,z]$ is a compact set. Each $c_n(x-a)^n$ is integrable on $[y,z]$, so by Corollary 3.6.2, we can switch the order of summation and integration. 
+    Thus, by the fundamental theorem of calculus, $\displaystyle\int_{y}^{z}f=\sum_{n=1}^{\infty}c_n\frac{(z-a)^{n+1}-(y-a)^{n+1}}{n+1}$.
+\end{itemize}  
+\item \textbf{Exercise 4.1.2}
+\begin{itemize}
+    \item [(a)] $\displaystyle\sum_{n=1}^{\infty}x^{n}$
+    \item [(b)] $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n}x^n$
+    \item [(c)] $\displaystyle\sum_{n=1}^{\infty}\frac{(-1)^n}{n}x^n$
+    \item [(d)] $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^2}x^n$
+    \item [(e)] $\displaystyle\sum_{n=1}^{\infty}x^{n}$
+\end{itemize}
+\item \textbf{Additional Problem}\\
+Let $x_0\in(-1,1)$. The power series $\displaystyle\sum_{k=1}^{\infty}(-1)^k(x)^{2k}$ can be rewritten as $\displaystyle\sum_{k=1}^{\infty}(-1\cdot x^2)^{k}$.
+If $x_0\in(-1,1)$, then $-x_{0}^2\in(-1,0)$. 
+Because we know the series $\displaystyle\sum_{k=0}^{\infty}x^{k}$ converges pointwise to $\frac{1}{1-x}$ for $x\in(-1,1)$, $\displaystyle\sum_{k=0}^{\infty}(-1\cdot x_{0}^2)^{k}$ converges to $\frac{1}{1-(-x_{0}^2)}=\frac{1}{1+x_{0}^2}$.
+Hence $\displaystyle\sum_{k=0}^{\infty}(-1)^k(x)^{2k}$ converges pointwise to $\frac{1}{1+x^2}$.
+Moreover, we can use the Weierstrass M-test to show $\displaystyle\sum_{k=0}^{\infty}(-1\cdot x_{0}^2)^{k}$ converges uniformly for any subinterval $[-r,r]$. $\displaystyle\sum_{k=0}^{\infty}||(-1\cdot x^2)^{k}||_\infty=\sup\{\frac{1}{1+x^2}:x\in[-r,r]\}=1$, so $\displaystyle\sum_{k=1}^{\infty}(-1)^k(x)^{2k}$ converges uniformly on $[-r,r]$. 
+For any $x\in(-1,1)$ there exists $0<r<1$ s.t $x\in[-r,r]$. Since $\sum_{k=0}^{\infty}(-1)^k(t)^{2k}$ converges uniformly on $[-r,r]$ and each $\int_{0}^{x}(-1)^k(t)^{2k}dt=\frac{(-1)^k}{2k+1}x^{2k+1}$ we can use Corollary 3.6.2 to show $\sum_{k=0}^{\infty}\frac{(-1)^k}{2k+1}x^{2k+1}=\sum_{k=0}^{\infty}\int_{0}^{x}(-1)^k(t)^{2k}=\int_{0}^{x}\sum_{k=0}^{\infty}(-1)^k(t)^{2k}=\int_{0}^{x}\frac{1}{t^2+1}=\arctan(x)-\arctan(0)=\arctan(x)$ Hence, we obtain our desired result.
+\end{enumerate}
+\end{document}

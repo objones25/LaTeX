@@ -1,0 +1,67 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 116: Problem Set 1}
+\date{1/14/2024}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}[label=\arabic*.]
+    \item \begin{enumerate}
+        \item $543\equiv 3\pmod{12},379\equiv 7\pmod{12}\Rightarrow 543\cdot 379\equiv 21\pmod{12}\\\Rightarrow 543\cdot 379\equiv 9\pmod{12}$
+        \item $29513\equiv 13\pmod{100}, 93723208\equiv 8\pmod{100}\\\Rightarrow 29513\cdot 93723208\equiv 104\pmod{100}\\\Rightarrow 29513\cdot 93723208\equiv 4\pmod{100}$
+        \item $24637\equiv 7\pmod{15}\Rightarrow {24637}^3\equiv 343\pmod{15}\\\Rightarrow {24637}^3\equiv 13\pmod{15}$
+        \item $82375=4576\cdot 18+7\Rightarrow 82375\equiv 7\pmod{18}\\\Rightarrow {82375}^3\equiv 343\pmod{18}$\\ $343=19\cdot 18+1\Rightarrow {82375}^3\equiv 1\pmod{18}$\\ $5628=1876\cdot 3\Rightarrow {82375}^{5628}\equiv 1^{1876}\pmod{18}\\\Rightarrow {82375}^{5628}\equiv 1\pmod{18}$
+        \item $46249=2569\cdot 18+7\Rightarrow 46249\equiv 7\pmod{18}\\\Rightarrow {46249}^3\equiv 1\pmod{18}$\\ $601=200\cdot 3+1\Rightarrow {46249}\cdot{46249}^{3\cdot200}\equiv 7\cdot 1^{200}\pmod{18}\\\Rightarrow {46249}^{601}\equiv 7\pmod{18}$
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item $\gcd(128,69)=\gcd(69,59)=\gcd(59,10)=\gcd(10,9)=\gcd(9,1)=1$\\ 
+        $1=10-9=69-2\cdot59+5\cdot10=8\cdot69-2\cdot128-5\cdot59=13\cdot69-7\cdot128$\\
+        Let $d=13$
+        \item $84\cdot69\cdot13\equiv 84\pmod{128}\Rightarrow 68\cdot 69\equiv 84\pmod{128}$\\
+        $107\cdot69\cdot13\equiv 107\pmod{128}\Rightarrow 111\cdot 69\equiv 107\pmod{128}$\\
+        $38\cdot69\cdot13\equiv 38\pmod{128}\Rightarrow 110\cdot 69\equiv 38\pmod{128}$\\
+        $3\cdot69\cdot13\equiv 3\pmod{128}\Rightarrow 39\cdot 69\equiv 3\pmod{128}$\\
+        $68\cdot69\cdot13\equiv 68\pmod{128}\Rightarrow 116\cdot 69\equiv 68\pmod{128}$\\
+        $32\cdot69\cdot13\equiv 32\pmod{128}\Rightarrow 32\cdot 69\equiv 32\pmod{128}$\\
+        $58\cdot69\cdot13\equiv 58\pmod{128}\Rightarrow 114\cdot 69\equiv 58\pmod{128}$\\
+        $127\cdot69\cdot13\equiv 127\pmod{128}\Rightarrow 115\cdot 69\equiv 9\pmod{128}$\\
+        $25\cdot69\cdot13\equiv 25\pmod{128}\Rightarrow 69\cdot 69\equiv 25\pmod{128}$\\
+        $78\cdot69\cdot13\equiv 78\pmod{128}\Rightarrow 118\cdot 69\equiv 118\pmod{128}$\\
+        $57\cdot69\cdot13\equiv 57\pmod{128}\Rightarrow 101\cdot 69\equiv 57\pmod{128}$\\
+        The message is: Don't trust Eve
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item \textbf{reflexive:} $(a-a)=0$ and $n\cdot0=0$ for any integer $n$.
+        \item \textbf{symmetric:} If $n\mid(a-b)$ then $\exists k\in\mathbb{Z}$ s.t $(a-b)=kn$. If $\exists k\in\mathbb{Z}$ then $\exists-k\in\mathbb{Z}$ s.t $(b-a)=-kn\Rightarrow n\mid (b-a)$.
+        \item \textbf{transitive} If $a\equiv b\pmod{n}$ and $b\equiv c\pmod{n}$ then $\exists k_1,k_2\in\mathbb{Z}$ s.t $a-b=k_1n$ and $b-c=k_2n$. Because $\exists k_1+k_2\in\mathbb{Z}$ s.t $a-c=(k_1+k_2)n$, we can say $a\equiv c\pmod{n}$
+    \end{enumerate}
+    \item If $n\mid (a-a')$ and $n\mid (b-b')$ then there exists $k_1,k_2\in\mathbb{Z}$ s.t $a-a'=k_1n$ and $b-b'=k_2n$. 
+    It follows $(a-b)-(a'-b')=(k_1-k_2)n$ where $k_1-k_2\in\mathbb{Z}$. 
+    Thus, $n\mid (a-b)-(a'-b')\Rightarrow a-b\equiv a'-b'\pmod n$
+    \item \begin{enumerate}
+        \item Let $X=\mathbb{R}^+\cup\{0\}$ and $Y=\mathbb{R}$. Let $e:X\rightarrow Y=\sqrt{x}$ and $d:Y\rightarrow X=y^2$. $d(e(x))={(\sqrt{x})}^2=x$ $\forall x\in X$, but $e(d(-1))=\sqrt{{(-1)}^2}=1$, so $e(d(y))\neq 1_Y$
+        \item WLOG let $\lvert X\rvert=\lvert Y\rvert=n$. 
+        Suppose $f$ is one-to-one. 
+        Moreover, each element of $X$ needs to map to a different element of $Y$. 
+        Because there are $n$ elements in the set $X$, $n$ elements of the set $Y$ will have elements of $X$ that map to them. 
+        However, $Y$ only contains $n$ elements, so for every element $y\in Y$, $\exists x\in X$ s.t $f(x)=y$.
+        \item Let $E_k:\mathcal{P}\rightarrow \mathcal{C}$ and $D_k:\mathcal{C}\rightarrow \mathcal{P}$ where $D_k(E_k(m))=m$ for each $m\in\mathcal{C}$. 
+        It follows $E_k(D_k(E_k(m)))=E_k(m)$ where $m\in\mathcal{C}$. 
+        $E_k$ must be injective because if $E_k(m)=n$ and $E_k(m')=n$, then either $D_k(E_k(m))\neq m$ or $D_k(E_k(m'))\neq m'$ because $D_K(n)$ cannot map to two different values.
+        Because $\mathcal{P}$ and $\mathcal{C}$ are of the same size, part (b) says that $E_k$ is onto, so for every $n\in\mathcal{P}$, there exists $m\in\mathcal{C}$ s.t $n=E_k(m)$.
+        Thus, $E_k(D_k(n))=n$.
+    \end{enumerate}
+\end{enumerate}
+\end{document}

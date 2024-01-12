@@ -1,0 +1,134 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+
+\title{\bf Math 131B: Homework 8}
+\date{6/2/2023}
+\author{\bf Owen Jones}
+
+\begin{document}
+\maketitle
+\begin{enumerate}[label=Problem \arabic*.]
+    \item \textbf{Exercise 4.7.3}
+    \begin{itemize}
+        \item [(a)] The sum of angles identity gives us $\cos(x+\pi)=\cos(x)\cos(\pi)-\sin(x)\sin(\pi)$ and $\sin(x+\pi)=\sin(x)\cos(\pi)+\sin(\pi)\cos(x)$. 
+        Definition $4.7.4$ tells us that $cos(\pi)=-1$ and $\sin(\pi)=0$, so $\cos(x)\cos(\pi)-\sin(x)\sin(\pi)$ and $\sin(x+\pi)=\sin(x)\cos(\pi)+\sin(\pi)\cos(x)$ reduce to $\cos(x)(-1)-\sin(x)(0)=-\cos(x)$ and $\sin(x)(-1)+(0)\cos(x)=-\sin(x)$ respectively.
+        It follows $\sin(x+2\pi)=-\sin(x+\pi)=\sin(x)$ and $\cos(x+2\pi)=-\cos(x+\pi)=\cos(x)$, so $\sin(x)$ and $\cos(x)$ are periodic with period $2\pi$.
+        \item [(b)] By Theorem $4.7.5(a)$, $\sin(x)=-\sin(x+\pi)$, so if $sin(0)=0$, then for all positive multiples of $\pi$ $\sin(k\pi)=0$. 
+        (This easily follows from a simple induction). Because $\sin(-x)=-\sin(x)$, the same holds for all negative multiples of $\pi$. Thus, $\frac{k\pi}{\pi}=k$ which is an integer.
+        If $\frac{x}{\pi}$ is an integer, then $x$ is a multiple of $\pi$, but we showed already that the $\sin$ of every multiple of $\pi$ is $0$, so $\sin(x)=0$.
+        \item [(c)] The sum of angles identity gives us $\sin(\pi)=\sin(\frac{\pi}{2}+\frac{\pi}{2})=2\sin(\frac{\pi}{2})\cos(\frac{\pi}{2})$. 
+        Since $\sin(\pi)=0$ and $\sin(\frac{\pi}{2})\neq0$ by Definition $4.7.4$, $\cos(\frac{\pi}{2})$ must equal $0$. 
+        We use Theorem $4.7.5(a)$ as we did in part $(b)$ to show $\cos(x)=0$ for $x\in\{k\pi-\frac{\pi}{2}:k\in\mathbb{N}\}$. 
+        We then use $\cos(-x)=\cos(x)$ to show $\cos(x)=0$ for $x\in\{k\pi+\frac{\pi}{2}:k\in\mathbb{Z}\}$. Since $\frac{k\pi+\frac{\pi}{2}}{\pi}=k+\frac{1}{2}$, $\frac{x}{\pi}$ is an integer plus $\frac{1}{2}$. 
+        If $\frac{x}{\pi}$ is an integer plus $\frac{1}{2}$, then $x$ is a multiple of $\pi$ plus $\frac{\pi}{2}$, but we already showed that the $\cos$ of every multiple of $\pi$ plus $\frac{\pi}{2}$ is $0$, so $\sin(x)=0$.\\
+    \end{itemize}
+
+    \textbf{Lemma}\\
+    WTS $\sin(\frac{\pi}{2})=1$ and $\sin(-\frac{\pi}{2})=-1$. \textit{Note: We showed }$\cos(\frac{\pi}{2})=0$ \textit{ in Exercise 4.7.3(c).}\\
+    $1=\cos(0)=\cos(\frac{\pi}{2}+(-\frac{\pi}{2}))=\cos(\frac{\pi}{2})\cos(-\frac{\pi}{2})-\sin(\frac{\pi}{2})\sin(-\frac{\pi}{2})=0-\sin(\frac{\pi}{2})(-\sin(\frac{\pi}{2}))=\sin(\frac{\pi}{2})^2$
+    Since $\sin'(0)=\cos(0)=1$ and $\frac{\pi}{2}<\pi$, the intermediate value theorem tells us $\sin(\frac{\pi}{2})>0$, so $\sin(\frac{\pi}{2})^2=1\Rightarrow\sin(\frac{\pi}{2})=1$ and $-\sin(\frac{\pi}{2})=\sin(-\frac{\pi}{2})=-1$. 
+    \item \textbf{Exercise 4.7.4}\\
+    Let $x,y$ be real numbers such that $x^2+y^2=1$. It follows that $x=\pm\sqrt{1-y^2}$. In particular, $0\le x^2$ and $0\le y^2$, so $0\le1-y^2\le1\Rightarrow|x|\le1$. 
+    Since $\sin(\theta)$ is a continuous function that assumes values of $-1$ and $1$ on the interval $[-\frac{\pi}{2},\frac{\pi}{2}]$, the intermediate value theorem states there exists $\theta_1\in[-\frac{\pi}{2},\frac{\pi}{2}]$ s.t $\sin(\theta_1)=x$. 
+    In addition, $\sin(-\theta)=-\sin(\theta)$ and $\sin(\pi+\theta)=-\sin(\theta)\Rightarrow\sin(-(\pi\pm\theta))=\sin(\theta)$. 
+    This tells there exists $\theta_2=-(\theta_1+\pi)$ for $\theta_1\in[-\frac{\pi}{2},0]$ and $\theta_2=-(\theta_1-\pi)$ for $\theta_1\in(0,\frac{\pi}{2}]$ s.t $\sin(\theta_2)=x$. 
+    It remains to show $y=\cos(\theta_1)$ or $y=\cos(\theta_2)$. Since $\theta_2=-(\theta_1\pm\pi)\Rightarrow\cos(\theta_2)=\cos(-(\theta_1\pm\pi))=\cos((\theta_1\pm\pi))=-\cos(\theta_1)$.
+    Thus, $y=\pm\sqrt{1-x^2}=\pm\sqrt{1-\sin(\theta_1)^2}(\text{ or }\pm\sqrt{1-\sin(\theta_2)^2})=\pm\sqrt{\cos(\theta_1)^2}=\pm\cos(\theta_1)=\cos(\theta_1)$ or $\cos(\theta_2)$
+    \item \textbf{Exercise 4.7.10}
+    \begin{itemize}
+        \item [(a)] The Weierstrauss M-test tells us that if $\displaystyle\sum_{n=1}^{\infty}||f^{(n)}||_\infty$ converges, then $\displaystyle\sum_{n=1}^{\infty}f^{(n)}(x)$ converges uniformly to $f(x)$. 
+        Since $|\cos(x)|\le1$, $\displaystyle\sum_{n=1}^{\infty}||f^{(n)}||_\infty=\sum_{n=1}^{\infty}4^{-n}=\frac{1}{3}$ by the sum of a geometric series, so $\sum_{n=1}^{\infty}4^{-n}\cos(32^n\pi x)$ converges uniformly to $f(x)$.
+        \item [(b)] We will show $|f(\frac{j+1}{32^m})-f(\frac{j}{32^m})|\ge4^{-m}$ to be true by induction on $m$.
+        For the base case choose $m=1$ and let $j$ be arbitrary.
+        \begin{align*}
+            |f(\frac{j+1}{32^1})-f(\frac{j}{32^1})|
+            =|\sum_{n=1}^{\infty}4^{-n}(\cos(32^n\pi \frac{j+1}{32})-\cos(32^n\pi \frac{j}{32}))|    
+        \end{align*}
+        Using the identity $\displaystyle \sum_{n=1}^{\infty}a_n=(\sum_{n=1}^{m-1}a_n)+a_m+\sum_{n=m+1}^{\infty}a_n$, the fact that cosine is periodic with period of $2\pi$, and the fact that $\cos(x)=-\cos(x+\pi)$ we obtain
+        \begin{align*}
+            |f(\frac{j+1}{32^1})-f(\frac{j}{32^1})|
+            =|4^{-1}(2\cos(j\pi+\pi))+\sum_{n=2}^{\infty}4^{-n}(\cos(2\pi k_n)-\cos(2\pi l_k))|\\
+           (\text{where } k_n=\frac{32^{n-1}(j+1)}{2} \text{ and } l_n=\frac{32^{n-1}(j)}{2}\text{ which are clearly integers})\\
+            =|4^{-1}(\pm2)+\sum_{n=2}^{\infty}4^{-n}(1-1)|
+            =\frac{1}{2}\ge\frac{1}{4}   
+        \end{align*}
+        , so the claim holds for $m=1$.
+        Next, we assume for some arbitrary $m\ge1$, the claim $|f(\frac{j+1}{32^m})-f(\frac{j}{32^m})|\ge4^{-m}$ holds. Thus, it remains to show the claim holds for $m+1$.
+        \begin{align*}
+            |f(\frac{j+1}{32^{m+1}})-f(\frac{j}{32^{m+1}})|
+            =|\sum_{n=1}^{\infty}4^{-n}(\cos(32^n\pi \frac{j+1}{32^{m+1}})-\cos(32^n\pi \frac{j}{32^{m+1}}))|    
+        \end{align*}
+        Using the identity $\displaystyle \sum_{n=1}^{\infty}a_n=(\sum_{n=1}^{m-1}a_n)+a_m+\sum_{n=m+1}^{\infty}a_n$, the fact that cosine is periodic with period of $2\pi$, and the fact that $\cos(x)=-\cos(x+\pi)$ we obtain
+        \begin{align*}
+            |f(\frac{j+1}{32^{m+1}})-f(\frac{j}{32^{m+1}})|
+            =|\sum_{n=1}^{m}4^{-n}(\cos(32^n\pi \frac{j+1}{32^{m+1}})-\cos(32^n\pi \frac{j}{32^{m+1}}))\\
+            +4^{-m-1}(2\cos(j\pi+\pi))\\
+            +\sum_{n=m+2}^{\infty}4^{-n}(\cos(2\pi k_n)-\cos(2\pi l_k))|\\
+           (\text{where } k_n=\frac{32^{n-m-1}(j+1)}{2} \text{ and } l_n=\frac{32^{n-m-1}(j)}{2}\text{ which are clearly integers})\\
+        \end{align*}
+        $\displaystyle\sum_{n=m+2}^{\infty}4^{-n}(\cos(2\pi k_n)-\cos(2\pi l_k))=0$ because cosine is periodic with period of $2\pi$, so it suffices to show 
+        $\displaystyle|\sum_{n=1}^{m}4^{-n}(\cos(32^n\pi \frac{j+1}{32^{m+1}})-\cos(32^n\pi \frac{j}{32^{m+1}}))+4^{-m-1}(2\cos(j\pi+\pi))|\ge4^{-m-1}$.\\
+        Using the identity $|\cos(x)-\cos(y)|\le|x-y|$, we obtain
+        \begin{align*}
+            \sum_{n=1}^{m}4^{-n}(\cos(32^n\pi \frac{j+1}{32^{m+1}})-\cos(32^n\pi \frac{j}{32^{m+1}}))\\
+            \le\sum_{n=1}^{m}4^{-n}|(\cos(32^n\pi \frac{j+1}{32^{m+1}})-\cos(32^n\pi \frac{j}{32^{m+1}}))|\\
+            \le\sum_{n=1}^{m}4^{-n}|\frac{32^n\pi}{32^{m+1}}|
+            =\sum_{n=1}^{m}8^n\frac{\pi}{32^{m+1}}
+            =\frac{8^{m+1}-1}{7}\frac{\pi}{32^{m+1}}
+            \le\frac{\pi}{2^{2(m+1)}\cdot7}
+            \le\frac{4^{-m-1}}{2}
+        \end{align*}
+        Using the reverse triangle innequality, we obtain
+        \begin{align*}
+            |\sum_{n=1}^{m}4^{-n}(\cos(32^n\pi \frac{j+1}{32^{m+1}})-\cos(32^n\pi \frac{j}{32^{m+1}}))+4^{-m-1}(2\cos(j\pi+\pi))|\\
+            \ge||4^{-m-1}(2\cos(j\pi+\pi))|-|\sum_{n=1}^{m}4^{-n}(\cos(32^n\pi \frac{j+1}{32^{m+1}})-\cos(32^n\pi \frac{j}{32^{m+1}}))||\\
+            \ge|2\cdot4^{-m-1}-\frac{4^{-m-1}}{2}|=\frac{3\cdot4^{-m-1}}{2}\ge4^{-m-1} 
+        \end{align*}
+        , so the claim holds for $m+1$. Hence, by induction, the claim holds for all $m\ge1$ and $j$.
+        \item [(c)] Let $x_0$ be arbitrary and let $s_m=\frac{j_m}{32^m}$ and $t_m=\frac{j_m+1}{32^m}$ be sequences of rational numbers where $j_m$ is an integer s.t $j_m\le 32^mx_0\le j_m+1$.
+        Assume for sake of contradiction that $f$ is differentiable at $x_0$. 
+        If $x_0$ is a rational number whose denominator is a power of $2$, then for all but finitely many $m$ there exists $j_m$ s.t $j_m=32^mx_0$.
+        Since $t_m$ converges to $x_0$ and $t_m\neq x_0$ for all $m$, $\displaystyle\lim_{m\rightarrow\infty}\frac{f(t_m)-f(x_0)}{t_m-x_0}$ converges to $f'(x_0)$.
+        Then by the definition of the derivative and the continuity of $f$
+        \begin{align*}
+        |f'(x_0)|=\lim_{m\rightarrow\infty}|\frac{f(t_m)-f(x_0)}{t_m-x_0}|=\lim_{m\rightarrow\infty}|\frac{f(t_m)-f(s_m)}{t_m-s_m}|\ge\lim_{m\rightarrow\infty}|\frac{32^m}{4^m}|=\infty
+        \end{align*}
+        If not, then $s_m$ and $t_m$ converge to but never equal $x_0$, and $s_m<x_0<t_0$. Thus, using the triangle innequality and the limit defintion of the derivative, we obtain
+        \begin{align*}
+            |f'(x_0)|=\lim_{m\rightarrow\infty}\frac{|\frac{f(x_0)-f(s_m)}{x_0-s_m}|+|\frac{f(x_0)-f(t_m)}{x_0-t_m}|}{2}\\
+            \ge\lim_{m\rightarrow\infty}\frac{|\frac{f(x_0)-f(s_m)}{\frac{1}{32^m}}|+|\frac{f(x_0)-f(t_m)}{\frac{1}{32^m}}|}{2}\\ \text{ because }\frac{1}{32^m}=\frac{1}{t_m-s_m}\le\frac{1}{t_m-x_0}\text{ and }\le\frac{1}{x_0-s_m}\\
+            \ge\lim_{m\rightarrow\infty}\frac{|\frac{f(s_m)-f(t_m)}{\frac{1}{32^m}}|}{2}\\
+            \ge\lim_{m\rightarrow\infty}\frac{32^m}{2\cdot4^m}\\
+            =\infty
+        \end{align*}
+        , so there exists at least one sequence that converges to $x_0$ where the limit definition of the derivative diverges. Thus, we have a contradiction, so $f$ is not differentiable at $x_0$.
+        \item[(d)] $\displaystyle\sum_{n=1}^{\infty}||f_n'||_\infty=\sum_{n=1}^{\infty}||-8^n\pi\sin(32^n\pi x)||_\infty=\sum_{n=1}^{\infty}8^n\pi$ which does not converge, so $\displaystyle\sum_{n=1}^{\infty}||f_n'||_\infty$ is not absolutely convergent.
+    \end{itemize} 
+    \item \textbf{Exercise 6.2.1}\\
+    If $f$ is differentiable at $x_0$ and $f'(x_0)=L$ then by the limit definition of the derivative $\displaystyle\lim_{x\rightarrow x_0;x\in E\setminus\{x_0\}}\frac{f(x)-f(x_0)}{x-x_0}=L$.
+    It follows $L=L\frac{x-x_0}{x-x_0}$ because $x-x_0\neq0$. 
+    Subtracting $L\frac{x-x_0}{x-x_0}$ from both sides, we obtain, \\
+    $\displaystyle\lim_{x\rightarrow x_0;x\in E\setminus\{x_0\}}\frac{f(x)-f(x_0)-L(x-x_0)}{x-x_0}=\lim_{x\rightarrow x_0;x\in E\setminus\{x_0\}}\frac{f(x)-(f(x_0)+L(x-x_0))}{x-x_0}=0$.\\
+    It follows from a proof from 131a that\\ $\displaystyle\lim_{x\rightarrow x_0;x\in E\setminus\{x_0\}}\frac{f(x)-(f(x_0)+L(x-x_0))}{x-x_0}=0\Leftrightarrow\lim_{x\rightarrow x_0;x\in E\setminus\{x_0\}}|\frac{f(x)-(f(x_0)+L(x-x_0))}{x-x_0}|=0$, so $(a)\Rightarrow(b)$.\\
+    If $\displaystyle\lim_{x\rightarrow x_0;x\in E\setminus\{x_0\}}|\frac{f(x)-(f(x_0)+L(x-x_0))}{x-x_0}|=0$ then $\displaystyle\lim_{x\rightarrow x_0;x\in E\setminus\{x_0\}}\frac{f(x)-(f(x_0)+L(x-x_0))}{x-x_0}=0$.
+    By algebra,$\displaystyle\lim_{x\rightarrow x_0;x\in E\setminus\{x_0\}}\frac{f(x)-(f(x_0)+L(x-x_0))}{x-x_0}+L\frac{x-x_0}{x-x_0}=\frac{f(x)-f(x_0)}{x-x_0}=L\frac{x-x_0}{x-x_0}=L$.
+    This is the limit definition of the derivative, so of course, $f$ is differentiable at $x_0$ with $f'(x_0)=L$. Thus, $(b)\Rightarrow(a)$.
+    \item \textbf{Exercise 6.2.2}\\
+    Suppose for the sake of contradiction that $L_1$ and $L_2$ are distinct linear transformations that satisfy $\displaystyle\lim_{x\rightarrow x_0;x\in E\setminus\{x_0\}}\frac{|f(x)-(f(x_0)+L(x-x_0))|}{||x-x_0||}=0$.
+    It follows there exists at least one non-zero vector $v$ s.t $L_1v\neq L_2v$, so we make the change of variables $x\rightarrow x_0+vt$ where $t$ is a scalar.
+    It follows by the definition of a derivative
+    \begin{align*}
+        \lim_{t\rightarrow0;t>0,x_0+vt\in E}\frac{||f(x_0+vt)-(f(x_0)+L_1vt)||}{||vt||}=\lim_{t\rightarrow0;t>0,x_0+vt\in E}\frac{||f(x_0+vt)-(f(x_0)+L_2vt)||}{||vt||}=0\\ \text{ Thus, }\\
+        \lim_{t\rightarrow0;t>0,x_0+vt\in E}\frac{||L_1vt-L_2vt||}{||vt||}\le\lim_{t\rightarrow0;t>0,x_0+vt\in E}\frac{||f(x_0+vt)-(f(x_0)+L_1vt)||}{||vt||}+\frac{||f(x_0+vt)-(f(x_0)+L_2vt)||}{||vt||}\\ \text{ by triangle innequality}\\
+        \text{ so by the squeeze theorem}\\ \lim_{t\rightarrow0;t>0,x_0+vt\in E}\frac{||L_1vt-L_2vt||}{||vt||}=\lim_{t\rightarrow0;t>0,x_0+vt\in E}\frac{||L_1v-L_2v||\cdot|t|}{||v||\cdot|t|}=\lim_{t\rightarrow0;t\neq0}\frac{||L_1v-L_2v||}{||v||}=0
+    \end{align*}
+    which is impossible because $L_1v-L_2v\neq0$, so we obtain a contradiction and $L_1=L_2$.
+\end{enumerate}
+\end{document}

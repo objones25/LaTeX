@@ -1,0 +1,102 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 100: Problem Set 8}
+\date{11/29/2023}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}[label= (Q-\arabic*)]
+    \item \begin{enumerate}[label= (\alph*)]
+        \item $P=(\frac{0+a+b}{3},\frac{0+0+c}{3})=(\frac{a+b}{3},\frac{c}{3})$.\\ 
+        $O=(X,Y)$ where $(X,Y)$ is the solution to $\sqrt{{(X-0)}^2+{(Y-0)}^2}=\sqrt{{(X-a)}^2+{(Y-0)}^2}=\sqrt{{(X-b)}^2+{(Y-c)}^2}$\\
+        $\Rightarrow X=\frac{a}{2}\Rightarrow 0=-2b(\frac{a}{2})+b^2-2cY+c^2\Rightarrow Y=\frac{b^2+c^2-ab}{2c}\Rightarrow O=(\frac{a}{2},\frac{b^2+c^2-ab}{2c})$
+        \item $\frac{AP}{PD}+\frac{BP}{PE}+\frac{CP}{PF}=\frac{{AP}^2}{AP\cdot PD}+\frac{{BP}^2}{BP\cdot PE}+\frac{{CP}^2}{CP\cdot PF}$.
+        WTS $AP\cdot PD=R^2-x^2$.\\ 
+        Observe $\triangle AOD$ is isosceles with $AO=DO=R$. Let $\alpha=\angle OAD$. By Law of Cosines $R^2=R^2+{AD}^2-2R\cdot{AD}\cos(\alpha)\Rightarrow \cos(\alpha)=\frac{AD}{2R}$\\
+        Consider $\triangle AOP$\\
+        $x^2=R^2+{AP}^2-2AP\cdot R\cos(\alpha)\\
+        =R^2+{AP}^2-{AP}\cdot AD=R^2-AP\cdot DP\\
+        \Rightarrow AP\cdot DP=R^2-x^2$\\
+        By the same reasoning, we can show $BP\cdot EP=CP\cdot FP=R^2-x^2$.\\
+        Thus, $\frac{AP}{PD}+\frac{BP}{PE}+\frac{CP}{PF}=\frac{{AP}^2+{BP}^2+{CP}^2}{R^2-x^2}$\\
+        ${AP}^2+{BP}^2+{CP}^2={AO}^2+{BO}^2+{CO}^2+3{PO}^2-2(\vec{AO}+\vec{BO}+\vec{CO})\cdot \vec{OP}=3R^2+3x^2-6\vec{OP}\cdot\vec{OP}=3R^2-3x^2$
+    \end{enumerate}
+    \item Let $a$ and $b$ be given.\\
+        Choose $c$ s.t $x^2+y^2=c^2$ intersects with $y=-\frac{b}{a}x+b$.\\
+        $\frac{a^2+b^2}{a^2}x^2-2\frac{b^2}{a}x+b^2=c^2\Rightarrow c=\sqrt{\frac{a^2+b^2}{a^2}x^2-2\frac{b^2}{a}x+b^2}$ for some $x$ ($c$ is squared so $\pm$ doesn't matter).\\
+        For positive $b$, we want $\frac{-b}{a}=\frac{-x}{|\frac{b}{a}x-b|}=\frac{x}{\frac{b}{a}x-b}$ and for negative $b$ we want $\frac{-b}{a}=\frac{x}{|\frac{b}{a}x-b|}=\frac{x}{\frac{b}{a}x-b}$.\\
+        It follows $x=\frac{ab^2}{a^2+b^2}$.\\
+        Thus $c=\sqrt{\frac{b^4}{a^2+b^2}-2\frac{b^4}{a^2+b^2}+\frac{b^4+a^2b^2}{a^2+b^2}}=\frac{ab}{\sqrt{a^2+b^2}}$
+    \item Want to find the intersections of $y^2=ax$ and ${(x-h)}^2+{(y-k)}^2=r^2$. It follows ${(\frac{y^2}{a}-h)}^2+{(y-k)}^2=r^2\Rightarrow \frac{y^4}{a^2}-2\frac{y^2}{ah}+h^2+y^2-2ky+k^2-r^2=0\Rightarrow y_1y_2y_3y_4=a^2(h^2+k^2-r^2)$ by Vieta's formulas.
+    \item For each side of the quadrilateral $ABCD$ let $\vec{a},\vec{b},\vec{c},\vec{d}$ be a vector from the origin to the respective vertix. 
+    Let $x\in(0,1)$.
+    For each of the points $E,F,G,H$ let $\vec{e},\vec{f},\vec{g},\vec{h}$ be a vector from the origin to the respective point.
+    $\vec{e}=\vec{a}x+\vec{d}(1-x),\vec{f}=\vec{a}x+\vec{b}(1-x),\vec{g}=\vec{c}x+\vec{b}(1-x),\vec{h}=\vec{c}x+\vec{d}(1-x)$.
+    WTS $\vec{EF}\parallel \vec{GH}$ and $|\vec{EF}|=|\vec{GH}|$.
+    $\vec{EF}=\vec{f}-\vec{e}=\vec{b}(1-x)-\vec{d}(1-x)$, $\vec{GH}=\vec{h}-\vec{g}=\vec{d}(1-x)-\vec{b}(1-x)$. 
+    Since $\vec{GH}$ is just $\vec{EF}$ rotated $180\deg$, the two sides are parallel and of equal length.
+    We us similar logic to show $\vec{HE}\parallel \vec{FG}$ and $|\vec{HE}|=|\vec{FG}|$.
+    Thus, $EFGH$ is a quadrilateral with two set of parallel lines.
+    \item WLOG let the vertices of $ABCD$ be $(0,0),(2a,0),(2b,2c),(2a+2b,2c)$. The centers of the squares are located at $M_1=(a,-a),M_2=(b-c,b+c),M_3=(a+2b,2c+a),M_4=(2a+b+c,c-b)$. WTS $\vec{M_1M_3}=\vec{M_2M_4}$ and $\vec{M_1M_3}\perp\vec{M_2M_4}$.
+    $|\vec{M_1M_3}|=\sqrt{4b^2+4a^2+4ac+4c^2}$ and $|\vec{M_2M_4}|=\sqrt{4b^2+4a^2+4ac+4c^2}$ $\vec{M_1M_3}\cdot\vec{M_2M_4}=2b\cdot(2a+2c)+(2a+2c)\cdot(-2b)=0$. Because the diagonals of the quadrilateral $M_1M_2M_3M_4$ are equal in length and perpendicular, it must be a square.
+    \item For each side of the quadrilateral $ABCD$ let $\vec{a}=\vec{OA},\vec{b}=\vec{OB},\vec{c}=\vec{OC},\vec{d}=\vec{OD}$ in the complex plane.\\
+    Let $\omega=e^{\frac{2\pi i}{3}}$\\ 
+    $\vec{M_1}=\omega(\vec{a}-\vec{b})+\vec{a}\\
+    \vec{M_2}=\omega^2(\vec{b}-\vec{c})+\vec{b}\\
+    \vec{M_3}=\omega(\vec{c}-\vec{d})+\vec{c}\\
+    \vec{M_4}=\omega^2(\vec{d}-\vec{a})+\vec{d}$\\
+    WTS $\vec{M_1M_2}+\vec{M_3M_4}=0$\\
+    $\vec{M_1M_2}+\vec{M_3M_4}=0\vec{b}+0\vec{d}-\omega^2\vec{c}-(1+\omega)\vec{a}-\omega^2\vec{a}-(1+\omega)\vec{c}=0$ using the identity $1+\omega+\omega^2=0$\\
+    The same strategy is used to show $\vec{M_2M_3}+\vec{M_4M_1}=0$\\
+    Since $M_1M_2M_3M_4$ is a quadrilateral with two sets of parallel lines, it must be a parallelogram.    
+    \item Let $ABCD$ be a tetrahedron where $AB\perp CD$ and $AC\perp BD$. We want to show $AD\perp CD$.\\
+    $\vec{AB}=\vec{AC}+\vec{CB}$ and $\vec{CD}=\vec{CB}+\vec{BD}$. $\vec{AB}\cdot \vec{CD}\\
+    =\vec{AC}\cdot\vec{CB}+\vec{AC}\cdot\vec{BD}+\vec{CB}\cdot\vec{CB}+\vec{CB}\cdot\vec{BD}\\
+    =\vec{AC}\cdot\vec{CB}+\vec{CB}\cdot(\vec{CB}+\vec{AC})=\vec{AC}\cdot\vec{CB}+\vec{AB}\vec{CD}\\
+    =\vec{AC}\cdot\vec{CB}=0$, so $\vec{AC}\perp\vec{CB}$ 
+    \item Let $A_k$ correspond to $z_k=e^{\frac{2\pi i k}{n}}$ for $i=1\ldots n$ and fix $P$ to be $z$. 
+    $\displaystyle\sum_{k=1}^{n}PA_k^4=\sum_{k=1}^{n}{|z_k-z|}^4=\sum_{k=1}^{n}(z-z_k)(z-z_k)(\overline{z}-\overline{z_k})(\overline{z}-\overline{z_k})\\
+    z\overline{z}=1,z_k\overline{z_k}=1,z_1+z_2\ldots+z_n=0,\overline{z_1}+\overline{z_2}\ldots+\overline{z_n}=0\text{ because conjugate is just a reflection about the x-axis}\\
+    \sum_{i=1}^{n}z^2\overline{z}^2=n\\
+    \sum_{i=1}^{n}z_k^2\overline{z_k}^2=n$\\
+    odd and even orders sum to $0$\\
+    $\displaystyle\sum_{i=1}^{n}z_kz\overline{z_k}\overline{z}=n$\\
+    other even orders sum to $0$.\\
+    Thus, $\displaystyle\sum_{k=1}^{n}PA_k^4=6n$
+    %Let $A_1,A_2,\ldots,A_n$ correspond to the $n$ roots of unity. In other words, let $A_k$ be $z_k=e^{\frac{2\pi ki}{n}}$ and fix $P$ to be $z$. It follows $\displaystyle \sum_{i=1}^{n}{A_i P}^4=\sum_{i=1}^{n}|z-z_k|^4\\
+    %=\sum_{i=1}^{n}(z-z_k)(z-z_k)(\overline{z}-\overline{z_k})(\overline{z}-\overline{z_k})$. 
+    %The $0^{th}$ and $4^{th}$ order terms will be constant $\displaystyle\sum_{i=1}^{n}|z|^4=n,\sum_{i=1}^{}|z_k|^4=n$. 
+    %The odd order terms will add to $0$ by symmetry. 
+    %The $2^{nd}$ order terms containing $z_k^2$ and $\overline{z_k}^2$ will add to $0$ be symmetry, and the terms containing $\displaystyle\sum_{i=1}^{n}z\overline{z}z_k\overline{z_k}=n$. 
+    
+    \item WLOG let $G=(0,0)$ be the centroid of $\triangle ABC$ with vertices $A=(x_1,y_1),B=(x_2,y_2),C=(x_3,y_3)$. 
+    It follows $(\frac{x_1+x_2+x_3}{3},\frac{y_1+y_2+y_3}{3})=(0,0)$.
+    Observe ${(x_1+x_2+x_3)}^2=x_1^2+x_2^2+x_3^2+2x_1x_2+2x_1x_3+2x_2x_3=0$ and ${(y_1+y_2+y_3)}^2=y_1^2+y_2^2+y_3^2+2y_1y_2+2y_1y_3+2y_2y_3=0$.
+    It follows $3({GA}^2+{GB}^2+{GC}^2)=3(x_1^2+x_2^2+x_3^2+y_1^2+y_2^2+y_3^2)\\
+    =2(x_1^2+x_2^2+x_3^2+y_1^2+y_2^2+y_3^2)-(2x_1x_2+2x_1x_3+2x_2x_3+2y_1y_2+2y_1y_3+2y_2y_3)\\
+    =(x_1^2-2x_1x_2+x_2^2)+(x_1^2-2x_1x_3+x_3^2)+(x_2^2-2x_2x_3+x_3^2)+(y_1^2-2y_1y_2+y_2^2)+(y_1^2-2y_1y_3+y_3^2)+(y_2^2-2y_2y_3+y_3^2)\\
+    ={(x_1-x_2)}^2+{(y_1-y_2)}^2+{(x_1-x_3)}^2+{(y_1-y_3)}^2+{(x_2-x_3)}^2+{(y_2-y_3)}^2\\
+    ={AB}^2+{BC}^2+{AC}^2$
+    \item Let $a,b,c,d,e,f$ be the complex positions of the vertices of the $ABCDEF$ hexagon. 
+    Let $x=e^{\frac{\pi i}{3}}=\frac{1}{2}+i\frac{\sqrt{3}}{2}$ because $a,b$ $c,d$ and $e,f$ are $r$ apart. 
+    (We construct an equilateral triangle with side length $r$ with one of the vertices at the origin. 
+    Each angle is $\frac{\pi}{3}$, so arc length is $r\frac{\pi}{3}$). 
+    Let $b=ax,d=cx,f=ex$.
+    WTS $z_1=\frac{ax+c}{2},z_2=\frac{cx+e}{2},z_3=\frac{ex+a}{2}$ are equidistant.
+    This is true iff $z_3=z_2x^{\pm1}+z_1(1-x^{\pm1})$.
+    $z_2x^{1}+z_1(1-x^{1})=\frac{cx^2+ex}{2}+\frac{ax+c}{2}-\frac{ax^2+cx}{2}=\frac{c(x^2-x+1)+ex+a(x-x^2)}{2}=\frac{c(-\frac{2}{2}+1-\frac{\sqrt{3}}{2}i+\frac{\sqrt{3}}{2}i)+ex+a(\frac{1}{2}+\frac{1}{2}+\frac{\sqrt{3}}{2}i-\frac{\sqrt{3}}{2}i)}{2}=\frac{a+ex}{2}=z_3$.
+    By symmetry, this equality will hold for all $z_1,z_2,z_3$
+\end{enumerate}
+\end{document}

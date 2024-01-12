@@ -1,0 +1,116 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 100: Problem Set 3}
+\date{10/25/2023}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}[label= (Q-\arabic*)]
+    \item \begin{itemize}
+        \item [(a)] WTS by induction on the number of the number of steps required by the Euclidean algorithm to produce the greatest common divisor of $F_n$ and $F_{n+1}$ that the $\gcd(F_n,F_{n+1})=F_1=1$.
+        $P(1):F_2=q\cdot F_1+r=F_1+F_0=F_1$, so we compute $\gcd(F_2,F_1)=F_1=1$ in $n=1$ steps.
+        $P(n):$ Assume we can compute $\gcd(F_{n+1},F_n)=F_1=1$ for some $n>0$ in $n$ steps.
+        $P(n+1):$ We compute the first step $F_{n+2}=q\cdot F_{n+1}+r$ where $q=1$ and $r=F_n$ by the definition of the Fibonacci sequence. 
+        It follows $\gcd(F_{n+2},F_{n+1})=\gcd(F_{n+1},F_n)$. 
+        Since we know we can compute $\gcd(F_{n+1},F_n)=F_1=1$ in $n$ steps, we can compute $\gcd(F_{n+2},F_{n+1})=F_1=1$ in $n+1$ steps. 
+        Hence, by induction, $\gcd(F_{n+1},F_n)=F_1=1$ in $n$ steps for all $n$.
+        \item [(b)] Want to show by induction that $T_n$ and $T_{n+k}$ are relatively prime for all $k$.\\
+        $P(1):T_{n+1}=q\cdot T_n+r$ where $q=(T_n-1)$ and $r=1$. 
+        $T_n\in\mathbb{N}$ for all $n$ is provable by a simple induction.
+        Thus, $\gcd(T_{n+1},T_n)=\gcd(T_n,1)=1$.\\
+        $P(k):$ Assume for some $k\ge1$ $\gcd(T_{n+k},T_n)=\gcd(T_n,1)=1$.\\
+        $P(k+1):T_{n+k}=q\cdot T_n+1$ for some $q$ by the induction hypothesis. This implies $q(q\cdot T_n+1)\in\mathbb{N}$
+        It follows $T_{n+k+1}=(T_{n+k}-1)T_{n+k}+1=(q\cdot T_n+1-1)(q\cdot T_n+1)+1=q(q\cdot T_n+1)T_n+1$.
+        Thus, $\gcd(T_{n+k+1},T_n)=\gcd(T_n,1)=1$.
+        Hence, by induction, $\gcd(T_{n+k},T_n)=\gcd(T_n,1)=1$ for all $n$ and $k$. Setting $m=k+n$, we obtain $T_m$ and $T_n$ are relatively prime.
+    \end{itemize}
+    \item It suffices to show $\gcd(a+b,c+d)=1$. 
+    We know this is true iff there exist integers $s,t$ s.t $s(a+b)+t(c+d)=1$. 
+    Using $d(a+b)-b(c+d)=ad-bc=1$ set $s=d,t=-b$. 
+    Thus, $\gcd(a+b,c+d)=1\Rightarrow \frac{a+b}{c+d}$ is irreducible.
+    \item Let $\gcd(a_1,\ldots,a_m)=s$ and $\gcd(b_1,\ldots,b_n)=t$. 
+    Since $s$ and $t$ divide each $a_i$ and $b_j$ respectively, $st$ divides each $a_i b_j$.
+    Thus, $\gcd(a_1 b_1,\ldots,a_m b_n)$ is a multiple of $st$.
+    Suppose for the sake of contradiction, there exists some prime number $p$ s.t $pst$ divides $\gcd(a_1 b_1,\ldots,a_m b_n)$.
+    It follows $ps$ must divide each $a_i$ or $pt$ must divide each $b_j$. 
+    We know this is false because $\gcd(a_1,\ldots,a_m)=s$ and $\gcd(b_1,\ldots,b_n)=t$. 
+    It follows there exists some $i,j$ s.t $ps$ does not divide $a_i$ and $pt$ does not divide $b_j$. Thus, $pst$ cannot divide $a_i b_j$.
+    Hence, $st=\gcd(a_1 b_1,\ldots,a_m b_n)$.
+    \item $100y+x=200x+2y+2\Rightarrow98y-199x=2$. $98y-199x\equiv-3x\mod(98)\equiv2\mod(98)\Rightarrow-3x=-96\mod(98)\Rightarrow x\equiv32\mod(98)$
+    Thus, $x=32+98k\Rightarrow 98y-199(32+98k)=2\Rightarrow y=65+199k$. We obtain the pair $(x,y)=(32+98k,65+199k)$. Original check is $\$32.65$
+    \item For the set $\{1,2,\ldots,100\}$ 
+    $\mod(10)$ has $10$ congruence classes each containing $10$ numbers.\\ 
+    $\mod(12)$ has $12$ congruence classes $8$ of which contain $8$ numbers and $4$ of which contain $9$ numbers.\\ 
+    $\mod(13)$ has $13$ congruence classes $9$ of which contain $8$ numbers and $4$ of which contain $7$ numbers.\\
+    $\mod(11)$ has $11$ congruence classes $1$ of which contains $10$ numbers and $10$ of which contain $9$.\\
+    If we consider for example congruence class $1$ for $\mod(10)$ we can pick at most $5$ numbers from the set $\{1,11,21,\ldots,91\}$ without selecting $2$ numbers that differ by $10$.\\
+    It follows by the pigeonhole principle we can pick at most $50$ numbers without selecting $2$ that differ by $10$, $52$ numbers without $2$ that differ by $12$, $52$ numbers without $2$ that differ by $13$, and $55$ without $2$ that differ by $11$.
+    \item We will show by induction on $n$ for that $4^{3n+1}+2^{3n+1}+1$ is divisible by $7$ for $n\ge0$.\\
+    $P(0):4^{3\cdot0+1}+2^{3\cdot0+1}+1=7$ which is clearly divisible by $7$.\\
+    $P(n):$ Assume for some $n\ge0$ $4^{3n+1}+2^{3n+1}+1$ is divisible by $7$.\\
+    $P(n+1):$ $4^{3(n+1)+1}+2^{3(n+1)+1}+1\\
+    =64\cdot4^{3n+1}+8\cdot2^{3n+1}+1\\
+    =56\cdot4^{3n+1}+8(4^{3n+1}+2^{3n+1}+1)-7$ which is divisible by $7$ because $7$ divides $56$, $4^{3n+1}+2^{3n+1}+1$, and $7$.\\
+    Hence, by induction, $7$ divides $4^{3n+1}+2^{3n+1}+1$ for all $n$.
+    \item \begin{itemize}
+        \item [(a)] Because the square of an even number is even, if there exists a perfect square in the sequence $\{11,111,\ldots\}$, it must the square of an odd number.
+        Let $x=2k+1$ for some integer $k$. WTS $x^2\notin\{11,111,\ldots\}$ for all $k$. 
+        $x^2={(2k+1)}^2=4(k^2+k)+1\equiv1\mod(4)$. WTS each element in the sequence $\{11,111,\ldots\}\equiv3\mod(4)$ by induction. 
+        $P(1):11=2\cdot4+3$\\
+        $P(n):$ Assume for some $_n$ in the sequence $\{11,111,\ldots\}$ $s_n\equiv3\mod(4)$.\\
+        $P(n+1):$ $s_{n+1}=10s_n+1$, so $s_n\equiv3\mod(4)\Rightarrow 10s_n\equiv30\mod(4)\Rightarrow 10s_n\equiv2\mod(4)\Rightarrow s_{n+1}\equiv3\mod(4)$.\\
+        Thus, by induction, $\{11,111,\ldots\}\equiv3\mod(4)$, but since all odd perfect squares are $\equiv1\mod(4)$, $\{11,111,\ldots\}$ contains no perfect squares.
+    \item [(b)] Let $k$ and $m$ be integers, so ${(2k+1)}^2$ and ${(2m+1)}^2$ are odd squares. 
+    Their difference is ${(2k+1)}^2-{(2m+1)}^2=((2k+1)-(2m+1))((2k+1)+(2m+1))=4(k-m)(k+m+1)$.
+    Either $k-m$ or $k+m+1$ must be even. If $k,m$ have same parity then $k-m$ is even otherwise $k+m+1$ is even. Thus, $(k-m)(k+m+1)$ is divisible by $2$, so $4(k-m)(k+m+1)$ is divisible by $8$. 
+    \end{itemize}
+    \item Suppose for the sake of contradiction $\frac{21n-3}{4}$ and $\frac{15n+2}{4}$ are both integers. 
+    Thus, $21n-3\equiv15n+2\mod(4)\Rightarrow 6n\equiv5\mod(4)\Rightarrow6n\equiv1\mod(4)$. 
+    This is impossible because $6n$ must be even, and $4k+1$ is clearly odd. Hence, they can't be both integers.
+    \item Let $n$ be arbitary and arrange the first ${(2n+1)}^2$ prime numbers\\ 
+    $p_1,p_2,\ldots,p_{{(2n+1)}^2-1},p_{{(2n+1)}^2}$ in an $2n+1\times2n+1$ array we will call $M_{2n+1\times2n+1}$. 
+    Let $R_i$ be the product of the elements of row $i$ and $C_i$ be the product of the elements of column $i$. Since each $R_i$ and $R_j$ for $i\neq j$ are relatively prime, it follows by the Chinese Remainder Theorem there exists a unique solution $a$ to
+    \begin{align*}
+        a\equiv-n\mod(R_1)\\
+        a\equiv-(n-1)\mod(R_2)\\
+        \ldots\\
+        a\equiv0\mod(R_{n+1})\\
+        \ldots\\
+        a\equiv(n-1)\mod(R_{2n})\\
+        a\equiv n\mod(R_{2n+1})
+    \end{align*} 
+    and because each $C_i$ and $C_j$ for $i\neq j$ are relatively prime, there exists a unique solution $b$ to 
+    \begin{align*}
+        b\equiv-n\mod(C_1)\\
+        b\equiv-(n-1)\mod(C_2)\\
+        \ldots\\
+        b\equiv0\mod(C_{n+1})\\
+        \ldots\\
+        b\equiv(n-1)\mod(C_{2n})\\
+        b\equiv n\mod(C_{2n+1})
+    \end{align*} 
+    Take any point $(x,y)$ in the $2n+1\times2n+1$ square centered at $(a,b)$. It follows $x\equiv0\mod(R_i)$ for some $i$ and $y\equiv0\mod(C_j)$ for some $j$. 
+    In other words, $x$ and $y$ are multiples of $R_i$ and $C_j$ respectively.
+    However, $R_i$ and $C_j$ are not relatively prime because they have a common factor of $p_{(2n+1)i+j}$.
+    Thus, $\gcd(x,y)\neq1$.
+    Since the $2n+1\times2n+1$ square centered at $(a,b)$ contains every latice point within $n$ of $(a,b)$ and all of them are invisible, we have found a point that is at least $n$ away from any visible lattice point.
+    \item Let $a$ be an integer with decimal representation $\displaystyle a=\sum_{i=0}^{n}10^{i}a_i$. 
+    Let $a^*$ be the result of moving the initial digit $a_n$ to the end. 
+    It follows $\displaystyle a^*=a_n+\sum_{i=0}^{n-1}10^{i+1}a_i$.\\
+    Multiplying $a$ by $10$ and adding $a_n$ we obtain $\displaystyle 10a+a_n=a_n+\sum_{i=0}^{n}10^{i+1}a_i=10^{n+1}a_n+a^*$.
+    Thus, $a^*=2a$ iff $8a=a_n(10^{n+1}-1)$. 
+    This is impossible because $a_n=8$ and $a=10^{n+1}-1$ cannot be true simultaneously, and they must both be true for $a^*=2a$ because $10^{n+1}-1$ and $8$ are relatively prime.
+\end{enumerate}
+\end{document} 

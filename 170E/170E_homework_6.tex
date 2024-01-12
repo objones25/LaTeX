@@ -1,0 +1,50 @@
+\documentclass{article}
+\usepackage{amsmath,amssymb}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{9in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.5in}
+\usepackage{enumitem}
+
+\title{\bf Math 170E:\@ Homework 5}
+\date{8/2/2023}
+\author{\bf Owen Jones}
+
+\begin{document}
+\maketitle
+
+\begin{enumerate}[label=\textbf{Problem \arabic*.}]
+    \item \begin{itemize}
+        \item [(a)] $c=\frac{1}{\displaystyle \sum_{x=1}^{2}\sum_{y=1}^{3}(x+2y)}=\frac{1}{\displaystyle \sum_{x=1}^{2}3x+12}=\frac{1}{33}$
+        \item [(b)] $c=\frac{1}{\displaystyle \sum_{x=1}^{3}\sum_{y=1}^{x}(x+y)}=\frac{1}{\displaystyle \sum_{x=1}^{3}(x^2+\frac{x(x+1)}{2})}=\frac{1}{24}$
+        \item [(c)] $c=\frac{1}{\displaystyle \sum_{\begin{matrix}
+            6\le x+y\le 8\\
+            0\le y \le 5\\
+        \end{matrix}}1}=\frac{1}{3\cdot6}=\frac{1}{18}$
+        \item [(d)] $c=\frac{1}{\displaystyle \sum_{x=1}^{\infty}\sum_{y=1}^{\infty}{(\frac{1}{4})}^x{(\frac{1}{3})}^y}=\frac{1}{\displaystyle \sum_{x=1}^{\infty}{(\frac{1}{4})}^x\frac{\frac{1}{3}}{1-\frac{1}{3}}}=\frac{1}{6}$
+    \end{itemize}
+        \item \begin{itemize}
+            \item [(a)] \begin{tikzpicture}
+                \begin{axis}
+                \addplot+[only marks, color=black] 
+                    coordinates {(1,2) (1,3) (1,4) (1,5) (2,3) (2,4) (2,5) (2,6) (3,4) (3,5) (3,6) (3,7) (4,5) (4,6) (4,7) (4,8)};   
+                \end{axis}
+            \end{tikzpicture}
+            \item [(b)] $f(x,y)=\frac{1}{16}$, $x=1,2,3,4$, $y=x+1,x+2,x+3,x+4$
+            \item [(c)] $f_x(x)=\frac{1}{4}$, $x=1,2,3,4$
+            \item [(d)] $f_y(y)=\frac{4-|y-5|}{16}$, $y=2,3,4,5,6,7,8$
+            \item [(e)] $f(1,2)\neq f_x(1)f_y(2)$, so $X$ and $Y$ are dependent. 
+        \end{itemize}
+        \item $\displaystyle \mu_x=\sum_{x\in X}x f_x(x)=\sum_{x\in X}x \frac{4x+10}{32}=\frac{50}{32}$, $\displaystyle \mu_y=\sum_{y\in Y}y f_y(y)=\sum_{y\in y}y \frac{2y+3}{32}=\frac{90}{32}$, 
+        $\displaystyle \sigma_x^2=E[X^2]-\mu_x^2=\sum_{x\in X}x^2 \frac{4x+10}{32}-\mu_x^2=\frac{86}{32}-{(\frac{50}{32})}^2=\frac{63}{256}$, $\displaystyle \sigma_y^2=E[Y^2]-\mu_y^2=\sum_{y\in Y}y^2 \frac{2y+3}{32}-\mu_y^2=\frac{290}{32}-{(\frac{90}{32})}^2=\frac{295}{256}$, 
+        $\displaystyle Cov(X,Y)=E[XY]-\mu_x\mu_y=\sum_{x=1}^{2}\sum_{y=1}^{4}xy\frac{x+y}{32}-\mu_x\mu_y=\sum_{x=1}^{2}\frac{10x^2+30x}{32}-\mu_x\mu_y=\frac{35}{8}-\frac{50\cdot90}{1024}=-\frac{5}{256}$, 
+        $\rho=\frac{Cov(X,Y)}{\sigma_x\sigma_y}=\frac{-5}{\sqrt{295\cdot63}}=\frac{\sqrt{18585}}{3717}$ 
+        \item \begin{itemize}
+            \item [(a)] $\mu_x=\frac{10}{4}$, $\mu_y=\sum_{y=2}^{8}y\frac{4-|y-5|}{16}=5$, $\sigma_x^2=E[X^2]-\mu_x^2=\frac{5}{4}$, $\sigma_y^2=\sum_{y=2}^{8}y^2\frac{4-|y-5|}{16}-\mu_y^2=\frac{5}{2}$ $\displaystyle Cov(X,Y)=E[XY]-\mu_x\mu_y=\sum_{x=1}^{x=4}\sum_{y=x+1}^{x+4}\frac{xy}{16}=\sum_{x=1}^{4}\frac{4x^2+10x}{16}=\frac{220}{16}-\frac{200}{16}=\frac{5}{4}$, $\rho=\frac{Cov(X,Y)}{\sigma_x\sigma_y}=\frac{\sqrt{2}}{2}$
+            \item [(b)] $m=\rho\frac{\sigma_y}{\sigma_x}=1$ $b=\mu_y-m\mu_x=\frac{5}{2}$ $y=x+\frac{5}{2}$
+        \end{itemize}
+\end{enumerate}
+\end{document}

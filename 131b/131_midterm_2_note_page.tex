@@ -1,0 +1,57 @@
+\documentclass[10pt]{article}
+\usepackage{amsmath,amssymb}
+\setlength{\oddsidemargin}{0in}
+\setlength{\evensidemargin}{0in}
+\setlength{\textheight}{10in}
+\setlength{\textwidth}{6.5in}
+\setlength{\topmargin}{-0.1in}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\begin{document}
+\begin{small}
+    (Heine-Borel Theorem) Let $(R^n,d)$ be a Euclidean space with either the Euclidean metric, the taxicab metric, or the sup norm metric. Let $E$ be a subset of $R^n$. Then $E$ is compact if and only if it is closed and bounded.\\
+
+    (Continuous maps preserve compactness). 
+    Let $f : X \rightarrow Y$ be a continuous map from one metric space $(X,dX)$ to an- other $(Y, dY )$. 
+    Let $K \subseteq X$ be any compact subset of $X$. Then the image $f(K) := {f(x) : x \in K}$ of K is also compact.\\
+
+    (Maximum principle). 
+    Let $(X, d)$ be a compact metric space, and let $f : X \rightarrow R$ be a continuous function. 
+    Then $f$ is bounded. 
+    Furthermore, $f$ attains its maximum at some point $x_{max} \in X$, and also attains its minimum at some point $x_{min} \in X$.\\
+    Continuous functions on compact sets are automatically uniformly continuous.\\
+
+    (Connected spaces). 
+    Let $(X, d)$ be a metric space. 
+    We say that $X$ is disconnected iff there exist disjoint non-empty open sets $V$ and $W$ in $X$ such that $V \cup W = X$. 
+    We say that $X$ is connected iff it is non-empty and not disconnected. (The connectedness of $X$ is equivalent to for any $x,y\in X$ where $x<y$ $[x,y]\subseteq X$)\\
+    Continuity preserves connectedness.\\
+
+    Let $(X, dX )$ and $(Y, dY )$ be metric spaces, let $E$ be a subset of $X$, and let $f:X\rightarrow Y$ be a function. Let $x_0 \in X$ be an adherent point of $E$ and $L \in Y$ . Then the following four statements are logically equivalent:
+    (a) $\lim_{x\rightarrow x_0;x\in E}f(x)=L$, 
+    (b) For every sequence $(x^{(n)})^\infty_{n=1}$ in E which converges to $x_0$ with respect to the metric $dX$, the sequence $(f(x^{(n)}))^\infty_{n=1}$ converges to $L$ with respect to the metric $dY$,
+    (c) For every open set $V \subset Y$ which contains $L$, there exists an open set $U\subset X$ containing $x_0$ such that $f(U\cap E)\subseteq V$, 
+    (d) If one defines the function $g : E\cup{x_0} \rightarrow Y$ by defining $g(x_0) := L$, and $g(x) := f(x)$ for $x \in E\setminus{x_0}$, then $g$ is continuous at $x_0$. Furthermore, if $x_0 \in E$, then $f(x_0) = L$.\\
+
+    (Pointwise convergence). For every $x$ and every $\epsilon > 0$ there exists $N > 0$ such that $dY$ $(f(n)(x),f(x)) < \epsilon$ for every $n > N$. We call the function $f$ the pointwise limit of the functions $f^{(n)}$.\\
+    
+    (Uniform convergence). For every $\epsilon > 0$ there exists $N > 0$ such that $dY$ $(f(n)(x),f(x)) < \epsilon$ for every $n > N$ and every $x$. We call the function $f$ the uniform limit of the functions $f^{(n)}$.\\
+
+    Uniform limits preserve Continuity. We can exchange the order of limits and uniform convergence in complete metric spaces.\\
+
+    (Bounded functions). A function $f : X \rightarrow Y$ from one metric space $(X,dX)$ to another $(Y,dY)$ is bounded if $f(X)$ is a bounded set, i.e., there exists a ball $B(Y,dY )(y_0,R)$ in Y such that $f(x) \in B(Y,dY )(y_0, R)$ for all $x \in X$. (Uniform limits preserve boundedness)\\
+
+    (Metric space of bounded functions). $B(X\rightarrow Y):=\{f|f:X\rightarrow Y \text{is a bounded function}\}$ with notion of distance $d_\infty(f,g) := \sup\{dY (f(x),g(x)) : x \in X\}$ (The space of continuous functions is complete.)\\
+
+    (Sup norm). $||f||_\infty=\sup\{|f(x)|:x\in X\}$ (Weierstrauss M-test). $\displaystyle\sum_{n=1}^{\infty}f^{(n)}$ converges uniformly if $\displaystyle\sum_{n=1}^{\infty}||f^{(n)}||_\infty$ converges.\\
+
+    Let $[a, b]$ be an interval, and for each integer $n \ge 1$, let $f (n) : [a, b] \rightarrow R$ be a Riemann-integrable function. Suppose $f (n)$ converges uniformly on $[a, b]$ to a function $f : [a, b] \rightarrow R$. Then $f$ is also Riemann integrable, and $\displaystyle\lim_{n\rightarrow\infty}\int_{[a,b]}f^{(n)}=\int_{[a,b]}f$.\\
+
+    If $f_n'$ converges uniformly, and $f_n(x_0)$ converges for some $x_0$, then $f_n$ also converges uniformly, and $\frac{d}{dx}\lim_{n\rightarrow\infty}f^{(n)}(x)=\lim_{n\rightarrow\infty}\frac{d}{dx}f^{(n)}(x)$.\\
+
+    Exchanging the order of series and integration/differentiation uses the same logic as exchanging limits with integration/differentiation.
+\end{small}
+    
+\end{document}
