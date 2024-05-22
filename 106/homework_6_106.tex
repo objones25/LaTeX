@@ -1,0 +1,73 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 106: Problem Set 6}
+\date{2/25/2024}
+\author{\bf Owen Jones}
+\begin{document}
+\begin{enumerate}
+    \item [\textbf{7.2.1}] Let $x=x'\cos\theta-y'\sin\theta$ and $y=x'\sin\theta+y'\cos\theta$.
+    \begin{align*}
+        &ax^2=a{x'}^2\cos^2\theta-ax'y'\sin2\theta+a{y'}^2\sin^2\theta\\
+        &bxy=b{x'}^2\sin\theta\cos\theta+bx'y'\cos2\theta-b{y'}^2\sin\theta\cos\theta\\
+        &cy^2=c{x'}^2\sin^2\theta+cx'y'\sin2\theta+c{y'}^2\cos^2\theta
+    \end{align*}
+    Collecting like terms
+    \begin{align*}
+        &(a\cos^2\theta+b\sin\theta\cos\theta+c\sin^2\theta){x'}^2=(a+\frac{b}{2}\sin2\theta+(c-a)\frac{1-\cos2\theta}{2}){x'}^2\\
+        &((c-a)'\sin2\theta+b\cos2\theta)x'y'={x'}^2{y'}^2\\
+        &(a\sin^2\theta-b\sin\theta\cos\theta+c\cos^2\theta){y'}^2=(a-\frac{b}{2}\sin2\theta+(c-a)\frac{1+\cos2\theta}{2}){y'}^2
+    \end{align*}
+        We want to choose a suitable $\theta$ s.t $x'y'=0$. Let $\theta^*=\frac{\arctan(\frac{a-c}{b})}{2}$
+
+        Let $a'=a+\frac{b}{2}\sin2\theta^*+(c-a)\frac{1-\cos2\theta^*}{2}$ and $b'=a-\frac{b}{2}\sin2\theta^*+(c-a)\frac{1+\cos2\theta^*}{2}$.\\
+       This gives us the desired form $a'{x'}^2+b'{y'}^2$
+    \item [\textbf{7.2.2}] Let $f(x,y)=ax^2+bxy+cy^2+dx+ey+f$ be some quadratic function.\\
+    \textbf{7.2.1} allows us to simplify $ax^2+bxy+cy^2\rightarrow a'{x'}^2+b'{y'}^2$.
+    Applying the substitution from \textbf{7.2.1}
+    $dx+ey+f=d(x'\cos\theta-y'\sin\theta)+e(x'\sin\theta+y'\cos\theta)+f=(d\cos\theta+e\sin\theta)x'+(e\cos\theta-d\sin\theta)y'+f$\\
+    Thus, any quadratic can be expressed as $a'{x'}^2+b'{y'}^2+c'x'+dx'+e'$
+    \item [\textbf{7.3.1}] Substituting $x=\frac{3at}{1+t^3}$ and $y=\frac{3at^2}{1+t^3}$ into $x^3+y^3=3axy$
+    \begin{align*}
+        &x^3+y^3\\
+        &{(\frac{3at}{1+t^3})}^3+{(\frac{3at^2}{1+t^3})}^3\\
+        &=\frac{27a^3t^3}{{(1+t^3)}^3}+\frac{27a^3t^6}{{(1+t^3)}^3}\\
+        &=\frac{27a^3t^3(1+t^3)}{{(1+t^3)}^3}=3a\frac{9a^2t^3}{{(1+t^3)}^2}\\
+        &=3a\frac{3at}{1+t^3}\frac{3at^2}{1+t^3}\\
+        &=3axy
+    \end{align*}
+    $x=\frac{3at}{1+t^3}$ and $y=\frac{3at^2}{1+t^3}$ parameterize the folium.
+    At $t=0$ $x=\frac{3a\cdot0}{1+0^3}=0$ and $y=\frac{3a\cdot 0^2}{1+0^3}=0$, so the folium lies on the $x$ and $y$ axis at $0$.
+    \item [\textbf{7.3.2}] $x^3+y^3$ can be factored as $(x+y)(x^2-xy+y^2)$. It follows
+    \begin{align*}
+        &x^3+y^3=3axy\\
+        &\Rightarrow x+y=\frac{3axy}{x^2-xy+y^2} \text{ where }(x,y)\neq(0,0)\\
+        &\Rightarrow x+y=\frac{3a}{\frac{x}{y}+\frac{y}{x}-1}\frac{xy}{xy} \text{ where }x,y\neq=0\\
+        &\Rightarrow x+y=\frac{3a}{\frac{x}{y}+\frac{y}{x}-1}
+    \end{align*}
+    \item [\textbf{7.3.3}] $t\rightarrow -1^-\Rightarrow x\rightarrow +\infty$ and $t\rightarrow -1^+\Rightarrow x\rightarrow -\infty$.\\
+    $\frac{x}{y}=\frac{1}{t}$ and $\frac{y}{x}=\frac{t}{1}$, so $\frac{x}{y}\rightarrow\frac{1}{-1}=-1$ and $\frac{y}{x}\rightarrow\frac{-1}{1}=-1$
+    \item [\textbf{7.4.1}] $x=t^2$ and $y^3$ is a simple parameterization by inspection. Finding the second intersection point of the line $y=tx$ we obtain:
+    \begin{align*}
+        &y^2=x^3\\
+        &{(xt)}^2=x^3\\
+        &x^2t^2=x^3\\
+        &t^2x^2-x^3=0\\
+        &x^2(t^2-x)
+    \end{align*}
+    , so our points of intersection are $x=0$ and $x=t^2$. Thus, we again choose the parameterization $x=t^2$ and $y=t^3$.
+\end{enumerate}
+\end{document}

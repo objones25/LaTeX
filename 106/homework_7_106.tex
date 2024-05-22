@@ -1,0 +1,45 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 106: Problem Set 7}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}
+\item [\textbf{9.2.1}] $\displaystyle \sum_{i=1}^{n}{(i+1)}^2-i^2=2\sum_{i=1}^{n}i+\sum_{i=1}^{n}1
+\Rightarrow\sum_{i=1}^{n}i=\frac{1}{2}(\sum_{i=1}^{n}{(i+1)}^2-i^2-\sum_{i=1}^{n}1)\\
+=\frac{1}{2}({(n+1)}^2-1-n)=\frac{n(n+1)}{2}$ by sum of telescoping series.\\
+$\displaystyle \sum_{i=1}^{n}{(i+1)}^3-i^3=3\sum_{i=1}^{n}i^2+3\sum_{i=1}^{n}i+\sum_{i=1}^{n}1
+\Rightarrow \sum_{i=1}^{n}i^2=\frac{1}{3}(\sum_{i=1}^{n}{(i+1)}^3-i^3-3\sum_{i=1}^{n}i-\sum_{i=1}^{n}1)\\
+=\frac{1}{3}({(n+1)}^3-1-3\frac{n(n+1)}{2}-n)=\frac{n(n+1)(2n+1)}{6}$ by sum of telescoping series.
+\item [\textbf{9.2.2}] $\displaystyle \frac{1}{n}\sum_{i=1}^{n}f(\frac{i}{n})=\frac{1}{n}\sum_{i=1}^{n}\frac{i^2}{n^2}=\frac{n(n+1)(2n+1)}{6n^3}\\
+\lim_{n\rightarrow\infty}\frac{n(n+1)(2n+1)}{6n^3}=\lim_{n\rightarrow\infty}\frac{n^3}{n^3}(1+\frac{1}{n})(\frac{1}{3}+\frac{1}{6n})$. Limit of the product is the product of the limits, so $\displaystyle\lim_{n\rightarrow\infty}\frac{n^3}{n^3}(1+\frac{1}{n})(\frac{1}{3}+\frac{1}{6n})=\frac{1}{3}$.
+\item [\textbf{9.3.1}] ${(\frac{3x}{2}+1)}^2=\frac{9x^2}{4}+3x+1=x^3-3x^2+3x+1\Rightarrow 0=x^3-\frac{21}{4}x^2$ by subtracting $\frac{9x^2}{4}+3x+1$ from both sides. The geometric interpretation of the double root is that there are two lines tangent to the curve at $x=0$. We find the tangent lines using the method in $3.5.1$ by drawing a line through rational points $(0,1)$ and $(\frac{21}{4},\frac{71}{8})$ or through $(0,-1)$ and $(\frac{21}{4},-\frac{71}{8})$.
+\item [\textbf{9.3.2}] By implicit differentiation $2y\frac{dy}{dx}=3x^2-6x+5\Rightarrow \frac{dy}{dx}=\frac{5}{2}$ at $(0,1)$. Thus, we should substitute $y=\frac{5}{2}x+1$.
+\item [\textbf{9.5.1}] 
+\begin{align*}
+    &x=a_0+a_1y+a_2y^2+a_3y^3+\ldots\\
+    &x^2={(a_0+a_1y+a_2y^2+\ldots)}^2=a_0^2+2a_0a_1y+(2a_0a_2+a_1^2)y^2+(2a_0a_3+2a_1a_2)y^3+\ldots
+\end{align*}
+We substitute $y=x-\frac{x^2}{2}+\frac{x^3}{3}-\ldots$ into either equation
+\begin{align*}
+    &x=a_0+a_1(x-\frac{x^2}{2}+\frac{x^3}{3}-\ldots)+a_2{(x-\frac{x^2}{2}+\frac{x^3}{3}-\ldots)}^2+a_3{(x-\frac{x^2}{2}+\frac{x^3}{3}-\ldots)}^3+\ldots\\
+    &\Rightarrow x=a_0+a_1x+(a_2-\frac{a_1}{2})x^2+(\frac{a_1}{3}-a_2+a_3)x^3+\ldots
+\end{align*}
+Comparing coefficients, $a_0=0$, $a_1=1$, $a_2-\frac{a_1}{2}=0$, and $\frac{a_1}{3}-a_2+a_3=0$. Thus, $a_0=0,a_1=1,a_2=\frac{1}{2},a_3=\frac{1}{6}$
+
+\end{enumerate}
+\end{document}

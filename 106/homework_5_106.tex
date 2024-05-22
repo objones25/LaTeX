@@ -1,0 +1,62 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 106: Problem Set 5}
+\date{2/25/2024}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\textbf{Quadratic Formula}
+\begin{itemize}
+    \item $x^2+px+c=0\\
+    x^2+px+\frac{p^2}{4}=\frac{p^2}{4}-c\\
+    {(x+\frac{p}{2})}^2=\frac{p^2}{4}-c\\
+    x+\frac{p}{2}=\pm\sqrt{\frac{p^2}{4}-c}\\
+    x=-\frac{p}{2}\pm\sqrt{\frac{p^2}{4}-c}\\
+    x=\frac{-p\pm\sqrt{p^2-4c}}{2}$\\
+    \item $ax^2+bx+c=0\\
+    x^2+\frac{b}{a}x+\frac{c}{a}=0$\\
+    Let $p=\frac{b}{a},c=\frac{c}{a}$\\
+    $x=\frac{-p\pm\sqrt{p^2-4c}}{2}\Rightarrow x=\frac{-\frac{b}{a}\pm\sqrt{\frac{b^2}{a^2}-4\frac{c}{a}}}{2}\\
+    x=\frac{-\frac{b}{a}\pm\frac{1}{a}\sqrt{b^2-4ac}}{2}\\
+    x=\frac{-b\pm\sqrt{b^2-4ac}}{2a}$
+\end{itemize}
+
+\begin{enumerate}
+    \item [\textbf{6.4.4}] Suppose $\sqrt[3]{2}=a+b\sqrt{c}$. 
+    Cubing both sides, $2=a^3+3a^2b\sqrt{c}+3ab^2c+b^3c\sqrt{c}$.
+    $(a^3+3ab^2c-2)+(3a^2b+b^3c)\sqrt{c}=0\Leftrightarrow a^3+3ab^2c-2=3a^2b+b^3c=0$ from \textbf{6.4.3}.
+    Thus, $a^3+3ab^2c=2,3a^2b+b^3c=0$.
+    \item [\textbf{6.4.5}] Because $3a^2b+b^3c=0\Rightarrow -3a^2b-b^3c=0$. 
+    Thus, $2=a^3-3a^2b\sqrt{c}+3ab^2c-b^3c\sqrt{c}$.
+    Taking the cube root of both sides $\sqrt[3]{2}=\sqrt[3]{a^3-3a^2b\sqrt{c}+3ab^2c-b^3c\sqrt{c}}=a-b\sqrt{c}$.
+    This is a contradiction because $2\sqrt[3]{2}=a+b\sqrt{c}+a-b\sqrt{c}=2a\Rightarrow \sqrt[3]{2}=a$ which is impossible because $\sqrt[3]{2}\notin F_k$ but $a\in F_k$.
+    \item [\textbf{6.5.2}] $y^3=2\Rightarrow p=0,q=2\\
+    y=\sqrt[3]{\frac{2}{2}+\sqrt{{(\frac{2}{2})}^2-{(\frac{0}{3})}^3}}+\sqrt[3]{\frac{2}{2}-\sqrt{{(\frac{2}{2})}^2-{(\frac{0}{3})}^3}}\\
+    =\sqrt[3]{1+\sqrt{1}}+\sqrt[3]{1-\sqrt{1}}=\sqrt[3]{2}$.
+    \item [\textbf{6.5.3}] $y=\sqrt[3]{\frac{6}{2}+\sqrt{{(\frac{6}{2})}^2-{(\frac{6}{3})}^3}}+\sqrt[3]{\frac{6}{2}-\sqrt{{(\frac{6}{2})}^2-{(\frac{6}{3})}^3}}\\
+    =\sqrt[3]{3+1}+\sqrt[3]{3-1}=\sqrt[3]{4}+\sqrt[3]{2}\\
+    \Rightarrow {(\sqrt[3]{4}+\sqrt[3]{2})}^3=4+3\sqrt[3]{32}+3\sqrt[3]{16}+2=6+6(\sqrt[3]{4}+\sqrt[3]{2})$
+    \item [\textbf{6.7.1}] 
+    $\displaystyle x^n-a^n=x^n-a^n+\sum_{i=1}^{n-1}a^i x^{n-i}-a^i x^{n-i}\\
+    =x^n-ax^{n-1}+ax^{n-1}-a^2x^{n-2}+a^2x^{n-2}+\cdots+a^{n-1}x-a^n\\
+    =(x-a)(x^{n-1}+ax^{n-2}+\cdots +a^{n-1})$\\
+    $\frac{x^n-a^n}{x-a}$ is the sum of a geometric series with $a_0=a^{n-1}$ and common ratio $r=\frac{x}{a}$.
+    \item [\textbf{6.7.2}] $\displaystyle p(x)-p(a)=\sum_{i=0}^{k}a_i(x^i-a^i)$. We showed that $(x-a)\mid (x^i-a^i)$ for $i\in\mathbb{N}$ in \textbf{6.7.1}, so $(x-a)$ divides a linear combination of $(x^i-a^i)$.
+    Thus, $\displaystyle (x-a)\mid \sum_{i=0}^{k}a_i(x^i-a^i)\Rightarrow (x-a)\mid p(x)-p(a)$.
+    \item [\textbf{6.7.3}] Suppose $p(a)=0$. By \textbf{6.7.2} we have $(x-a)\mid p(x)-p(a)$. However, $p(x)-p(a)=p(x)-0=p(x)$, so $(x-a)\mid p(x)$.
+\end{enumerate}
+\end{document}

@@ -1,0 +1,250 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 114L\@: Problem Set 1}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\noindent
+(Note: The Problems are numbered strangely in the hw assignment. I tried to make it clear which question I was answering, but let me know if there is anything unclear.)
+\section*{Problem 1:}
+\begin{itemize}
+    \item [$(p\lor q)$] $\lnot p\rightarrow q$\\
+    \begin{table}[h]
+        \begin{tabular}{|l|l|l|l|l|}
+        \hline
+        $p$ & $q$ & $(p\lor q)$ & $(\lnot p)$ & $(\lnot p)\rightarrow q$ \\ \hline
+        T   & T   & T           & F         & T                        \\ \hline
+        T   & F   & T           & F         & T                        \\ \hline
+        F   & T   & T           & T         & T                        \\ \hline
+        F   & F   & F           & T         & F                        \\ \hline
+        \end{tabular}
+        \end{table}
+    \item [$(p\land q)$] $\lnot (p\rightarrow \lnot q)$\\
+    \begin{table}[h]
+        \begin{tabular}{|l|l|l|l|l|}
+        \hline
+        $p$ & $q$ & $(p\land q)$ & $(p\rightarrow \lnot q)$ & $\lnot (p\rightarrow \lnot q)$ \\ \hline
+        T   & T   & T            & F                        & T                              \\ \hline
+        T   & F   & F            & T                        & F                              \\ \hline
+        F   & T   & F            & T                        & F                              \\ \hline
+        F   & F   & F            & T                        & F                              \\ \hline
+        \end{tabular}
+        \end{table}
+\end{itemize}
+\section*{Problem 2:}
+By induction:\\
+First, we show that we can construct a string of length $3k+1$ for some non-negative integer $k$.\\
+Base Case: We are given $A_i\in PL_0$. It follows we can construct a string of length $1$.\\
+Induction hypothesis: Assume for some $k$, we can construct a string $\phi\in PL_0$ of length $3k+1$.\\
+Induction step: By (a) we can construct $(\lnot \phi)\in PL_0$ of length $3(k+1)+1$.\\
+Thus, any string of length $3k+1$ can be constructed.
+Next, we show that we can construct a string of length $3k+2$ for any $k\ge 1$\\
+Given $\phi,\psi\in PL_0$ of lengths $3(k-1)+1$ and $1$ with $k\ge1$, we can construct $(\phi\rightarrow \psi)$ of length $3k+2$.\\
+Once, again, we can use a similar argument to show we can construct a string of length $3k$ for $k\ge 3$ $(3(k-2)+2)+3+1=3k$ where $k\ge3$ using strings $\phi,\psi$ of length $3(k-2)+2$ and $1$ $(\phi\rightarrow \psi)$.\\
+Hence, we can construct a string of length $n$ for every natural number except $2,3$, and $6$.
+\section*{Problem 3:}
+Suppose $\phi\in PL_0$. Then, it can be defined recursively by the $3$ clauses. 
+It follows $\phi$ must either be a propositional variable, there exists another variable $\psi\in PL_0$ s.t $\phi=(\lnot \psi)$, or there exist $\psi,\chi\in PL_0$ s.t $\phi=(\psi\rightarrow\chi)$ because all other strings are not formulas. 
+Hence, we can construct a finite sequence of sequences s.t each element satisifies one of the three conditions.\\
+Suppose there is a finite sequence of sequences $(\phi_1,\ldots,\phi_n)$ such that $\phi_n=\phi$ and for each $i\le n$ either there exists $m$ s.t $\phi_i=A_m$ or there exists $j<i$ such that $\phi_i=(\lnot\phi_j)$ or there exist $j_1,j_2$ both less than $i$ such that $\phi_i=(\phi_{j_1}\rightarrow\phi_{j_2})$.\\
+We will show by strong induction, $\phi_i\in PL_0$ for all $i\le n$.\\
+Base case: For $i=1$, neither the second nor the third property can hold because $\phi_1$ is the first element of the sequence. Thus, $\phi_1=A_m\in PL_0$ for some $m$.\\
+Induction hypothesis: Assume for  $1\le i<n$ $\phi_1,\ldots,\phi_i\in PL_0$.\\
+Induction step: Suppose $\phi_{i+1}=A_m$ for some $m$, then $\phi_{i+1}\in PL_0$ because $A_m\in PL_0$. 
+Suppose there exists some $j<i+1$ s.t $\phi_{i+1}=(\lnot\phi_j)$. 
+Because $\phi_j\in PL_0$ and $PL_0$ is closed under the connective $\lnot$, $\phi_{i+1}\in PL_0$. 
+Suppose there exist $j_1,j_2$ both less than $i+1$ such that $\phi_{i+1}=(\phi_{j_1}\rightarrow\phi_{j_2})$. 
+Because $\phi_{j_1},\phi_{j_2}\in PL_0$ and $PL_0$ is closed under the connective $\rightarrow$, $\phi_{i+1}\in PL_0$.\\
+Hence, by induction, $\phi_i\in PL_0$ for all $i\le n$. Moreover, $\phi=\phi_n\in PL_0$
+\section*{Definition 2 Proofs:}
+\begin{itemize}
+    \item [(i)] Proof by induction on $E$\\
+    Base case: $\phi=A_i$. It follows $E(\phi)=1$ and $D(\phi)=0$, so $E(\phi)=D(\phi)+1$\\
+    Induction hypothesis: Assume for some $n,m$ we have some $\phi,\psi\in PL_0$ s.t $E(\phi)=n$, $E(\psi)=m$ and $E(\phi)=D(\phi)+1,E(\psi)=D(\psi)+1$.\\
+    Induction step: Any element of $PL_0$ can be constructed recursively from logical connectives and atomic propositions.
+    Consider the statements $\phi'=(\lnot\phi)$ and $\chi=(\phi\rightarrow\psi)$.\\
+    $E(\phi')=E(\phi)=n$ and $D(\phi)=D(\phi)=n-1$ because we neither add a binary connective nor a atomic proposition, so $E(\phi')=D(\phi')+1$.\\
+    $E(\chi)=E(\phi\rightarrow\psi)=E(\phi)+E(\psi)=n+m$ and $D(\chi)=D(\phi\rightarrow\psi)=D(\phi)+D(\psi)+1=n+m-1$, so $E(\chi)=D(\chi)+1$\\
+    Hence, $E(\phi)=D(\phi)+1$ for any $\phi,\psi\in PL_0$
+    \item [(ii)] Proof by induction on $S$\\
+    Base case: $\phi=A_i$. $S(\phi)=1\ge 3\cdot0=3C(\phi)$\\
+    Induction hypothesis: Assume for some $n,m,p\neq 2,3,6$ we have some $\phi,\psi,\chi\in PL_0$ s.t $S(\phi)=n,S(\psi)=m,S(\chi)=p$ and $S(\phi)\ge 3C(\phi),S(\psi)\ge 3C(\psi),S(\chi)\ge 3C(\chi)$.\\
+    Induction step: Let $\phi'=(\lnot \phi),\psi'=(\psi\rightarrow \chi)$.\\ 
+    $S(\phi')=S(\phi)+3\ge 3C(\phi)+3=3(C(\phi)+1)=3(C(\phi'))$.\\ 
+    $S(\psi')=S(\psi)+S(\chi)+3\ge 3C(\psi)+3C(\chi)+3=3(C(\psi)+C(\chi)+1)=3(C(\psi'))$.
+    In problem 2, we showed that we can construct strings in $PL_0$ for any length $\neq 2,3,6$, so we can choose values of $n,m,p$ to construct new strings of any length.
+\end{itemize}
+\section*{Problem 1.1}
+Let $L$ be the set of all formulas. 
+Suppose $\alpha,\beta\in L$ are some formulas in $L$.
+It follows by the definition of a formula $\alpha,\beta\in S$ for every propositionally closed set $S$.
+Thus, $L\subseteq S$.
+If $\alpha\in S$ then $(\lnot \alpha)\in S$, and if $\alpha,\beta\in S$ and $\bullet$ is a binary connective then $(\alpha\bullet\beta)\in S$.
+Since this holds for every propositionally closed set $(\lnot \alpha)$ and $(\alpha\bullet\beta)$ are formulas. 
+Hence, $L$ is propositionally closed. 
+Since $L\subseteq S$ for every propositionally closed set $S$, $L$ is also the smallest propositionally closed set.
+
+% \section*{Problem 4}
+% Proof by structural induction\\
+% Base case: For some $m$, let $\phi\equiv A_m$. $\phi$ clearly satisifies $(1)$. 
+% For $\phi$ to satisify $(2)$, the formula would have to contain at least $4$ symbols. 
+% Similar to case $(3)$, $\phi$ can't satisify $(3)$ because it would have to contain at least $5$ symbols.
+% Thus, $\phi$ satisifies exactly one of the $3$ cases.\\
+% Induction hypothesis: Assume $\psi,\chi$ are well formed formulas that satisify exactly one of the $3$ cases. 
+% Moreover, if $\psi$ or $\chi$ can be written as $(\lnot\psi_1)$, $\psi_1$ is uniquely determined in Case $(2)$, and if $\psi$ or $\chi$ can be written as $(\psi_1\bullet_1\chi_1)$, $\psi_1,\bullet_1,\chi_1$ are uniquely determined in Case $(3)$.\\
+% Induction step:\\
+% Suppose $\phi\equiv(\lnot\psi)$.\\ 
+% $\phi$ is not a propositional variable because $\phi$ contains a subformula.\\ 
+% There can't exist formulas $\psi'$ and $\chi'$ and a binary connective $\bullet'$ s.t $\phi=(\psi'\bullet'\chi')$ because then $\psi'$ would have to begin with $\lnot$. 
+% Thus, $\psi'$ would not be a wff.\\
+% To show $\psi$ can't be written as the negation of another variable, we use the induction hypothesis. $\phi$ is either $(\lnot A_i)$, $(\lnot(\lnot\psi_1))$, or $(\lnot(\psi_1\bullet_1\chi_1))$. 
+% In case $(2)$ and $(3)$, the subformulas and binary connectives are uniquely determined, so if $\phi$ could be written in another way, $(\lnot \psi')$, $\psi\equiv\psi'$ by string matching.\\
+% Suppose $\phi\equiv(\psi\bullet\chi)$.\\
+% Since $\phi$ contains a subformula, it can't be a propositional variable, and $\phi$ can't be expressed as the negation of a variable because that would imply $\psi$ would begin with $\lnot$.\\
+% Suppose $\phi$ could also be written as $(\psi'\bullet'\chi')$. 
+% Consider $\psi$ and $\psi'$. 
+% If $\psi'$ were shorter than $\psi$, $\psi'$ would have fewer right parentheses than left or be a string of length $0$, so $\psi'$ could not be a wff.
+% If $\psi'$ were longer than $\psi$, $\bullet$ would have to belong to $\psi'$. 
+% However, the only way to concatinate a binary connective with a wff is to add an additional left and right parentheses.
+% Clearly, that additional left parentheses does not appear in $\phi$, so $\psi$ and $\psi'$ must be the same length. Thus, $\psi\equiv\psi'$.\\
+% Hence, by induction, $\phi$ must satisify exactly one of the $3$ cases, and in the case of $(2)$ and $(3)$, the subformulas and binary connectives are determined uniquely.
+% \section*{Problem 5}
+% \begin{itemize}
+%     \item [(a)] 
+%     Set $\chi=\phi'$, $\phi=\psi'$, and $\psi=\chi'$\\
+%     \begin{table}[h]
+%         \begin{tabular}{|l|l|l|l|l|}
+%         \hline
+%         $\phi$ & $\psi$ & $\chi$ & $(\phi\land\psi)$ & $((\phi\land\psi)\lor\chi)$ \\ \hline
+%         T      & T      & T      & T                 & T                           \\ \hline
+%         T      & T      & F      & T                 & T                           \\ \hline
+%         T      & F      & T      & F                 & T                           \\ \hline
+%         T      & F      & F      & F                 & F                           \\ \hline
+%         F      & T      & T      & F                 & T                           \\ \hline
+%         F      & T      & F      & F                 & F                           \\ \hline
+%         F      & F      & T      & F                 & T                           \\ \hline
+%         F      & F      & F      & F                 & F                           \\ \hline
+%         \end{tabular}
+%         \end{table}
+%     \begin{table}[h]
+%         \begin{tabular}{|l|l|l|l|l|}
+%         \hline
+%         $\psi'$ & $\chi'$ & $\phi'$ & $(\psi'\land\chi')$ & $(\phi'\lor(\psi\land\chi))$ \\ \hline
+%         T       & T       & T       & T                   & T                            \\ \hline
+%         T       & T       & F       & T                   & T                            \\ \hline
+%         T       & F       & T       & F                   & T                            \\ \hline
+%         T       & F       & F       & F                   & F                            \\ \hline
+%         F       & T       & T       & F                   & T                            \\ \hline
+%         F       & T       & F       & F                   & F                            \\ \hline
+%         F       & F       & T       & F                   & T                            \\ \hline
+%         F       & F       & F       & F                   & F                            \\ \hline
+%         \end{tabular}
+%         \end{table}\\
+%         Same truth table
+%     \item [(b)] False $5$ out of $8$ of $((\phi\land\psi)\lor\chi)$ truth values are true whereas only $3$ out of $8$ of $(\phi'\land(\psi'\lor\chi'))$ truth values are true, so it is impossible to choose formulas for $(\phi'\land(\psi'\lor\chi'))$ s.t the truth tables align.
+%     \begin{table}[h]
+%         \begin{tabular}{|l|l|l|l|l|}
+%         \hline
+%         $\phi'$ & $\psi'$ & $\chi'$ & $(\psi'\lor\chi')$ & $(\phi'\land(\psi'\lor\chi'))$ \\ \hline
+%         T       & T       & T       & T                  & T                              \\ \hline
+%         T       & T       & F       & T                  & T                              \\ \hline
+%         T       & F       & T       & T                  & T                              \\ \hline
+%         T       & F       & F       & F                  & F                              \\ \hline
+%         F       & T       & T       & T                  & F                              \\ \hline
+%         F       & T       & F       & T                  & F                              \\ \hline
+%         F       & F       & T       & T                  & F                              \\ \hline
+%         F       & F       & F       & F                  & F                              \\ \hline
+%         \end{tabular}
+%         \end{table}
+% \end{itemize}
+% \pagebreak
+\section*{Problem 1.6}
+\begin{table}[h]
+    \begin{tabular}{|l|l|l|l|l|l|}
+    \hline
+    $p$ & $q$ & $(p\rightarrow q)$ & $(q\rightarrow p)$ & $\lnot(q\rightarrow p)$ & $(p\rightarrow q)\land\lnot(q\rightarrow p)$ \\ \hline
+    T   & T   & T                  & T                  & F                       & F                                            \\ \hline
+    T   & F   & F                  & T                  & F                       & F                                            \\ \hline
+    F   & T   & T                  & F                  & T                       & T                                            \\ \hline
+    F   & F   & T                  & T                  & F                       & F                                            \\ \hline
+    \end{tabular}
+    \end{table}
+\section*{Problem 1.7}
+$(\phi\downarrow\phi)\quad (\lnot\phi)$
+\begin{table}[h]
+    \begin{tabular}{|l|l|l|}
+    \hline
+    $\phi$ & $(\phi\downarrow\phi)$ & $\lnot\phi$ \\ \hline
+    T      & F                      & F           \\ \hline
+    F      & T                      & T           \\ \hline
+    \end{tabular}
+    \end{table}\\
+$(\phi\downarrow\phi)\downarrow(\psi\downarrow\psi)\quad(\phi\land\psi)$\\
+\begin{table}[h]
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    $\phi$ & $\psi$ & $(\phi\downarrow\phi)\downarrow(\psi\downarrow\psi)$ & $(\phi\land\psi)$ \\ \hline
+    T      & T      & T                                                    & T                 \\ \hline
+    T      & F      & F                                                    & F                 \\ \hline
+    F      & T      & F                                                    & F                 \\ \hline
+    F      & F      & F                                                    & F                 \\ \hline
+    \end{tabular}
+    \end{table}\\
+$(\phi\downarrow\psi)\downarrow(\phi\downarrow\psi)\quad(\phi\lor\psi)$\\
+\begin{table}[h]
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    $\phi$ & $\psi$ & $(\phi\downarrow\psi)\downarrow(\phi\downarrow\psi)$ & $(\phi\lor\psi)$ \\ \hline
+    T      & T      & T                                                    & T                \\ \hline
+    T      & F      & T                                                    & T                \\ \hline
+    F      & T      & T                                                    & T                \\ \hline
+    F      & F      & F                                                    & F                \\ \hline
+    \end{tabular}
+    \end{table}\\
+$((\phi\downarrow\phi)\downarrow\psi)\downarrow((\phi\downarrow\phi)\downarrow\psi)\quad (\phi\rightarrow\psi)$\\
+\begin{table}[h]
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    $\phi$ & $\psi$ & $((\phi\downarrow\phi)\downarrow\psi)\downarrow((\phi\downarrow\phi)\downarrow\psi)$ & $(\phi\rightarrow\psi)$ \\ \hline
+    T      & T      & T                                                                                    & T                       \\ \hline
+    T      & F      & F                                                                                    & F                       \\ \hline
+    F      & T      & T                                                                                    & T                       \\ \hline
+    F      & F      & T                                                                                    & T                       \\ \hline
+    \end{tabular}
+    \end{table}\\
+(a) Every propositional variable $A_i$ is a formula.\\
+(b) If $\phi$ and $\psi$ are formulas then\\
+$(\phi\downarrow\phi)\quad (\lnot\phi)$\\
+$(\phi\downarrow\phi)\downarrow(\psi\downarrow\psi)\quad(\phi\land\psi)$\\
+$(\phi\downarrow\psi)\downarrow(\phi\downarrow\psi)\quad(\phi\lor\psi)$\\
+$((\phi\downarrow\phi)\downarrow\psi)\downarrow((\phi\downarrow\phi)\downarrow\psi)\quad (\phi\rightarrow\psi)$\\
+are formulas\\
+(c) No string is a formula except by virtue of (a) and (b).\\
+Proof by Induction on $n$\\
+Base case: $n=1$ There are only four unary bit functions, and each of them is written below, relative to the variable p:\\
+$f_1(x)=1\quad (p\downarrow(p\downarrow p))\downarrow(p\downarrow(p\downarrow p))$\\
+$f_2(x)=0\quad (p\downarrow p)\downarrow((p\downarrow p)\downarrow(p\downarrow p))$\\
+$f_3(x)=x\quad p$\\
+$f_4(x)=1-x\quad (p\downarrow p)$\\
+Induction hypothesis: Assume every n-ary bit function can be defined by a $\downarrow$-formula with n propositional variables.\\
+Induction step: Suppose $f$ is (n+1)-ary. 
+Consider the two functions obtained by fixing the last variable of $f$ to be $0$ or $1$ and choose by the induction hypothesis formulas which define them relative to the variables $p_1,\ldots,p_n$:\\
+$f_1(x_1,\ldots,x_n)=f(x_1,\ldots,x_n,1)\quad\text{ defined by }\phi_1$\\
+$f_0(x_1,\ldots,x_n)=f(x_1,\ldots,x_n,0)\quad\text{ defined by }\phi_0$\\
+$\alpha=((p_{n+1}\downarrow p_{n+1})\downarrow(\phi_1\downarrow\phi_1))$\\
+$\beta=(((p_{n+1}\downarrow p_{n+1})\downarrow(p_{n+1}\downarrow p_{n+1}))\downarrow(\phi_0\downarrow\phi_0))$\\
+Using lemma $2A.1$ to check that if $p_{n+1}$ is a new propositional variable, then the formula\\
+$((\alpha\downarrow\beta)\downarrow(\alpha\downarrow\beta))$\\
+defines $f$ relative to the list $p_1,\ldots,p_n,p_{n+1}$.
+\end{document}

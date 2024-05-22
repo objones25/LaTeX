@@ -1,0 +1,72 @@
+0
+
+\title{\bf Math 106: Group Project}
+\author{\bf Batman Begins}
+\begin{document}
+\maketitle
+\section*{d'Alembert's Lemma}
+If $p(z)$ is a nonconstant polynomial function and $p(z_0)\neq0$, then any neighborhood of $z_0$ contains a point $z_1$ s.t $\lvert p(z_1)\rvert<\lvert p(z_0)\rvert$.
+Pf: Let $p(z)=a_n z^n+a_{n-1} z^{n-1}+\cdots+a_0$ be an $n^{th}$ degree polynomial.
+ Let $z_0\in\mathbb{C}$ s.t $p(z_0)\neq0$. 
+Our goal is to find some $\Delta z$ s.t $\lvert p(z_0+\Delta z)\rvert<\lvert p(z_0)\rvert$.
+\begin{align*}
+    &p(z_0+\Delta z)=a_n {(z_0+\Delta z)}^n+a_{n-1} {(z_0+\Delta z)}^{n-1}+\cdots+a_0
+\end{align*}
+Let $0\le k\le n$ be an integer. By the binomial formula,
+\begin{align*}
+    &{(z+\Delta z)}^k=\sum_{i=0}^{k}\begin{pmatrix}
+        k\\
+        i
+    \end{pmatrix}z_0^{k-i}\Delta z^i =z_0^k+\sum_{i=1}^{k}\begin{pmatrix}
+        k\\
+        i
+    \end{pmatrix}z_0^{k-i}\Delta z^i
+\end{align*}
+Let $\displaystyle A_k:=a_k\sum_{i=1}^{k}\begin{pmatrix}
+    k\\
+    i
+\end{pmatrix}z_0^{k-i}$. It follows 
+\begin{align*}
+    &p(z_0+\Delta z)=a_n z_0^n+a_{n-1}z_0^{n-1}+\cdots+a_0+A_n \Delta z^n+A_{n-1} \Delta z^{n-1}+\cdots+A_1 \Delta z\\
+    &=p(z_0)+A_n \Delta z^n+A_{n-1} \Delta z^{n-1}+\cdots+A_1 \Delta z\\
+    &=p(z_0)+A_1\Delta z+O(\Delta z^2)\\
+    &\lvert \Rightarrow p(z_0+\Delta z)\rvert<\lvert p(z_0)\rvert
+\end{align*}
+for sufficiently small $\Delta z$.
+\section*{d'Alembert's Proof}
+Consider an arbitrary nonconstant polynomial function $p$. 
+We observe that that $p(z)$ scales with $a_n z^n$ for large values of $\lvert z\rvert$. 
+Thus, the continuous function $\lvert p(z)\rvert$ is increasing for $\lvert z\rvert>R$ for some sufficiently large $R$.
+The set of points $\lvert z\rvert\le R$ is a closed ball, so the continuous function $\lvert p(z)\rvert$ assumes a maximum and minimum value by the extreme value theorem.
+Clearly, this minimum $0\le \lvert p(z^*)\rvert$ because $\lvert\cdot\rvert$ is a norm. This minimum value $0= \lvert p(z^*)\rvert$ because any other minimum value would contradict d'Alembert's lemma.
+\section*{Gauss's Proof}
+Consider an arbitrary nonconstant polynomial function $p$. 
+We observe that that $p(z)$ scales with $a_n z^n$ for large values of $\lvert z\rvert$. 
+Thus, the continuous function $\lvert p(z)\rvert$ is increasing for $\lvert z\rvert>R$ for some sufficiently large $R$.
+Inside the ball of radius $R$, we consider the curves $\Re[p(z)]$ and $\Im[p(z)]$.\\
+Let $z=x+iy$
+\begin{align*}
+    &p(z)=a_n z^n+a_{n-1} z^{n-1}+\cdots+a_0\\
+    &=a_n {(x+iy)}^n+a_{n-1} {(x+iy)}^{n-1}+\cdots+a_0\\
+    &{(x+iy)}^k=\sum_{j=1}^{k}\begin{pmatrix}
+        k\\
+        j
+    \end{pmatrix}x^{k-j}{(iy)}^j
+\end{align*} 
+Observe for any term $k$, the odd values of $j$ will contribute to the imaginary part of the polynomial $p(z)$ because $\begin{pmatrix}
+    k\\
+    j
+\end{pmatrix}x^{k-j}{(iy)}^j=ix^{k-j}y^{j}{(i)}^{j-1}=\pm ix^{k-j}y^{j}$. In addition, the even values of $j$ will contribute to the real part because $\begin{pmatrix}
+    k\\
+    j
+\end{pmatrix}x^{k-j}{(iy)}^j=\begin{pmatrix}
+    k\\
+    j
+\end{pmatrix}x^{k-j}y^{j}{(i)}^{j}=\pm \begin{pmatrix}
+    k\\
+    j
+\end{pmatrix}x^{k-j}y^{j}$.\\
+Collecting the real and imaginary terms, it follows $p_1(x,y)=\Re[p(z)]$ and $p_2(x,y)=\Im[p(z)]$ are polynomials of degrees $\le n$.\\
+
+To complete the proof 
+\end{document}

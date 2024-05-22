@@ -1,0 +1,109 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 114L\@: Problem Set 1}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\section*{Question 1}
+Suppose for the sake of contradiction that $T$ is not satisfiable. 
+It follows by The Completeness Theorem for PL that $T$ is not consistent. 
+This implies there exists some $\phi$ s.t $T\vdash \phi$ and $T\vdash \lnot\phi$.  
+Because a deduction from a set of formulas $T$ requires a finite sequence of steps, there exists a finite subset $T_0\subseteq T$ that contains all the required formulas to prove $\phi$ and $(\lnot\phi)$.
+It follows $T_0\vdash \phi$ and $T_0\vdash \lnot\phi$, and by soundness, $T_0\models\phi$ and $T_0\models(\lnot\phi)$.
+$T_0$ is satisfiable by assumption, so there exists $\upsilon$ s.t $\upsilon\models T_0$.
+However, $\upsilon(\phi)=$T and $\upsilon((\lnot\phi))=$T cannot both be true.
+Thus, $T_0\models\phi$ and $T_0\models(\lnot\phi)$ cannot both be true.
+Moreover, $T\vdash \phi$ and $T\vdash (\lnot\phi)$ cannot both be true, so $T$ is consistent.
+Because every consistent set of formulas is satisfiable, $T$ must also be satisfiable.
+\section*{Question 2}
+Suppose $\Gamma\cup\{\phi\}$ logically implies $\psi$. 
+Consider some assignment $\upsilon$ s.t $\upsilon\models \Gamma$. 
+$\upsilon\models(\phi\rightarrow\psi)$ iff $\upsilon\not\models\phi$ or $\upsilon\models\psi$.
+If $\upsilon\models\phi$, then $\upsilon\models\Gamma\cup\{\phi\}$. Because $\upsilon\models\Gamma\cup\{\phi\}$, $\upsilon\models\psi$ by assumption.
+If $\upsilon\not\models\phi$ then $(\phi\rightarrow\psi)$ is vacuously true.\\
+Suppose $\Gamma$ logically implies $(\phi\rightarrow\psi)$.
+Consider some assignment $\upsilon$ s.t $\upsilon\models \Gamma\cup\{\phi\}$.
+Then $\upsilon\models\phi$, and because $\upsilon\models\Gamma$, $\upsilon\models(\phi\rightarrow\psi)$.
+$\upsilon\models(\phi\rightarrow\psi)$ iff $\upsilon\not\models\phi$ or $\upsilon\models\psi$.
+Because $\upsilon\models\phi$, $\upsilon\models\psi$ must be true.
+\section*{Question 3} 
+A can see the hats of B and C. 
+If A saw $2$ white hats, A would deduce they are wearing a black hat because not all the hats are white.
+A's answer signals to B that B or C is wearing a black hat.
+If B saw C wearing a white hat, B would deduce they are wearing a black hat because otherwise A would have known the color of their (A's) own hat.
+Since neither A nor B knew the color of their hats, C can confidently conclude they are wearing a black hat.
+\section*{Question 4}
+\begin{itemize}
+    \item Trivally, if $\Gamma_0\models\phi$ then $\Gamma\models\phi$ for any $\Gamma_0\subset\Gamma$.\\
+    Suppose $\Gamma$ logically implies $\phi$. 
+    It follows $\Gamma\cup\{(\lnot\phi)\}$ is not satisfiable.
+    By compactness, there exists some $\Gamma'\subset\Gamma\cup\{(\lnot\phi)\}$ that is not satisfiable.
+    In particular, we want to choose a $\Gamma'$ with the least number of elements. 
+    Let $\Gamma_0=\Gamma'\setminus\{(\lnot\phi)\}$. 
+    Thus, $\Gamma_0$ logically implies $\phi$ because $\Gamma_0\cup\{(\lnot\phi)\}$ is not satisfiable. 
+    Moreover, because of the way we chose $\Gamma'$, for any proper $\Gamma_1\subset\Gamma_0$, $\Gamma_1\cup\{(\lnot\phi)\}$ is satisfiable.
+    In other words, $\Gamma_0$ is independent.
+    \item Consider the infinite set $\Gamma=\{A_1,\lnot(A_1\rightarrow(\lnot A_2)),\lnot(A_1\rightarrow(A_2\rightarrow(\lnot A_3))),\ldots\}$ for propositional variables $A_1,A_2,A_3,\ldots\in PL_0$.\\
+    Case 1: $\Gamma_0$ is empty\\
+    $\Gamma_0\not\models A_1$\\
+    Case 2: $\Gamma_0=\{\psi_k\}$ contains one formula\\
+    Let $\psi_k$ be the k-th formula in the sequence.
+    $\Gamma\models\psi_{k+1}$ but $\Gamma_0\not\models \psi_{k+1}$ where $\psi_{k+1}\equiv\lnot(\psi_k\rightarrow(\lnot A_{k+1}))$.\\
+    Case 3: WLOG let $m>k$ $\Gamma_0=\{\psi_k,\psi_m,\ldots\}$ contains at least two formulas\\
+    $\Gamma_0$ is logically equivalent to $\Gamma_0\setminus{\psi_k}$, so $\Gamma_0$ is not independent.\\
+    $\Gamma_0$ cannot be both logically equivalent to $\Gamma$ and independent.
+    \item If $\Gamma$ is finite, we showed earlier in the problem we can find a logically equivalent and independent subset $\Gamma_0$. 
+    We set $\Delta=\Gamma_0$. 
+    If $\Gamma$ is infinite, we showed that some sets have no logically equivalent and independent subsets. 
+    If that is the case, let $\Delta=\Gamma$. Otherwise, we choose $\Delta$ to be a logically equivalent and independent subset in a similar manner to a finite set.
+\end{itemize}
+\section*{Question 5}
+\begin{itemize}
+    \item [(a)] $\Gamma=\{A_1,(\lnot A_1)\}$
+    \item [(b)] $\Gamma=\{A_1,A_2,(A_1\rightarrow (\lnot A_2))\}$ 
+    \item [(c)] $\Gamma=\{A_1,A_2,A_3,(\lnot(A_1\rightarrow (\lnot A_2))\rightarrow (\lnot A_3))\}$
+\end{itemize}
+\section*{Question 6}
+\begin{itemize}
+    \item [(a)] $\forall i,j\in\{1,2,\ldots, n\},(A_{i,j}\rightarrow A_{j,i})\land(\lnot A_{i,i})$
+    \item [(b)] $(\forall i,j\in\{1,2,\ldots, n\},(A_{i,j}\rightarrow A_{j,i})\land(\lnot A_{i,i}))\land(\exists i\in\{1,2,\ldots, n\},\forall j\in\{1,2,\ldots, n\}\rightarrow(\lnot A_{i,j}))$
+    \item [(c)] $(\forall i,j\in\{1,2,\ldots, n\},(A_{i,j}\rightarrow A_{j,i})\land(\lnot A_{i,i}))\land(\forall i\in\{1,2,\ldots, n\},\exists j,k\in\{1,2,\ldots, n\}j\neq k \land A_{i,k}\land A_{i,k})$
+\end{itemize}
+\section*{Question 7}
+If there are $n$ propositional variables and each $p_i$ can be assigned T or F, there are a total of $2^n$ ways to assign $\vec{p}=\{p_1,p_2,\ldots,p_n\}$. 
+For each inequivalent formula $\chi_i$ $F^{\chi_i}_{\vec{p}}(\vec{x})$ is either T or F, giving us 
+$\displaystyle\sum_{i=0}^{2^n}\begin{pmatrix}
+    2^n\\
+    i
+\end{pmatrix}=2^{2^n}$ potential inequivalent formulas.\\
+We'll show each one of those inequivalent formulas are achievable by induction.\\
+Base case: $n=1$\\
+\begin{table}[h]
+    \begin{tabular}{|l|l|l|l|}
+    \hline
+    $p_1$ & $\lnot p_1$ & $p_1\land\lnot p_1$ & $p_1\lor\lnot p_1$ \\ \hline
+    T     & F           & F                   & T                  \\ \hline
+    F     & T           & F                   & T                  \\ \hline
+    \end{tabular}
+    \end{table}\\
+giving us the four possible inequivalent formulas.\\
+Induction hypothesis: Assume for some $n$ each of the $2^{2^n}$ possible inequivalent formulas are achievable.\\
+Induction step: \\
+We define each of the possible inequivalent functions as follows:\\
+$(p_{n+1}\land\chi_i)\lor(\lnot p_{n+1}\land\chi_j)$ $\forall i,j\in\{1,\ldots,N\}$ giving us a total of $N^2={(2^{2^n})}^2=2^{2^{n+1}}$ possible inequivalent formulas.
+To show each is logically inequivalent, we consider $(p_{n+1}\land\chi_i)\lor(\lnot p_{n+1}\land\chi_j)$ and $(p_{n+1}\land\chi_k)\lor(\lnot p_{n+1}\land\chi_l)$.
+When $p_{n+1}$ is assigned to be true, $\chi_i$ is equivalent to $\chi_k$ iff $i=k$, and when $p_{n+1}$ is assigned to be false, $\chi_j$ is equivalent to $\chi_l$ iff $j=l$ by the induction hypothesis.
+Thus, $(p_{n+1}\land\chi_i)\lor(\lnot p_{n+1}\land\chi_j)$ is equivalent to $(p_{n+1}\land\chi_k)\lor(\lnot p_{n+1}\land\chi_l)$ iff $i=k$ and $j=l$.\\
+Hence, by induction, there are a total of $2^{2^n}$ inequivalent formulas for $n$ propositional variables.
+\end{document}

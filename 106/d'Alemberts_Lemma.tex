@@ -1,0 +1,44 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\begin{document}
+Let $p$ be a nonconstant polynomial function of a complex variable.\\
+If $p(z_0)\neq 0$, then every neighborhood of the point $z_0$ contains a point $z$ such that $\lvert p(z)\rvert<\lvert p(z_0)\rvert$
+\section*{Intuition}
+\begin{align*}
+    &p(z)=p(z_0+\Delta z)\\
+    &=a_0+a_1(z_0+\Delta z)+a_2{(z_0+\Delta z)}^2+\cdots+a_n{(z_0+\Delta z)}^n\\
+    &\text{Consider!! }a_m{(z_0+\Delta z)}^m=a_m z_0^m+a_m\sum_{k=1}^{m}\begin{pmatrix}
+        m\\
+        k
+    \end{pmatrix}z_0^{m-k}\cdot \Delta z^k\\
+    &\text{we assume }\Delta z\text{ to be small}\Rightarrow {(\Delta z)}^2,{(\Delta z)}^3\ldots {(\Delta z)}^n\ll \Delta z\\
+    &\Rightarrow p(z)=p(z_0)+A\Delta z+\epsilon \text{ for some constant }A\text{ where }\lvert \epsilon\rvert \ll \lvert A\Delta z\rvert\\
+    &\text{choose }\Delta z\text{ to be in the direction of the origin. Think of the picture!!}\\
+    &\Rightarrow \lvert p(z)\rvert<\lvert p(z_0)\rvert
+\end{align*}
+\section*{The Goal}
+Polynomials can be broken up into linear and irreducible quadratic factors over the real line.\\
+Our goal is to show that eiter $(x\pm r),r\ge 0$ or $x^2+2r\cos\phi x+r^2,r>0$ is a factor of polynomial $p(x)$ for an appropriate choice of $r$ and $\theta$.
+Moreover, we want to show $r(\cos\phi\pm i\sin\phi)$ is a root of $p(x)$.
+\section*{Clever Substitution}
+Let $x=r(\cos\phi+ i\sin\phi)\Rightarrow x^k=r^k(\cos k\phi+ i\sin k\phi)$\\
+Split $p(x)$ into\begin{align*}
+    U(r,\phi)=a_0+a_1\cos(\phi) r+a_2\cos(2\phi) r^2+\cdots+a_n\cos (n\phi) r^n\\
+    T(r,\phi)=a_1\sin(\phi) r+a_2\sin(2\phi) r^2+\cdots+a_n\sin (n\phi) r^n
+\end{align*}
+Consider the curves $U(r,\phi)=0$ and $T(r,\phi)=0$
+\end{document}

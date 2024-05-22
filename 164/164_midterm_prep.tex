@@ -1,0 +1,56 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 164: Midterm}
+\date{2/9/2024}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item $x^{(k+1)}=x^{(k)}-\frac{f'(x^{(k)})}{f''(x^{(k)})}=x^{(k)}-\frac{{x^{(k)}}^3}{3{x^{(k)}}^2}=\frac{2}{3}{x^{(k)}}^2$
+    \item $\mathbf{x}^\top(aa^\top)\mathbf{x}={(a^\top \mathbf{x})}^\top (a^\top \mathbf{x})={\langle a,\mathbf{x}\rangle}^2\ge 0$
+    \item $\phi''(\alpha)=\mathbf{d}^\top F(\mathbf{x}+\alpha\mathbf{d})\mathbf{d}$
+    \item $f(x)=\frac{1}{2}\mathbf{x}^\top(ab^\top)\mathbf{x}$ Let $\mathbf{Q}=\frac{1}{2}(ab^\top+ba^\top)$. $\nabla f(x)=\frac{1}{2}\mathbf{Q}\mathbf{x}=\frac{1}{2}(ab^\top+ba^\top)\mathbf{x}$
+    \item $F(x)=\frac{1}{2}(ab^\top+ba^\top)$.
+    \item \begin{enumerate}
+        \item $f(x_1,x_2)=\mathbb{c}^\top \mathbf{x}\Rightarrow\nabla f(x_1,x_2)={[c_1,c_2]}^\top$. 
+        Since $\nabla f(x_1,x_2)\neq0$ $\forall \mathbf{x}\in\Omega$, we check $\mathbf{d}^\top\nabla f(x_1,x_2)\le 0$ for all feasible directions. 
+        Any point on the line $x_1+x_2=1$, take $\mathbf{d}={[1,-1]}^\top\Rightarrow \mathbf{d}^\top\nabla f=c_1-c_2>0$.
+        Any point on the line $x_1=0$  except ${[1,0]}^\top$, take $\mathbf{d}={[1,0]}^\top\Rightarrow \mathbf{d}^\top\nabla f=c_1>0$.
+        Any point on the line $x_2=0$ except ${[1,0]}^\top$, take $\mathbf{d}={[1,0]}^\top\Rightarrow \mathbf{d}^\top\nabla f=c_1>0$.
+        At the point ${[1,0]}^\top$, $d_1<0$ and $d_2>d_1$ because $\mathbf{d}$ needs to be below the line $x_1+x_2=1$. Thus, $d_1c_2+d_2c_2\le 0$
+        \item Suppose $x^*$ is a minimizer. 
+        It follows $x^*$ must be a critical point.
+        Thus, $\nabla f(x^*)=0$. Since, $\nabla f(x^*)=0$, $x^*$ satisifies the FONC.
+        Suppose $x^*$ satisifies the FONC.
+        Thus, $\nabla f(x^*)=0$.
+        Because $Q>0$, $f$ is convex and $x^*$ is a global minimizer.
+        % Let $\phi(\alpha)=f(x^*+\alpha d)$. 
+        % It follows $\phi(0)\le\phi(\alpha)$ for all $\alpha\in[0,\overline{\alpha}]$.
+        % Taylor expanding at $0$ we obtain $0\le \alpha d^\top(Qx^*-b)+\frac{\alpha^2}{2}d^\top Qd$.
+        % For sufficiently small $\alpha$, we have $0\le d^\top(Qx^*-b)$.
+        % Since this is true for any $d$, we must have $\nabla f=\mathbf{0}$, so $x^*$ satisifies the FONC.\\
+        \item Suppose $x^*$ is a minimizer. Let $\phi(\alpha)=f(x^*+\alpha d)$. 
+        It follows there exists some $\alpha_0>0$ s.t $\phi(0)\le\phi(\alpha)$ $\forall\alpha\in[0,\alpha_0]$.
+        Taylor expanding $\phi(\alpha)$ at $\alpha=0$ we get $0\le \alpha d^\top \nabla f(x^*)+\frac{\alpha^2}{2}d^\top Qd$.
+        Because $-\frac{\alpha}{2}d^\top Qd\le d^\top \nabla f(x^*)$ for all $\alpha$, for sufficiently small $\alpha$ $0\le \nabla d^\top f(x^*)$.
+    \end{enumerate}
+    \item \begin{enumerate}
+        \item $f(x)=\frac{1}{2}{(A(x-a))}^\top(A(x-a))=\frac{1}{2}{(x-a)}^\top A^2(x-a)$, so $\nabla f= A^2(x-a)=0$ when $x=a$
+        \item $\alpha_k=\frac{\lVert A^2(x^{(k)}-a)\rVert^2}{\lVert A^3(x^{(k)}-a)\rVert^2}$
+        \item $\alpha_k=\frac{1}{c^2}$. $x^{(k+1)}=x^{(k)}-\frac{c^2(x^{k}-a)}{c^2}=a$ Thus, the steepest descent converges in $1$ iteration.
+    \end{enumerate}
+\end{enumerate}
+\item 
+\end{document}

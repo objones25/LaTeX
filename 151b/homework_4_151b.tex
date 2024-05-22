@@ -1,0 +1,95 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\usepackage{pdfpages}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+
+\title{\bf Math 151b: Problem Set 4}
+\date{2/7/2024}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\textbf{Problem 1}
+\begin{enumerate}[label=(\alph*)]
+    \item \begin{align*}
+        &L_{n-1}(t)=\frac{(t-t_n)(t-t_{n+1})}{(t_{n-1}-t_n)(t_{n-1}-t_{n+1})}=\frac{(t-t_n)(t-t_{n+1})}{2h^2}\\
+        &L_{n}(t)=\frac{(t-t_{n-1})(t-t_{n+1})}{(t_n-t_{n-1})(t_n-t_{n+1})}=-\frac{(t-t_{n-1})(t-t_{n+1})}{h^2}\\
+        &L_{n+1}(t)=\frac{(t-t_{n-1})(t-t_n)}{(t_{n+1}-t_n)(t_{n+1}-t_{n-1})}=\frac{(t-t_{n-1})(t-t_n)}{2h^2}\\
+        &p(t)=\sum_{i=n-1}^{n+1}y'(t_i)L_i(t)\\
+        &p(t)=\frac{y'(t_{n-1})}{2h^2}(t-t_n)(t-t_{n+1})-\frac{y'(t_n)}{h^2}(t-t_{n-1})(t-t_{n+1})\\
+        &+\frac{y'(t_{n+1})}{2h^2}(t-t_{n-1})(t-t_n)
+        \end{align*}
+    \item \begin{align*}
+        &s=\frac{t-t_n}{h}\Rightarrow ds=\frac{1}{h}dt, \frac{t_n-t_n}{h}=0,\frac{t_{n+1}-t_n}{h}=1\\
+        &\int_{t_n}^{t_{n+1}}(t-t_n)(t-t_{n+1})dt=\int_{0}^{1}hs(hs-h)hds=h^3\int_{0}^{1}s(s-1)ds\\
+        &\int_{t_n}^{t_{n+1}}(t-t_{n-1})(t-t_{n+1})dt=\int_{0}^{1}(hs+h)(hs-h)hds=h^3\int_{0}^{1}(s^2-1)ds\\
+        &\int_{t_n}^{t_{n+1}}(t-t_{n-1})(t-t_n)dt=\int_{0}^{1}(hs+h)hshds=h^3\int_{0}^{1}s(s+1)ds\\
+    \end{align*}
+    \item \begin{align*}
+        &\int_{t_n}^{t_{n+1}}p(t)dt\\
+        &=\int_{t_n}^{t_{n+1}}\frac{y'(t_{n-1})}{2h^2}(t-t_n)(t-t_{n+1})-\frac{y'(t_n)}{h^2}(t-t_{n-1})(t-t_{n+1})\\
+        &+\frac{y'(t_{n+1})}{2h^2}(t-t_{n-1})(t-t_n)dt\\
+        &=\frac{y'(t_{n-1})h}{2}\int_{0}^{1}s(s-1)ds
+        -y'(t_{n})h\int_{0}^{1}(s^2-1)ds
+        +\frac{y'(t_{n+1})h}{2}\int_{0}^{1}s(s+1)ds\\
+        &=-\frac{y'(t_{n-1})h}{12}+\frac{8y'(t_{n})h}{12}+\frac{5y'(t_{n+1})h}{12}\\
+        &=h[\frac{5}{12}f(t_{n+1},y_{n+1})+\frac{8}{12}f(t_n,y_n)-\frac{1}{12}f(t_{n-1},y_{n-1})]
+    \end{align*}
+    \item assume $y(t_n)=y_n$ where $y'(t)=f(t,y(t))$
+    \begin{align*}
+        &y(t_{n+1})-y(t_{n})=\int_{t_n}^{t_{n+1}}y'(t)dt\\
+        &\int_{t_n}^{t_{n+1}}y'(t)dt\approx \int_{t_n}^{t_{n+1}}p(t)dt\\
+        &=h[\frac{5}{12}f(t_{n+1},y_{n+1})+\frac{8}{12}f(t_n,y_n)-\frac{1}{12}f(t_{n-1},y_{n-1})]\\
+        &\Rightarrow y_{n+1}-y_n=h[\frac{5}{12}f(t_{n+1},y_{n+1})+\frac{8}{12}f(t_n,y_n)-\frac{1}{12}f(t_{n-1},y_{n-1})]
+    \end{align*}
+    \item \begin{align*}
+        &\mathcal{L}_h y(t)=y(t+2h)-y(t+h)-h[\frac{5}{12}y'(t+2h)+\frac{8}{12}y'(t+h)-\frac{1}{12}y'(t)]\\
+        &y(t+2h)=y+2hy'+2h^2y''+\frac{4h^3}{3}y'''+O(h^4)\\
+        &y(t+h)=y+hy'+\frac{h^2}{2}y''+\frac{h^3}{6}y'''+O(h^4)\\
+        &y(t+2h)-y(t+h)=hy'+\frac{3h^2}{2}y''+\frac{7h^3}{6}y'''+O(h^4)\\
+        &y'(t+2h)=y'+2hy''+2h^2y'''+O(h^3)\\
+        &y'(t+h)=y'+hy''+\frac{h^2}{2}y'''+O(h^3)\\
+        &h[\frac{5}{12}y'(t+2h)+\frac{8}{12}y'(t+h)-\frac{1}{12}y'(t)]=hy'+\frac{3h^2}{2}y''+\frac{7h^3}{6}+O(h^4)\\
+        &\Rightarrow y(t+2h)-y(t+h)-h[\frac{5}{12}y'(t+2h)+\frac{8}{12}y'(t+h)-\frac{1}{12}y'(t)]=O(h^4)\\
+        &\Rightarrow \mathcal{L}_h y(t)=O(h^4)
+    \end{align*}
+    Thus, $(2)$ is third order accurate.
+\end{enumerate}
+\textbf{Problem 2}\\
+% The LMM is consistent if it is at least first order accurate.
+% Let $\mathcal{L}_h y(t):=y(t_n+2h)-y(t_n+h)-\frac{h}{4}(3y'(t_n+h)-y'(t_n))$\\
+% \begin{align*}
+%     &y(t_n+2h)=y+2hy'+O(h^2)\\
+%     &y(t_n+h)=y+hy'+O(h^2)\\
+%     &\frac{h}{4}(3y'(t_n+h)-y'(t_n))=\frac{h}{4}(2y'+O(h))=\frac{h}{2}y'+O(h^2)\\
+%     &\Rightarrow \mathcal{L}_h y(t)=\frac{h}{2}y'+O(h^2)=O(h)
+% \end{align*}
+% Because the LMM is not at least first order accurate, the LMM is not consistent.
+A LMM is consistent if $\rho(1)=0$ $\rho'(1)=\sigma(1)$.\\
+$\rho(r)=r^2-1$ and $\sigma(r)=\frac{3}{4}r-\frac{1}{4}$\\
+$\rho(1)=0$ and $\rho'(r)=2r\Rightarrow \rho'(1)=2\neq\frac{1}{2}=\sigma(1)$.
+Since the LMM does not satisfy $\rho'(1)=\sigma(1)$, the LMM is not consistent. \\
+\textbf{Problem 3}\\
+$\rho(r)=r+\alpha$ and $\sigma(r)=\beta_1 r+\beta_0$.\\
+We are given the LMM is consistent, so $\rho(1)=0\Rightarrow \alpha=-1$.\\
+%and $\rho'(1)=1=\beta_1+\beta_0\Rightarrow \beta_1=1-\beta_0$.\\
+It follows the only root $r$ of our characteristic generating polynomial is $1$. 
+Since all roots $|r_i|\le 1$ and simple, the one step method is strongly zero-stable.
+Hence, it is convergent.\\
+\textbf{Problem 4}\\
+The characteristic polynomials for this LMM are $\rho(r)=r^3+r^2-r-1,\sigma(r)=r^3+r^2+r+1$.\\
+$\rho(1)=0,\rho'(1)=4,\sigma(1)=4$, so the LMM is consistent.\\
+$\rho(r)=r^2(r+1)-(r+1)=(r-1){(r+1)}^2\Rightarrow y_n=c_1+(c_2+c_3n){(-1)}^n$. 
+Because the root $r=-1$ has multiplicity $2$, there exists an $|r_i|=1$ that is not a simple root, so the LMM is not zero stable.
+Hence, the LMM is not convergent.
+\end{document}

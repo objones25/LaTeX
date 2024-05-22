@@ -40,7 +40,8 @@
         \item [(a)] $y_n=y_{n-1}+\lambda y_{n-1}h=y_{n-1}(1-10h)$ from Euler's method. 
         Solving the characteric equation $x-(1-10h)=0$ for our linear recurrence, we obtain $y_n=c{(1-10h)}^n$. 
         Using our initial condition $y_0=1$, we find $c=1$. 
-        Hence, $y_n={(1-10h)}^n$.
+        Hence, $y_n={(1-10h)}^n$.\\
+        \url{https://artofproblemsolving.com/wiki/index.php/Characteristic_polynomial}
         \item [(b)] $y_1,y_2,y_3=
         \begin{cases}
             -\frac{2}{3},\frac{4}{9},-\frac{296}{999} & \text{for }h=\frac{1}{6}\\
@@ -48,31 +49,37 @@
         \end{cases}$. $h=\frac{1}{6}$ oscilates between positive and negative while $h=\frac{1}{12}$ stays positive because $1-10h>0$.
         \item [(c)] So long $h<\frac{1}{10}$ $y_n$ will be positive for all $n\ge 1$. 
     \end{itemize}
+    \pagebreak
     \item \begin{itemize}
         \item [(a)] Let $u:=y(t)$ and $v(t):=y'(t)$. We substitute in $u$ and $v(t)$ to obtain $v'(t)+u\cdot v(t)+4u=t^2$. Because $u'=v(t)$ we obtain the following system:\\
         \begin{align*}
             v'=t^2-u\cdot v(t)-4u\\
             u'=v(t)
         \end{align*}
-        \item [(b)] $\begin{bmatrix}
-            u_n\\
-            v_n
+        \item [(b)] 
+        $u(t_{n+1})=u(t_{n}+h)=u(t_{n})+u'(t_{n})h+O(h^2)\\
+        \approx u(t_{n})+v(t_{n})h\\
+        v(t_{n+1})=v(t_{n}+h)=v(t_{n})+v'(t_{n})h+O(h^2)\\
+        \approx v(t_{n})+(t_{n}^2-u(t_{n})v(t_{n})-4u(t_{n}))h$\\
+        $\Rightarrow\begin{bmatrix}
+            u_{n+1}\\
+            v_{n+1}
         \end{bmatrix}=\begin{bmatrix}
-            u_{n-1}\\
-            v_{n-1}
+            u_{n}\\
+            v_{n}
         \end{bmatrix}+\begin{bmatrix}
-            u_{n-1}'\\
-            v_{n-1}'
+            u_{n}'\\
+            v_{n}'
         \end{bmatrix}h$\\
         $\Rightarrow \begin{bmatrix}
-            u_n\\
-            v_n
+            u_{n+1}\\
+            v_{n+1}
         \end{bmatrix}=\begin{bmatrix}
-            u_{n-1}\\
-            v_{n-1}
+            u_{n}\\
+            v_{n}
         \end{bmatrix}+\begin{bmatrix}
-            v_{n-1}\\
-            {[(n-1)h]}^2-u_{n-1}v_{n-1}-4u_{n-1}
+            v_{n}\\
+            {[nh]}^2-u_{n}v_{n}-4u_{n}
         \end{bmatrix}h$\\
         $\begin{bmatrix}
             u_1\\

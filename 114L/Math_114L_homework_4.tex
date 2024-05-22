@@ -1,0 +1,99 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 114L\@: Problem Set 4}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\section*{Problem 1}
+Part 1:\\
+Let $P^\mathcal{M}:=\{n\in\mathbb{N}: n\text{ is prime or even}\}$.\\
+Let $Q^\mathcal{M}:=\{n\in\mathbb{N}: n\text{ is odd}\}$.\\ 
+$\mathcal{M}\models T$ since (1) every number is odd or even, (2) there are infinitely many $x\in P^\mathcal{M}\setminus Q^\mathcal{M}$ (even numbers), (3) there are infinitely many $x\in Q^\mathcal{M}\setminus P^\mathcal{M}$ (odd composite numbers), (4) there are infinitely many $x\in P^\mathcal{M}\cap Q^\mathcal{M}$ (odd primes).\\
+Part 2:\\
+Let $\mathcal{M},\mathcal{N}\models T$. 
+(2) says $P^\mathcal{M}\setminus Q^\mathcal{M}$ and $ P^\mathcal{N}\setminus Q^\mathcal{N}$ are countably infinite, so we construct a bijection $f_1: P^\mathcal{M}\setminus Q^\mathcal{M}\rightarrow  P^\mathcal{N}\setminus Q^\mathcal{N}$. 
+Using similar arguments with (3) and (4) we construct bijections $f_2: Q^\mathcal{M}\setminus P^\mathcal{M}\rightarrow  Q^\mathcal{N}\setminus P^\mathcal{N}$ and $f_3: P^\mathcal{M}\cap Q^\mathcal{M}\rightarrow  P^\mathcal{N}\cap Q^\mathcal{N}$. 
+(1) says $M=P^\mathcal{M}\cup Q^\mathcal{M}=(P^\mathcal{M}\setminus Q^\mathcal{M})\cup(Q^\mathcal{M}\setminus P^\mathcal{M})\cup(P^\mathcal{M}\cap Q^\mathcal{M})$, so $f:=f_1\sqcup f_2\sqcup f_3$ is a bijection $f:\mathcal{M}\rightarrow\mathcal{N}$ that preserves $P$ and $Q$.
+\section*{Problem 2}
+\begin{itemize}
+      \item [(1)] Let $G_n=([n+2],\{(1,2),(2,1),\ldots, (n+1,n+2),(n+2,n+1)\})$.
+      The shortest path connecting $1$ and $n+2$ is length $n+1$ $\{(1,2),(2,3),\ldots,(n+1,n+2)\}$, so $G_n$ is not $n$ connected.
+      For $1\le a<b\le n+2$ $\{(a,a+1),(a+1,a+2),\ldots(b-1,b)\}$ is a path of length $b-a\le n+1$ from $a$ to $b$, and by symmetry, we can find a path from $b$ to $a$ in a similar manner. 
+      Thus, $G_n$ is $n+1$ connected. 
+      \item [(2)] Consider the sentence $\varphi_n:=\forall a,b(\lnot(a=b)\rightarrow \underset{k\in[n]}{\bigvee}\exists c_1,\ldots c_{k-1} E(a,c_1)\land E(c_1,c_2)\land\ldots\land E(c_{k-1},b))$.
+      $G\models \varphi_n$ iff for every vertex $a\neq b$ $\exists 1\le k\le n$ s.t $a,b$ are $k$ connected.
+      \item [(3)] Suppose for the sake of contradiction the set of all connected graphs form an elementary class. 
+      It follows there exists a theory $T$ s.t $M\models T$ iff $M$ is connected.
+      Let $T^*=T\cup\{\lnot\phi_n:n\in\mathbb{N}\}$. 
+      If $T^*$ is satisfiable, then any model $G$ s.t $G\models T^*$ is not $n$ connected for any $n\in\mathbb{N}$.
+      Let $\Delta\subset T^*$ be finite, and let $n$ be the largest s.t $\lnot\varphi_n\in\Delta$.
+      The graph we found in (1), $G_n$, satisfies $T$ since $G_n$ is $n+1$ connected, and $G_n\models \lnot\varphi_n$ because $G_n$ is not $k$ connected for any $1\le k\le n$.
+      Since $G_n\models \Delta$, this implies $T^*$ is satisfiable by compactness.
+\end{itemize}
+\section*{Problem 3}
+$M\cong N\rightarrow M\equiv N$, so it suffices to show the reverse direction.\\
+Suppose $M\equiv N$. Since $M$ is finite, we can enumerate its underlying set $M=\{m_1,m_2,\ldots, m_n\}$.\\
+Case 1: $\mathcal{L}$ is a finite language.\\
+Consider the sentence
+\begin{align*}
+  & \varphi=\exists x_1,x_2,\ldots,x_n(\underset{i,j\in[n]\atop\text{s.t }i\neq j}{\bigwedge}\lnot(x_i=x_j))\land(\forall x\underset{i\in[n]}{\bigvee}x=x_i)\\
+  & \land (\underset{c\in\mathcal{L}}{\bigwedge}\underset{i\text{ s.t }\atop m_i=c^M}{\bigwedge}x_i=c)\\
+  & \land (\underset{f\in\mathcal{L}}{\bigwedge}\underset{i,i_1,\ldots,i_k\in[n]\atop\text{ s.t }m_i=f^M(m_{i_1},\ldots,m_{i_k})}{\bigwedge}x_i=f(x_{i_1},\ldots,x_{i_k}))\\
+  & \land (\underset{R\in\mathcal{L}}{\bigwedge}\underset{i_1,\ldots,i_k\in[n]\atop\text{ s.t }(m_{i_1},\ldots,m_{i_k})\in R^M}{\bigwedge}R(x_{i_1},\ldots,x_{i_k}))\\
+  & \land (\underset{R\in\mathcal{L}}{\bigwedge}\underset{i_1,\ldots,i_k\in[n]\atop\text{ s.t }(m_{i_1},\ldots,m_{i_k})\notin R^M}{\bigwedge}\lnot R(x_{i_1},\ldots,x_{i_k}))
+\end{align*}
+Clearly, $M\models \varphi$ because $m_1\ldots m_n$ witness $x_1,\ldots x_n$. By elementary equivalence, $N\models \varphi$. Let $n_1,\ldots n_n$ be the witness of $x_1,\ldots x_n$.
+Define embedding $\eta: M\rightarrow N$ by sending each $m_i$ to $n_i$.
+By first line, domain and codomain are the same size, and $\eta$ is surjective. Thus, $\eta$ is a bijection. 
+By the second line, $m_i=c^M$ implies $n_i=\eta(m_i)=c^N$ for all $m_i\in M$, so $\eta$ preserves constants.
+By the third line, $m_i=f^M(m_{i_1},\ldots,m_{i_k})$ implies $n_i=\eta(m_i)=f^N(\eta(m_{i_1}),\ldots\eta(m_{i_k}))$ for all $m_i,m_{i_1},\ldots,m_{i_k}\in M$, so $\eta$ preserves functions.
+By the fourth and fifth line we have $(m_{i_1},\ldots,m_{i_k})\in R^M$ iff $(\eta(m_{i_1}),\ldots\eta(m_{i_k}))\in R^N$, so $\eta$ preserves relation symbols.\\
+Hence, $\eta$ preserves constant, function, and relation symbols, and therefore, $M\cong N$.
+\section*{Problem 4}
+Let $I$ be a set s.t $|I|>|M|$. Let $\mathcal{L}'=\mathcal{L}\cup\{c_i:i\in I\}$ be an extension of $\mathcal{L}$ and $T=Th_\mathcal{L}(M)\cup\{c_i\neq c_j:i\neq j\in I\}$.
+We want to show $T$ is satisfiable. Let $\Delta\subset T$ be finite. Pick a finite $J\subset I$ s.t every $c_i$ that that occur in $\Delta$ have an index in $J$. 
+Since $M$ is infinite, we can interpret each $\{c_i:i\in J\}$ as distinct elements of $M$. Thus, $M\models \Delta$. 
+By compactness, $T$ is satisfiable.
+Let $N$ be an $\mathcal{L}^*$ structure s.t $N\models T$ $N\models Th_\mathcal{L}(N)\Rightarrow Th_\mathcal{L}(N)\supset Th_\mathcal{L}(M)\Rightarrow Th_\mathcal{L}(N)= Th_\mathcal{L}(M)$, so $N\equiv M$. 
+However, $|N|\le|I|>|M|$, so $|N|>|M|$. Hence, $N$ and $M$ cannot be isomorphic.
+\section*{Problem 5}
+\begin{itemize}
+  \item [(1)] Extend the language $\mathcal{L}$ to a new language $\mathcal{L}^*=\mathcal{L}\cup\{a\}$. 
+  Define a theory $T^*=Th(M)\cup\{D(p,a):p\in \mathbb{P}\}$ in the new language $\mathcal{L}^*$.
+  It suffices to show $T^*$ is finitely satisfiable.
+  Let $T_0\subset T^*$ be finite.
+  It follows $T_0=\{\varphi_1,\ldots,\varphi_n\}\cup\{D(p,a):p\in P\}$ for finitely many $\varphi_i\in Th(M)$ sentences and some finite subset $P\subset \mathbb{P}$.
+  $M\models T_0$ because $M\models\{D(p,a):p\in P\}$ if we for example let $\displaystyle a=\prod_{p_i\in P}p_i$ and $M\models \varphi_i$ for any $\varphi_i\in Th(M)$.
+  Since $T^*$ is finitely satisfiable, then $T^*$ must be satisfiable by compactness.
+  Thus, there exists some structure $N$ s.t $N\models T^*$ and because $N\models Th(M)$ $N\equiv_{\mathcal{L}} M$ in the language $\mathcal{L}$.
+  \item [(2)] Assume the twin prime conjecture is true. 
+  Extend the language $\mathcal{L}$ to a new language $\mathcal{L}^*=\mathcal{L}\cup\{p_1,p_2\}$.
+  Define a theory $T^*=Th(M)\cup\{T(p_1)\land T(p_2)\}\cup\{n<p_1:n\in\mathbb{N}\}\cup\{p_2=p_1+2\}$ in the new language $\mathcal{L}^*$.
+  It suffices to show $T^*$ is finitely satisfiable.
+  Let $T_0\subset T^*$ be finite.
+  It follows $T_0=\{\varphi_1,\ldots,\varphi_n\}\cup\{T(p_1)\land T(p_2)\}\cup\{n<p_1:n\in N_0\}\cup\{p_2=p_1+2\}$ for finitely many $\varphi_i\in Th(M)$ sentences and some finite subset $N_0\subset \mathbb{N}$.
+  $M\models \{T(p_1)\land T(p_2)\}\cup\{n<p_1:n\in N_0\}\cup\{p_2=p_1+2\}$ because the twin prime conjecture states there exists infinitely many pairs of primes $(p_1,p_2)$ s.t $p_2=p_1+2$ allowing us to find some $p_1,p_2$ larger than the largest element of $N_0$. 
+  $M\models \varphi_i$ for any $\varphi_i\in Th(M)$.
+  Thus, $M\models T_0$.
+  Since $T^*$ is finitely satisfiable, then $T^*$ must be satisfiable by compactness.
+  Thus, there exists some structure $N$ s.t $N\models T^*$ and because $N\models Th(M)$ $N\equiv_{\mathcal{L}} M$ in the language $\mathcal{L}$.
+\end{itemize}
+\section*{{Problem 6}}
+Assume to the contrary such a $k$ does not exist.
+It follows for each $n\in\mathbb{N}$ there exists a finite model $M_n$ with $n$ or more elements that makes $\varphi$ false.
+Let $M'=\underset{n\in\mathbb{N}}{\bigcup}M_n$ be the union of all $M_n$. 
+Because $M'$ is a model with infinitely many elements, it must make $\varphi$ true.
+However, each $M_n$ makes $\varphi$ false, so their union must make $\varphi$ false.
+Hence, we obtain a contradiction, and there must exist some $k$ s.t all models with $k$ or more elements must make $\varphi$ true.
+\end{document}

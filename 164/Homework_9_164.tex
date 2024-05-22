@@ -1,0 +1,368 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\usepackage{pdfpages}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\title{\bf Math 164: Problem Set 9}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item [\textbf{12.18}] The problem is equivalent to minimizing $\frac{1}{2}{\lVert \mathbf{x}-\mathbf{b}\rVert}^2$. 
+    If $\mathbf{x}\in \mathcal{R}(\mathbf{A})$, $\exists \mathbf{y}\in\mathbb{R}^n$ s.t $\mathbf{Ay}=\mathbf{x}$\\
+    It follows $\mathbf{x}^*=\mathbf{Ay}^*=\mathbf{A}{(\mathbf{A}^\top\mathbf{A})}^{-1}\mathbf{A}^\top\mathbf{b}$ using the least squares method with with variable $\mathbf{y}$.
+    \item [\textbf{12.20}] Let $\mathbf{y}=\mathbf{x}-\mathbf{x}_0$, so our problem becomes\\
+    $\underset{\mathbf{Ay}=\mathbf{b}-\mathbf{Ax}_0}{\min}\lVert \mathbf{y}\rVert$.
+    Using Theorem $12.2$, $\mathbf{y}^*=\mathbf{A}^\top{(\mathbf{A}\mathbf{A}^\top)}^{-1}(\mathbf{b}-\mathbf{Ax}_0)$ is a unique minimizer to our constrained minimization problem.
+    Since $\mathbf{x}^*=\mathbf{y}^*+\mathbf{x}_0$,\\ 
+    $\mathbf{x}^*=\mathbf{A}^\top{(\mathbf{A}\mathbf{A}^\top)}^{-1}(\mathbf{b}-\mathbf{Ax}_0)+\mathbf{x}_0\\
+    =\mathbf{A}^\top{(\mathbf{A}\mathbf{A}^\top)}^{-1}\mathbf{b}-\mathbf{A}^\top{(\mathbf{A}\mathbf{A}^\top)}^{-1}\mathbf{Ax}_0+\mathbf{I}_n\mathbf{x}_0\\
+    =\mathbf{A}^\top{(\mathbf{A}\mathbf{A}^\top)}^{-1}\mathbf{b}+(\mathbf{I}_n-\mathbf{A}^\top{(\mathbf{A}\mathbf{A}^\top)}^{-1}\mathbf{A})\mathbf{x}_0$
+    \item [\textbf{12.23}] Let $\mathbf{y}\in \mathcal{R}(\mathbf{A}^\top)$ satisfy $\mathbf{Ay}=\mathbf{b}$. 
+    It follows $\exists \mathbf{z}\in\mathbb{R}^m$ s.t $\mathbf{A}^\top\mathbf{z}=\mathbf{y}$.\\
+    Since $\mathbf{Ay}$ and $\mathbf{Ax}^*$ both equal $\mathbf{b}$\\
+    $\mathbf{Ay}-\mathbf{Ax}^*=\mathbf{A}\mathbf{A}^\top\mathbf{z}-\mathbf{A}(\mathbf{A}^\top{(\mathbf{A}\mathbf{A}^\top)}^{-1}\mathbf{b})=0\\
+    \Rightarrow \mathbf{A}\mathbf{A}^\top(\mathbf{z}-{(\mathbf{A}\mathbf{A}^\top)}^{-1}\mathbf{b})=0\\
+    \Rightarrow \mathbf{z}={(\mathbf{A}\mathbf{A}^\top)}^{-1}\mathbf{b}$ because $\mathbf{A}\mathbf{A}^\top$ is invertible.\\
+    Thus, $\mathbf{y}=\mathbf{A}^\top\mathbf{z}=\mathbf{A}^\top{(\mathbf{A}\mathbf{A}^\top)}^{-1}\mathbf{b}=\mathbf{x}^*$
+    \item [\textbf{20.2}]\begin{enumerate}
+        \item Let $f(\mathbf{x})=x^2_1+2x_1x_2+3x_2^2+4x_1+5x_2+6x_3$,\\ 
+        $h(\mathbf{x})={[x_1+2x_2-3,4x_1+5x_3-6]}^\top$,\\
+        and $l(\mathbf{x},\mathbf{\lambda})=f(\mathbf{x})+\mathbf{\lambda}^\top h(\mathbf{x})$.\\
+        We first want to find an $(\mathbf{x}^*,\mathbf{\lambda}^*)$ that satisfies the Lagrange condition:
+        \begin{align*}
+            Dl(\mathbf{x}^*,\mathbf{\lambda}^*)=[D_xl(\mathbf{x}^*,\mathbf{\lambda}^*),D_\lambda(\mathbf{x}^*,\mathbf{\lambda}^*)]=\mathbf{0}^\top\\
+        \end{align*}
+        It follows
+        \begin{align*}
+            &Dl(\mathbf{x},\mathbf{\lambda})=\begin{bmatrix}
+                2 & 2 & 0 & 1 & 4\\
+                2 & 6 & 0 & 2 & 0\\
+                0 & 0 & 0 & 0 & 5\\
+                1 & 2 & 0 & 0 & 0\\
+                4 & 0 & 5 & 0 & 0
+            \end{bmatrix}\begin{bmatrix}
+                x_1\\
+                x_2\\
+                x_3\\
+                \lambda_1\\
+                \lambda_2
+            \end{bmatrix}-\begin{bmatrix}
+                -4\\
+                -5\\
+                -6\\
+                3\\
+                6
+            \end{bmatrix}=\mathbf{0}^\top\\
+            &\Rightarrow \begin{bmatrix}
+                2 & 2 & 0 & 1 & 4\\
+                2 & 6 & 0 & 2 & 0\\
+                0 & 0 & 0 & 0 & 5\\
+                1 & 2 & 0 & 0 & 0\\
+                4 & 0 & 5 & 0 & 0
+            \end{bmatrix}\begin{bmatrix}
+                x_1\\
+                x_2\\
+                x_3\\
+                \lambda_1\\
+                \lambda_2
+            \end{bmatrix}=\begin{bmatrix}
+                -4\\
+                -5\\
+                -6\\
+                3\\
+                6
+            \end{bmatrix}
+        \end{align*}
+        which reduces to 
+        \begin{align*}
+            &\begin{bmatrix}
+                x_1\\
+                x_2\\
+                x_3\\
+                \lambda_1\\
+                \lambda_2
+            \end{bmatrix}=\begin{bmatrix}
+                \frac{16}{5}\\
+                -\frac{1}{10}\\
+                -\frac{34}{25}\\
+                -\frac{27}{5}\\
+                -\frac{6}{5}
+            \end{bmatrix}  
+        \end{align*}
+        by Gaussian elimination.\\
+        Next, we want to show this point satisfies the SONC
+        \begin{align*}
+            &L(\mathbf{x}^*,\lambda^*)=\mathbf{F}(\mathbf{x}^*)+\mathbf{\lambda}^*\mathbf{H}(\mathbf{x}^*)
+            =\begin{bmatrix}
+                2 & 2 & 0\\
+                2 & 6 & 0\\
+                0 & 0 & 0
+            \end{bmatrix}\\
+            &\text{ because }H_k(\mathbf{x}^*)=0,k=1,2\\
+            &T(\mathbf{x}^*):=\{\mathbf{v}\in\mathbb{R}^3:\begin{bmatrix}
+                1 & 2 & 0\\
+                4 & 0 & 5
+            \end{bmatrix}\mathbf{v}=0\}=span\{{[\frac{5}{4},-\frac{5}{8},1]}^\top\}\\
+            &\forall \mathbf{v}\in T(\mathbf{x}^*),\mathbf{v}^\top L(\mathbf{x}^*,\lambda^*)\mathbf{v}=\alpha^2 {[\frac{5}{4},-\frac{5}{8},1]}^\top\begin{bmatrix}
+                2 & 2 & 0\\
+                2 & 6 & 0\\
+                0 & 0 & 0
+            \end{bmatrix}\begin{bmatrix}
+                \frac{5}{4}\\
+                -\frac{5}{8}\\
+                1
+            \end{bmatrix}\\
+            &=\alpha^2{[\frac{5}{4},-\frac{5}{8},1]}^\top\begin{bmatrix}
+                \frac{5}{4}\\
+                -\frac{5}{4}\\
+                0
+            \end{bmatrix}=\frac{75}{32}\alpha^2>0,\forall\alpha\neq0
+        \end{align*}
+        , so \begin{align*}
+            &\begin{bmatrix}
+                x_1\\
+                x_2\\
+                x_3\\
+                \lambda_1\\
+                \lambda_2
+            \end{bmatrix}=\begin{bmatrix}
+                \frac{16}{5}\\
+                -\frac{1}{10}\\
+                -\frac{34}{25}\\
+                -\frac{27}{5}\\
+                -\frac{6}{5}
+            \end{bmatrix}  
+        \end{align*} is a strict local minimizer.
+        \item Let \begin{align*}
+            &f(x)=4x_1+x_2^2\\
+            &h(x)=x_1^2+x_2^2-9\\
+            &l(x,\lambda)=f(x)+\lambda h(x)\\
+            &\Rightarrow \nabla l(x,\lambda)=\begin{bmatrix}
+                4+2\lambda x_1\\
+                2x_2+2\lambda x_2\\
+                x_1^2+x_2^2-9 
+            \end{bmatrix}=\begin{bmatrix}
+                0\\
+                0\\
+                0
+            \end{bmatrix}
+        \end{align*}
+        We first observe $\lambda\neq 0$. If so, we contradict the first innequality. Thus, $x_1=-\frac{2}{\lambda}$.\\
+        We have two cases for $x_2$. $x_2=0$ or $x_2\neq 0$\\
+        The first case gives the first two candidates ${[3,0]}^\top\lambda=-\frac{2}{3},{[-3,0]}^\top\lambda=\frac{2}{3}$.\\
+        The second case gives the second two candidates ${[2,\sqrt{5}]}^\top\lambda=-1,{[2,-\sqrt{5}]}^\top\lambda=-1$.\\
+        All $4$ candidates are regular.\\
+        \begin{align*}
+            &L(\mathbf{x},\lambda)=\mathbf{F}(\mathbf{x})+\mathbf{\lambda}\mathbf{H}(\mathbf{x})=\begin{bmatrix}
+                2\lambda & 0\\
+                0 & 2+2\lambda
+            \end{bmatrix}\\
+            &T(\mathbf{x})=\{\mathbf{v}\in\mathbb{R}^2:[2x_1,2x_2]\mathbf{v}=0\}
+        \end{align*}
+        \begin{align*}
+            &L({[3,0]}^\top,-\frac{2}{3})=\begin{bmatrix}
+                -\frac{4}{3} & 0\\
+                0 & \frac{2}{3}
+            \end{bmatrix}\\
+            &T({[3,0]}^\top)=span\{[0,1]^\top\}\\
+            &\forall\mathbf{v}\in T({[3,0]}^\top)\neq\mathbf{0}, \mathbf{v}^\top\begin{bmatrix}
+                -\frac{4}{3} & 0\\
+                0 & \frac{2}{3}
+            \end{bmatrix}\mathbf{v}=\alpha^2\frac{4}{9}>0\\
+            &L({[-3,0]}^\top,\frac{2}{3})=\begin{bmatrix}
+                \frac{4}{3} & 0\\
+                0 & \frac{10}{3}
+            \end{bmatrix}>0\\
+            &L({[2,\sqrt{5}]}^\top,-1)=\begin{bmatrix}
+                -2 & 0\\
+                0 & 0
+            \end{bmatrix}\\
+            &T({[2,\sqrt{5}]}^\top)=span\{[-\sqrt{5},2]^\top\}\\
+            &\forall\mathbf{v}\in T({[2,\sqrt{5}]}^\top)\neq\mathbf{0}, \mathbf{v}^\top\begin{bmatrix}
+                -2 & 0\\
+                0 & 0
+            \end{bmatrix}\mathbf{v}=-\alpha^2 10<0\\
+            &L({[2,\sqrt{5}]}^\top,-1)=\begin{bmatrix}
+                -2 & 0\\
+                0 & 0
+            \end{bmatrix}\\
+            &T({[2,-\sqrt{5}]}^\top)=span\{[\sqrt{5},2]^\top\}\\
+            &\forall\mathbf{v}\in T({[2,\sqrt{5}]}^\top)\neq\mathbf{0}, \mathbf{v}^\top\begin{bmatrix}
+                -2 & 0\\
+                0 & 0
+            \end{bmatrix}\mathbf{v}=-\alpha^2 10<0
+        \end{align*}
+        Thus, ${[3,0]}^\top\lambda=-\frac{2}{3},{[-3,0]}^\top\lambda=\frac{2}{3}$ are strict local minimizers and ${[2,\sqrt{5}]}^\top\lambda=-1,{[2,-\sqrt{5}]}^\top\lambda=-1$ are strict local maximizers.
+        \item \begin{align*}
+            &f(x)=x_1x_2\\
+            &h(x)=x_1^2+4x_2^2-1\\
+            &l(x,\lambda)=-x_1x_2+\lambda x_1^2+4\lambda x_2^2\\
+            &\nabla l(x,\lambda)=\begin{bmatrix}
+                x_2+2\lambda x_1\\
+                x_1+8\lambda x_2\\
+                x_1^2+4x_2^2-1
+            \end{bmatrix}=\begin{bmatrix}
+                0\\
+                0\\
+                0
+            \end{bmatrix}
+        \end{align*}
+        $x_1=-8\lambda x_2\Rightarrow x_2(1-16\lambda^2)=0$. $x_2\neq 0$ by inspection.\\
+        $\lambda=\frac{1}{4}\Rightarrow {[\frac{1}{\sqrt{2}},-\frac{1}{2\sqrt{2}}]}^\top,{[-\frac{1}{\sqrt{2}},\frac{1}{2\sqrt{2}}]}^\top$ are solutions.\\
+        $\lambda=-\frac{1}{4}\Rightarrow {[\frac{1}{\sqrt{2}},\frac{1}{2\sqrt{2}}]}^\top,{[-\frac{1}{\sqrt{2}},-\frac{1}{2\sqrt{2}}]}^\top$ are solutions.
+        \begin{align*}
+            &L(\mathbf{x},\frac{1}{4})=\begin{bmatrix}
+                \frac{1}{2} & 1\\
+                1 & 2
+            \end{bmatrix}\\
+            &L(\mathbf{x},-\frac{1}{4})=\begin{bmatrix}
+                -\frac{1}{2} & 1\\
+                1 & -2
+            \end{bmatrix}\\
+            &T(\mathbf{x})=\{\mathbf{v}:[2x_1,8x_2]\mathbf{v}=0\}\\
+            &T({[\frac{1}{\sqrt{2}},-\frac{1}{2\sqrt{2}}]}^\top)=T({[-\frac{1}{\sqrt{2}},\frac{1}{2\sqrt{2}}]}^\top)=span\{{[1,1]}^\top\}\\
+            &T({[\frac{1}{\sqrt{2}},\frac{1}{2\sqrt{2}}]}^\top)=T({[-\frac{1}{\sqrt{2}},-\frac{1}{2\sqrt{2}}]}^\top)=span\{{[1,-1]}^\top\}
+        \end{align*}
+        For $\mathbf{v}\in span\{{[1,-1]}^\top\}, \mathbf{v}^\top L(\mathbf{x},-\frac{1}{4})\mathbf{v}<0$\\
+        For $\mathbf{v}\in span\{{[1,1]}^\top\}, \mathbf{v}^\top L(\mathbf{x},\frac{1}{4})\mathbf{v}>0$\\
+        Thus, ${[\frac{1}{\sqrt{2}},-\frac{1}{2\sqrt{2}}]}^\top,{[-\frac{1}{\sqrt{2}},\frac{1}{2\sqrt{2}}]}^\top$ are strict local maximizers and ${[\frac{1}{\sqrt{2}},\frac{1}{2\sqrt{2}}]}^\top,{[-\frac{1}{\sqrt{2}},-\frac{1}{2\sqrt{2}}]}^\top$ are strict local minimizers.
+    \end{enumerate}
+    \item [\textbf{20.3}] $l(\mathbf{x},\mathbf{\lambda})=(\mathbf{a}^\top\mathbf{x})(\mathbf{b}^\top\mathbf{x})+\lambda_1(x_1+x_2)+\lambda_2(x_2+x_3)=0$\\
+    \begin{align*}
+        &\nabla l=\begin{bmatrix}
+            \nabla_\mathbf{x} l\\
+            h(\mathbf{x})
+        \end{bmatrix}=\begin{bmatrix}
+            (\mathbf{ab}^\top+\mathbf{ba}^\top)\mathbf{x}+[\nabla h_1,\nabla h_2]\mathbf{\lambda}\\
+            h(\mathbf{x})
+        \end{bmatrix}\\
+        &=\begin{bmatrix}
+            \begin{bmatrix}
+                0 & 1 & 0\\
+                1 & 0 & 1\\
+                0 & 1 & 0
+            \end{bmatrix}\mathbf{x}+\begin{bmatrix}
+                1 & 0\\
+                1 & 1\\
+                0 & 1
+            \end{bmatrix}\mathbf{\lambda}\\
+            h(\mathbf{x})
+        \end{bmatrix}\\
+        &=\begin{bmatrix}
+            x_2+\lambda_1\\
+            x_1+x_2+\lambda_1+\lambda_2\\
+            x_2+\lambda_2\\
+            x_1+x_2\\
+            x_2+x_3
+        \end{bmatrix}=\mathbf{0}
+    \end{align*} 
+    By inspection, $\mathbf{x}^*=\mathbf{0},\mathbf{\lambda}^*=\mathbf{0}$ solves the system uniquely.\\
+    $L(\mathbf{x}^*,\mathbf{\lambda}^*)=\begin{bmatrix}
+        0 & 1 & 0\\
+        1 & 0 & 1\\
+        0 & 1 & 0
+    \end{bmatrix},\\
+    T(\mathbf{x}^*)=span\{{[1,-1,1]}^\top\}$\\
+    $\forall\mathbf{v}\in T(\mathbf{x}^*), \mathbf{v}^\top L(\mathbf{x}^*,\mathbf{\lambda}^*)\mathbf{v}=-4\alpha^2<0$,
+    so $\mathbf{0}$ is a strict local maximizer.
+    \item [\textbf{20.4}] $\nabla l(\mathbf{x}^\top,\mathbf{\lambda}^\top)=\begin{bmatrix}
+        x_1+\lambda\\
+        x_1+4+4\lambda\\
+        h(\mathbf{x}^*)
+    \end{bmatrix}=\mathbf{0}\\
+    \Rightarrow x_1=\frac{4}{3}\Rightarrow\nabla f(\mathbf{x}^*)={[\frac{4}{3},\frac{16}{3}]}^\top$
+    \item [\textbf{20.9}] $f(\mathbf{x})=\frac{\mathbf{x}^\top\begin{bmatrix}
+            18 & -4\\
+            -4 & 12
+    \end{bmatrix}\mathbf{x}}{\mathbf{x}^\top\begin{bmatrix}
+            2 & 0\\
+            0 & 2
+    \end{bmatrix}\mathbf{x}}$\\
+    Observe that if $\mathbf{x}^*$ is a maximizer, $\alpha\mathbf{x}$ for some scalar $\alpha$ is also a maximizer because\\
+    $f(\alpha\mathbf{x}^*)=\frac{{(\alpha\mathbf{x}^*)}^\top\begin{bmatrix}
+        18 & -4\\
+        -4 & 12
+    \end{bmatrix}(\alpha\mathbf{x}^*)}{{(\alpha\mathbf{x}^*)}^\top\begin{bmatrix}
+        2 & 0\\
+        0 & 2
+    \end{bmatrix}(\alpha\mathbf{x}^*)}\\
+    =\frac{\alpha^2}{\alpha^2}\frac{\mathbf{x}^\top\begin{bmatrix}
+        18 & -4\\
+        -4 & 12
+\end{bmatrix}\mathbf{x}}{\mathbf{x}^\top\begin{bmatrix}
+        2 & 0\\
+        0 & 2
+\end{bmatrix}\mathbf{x}}=f(\mathbf{x}^*)$\\
+It follows we can solve an equivalent problem to maximize $\mathbf{x}^\top\begin{bmatrix}
+    18 & -4\\
+    -4 & 12
+\end{bmatrix}\mathbf{x}$ constrained to $\mathbf{x}^\top\begin{bmatrix}
+    2 & 0\\
+    0 & 2
+\end{bmatrix}\mathbf{x}=1$\\
+$l(\mathbf{x},\mathbf{\lambda})=\mathbf{x}^\top\begin{bmatrix}
+    18 & -4\\
+    -4 & 12
+\end{bmatrix}\mathbf{x}+\mathbf{\lambda}(1-\mathbf{x}^\top\begin{bmatrix}
+    2 & 0\\
+    0 & 2
+\end{bmatrix}\mathbf{x})$\\
+$\nabla l_x=2(\begin{bmatrix}
+    18 & -4\\
+    -4 & 12
+\end{bmatrix}-\mathbf{\lambda}\begin{bmatrix}
+    2 & 0\\
+    0 & 2
+\end{bmatrix})\mathbf{x}=\mathbf{0}\\
+\Leftrightarrow (\lambda \mathbf{I}_2-\begin{bmatrix}
+    9 & -2\\
+    -2 & 6
+\end{bmatrix})\mathbf{x}=0$\\
+which is equivalent to solving an eigenvalue eigenvector problem.\\
+$\det(\lambda \mathbf{I}_2-\begin{bmatrix}
+    9 & -2\\
+    -2 & 6
+\end{bmatrix})=(\lambda-10)(\lambda-5)$ $\lambda=10$ will give us a much larger value.\\
+$\mathbf{x}^*=\frac{1}{\sqrt{10}}\begin{bmatrix}
+    2\\
+    -1
+\end{bmatrix}$ gives us a solution that satisfies $h(\mathbf{x}^*)=0$.\\
+Thus, any scalar multiple of $\mathbf{x}^*$ will give us a maximizer.
+\item [\textbf{20.10}] Let $\mathbf{Q}_0=\frac{1}{2}(\begin{bmatrix}
+    3 & 4\\
+    0 & 3
+\end{bmatrix}+\begin{bmatrix}
+    3 & 0\\
+    4 & 3
+\end{bmatrix})$\\
+$\nabla l(\mathbf{x}^*,\mathbf{\lambda}^*)=2\mathbf{Q}_0\mathbf{x}^*-2\mathbf{\lambda}^*\mathbf{x}=0$\\
+which is equivalent to solving for $\mathbf{Q}_0$ eigenvalues and corresponding eigenvectors.\\
+$\det\begin{bmatrix}
+    \lambda-3 & -2\\
+    -2 & \lambda-3
+\end{bmatrix}=\lambda^2-6\lambda+5=(\lambda-1)(\lambda-5)$\\
+Thus, the maximizers are the eigenvectors for $\lambda=5$ constrained to $\lVert x\rVert=1$ $[\frac{1}{\sqrt{2}},\frac{1}{\sqrt{2}}],[-\frac{1}{\sqrt{2}},-\frac{1}{\sqrt{2}}]$
+\item [\textbf{20.14}] Suppose $\mathbf{x}^*=[1,1]$ is a solution to $\nabla l(\mathbf{x},\mathbf{\lambda})=\begin{bmatrix}
+    a+2\lambda x_1\\
+    b+2\lambda x_2\\
+    x_1^2+x_2^2-2
+\end{bmatrix}=\begin{bmatrix}
+    0\\
+    0\\
+    0
+\end{bmatrix}$.\\
+It follows $a=-2\lambda$ and $b=-2\lambda$, so $a=b$.
+\end{enumerate}
+\end{document}

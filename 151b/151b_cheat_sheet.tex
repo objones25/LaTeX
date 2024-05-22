@@ -1,0 +1,126 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{mathrsfs}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\usepackage{pdfpages}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+\pagestyle{empty}
+
+\begin{document}
+\noindent
+\section*{Lipschitz Continuous}
+Let $D=[t_0,t_f]\times [-M,M]$\\
+ $f:D\rightarrow \mathbb{R}$ is L.C if $\exists L>0$ s.t $\lvert f(t,y_1)-f(t,y_2)\rVert <L\lvert y_1-y_2\rVert$ for $(t,y_1),(t,y_2)\in D$
+\section*{One step methods}
+LTE\@: $\tau_{n+1}=y(t_{n+1})-y_{n+1}$ 
+$\tau_{n+1}=O(h^{p+1})\Rightarrow$ $p^{th}$ order accurate/consistent\\
+GE\@: $e_N=\lvert y_(t_N)-y_N\rvert\le \frac{\theta}{s}(\exp(Ns)-1)$ 
+$e_N=O(h^{p})\Rightarrow$ $p^{th}$ order convergent.
+\section*{RK Methods}
+RK\@: $k_i=f(t_n+c_i h,y_n+h\sum_{j=1}^{s}a_{ij}k_j)$ $y_{n+1}=y_n+h\sum_{i=1}^{s}b_i k_i$\\ 
+$e^\top b=1$, $Ae=c$
+\section*{LMM}
+AB\@: $y_{n+1}-y_n=h[\frac{3}{2}f(t_n,y_n)-\frac{1}{2}f(t_{n-1},y_{n-1})]$,\\ 
+AM\@: $y_{n+1}-y_n=\frac{h}{2}(f(t_{n+1},y_{n+1})+f(t_n,y_n))$,\\ 
+General 2-step\@: $y_{n+2}+\alpha_1y_{n+1}+\alpha_0y_n=h(\beta_2 f_{n+2}+\beta_1 f_{n+1}+\beta_0 f_n)$\\
+$\mathscr{L}_h y(t)=y(t+2h)+\alpha_1y(t+h)+\alpha_0y(t)-h[\beta_2 y'(t+2h)+\beta_1 y'(t+h)+\beta_0 y'(t)]$\\
+$\rho(r)=r^2+\alpha_1 r+\alpha_0$ $\sigma(r)=\beta_2r^2+\beta_1r+\beta_0$ consistent if $\rho(1)=0$ and $\rho'(1)=\sigma(1)$\\
+K-step method\@: $y_{n+k}+\alpha_{k-1}y_{n+k-1}+\cdots+\alpha_0y_n=h[\beta_{k}y_{n+k}+\beta_{k-1}y_{n+k-1}+\cdots+\beta_0y_0]$
+\begin{enumerate}
+    \item Explicit\@: $\beta_k=0$
+    \item Consistent\@: $\rho(1)=0$ \& $\rho'(1)=\sigma(1)$
+    \item Zero-Stable\@: $\rho(r)$ satisfies Root Condition $\lvert r_i\rvert\le1$ and $\lvert r_i\rvert=1$ is simple.
+    \item Convergent\@: (2) + (3)
+\end{enumerate}
+Absolute Stability\@: A method with time step $h$ is absolutely stable to the test problem $y'=\lambda y$ if $\lim_{n\rightarrow\infty}y_n=0$\\
+$\mathscr{R}=\{z\in\mathcal{C}:\text{ the method is absolutely stable with }z=\lambda h\}$\\
+LMM $\rho(r,z)=\rho(r)-z\sigma(r)$\\
+$\mathscr{R}=\{z\in\mathcal{C}:\rho(r,z)=\rho(r)-z\sigma(r)\text{ satisfies the strict root condition}\}$\\
+$interior(\mathscr{R})$\@: set of $z$ that satisfies strict root condition.\\ 
+$exterior(\mathscr{R})$\@: set of $z$ that fails strict root condition.\\ 
+$\partial\mathscr{R}$\@: set of $z$ s.t $\rho(r,z)$ has $\lvert r_{\max}\rvert=1$.\\
+Boundary locus\@: $\{z=\frac{\rho(e^{i\theta})}{\sigma(e^{i\theta})}\}\theta\in[0,2\pi]$ Way of determining stability region from boundary.\\
+Stiff Problems
+\begin{itemize}
+    \item Two widely varying time scales
+    \item Use small step size due to stability (rather than accuracy)
+    \item Need methods with large stability regions
+\end{itemize}
+\section*{BVP}
+Dirichlet\@: $u(a)=\alpha$, $u(b)=\beta$ Neumann\@: $u'(a)=\alpha$, $u'(b)=\beta$\\
+$u''(x)=f(x)$ for $a<x<b$ with $u(a)=\alpha$, $u(b)=\beta$\\
+Finite difference approx $\frac{u_{i+1}-2u_i+u_{i-1}}{h^2}=f(x_i)$\\
+$\frac{1}{h^2}\begin{bmatrix}
+    -2 & 1 & & & &\\
+    1 & -2 & 1 & & &\\
+    & 1 & -2 & 1 & &\\
+    & & \ddots &\ddots & \ddots&\\
+    & & & 1 & -2 & 1\\
+    & & & & 1 & -2
+\end{bmatrix}\begin{bmatrix}
+    u_1\\
+    u_2\\
+    u_3\\
+    u_4\\
+    \vdots\\
+    u_{N-1}
+\end{bmatrix}=\begin{bmatrix}
+    f_1\\
+    f_2\\
+    f_3\\
+    f_4\\
+    \vdots\\
+    f_{N-1}
+\end{bmatrix}-\begin{bmatrix}
+    \alpha\\
+    0\\
+    0\\
+    \vdots\\
+    0\\
+    \beta
+\end{bmatrix}$\\
+$\tau_i=\frac{u_{i+1}-2u_i+u_{i-1}}{h^2}-f(x_i)$ $\tau_i=O(h^p)\rightarrow$ $p^{th}$ order accurate.\\
+$Ae=\tau$ where $e$ is global error vector and $\tau$ is LTE.\\
+For symmetric matrices $\rho(A)=\max\lvert\lambda_i\rVert$\\
+$\lVert e^h\rVert_2=O(h^{\frac{3}{2}})$
+\section*{Matrix Splitting}
+Jacobi Method\@: $x^{(k+1)}=G_jx^{(k)}+c_j$, $G_j=D^{-1}(L+U)$, $c_j=D^{-1}b$\\
+Gauss-Seidel\@: $x^{(k+1)}=G_gx^{(k)}+c_g$, $G_g={(D-L)}^{-1}U$, $c_g={(D-L)}^{-1}b$\\
+If $\rho(G)<1$ $\lim_{k\rightarrow\infty}G^k=0$ \& $\sum_{k=0}^{\infty}G^k={(I-G)}^{-1}$ exists. 
+\section*{Overdetermined System}
+Diagonally dominant\@: $\sum_{j\neq i}^{n}\lvert a_{ij}\rvert <\lvert a_{ii}\rvert$\\
+Exact Solution\@:$Ax_0=b$, 
+Approximation\@: $Ax=b-r$, 
+Residual\@: $r=b-Ax$, 
+error\@: $e=x_0-x$, $\lVert e\rVert\le \lVert A^{-1}\rVert\lVert r\rVert$,\\ 
+Relative error\@: $\frac{\lVert e\rVert}{\lVert x_0\rVert}$ (unknown), 
+Relative residual\@: $\frac{\lVert r\rVert}{\lVert b\rVert}$ (known),\\
+$\frac{\lVert e\rVert}{\lVert x_0\rVert}\le cond(A)\frac{\lVert r\rVert}{\lVert b\rVert}$\\
+$\underset{A^{m\times n+1}}{\begin{bmatrix}
+    1 & x_1 & \cdots & x_1^{n}\\
+    1 & x_2 & \cdots & x_2^{n}\\
+    \vdots & \vdots & \cdots & \vdots\\
+    1 & x_m & \cdots & x_m^{n}\\
+\end{bmatrix}}\underset{x}{\begin{bmatrix}
+    c_0\\
+    c_1\\
+    \vdots\\
+    c_n
+\end{bmatrix}}=\underset{b}{\begin{bmatrix}
+    y_1\\
+    y_2\\
+    \vdots\\
+    y_m
+\end{bmatrix}}$\\ 
+Normal Equation\@: $A^\top A x=A^\top b$\\
+QR Decomposition\@: $A=QR$ $Q$ is an orthonormal spanning set of $range(A)$ $Rx_0=Q^\top b$
+\end{document}

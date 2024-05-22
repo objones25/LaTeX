@@ -1,0 +1,219 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\begin{document}
+\section*{Formulas of PL}
+Formulas: We define them recursively by the $3$ clauses
+\begin{itemize}
+    \item [a)] Each propositional variable $A_i$ is a formula.
+    \item [b)] $(\lnot\phi)$, $(\phi\land\psi)$, $(\phi\lor\psi)$, and $(\phi\rightarrow\psi)$ are also formulas if $\phi$ and $\psi$ are.
+    \item [c)] No string that is not built by a) or b) is a formula. 
+\end{itemize}
+Definition: A set of strings is propositionally closed if it contains all the propositional variables and is closed under sentential conncetives. A string is a formula if it belongs to every propositionally closed set $S$.\\
+Induction on formulas:
+\begin{itemize}
+    \item [1)] Check that each propositional variable has property $P$.
+    \item [2)] If $\phi$ has property $P$ then so does $(\lnot\phi)$
+    \item [3)] If $\phi$ ans $\psi$ have property $P$ then so does $(\phi\bullet\psi)$ for any binary conncetive $\lor,\land,\rightarrow$.
+\end{itemize}
+Unique readability:\\
+For every formula exactly one of the following is true:
+\begin{itemize}
+    \item [1)] $\phi$ is a prop. variable
+    \item [2)] There is a unique formula $\psi$ s.t $\phi=(\lnot\psi)$.
+    \item [3)] There are unique formulas $\psi,\chi$ s.t $\phi=(\psi\lor\chi)$, $(\psi\land\chi)$, or $(\psi\rightarrow\chi)$
+\end{itemize}
+\section*{Semantics of PL}
+We assign a function $\upsilon:\{A_i|i\in\mathbb{N}\}\rightarrow\{T,F\}$ to each propositional variable and extend to all formulas by induction on formulas.\\
+Theorem: For any truth assigment $\upsilon:\{A_i|i\in\mathbb{N}\}\rightarrow\{T,F\}$, there is a unique extension $\upsilon:PL\rightarrow\{T,F\}$.\\
+Definition: A formula $\varphi\in PL$ is satisfiable if there is an assigment $\upsilon:\{A_i|i\in\mathbb{N}\}\rightarrow\{T,F\}$ s.t $\upsilon(\varphi)=T$\\
+Tarski conditions:
+\begin{itemize}
+    \item $\upsilon\models A_i\leftrightarrow \upsilon(A_i)=T$
+    \item $\upsilon\models\lnot\varphi\leftrightarrow\upsilon\not\models\varphi$
+    \item $\upsilon\models(\varphi\land\psi)\leftrightarrow\upsilon\models\varphi$ and $\upsilon\models\psi$
+    \item $\upsilon\models(\varphi\lor\psi)\leftrightarrow\upsilon\models\varphi$ or $\upsilon\models\psi$
+    \item $\upsilon\models(\varphi\rightarrow\psi)\leftrightarrow\upsilon\not\models\varphi$ or $\upsilon\models\psi$
+\end{itemize}
+Tautologies:
+\begin{itemize}
+    \item $\models\varphi\rightarrow(\psi\rightarrow\phi)$
+    \item $\models(\varphi\rightarrow\psi)\rightarrow((\varphi\rightarrow(\psi\rightarrow\chi))\rightarrow(\varphi\rightarrow\chi))$
+    \item $\models(\varphi\rightarrow\psi)\rightarrow((\varphi\rightarrow(\lnot\psi))\rightarrow(\lnot\varphi))$
+    \item $\models(\lnot(\lnot\varphi))\rightarrow\varphi$
+    \item $\models\varphi\rightarrow(\psi\rightarrow(\varphi\land\psi))$
+    \item $\models\varphi\rightarrow(\varphi\lor\psi)$
+    \item $\models(\varphi\rightarrow\chi)\rightarrow((\psi\rightarrow\chi)\rightarrow((\varphi\lor\psi)\rightarrow\chi))$
+\end{itemize}
+\section*{Logical Consequence and Soundness}
+$T\models\varphi$ means ``for every assigment that satisfies all formulas in $T$ then $\upsilon$ also satisfies $\varphi$''\\
+Modus Ponens: For any two formulas $\varphi,\psi$ $\varphi,(\varphi\rightarrow\psi)\models\psi$.\\
+Definition: A deduction or proof from a set of formulas $T$ is a finite sequence of formulas $\chi_0,\chi_1,\ldots,\chi_k$ such that for each $n\le k$ one of the following holds:
+\begin{itemize}
+    \item [(D1)] $\chi_n\in T$ (assumption)
+    \item [(D2)] $\chi_n\equiv \chi_i$ for some $i<n$ (repetition)
+    \item [(D3)] $\chi_n$ is an axiom
+    \item [(D4)] $\chi_n$ can be inferred with MP for some $\chi_i,\chi_j$ with $i,j<n$
+\end{itemize}
+$T\vdash \chi$ iff there is a proof $\chi_0,\chi_1,\ldots,\chi_k$ from $T$ s.t $\chi\equiv\chi_k$. Then $\chi$ is a theorem of $T$.\\
+Definition: A set of formulas is deductively closed if it contains all the axioms and it is closed under MP.\\
+Lemma: For every $T$ and $\varphi$ $T\vdash\varphi$ iff $\varphi\in S$ for every deductively closed $S\supseteq T$.\\
+Theorem: (Soundness) For any set of formulas $\Gamma$ and formula $\varphi$ if $\Gamma\vdash\varphi$ then $\Gamma\models\varphi$.
+\section*{Consistency and Completeness}
+Definition: A set of formulas $\Gamma$ is consistent if there is no formula $\varphi$ s.t $\Gamma\vdash\varphi$ and $\Gamma\vdash\lnot\varphi$.\\
+Definition: A set of formulas is strongly complete if $\forall\varphi\in PL$ either $\varphi\in \Gamma$ or $\lnot\varphi\in\Gamma$.\\
+Step 1: A set of formulas $S$ is consistent and strongly complete iff there is an assigment $\upsilon$ to the propositional variables s.t for every formula $\varphi$ $\upsilon\models\varphi\leftrightarrow\varphi\in S$.\\
+The Deduction Theorem: For any set of formulas $T$ and all $\varphi,\psi$ if $\Gamma,\varphi\vdash \psi$ then $\Gamma\vdash(\varphi\rightarrow\psi)$\\
+Step 2: If $\Gamma$ is consistent then for every formula $\varphi$ either $\Gamma\cup\varphi$ or $\Gamma\cup\varphi$ is consistent.\\
+Step 3: (The Completeness Theorem for PL) 
+\begin{itemize}
+    \item [(1)] Every consistent set of formulas is satisfiable
+    \item [(2)] If $\Gamma\models\chi$ then $\Gamma\vdash\chi$
+\end{itemize}
+\section*{Structures}
+Language: is a set of constants, function symbols, and relation symbols. $\mathcal{L}=\{c_j\}_{j\in J}\cup\{R_i\}_{i\in I}\cup\{R_k\}_{k\in K}$\\
+Terms and formulas:\\
+Let $\mathcal{L}$ be a language we consider $S\supseteq \mathcal{L}$ of symbols where we add: 
+\begin{itemize}
+    \item [(1)] The logical symbols $\lnot,\lor,\land,\rightarrow,\forall,\exists,=$
+    \item [(2)] Parentheses $()$
+    \item [(3)] The individual variables $v_0,v_1,\ldots$
+\end{itemize}
+Definition: An $\mathcal{L}$-term is defined by recursion where:
+\begin{itemize}
+    \item [a)] Each variable $v_i$ is a term
+    \item [b)] Each constant symbol is a term
+    \item [c)] If $\tau_1,\ldots,\tau_n$ are terms and $f$ is an $n-ary$ function symbol then $f(\tau_1,\ldots,\tau_n)$ is a term
+\end{itemize}
+Definition: An $\mathcal{L}$-formula is defined by recursion where:
+\begin{itemize}
+    \item [a)] If $s,t$ are terms then $s=t$ is a formula
+    \item [b)] If $\tau_1,\ldots,\tau_n$ are terms and $R$ is an $n-ary$ relation symbol then $R(\tau_1,\ldots,\tau_n)$ is a formula
+    \item [c)] If $\varphi,\psi$ are formulas and $v$ is a variable $(\lnot\varphi),(\varphi\bullet\psi),\exists v\varphi,\forall v\varphi$ are formulas.
+\end{itemize}
+Let $\varphi$ be an $\mathcal{L}$-formula then
+\begin{itemize}
+    \item [(1)] $\varphi$ is quantifier free if $\exists$ and $\forall$ do not occur in $\varphi$
+    \item [(2)] The variable $x_i$ if free in $\varphi$ if it is not quantified
+\end{itemize}
+\section*{Semantics}
+A structure in the language $\mathcal{L}=\{c_j\}_{j\in J}\cup\{R_i\}_{i\in I}\cup\{R_k\}_{k\in K}$ is a pair $A=(A,I)$ where:
+\begin{itemize}
+    \item $A$ is a non-empty set (we call $A$) to be the universe 
+    \item $I$ is an interpretation that assigns:
+    \begin{itemize}
+        \item $I(c)=c^A$ an element of $A$.
+        \item $I(R)=R^A$ is an $n-ary$ relation $R^A\subset A^n$ to each $n-ary$ relation $R$.
+        \item $I(f)=f^A:A^n\rightarrow A$ an $n-ary$ function for each function symbol.
+    \end{itemize}
+\end{itemize}
+Definition: An isomorphism $\sigma:A\rightarrow B$ where both are $\mathcal{L}$-structures is a bijection such that:
+\begin{itemize}
+    \item [(1)] For each constant symbol $c_A$ $\sigma(c_A)=c_B$
+    \item [(2)] For each $n-ary$ relation symbol $R$ and $a_1,a_2,\ldots,a_n\in A$, $(a_1,a_2,\ldots,a_n)\in R^A\leftrightarrow (\sigma(a_1),\sigma(a_2),\ldots,\sigma(a_n))\in R^B$
+    \item [(3)] For eahc $n-ary$ function symbol $f$ and $a_1,a_2,\ldots,a_n\in A$, $=\sigma(f^A(a_1,a_2,\ldots,a_n))=f^B(\sigma(a_1),\sigma(a_2),\ldots,\sigma(a_n))$ 
+\end{itemize}
+If $A$ and $B$ are isomorphic then we denote this by $A\cong B$\\
+Theorem: Let $M$ and $N$ be $\mathcal{L}$-structures and $f:M\rightarrow N$ an isomorphism. 
+If $\upsilon$ is an assigment $\upsilon:Var\rightarrow M$ then $f\circ\upsilon:Var\rightarrow N$ is an assignment on $N$ and for any formula $\varphi$ and tuple $\overline{m}\in M$ $(M,\upsilon)\models\varphi(\overline{m})$ iff $(M,f\circ\upsilon)\models\varphi(f(\overline{m}))$.\\
+Definition: An automorphism $\sigma$ of $M$ is an isomorphism of $M$ onto $M$.
+Definition: (Substructure) Let $A=(A,I)$ $B=(B,J)$ be $\mathcal{L}$-structures. $A$ is a substructure of $B$ if 
+\begin{itemize}
+    \item $A\subseteq B$
+    \item For every constant symbol $c^B=c^A\in A$
+    \item For any $n-ary$ function and $a_1,a_2,\ldots,a_n\in A$, $f^A(a_1,a_2,\ldots,a_n)=f^B(a_1,a_2,\ldots,a_n)$
+    \item For any $n-ary$ relation and $a_1,a_2,\ldots,a_n\in A$ $R^B(a_1,a_2,\ldots,a_n)\leftrightarrow R^A(a_1,a_2,\ldots,a_n)$
+\end{itemize}
+Definition: An assigment into a structure $A$ is any association of objects in $A$ with variables $\pi:Variables\rightarrow A$.\\
+The value of an assigment is proven by induction on formulas.\\
+Satisfaction: Let $A$ be and $\mathcal{L}$-structure and $\pi$ an assigment in $A$ and $\varphi$ an $\mathcal{L}$-formula\\
+We say $A,\pi\models\phi\leftrightarrow value(\varphi,\pi)=1\leftrightarrow$ the assigment $\pi$ satisfies the formula in the structure $A$.\\
+Tarski conditions:
+\begin{itemize}
+    \item $A,\pi\models s=t\leftrightarrow {value}^A(s,\pi)={value}^A(t,\pi)$
+    \item $A,\pi\models \lnot\varphi\leftrightarrow A,\pi\not\models \varphi$
+    \item $A,\pi\models\varphi\land\psi\leftrightarrow$ $A,\pi\models\varphi$ and $A,\pi\models\psi$
+    \item $A,\pi\models\varphi\lor\psi\leftrightarrow$ $A,\pi\models\varphi$ or $A,\pi\models\psi$
+    \item $A,\pi\models\varphi\rightarrow\psi\leftrightarrow$$A,\pi\not\models\varphi$ or $A,\pi\models\psi$
+    \item $A,\pi\models\exists v\varphi\leftrightarrow$ there is $a\in A$ such that $(A,\pi(v:=a))\models\varphi$
+    \item $A,\pi\models\forall v\varphi\leftrightarrow$ for all $a\in A$ $(A,\pi(v:=a))\models\varphi$
+\end{itemize}
+Definition: A proposition $\Phi$ in ordinary English about an $\mathcal{L}$-structure $A$ is expressed or formalized by a sentence if $\Phi$ and $\varphi$ mean the same thing ($\phi$ is a statement)$\rightarrow$ $\varphi$ is a sentence if all variables are quantified.
+\section*{Definable Sets}
+Let $R\subseteq A^n$ where $A$ is an $\mathcal{L}$-structure and $R$ is a relation in the universe of $A^n$. We say that $R$ is definable if there is (1) an $\mathcal{L}$-formula $\varphi(\overline{x},\overline{y})$ (2) a tuple $\overline{a}_0\in A^{\lvert\overline{y}\rvert}$ such that $A\models \varphi(\overline{b},\overline{a}_0)$ iff $\overline{b}\in A$ and we say that it is definable over $a_0$\\
+If $R$ is definable over $a_0$ then there is an $\mathcal{L}$-formula $\varphi(\overline{x},\overline{y})$ such that:\\ 
+$(m_1,m_2,\ldots,m_n)\in R$ iff $(M,v)\models\varphi(\overline{m},a_0)\leftrightarrow(M,\sigma\circ v)\models\varphi(\sigma(\overline{m}),a_0)$
+\section*{Theories}
+Definition: Let $\mathcal{L}$ be a fixed language on $\mathcal{L}$-theory $T$ is any (possibly infinite) set of sentences $T$. The members of $T$ are called axioms.\\
+Definition 2: An $\mathcal{L}$-structure $M$ is a model of an $\mathcal{L}$-theory $T$ if for any sentence $\varphi\in T$ $M\models \phi$ i.e $M\models T$.\\
+Definition 3: The models of a theory $T$ $T$ is the class of $\mathcal{L}$-structures $Mod(T)=\{M|M\text{ is an }\mathcal{L}\text{-structure and }M\models T\}$\\
+Definition: Let $\mathcal{L}$ be a fixed language and let $\Phi$ be a property of $\mathcal{L}$-structures we say that it is elementary if there is an $\mathcal{L}$-theory $T$ such that:\\
+For $M$ and $\mathcal{L}$-structure $M$ has property $\Phi\leftrightarrow M\models T$ 
+Definition: Let $M$ and $N$ be $\mathcal{L}$-structures then they are elementary equivalent if $\forall\varphi$ $\mathcal{L}$-sentence $M\models\varphi$ iff $N\models\varphi$ we denote this by $M\equiv N$,
+\section*{Logical Consequence and Proofs}
+Definition: Let T be an $\mathcal{L}$-Theory and $\varphi$ an $\mathcal{L}$-sentence we say that $\varphi$ is a logical consequence $T\models\varphi$ iff every $\mathcal{L}$-structure $M\models T$ then $M\models \varphi$.\\
+Hilbert's axiom schemes\\
+(a) Propositional Axiom Schemes: The set of logical tautologies\\
+(b) Predicate Axiom Schemes\begin{itemize}
+    \item $\forall\upsilon\varphi(\upsilon,\vec{u})\rightarrow \varphi(\tau,\vec{u})$ $\tau$ free for $\upsilon$ in $\varphi(\upsilon,\vec{u})$
+    \item $\forall\upsilon(\varphi\rightarrow\psi)\rightarrow(\varphi\rightarrow\forall\upsilon\psi)$ $\upsilon$ not free in $\varphi$
+    \item $\varphi(\tau,\vec{u})\rightarrow\exists\upsilon\varphi(\upsilon,\vec{u})$ $\tau$ free for $\upsilon$ in $\varphi(\upsilon,\vec{u})$
+\end{itemize}
+(c) Rules of Inference \begin{itemize}
+    \item From $\varphi$ and $\varphi\rightarrow\psi$ infer $\psi$ MP
+    \item From $\varphi$ infer $\forall\upsilon\varphi$ (Generalization)
+    \item From $\varphi\rightarrow\psi$ infer $\exists\upsilon\varphi\rightarrow\psi$ provided $\upsilon$ is not free in $\psi$ (Exists Elimination)
+\end{itemize}
+(d) Identity Axioms \begin{itemize}
+    \item $\upsilon=\upsilon$ $\upsilon=\upsilon'\rightarrow\upsilon'=\upsilon$ $\upsilon=\upsilon'\rightarrow((\upsilon'\rightarrow\upsilon'')\rightarrow(\upsilon\rightarrow\upsilon''))$
+    \item $(v_1=w_1\land\ldots\land v_n=w_n)\rightarrow(R(v_1,\ldots,v_n)\rightarrow R(w_1,\ldots,w_n))$ any $n-ary$ relation symbol
+    \item $(v_1=w_1\land\ldots\land v_n=w_n)\rightarrow(f(v_1,\ldots,v_n)=f(w_1,\ldots,w_n))$ any $n-ary$ function symbol
+\end{itemize}
+Definition: A deduction from a theory $T$ is any sequence of formulas $\varphi_0,\ldots\varphi_n$ where each $\varphi_i$ is either:
+\begin{itemize}
+    \item an axiom $\varphi_i\in$ Hilbert's Axioms
+    \item a hypothesis $\varphi_i\in T$
+    \item repetition $\varphi_i=\varphi_j$ for $j<i$
+    \item or follows from MP, Generalization, or Exists Elimination
+\end{itemize}
+Definition: (Soundness for first order logic) Let $T$ be a theory and $\chi$ a sentence if $T\vdash\chi$ then $T\models\chi$\\
+Lemma: Let $M$ be an $\mathcal{L}$-structure and $\chi$ an axiom in the Hilbert's list (not inference) then $M\models\chi$
+\section*{Completeness Theorem}
+Definition 1: $\Gamma$ a theory and $\varphi$ a sentence if $\Gamma\models\varphi$ then $\Gamma\vdash\varphi$\\
+Definition 2: If $\Gamma$ is consistent then it is satisfiable\\
+Consistency: A theory $T$ is consistent if there is no sentence $\varphi$ such that $T\vdash\varphi$ and $T\vdash\lnot\varphi$\\
+An $\mathcal{L}$-theory is satisfiable if there is an $\mathcal{L}$-structure $M$ such that $M\models T$\\
+An $\mathcal{L}$-theory is complete if for every sentence $\varphi$ either $\varphi\in\Gamma$ or $\lnot\varphi\in\Gamma$\\
+Definition: A theory $T$ has the Henkin property if:
+\begin{itemize}
+    \item [(a)] it is consistent
+    \item [(b)] it is complete
+    \item [(c)] if $\exists v \varphi\in H$ then there is a constant $c$ such that $\varphi(c)\in H$
+\end{itemize}
+Idea: add a bunch of constants to witness the existentials\\
+Definition: Fix a Henkin set we say that it is deductively closed if for every sentence $\chi$ if $H\vdash\chi$ then $\chi\in H$
+For all sentences $\varphi,\psi,\exists v\varphi(v),\forall v\varphi(v)$
+\begin{itemize}
+    \item [(a)] $\lnot\varphi\leftrightarrow\varphi\not\in H$
+    \item [(b)] $\varphi\land\psi\in H\leftrightarrow\varphi\in H$ and $\psi\in H$
+    \item [(c)] $\varphi\lor\psi\in H\leftrightarrow\varphi\in H$ or $\psi\in H$
+    \item [(d)] $\varphi\rightarrow\psi\in H\leftrightarrow\varphi\not\in H$ or $\psi\in H$
+    \item [(e)] $\exists v\varphi(v)\in H\leftrightarrow$ there is some constant $c$ such that $\varphi(c)\in H$
+    \item [(f)] $\forall v\varphi(v)\in H\leftrightarrow$ for all constants $c$ $\varphi(c)\in H$
+\end{itemize} 
+Every Theory can be extended to a Henkin Set\\
+Every Henkin set is satisfiable\\
+\section*{Compactness Theorem*}
+(PL Logic) Suppose $T$ is an infinite set of formulas. Prove that if every finite subset $T_0\subset T$ is satisfiable, then $T$ is satisfiable.\\
+(First Order) If every finite subset of a theory $T$ in a finite vocabulary has a model, then $T$ has a model.
+\end{document}

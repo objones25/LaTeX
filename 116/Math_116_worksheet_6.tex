@@ -1,0 +1,50 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+\usepackage{pdfpages}
+\title{\bf Math 116: Worksheet 6}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item \begin{enumerate}
+        \item  $\begin{array}{r}
+                x^2+2x+1\phantom{)}   \\
+                x^4+x^3+x^2+x+1{\overline{\smash{\big)}\,x^6+3x^5+4x^4+5x^3+4x^2+3x+1\phantom{)}}}\\
+                \underline{-~\phantom{(}(x^6+x^5+x^4+x^3+x^2)\phantom{-b)}}\\
+                2x^5+3x^4+4x^3+3x^2+3x+1\phantom{)}\\ 
+                \underline{-~\phantom{(}(2x^5+2x^4+2x^3+2x^2+2x)\phantom{-b)}}\\
+                x^4+2x^3+x^2+x+1\phantom{)}\\
+                \underline{-~\phantom{(}(x^4+x^3+x^2+x+1)\phantom{-b)}}\\
+                x^3\phantom{)}\\
+                \end{array}$
+                Thus, $x^6+3x^5+4x^4+5x^3+4x^2+3x+1\equiv x^3[\mathbb{Q}]/(P(x))$
+        \item \begin{align*}
+            &x^4+x^3+x^2+x+1=(x+1)x^3+x^2+x+1\\
+            &x^3=(x)(x^2+x+1)-x-1\\
+            &x^2+x+1=(-x)(-x-1)+1
+        \end{align*}  
+        \item $\begin{array}{c c c}
+            & s(x) & t(x)\\
+            x^4+x^3+x^2+x+1 & 1 & 0\\
+            x^3 & 0 & 1\\
+            x^2+x+1 & 1 & -x-1\\
+            -x-1 & -x & x^2+x+1\\
+            1 & 1-x^2 & x^3+x^2-1
+        \end{array}$\\
+Thus, $x^3+x^2-1$ is $x^3$ inverse.
+    \end{enumerate}
+    \item Suppose for the sake of contradiction $P(x)$ is reducible. Since $\deg(P)=3$ it must be factorable into one quadratic and one linear factor.\\
+    Let $x-a\mid P(x)$. 
+\end{enumerate}
+\end{document}

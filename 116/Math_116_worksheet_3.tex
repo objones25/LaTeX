@@ -1,0 +1,45 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+\usepackage{pdfpages}
+
+\title{\bf Math 116: Worksheet 3}
+\date{2/1/2024}
+\author{\bf Owen Jones and James Dowty}
+\begin{document}
+\maketitle
+\begin{enumerate}[label= \arabic*.]
+    \item \begin{enumerate}
+        \item $\begin{array}{c c c}
+            & y_1 & y_2\\
+            88 & 1 & 0\\
+            63 & 0 & 1\\
+            25 & 1 & -1\\
+            13 & -2 & 3\\
+            12 & 3 & -4\\
+            1 & -5 & 7\\
+        \end{array}\\
+        88(-5)+63(7)=1$
+        \item $x=65\cdot 63\cdot 7+52\cdot 88\cdot (-5)+88\cdot 63k=5785\equiv 241\pmod{88\cdot 63}$.\\
+        $x\equiv 241\pmod{5544}$.
+        \item $x=23\cdot 63\cdot 7+42\cdot 88\cdot (-5)+88\cdot 63k=-8337\equiv 2751\pmod{5544}$.\\
+        $x\equiv2751\pmod{5544}$.
+    \end{enumerate}
+    \item $x\equiv 162869022118\pmod{542909251286}$
+    \item $x\equiv 569\pmod{133980}$. They must all be pairwise coprime.
+    \item \begin{enumerate}
+        \item $\gcd(18,60)=6$. Because $18$ and $60$ are not co-prime, the CRT does not guarantee a solution.
+        \item 
+    \end{enumerate}
+\end{enumerate}
+\end{document}

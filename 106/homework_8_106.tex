@@ -1,0 +1,46 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{tikz}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 106: Problem Set 8}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\begin{enumerate}
+    \item [\textbf{10.4.1}] The Taylor series of $\frac{\sin\sqrt{x}}{\sqrt{x}}=1-\frac{x}{3!}+\frac{x^2}{5!}-\frac{x^3}{7!}\ldots$ is a polynomial with roots at $\pi^2 k^2$ for $k\in\mathbb{N}$.
+    Using Descartes's factor theorem, we can write $\frac{\sin\sqrt{x}}{\sqrt{x}}=(1-\frac{x}{\pi^2})(1-\frac{x}{4\pi^2})(1-\frac{x}{9\pi^2})\ldots$ as a product of its roots.
+    Using the composition of functions, $\frac{\sin\sqrt{x^2}}{\sqrt{x^2}}=(1-\frac{x^2}{\pi^2})(1-\frac{x^2}{4\pi^2})(1-\frac{x^2}{9\pi^2})\ldots$. 
+    $\frac{\sin\lvert x\rvert}{\lvert x\rvert}=\frac{\sin x}{x}$ by properties of odd and even functions (Consider casewise $x<0$ and $x\ge 0$). 
+    Multiplying by $x$, we obtain $\displaystyle \sin x=x\prod_{k\in\mathbb{N}}(1-\frac{x^2}{\pi^2 k^2})$.
+    \item [\textbf{10.4.2}] $\sin\frac{\pi}{2}=1$. 
+    Thus, $\displaystyle 1=\frac{\pi}{2}\prod_{k\in\mathbb{N}}(\frac{4k^2-1}{ 4k^2})\Rightarrow \frac{2}{\pi}=\prod_{k\in\mathbb{N}}\frac{2k-1}{2k}\frac{2k+1}{2k}$. 
+    Taking the reciprocal and dividing by two, we obtain $\frac{\pi}{4}=\frac{1}{2}\prod_{k\in\mathbb{N}}\frac{2k}{2k-1}\frac{2k}{2k+1}$
+    \item [\textbf{10.6.1}] $\displaystyle \lim_{n\rightarrow\infty}\frac{F_{n+1}}{F_n}=\lim_{n\rightarrow\infty}\frac{\frac{1}{\sqrt{5}}(\phi^{n+1}-{(1-\phi)}^{n+1})}{\frac{1}{\sqrt{5}}(\phi^{n}-{(1-\phi)}^{n})}=\lim_{n\rightarrow\infty}\frac{\phi^{n+1}-{(1-\phi)}^{n+1}}{\phi^{n}-{(1-\phi)}^{n}}$. 
+    Observe $\displaystyle\lvert 1-\phi\rvert<1\Rightarrow \lim_{n\rightarrow\infty}{(1-\phi)}^{n}=0$.
+    Thus, $\displaystyle\lim_{n\rightarrow\infty}\frac{\phi^{n+1}-{(1-\phi)}^{n+1}}{\phi^{n}-{(1-\phi)}^{n}}=\lim_{n\rightarrow\infty}\frac{\phi^{n+1}}{\phi^{n}}=\phi=\frac{1+\sqrt{5}}{2}$
+    \item [\textbf{10.7.1}] Suppose there are finitely many primes $p_1,p_2,\ldots,p_n$. 
+    The Euler product is defined to be a generating formula for $\zeta(s)$.
+    \begin{align*}
+        &\zeta(1)=\prod_{k=1}^{n}\frac{1}{1-\frac{1}{p_k}}=\prod_{k=1}^{n}\sum_{m=0}^{\infty}\frac{1}{p_k^m}=1+\sum\frac{1}{p_1^{m_1}p_2^{m_2}\ldots p_n^{m_n}}=\sum_{n=1}^{\infty}\frac{1}{n}
+    \end{align*}
+    To derive a contradiction, we show the two series are not equal.\\
+    Trivially, every term of the series $\displaystyle 1+\sum\frac{1}{p_1^{m_1}p_2^{m_2}\ldots p_n^{m_n}}$ is the reciprocal of a natural number.
+    Thus, it suffices to show $\displaystyle1+\sum\frac{1}{p_1^{m_1}p_2^{m_2}\ldots p_n^{m_n}}$ is missing terms of the harmonic series.
+    Consider $\frac{1}{p_1p_2\ldots p_n+1}$. $p_1p_2\ldots p_n+1$ is a natural number, so clearly, $\frac{1}{p_1p_2\ldots p_n+1}$ is a term of the harmonic series.
+    However, $p_1p_2\ldots p_n+1$ is not divisible by any of $p_1,p_2,\ldots,p_n$.  
+    Thus, $\displaystyle 1+\sum\frac{1}{p_1^{m_1}p_2^{m_2}\ldots p_n^{m_n}}$ is missing the term $\frac{1}{p_1p_2\ldots p_n+1}$.
+    Hence, we obtain a contradiction because the Euler product cannot be a generating function for the $\zeta(s)$ if we have finitely many primes. 
+\end{enumerate}
+\end{document}
