@@ -16,4 +16,59 @@
 \begin{document}
 \maketitle
 \section*{Problem 1}
+\begin{itemize}
+    \item [(1)] To show $T_R$ is consistent, it suffices to show there exists a structure $G$ s.t $G\models T_R$.
+    Let $G_0$ be some countable graph. 
+    We want to construct some countable graph $G_1\supset G_0$ s.t if $X$ and $Y$ are disjoint finite subsets of $G_0$, then there is a vertex $z\in G_1$ s.t $R(x,z)$ for $x\in X$ and $\lnot R(y,z)$ for $y\in Y$.
+    We construct $G_1$ by adding a new vertex $z_X$ for each finite $X\subseteq G_0$. 
+    For each $X\subseteq G_0$ and $x\in X$, we add new edges between $x$ and $z_X$ s.t $R(x,z_X)$ holds. 
+    It follows for each finite disjoint subsets $X$ and $Y$ of $G_0$, we can find $z\in G_1$ s.t $R(x,z)$ for each $x\in X$ and $\lnot R(y,z)$ for each $y\in Y$.
+
+    By adding new points to $G_{n+1}$ in a similar manner as before, we can iterate the construction of a sequence of countable graphs. 
+    For each $n\in\mathbb{N}$, we can construct a countable $G_{n+1}\supset G_{n}$ s.t for each disjoint subsets $X$ and $Y$ of $G_n$, we can find $z\in G_{n+1}$ s.t $R(x,z)$ for each $x\in X$ and $\lnot R(y,z)$ for each $y\in Y$.
+    Let $G=\underset{n\in\mathbb{N}}{\bigcup}G_n$ which by compactness is a countable model for $T_R$.
+    \item [(2)] Let $M\models T_R$. Let $a_1,\ldots, a_n$ and $b_1,\ldots, b_n$ be in $M$ s.t $\{a_1,\ldots, a_n\}\cap\{b_1,\ldots, b_m\}=\emptyset$.
+    It follows there exists $d_1$ s.t $\bigwedge_{i=1}^n R(a_i,d_1)\bigwedge_{j=1}^m \lnot R(b_j,d_1)$. 
+    We can iterate this process for each $k\in\mathbb{N}$ to find $\{d_1,\ldots,d_k\}$ points such that for $l\le k$ $\bigwedge_{i=1}^n R(a_i,d_l)\bigwedge_{j=1}^m \lnot R(b_j,d_l)$. 
+    We can do this because for the finite subset $\{a_1,\ldots,a_n,d_1,\ldots,d_{k-1}\}$ there exists a $d_k$ s.t $\bigwedge_{i=1}^n R(a_i,d_k)\bigwedge_{l=1}^{k-1} R(d_l,d_k)\bigwedge_{j=1}^m \lnot R(b_j,d_k)$.
+    It follows we can construct a countably infinite set $D\subset M$ s.t for each $d\in D$ $\bigwedge_{i=1}^n R(a_i,d)\bigwedge_{j=1}^m \lnot R(b_j,d)$.
+\end{itemize}
+\section*{Problem 2}
+    \begin{itemize}
+        \item [(1)] Consider the sentence $\varphi=\exists x\forall y(y\le x)$. Because $\mathcal{M}$ has a last element, $\mathcal{M}\models\varphi$. By elementary equivalence, $\mathcal{N}\models\varphi$. Thus, $\mathcal{N}$ must have a last element.
+        \item [(2)] Extend $L_M$ to a new language $L'=L_M\cup\{a\}$. 
+        Construct a new theory $T'=T_{ord}\cup\{a>m|m\in M\}$ in the language $L'$ by extending the original theory $T_{ord}$.
+        Any finite subset of $T'$ mentions only finitely many elements of $M$. 
+        Because $M$ doesn't have a last element, for any finite set of elements $\{m_1,m_2,\ldots,m_k\}$ we can find an element $a\in M$ s.t the set of sentences $\{a>m_i|i=1,\ldots,k\}$ is consistent with $T_{ord}$.
+        By compactness, $T'$ is satisfiable. Thus, $T'$ has a model $\mathcal{N}$ s.t $M\subseteq N$, $M\equiv N$, and there exists $a\in N$ s.t $a$ is larger than every element in $M$.
+        \item [(3)] $L_M$ to a new language $L'=L_M\cup\{c_i\}$ by adding infinitely many constants.
+        Construct a new theory $T''=T_{ord}\cup\{a<c_i<b|a,b\in M,a<b\}$ in the language $L'$ by extending the original theory $T_{ord}$.
+        Any finite subset of $T''$ mentions only finitely many pairs $(a,b)$ of $M$ and each sentence is satisfiable by an appropriate choice of $c_i$ because $M$ is given to be dense.
+        By compactness, $T''$ is satisfiable. Thus, $T''$ has a models $\mathcal{N}$ s.t $M\subseteq N$, $M\equiv N$, and there exists $c\in N\setminus M$ s.t $a<c<b$ for each pair $a,b\in M$ where $a<b$.
+    \end{itemize}
+\section*{Problem 3}
+Assume to the contrary no such natural number $n$ exists such that $\varphi$ is true in all finite models of $T$ with size at least $n$.
+Construct a sequence of models $M_1,M_2,\ldots$ where $\lvert M_n\rvert\ge n$ and $M_n\models T$ but $M_n\not\models \varphi$.
+Consider the set of sentences $T\cup\{\lnot\varphi\}\cup\{\exists x_1,\ldots x_n\underset{i\neq j}{\bigwedge}(x_i\neq x_j)|n\in\mathbb{N}\}$. 
+By assumption, there is a model $|M_n|\ge n$ for each $n\in\mathbb{N}$.
+By compactness, $T\cup\{\lnot\varphi\}$ has an infinite model. 
+Let $M$ be an infinite model of $T\cup\{\lnot\varphi\}$.
+Thus, $M\models T$ and $M\models\lnot\varphi$ which is clearly a contradiction.
+Hence, a finite $n$ must exist.
+\section*{Problem 4}
+Assume the theory $T$ is complete.
+Let $M$ and $N$ be models of $T$.
+Our goal is to show $M\equiv N$ i.e for every $\mathcal{L}$-sentence $\phi$ $M\models\phi$ iff $N\models\phi$.
+Since $T$ is complete, for every $\mathcal{L}$-sentence $\phi$ either $T\vdash\phi$ or $T\vdash\lnot\phi$.
+By soundedness and the completeness of first order logic $T\vdash\phi\leftrightarrow T\models\phi$.
+If $T\vdash\phi$, then $\phi$ is true in every models of $T$, including $M$ and $N$, so $M\models\phi$ and $N\models\phi$.
+If $T\vdash\lnot\phi$, then $\lnot\phi$ is true in every models of $T$, including $M$ and $N$, so $M\not\models\phi$ and $N\not\models\phi$.
+Thus, $M$ and $N$ agree on the truth values for every $\mathcal{L}$-sentence $\phi$.\\
+Assume for every two models $M$ and $N$ of $T$, $M\equiv N$.
+Our goal is to show $T$ is complete i.e for every $\mathcal{L}$-sentence $\phi$ either $T\vdash\phi$ or $T\vdash\lnot\phi$.
+Assume to the contrary $T$ is not complete. Thus, there exists a sentence $\phi$ s.t neither $T\vdash\phi$ nor $T\vdash\lnot\phi$.
+Because $T$ doesn't prove $\phi$, we can find a model $M$ s.t $M\not\models\phi$.
+Because $T$ doesn't prove $\lnot\phi$, we can find a model $N$ s.t $N\models\phi$.
+Thus, we obtain a contradiction because we assumed $M\models\phi$ iff $N\models\phi$ for every $\mathcal{L}$-sentence $\phi$.
+Hence, $T$ must be complete.
 \end{document}

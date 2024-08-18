@@ -1,0 +1,167 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 114L\@: Project}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\section*{Problem 1}
+To prove that there exists an $\mathcal{L}$ structure $M$ $M\models\bigcup_{i\in\mathbb{N}}T_i$, we will use the compactness theorem.
+The compactness theorem for first order logic states that if every finite subset of an $\mathcal{L}$-theory is consistent, then the $\mathcal{L}$-theory is satisfiable.
+By assumption, for any finite subset $A\in\mathbb{N}$, the theory $T_A$ is consistent. 
+Because every finite subset $T_A$ of $\bigcup_{i\in\mathbb{N}}T_i$ is consistent, there must exist an $\mathcal{L}$-structure $M$ $M\models\bigcup_{i\in\mathbb{N}}T_i$.
+\section*{Problem 2}
+\subsection*{Part A}
+\begin{itemize}
+    \item [(a)] We need to show $\sigma$ is a bijection that preserves the structure of $\mathcal{L}_0$. 
+    Let $a,a'\in\mathbb{Z}$. 
+    Clearly, $\sigma(a)=a+1=a'+1=\sigma(a')$ iff $a=a'$. 
+    For every $b\in \mathbb{Z}$, there exist $b-1\in\mathbb{Z}$ s.t $\sigma(b-1)=b$.
+    Thus, $\sigma$ is a bijection because the function is injective and surjective.
+    $\sigma(s(x))=\sigma(x+1)=x+2=s(x+1)=s(\sigma(x))$, so $\sigma$ preserves the structure of $\mathcal{L}_0$. 
+    Thus, $\sigma$ is an automorphism.
+    \item [(b)] Suppose there is a relation $R$ s.t some element $a\in\mathbb{Z}$ were definable. 
+    Let $\sigma$ be the automorphism from part $a$. 
+    $R$ is definable if $a\in R\leftrightarrow \sigma(a)\in R$. 
+    Since $\sigma(a)\neq a$, $a\in\mathbb{Z}$ is not definable.
+    \item [(c)] Suppose there as a relation $R$ s.t $2\mathbb{Z}$ is definable. 
+    Let $\sigma$ be the automorphism from part $a$. 
+    $R$ is definable if $a\in R\leftrightarrow\sigma(a)\in R$.
+    If $a\in2\mathbb{Z}$, then $\sigma(a)=a+1$ is odd.
+    Thus, the set of even integers can't be definable.
+\end{itemize}
+\subsection*{Part B}
+\begin{itemize}
+    \item [(a)] Let $n$ be an integer. 
+    $\varphi(x):(x=\underbrace{s(s(s(\ldots s(0))))}_{n\text{ many times}})$ is a formula that defines any non-negative integer $n$.
+    $\varphi(x):(0=\underbrace{s(s(s(\ldots s(x))))}_{-n\text{ many times}})$ is a formula that defines any negative integer $n$.
+    \item [(b)] Let $\sigma$ be an automorphism of $\mathcal{M}_1$.
+    We show by induction that $\sigma$ is the identity.
+    $\sigma(0)=0$ because automorphisms preserve constants.
+    Let $k\in \mathbb{Z}$. 
+    Assume $\sigma(k)=k$. 
+    $\sigma(s(k))=s(\sigma(k))$ because automorphisms preserve functions.
+    Thus, $\sigma(k+1)=\sigma(k)+1=k+1$.
+    Likewise, $k=\sigma(k)=\sigma(s(k-1))=s(\sigma(k-1))=\sigma(k-1)+1$, so $\sigma(k-1)=k-1$
+    Hence, for any $k\in\mathbb{Z}$ $\sigma(k)=k$. Therefore, $\sigma$ must be the identity.
+    \item[(c)] Define a new theory $T^*:=Th(\mathcal{M}_1)\cup\{\lnot(a=n):n\in\mathbb{Z}\}$. We showed previously every integer is definable.
+    We show $T^*$ is satisfiable by considering any finite subset of $T^*$. 
+    $\mathcal{M}_1\models Th(\mathcal{M}_1)$ and for any finite subset of $\{\lnot(a=n):n\in\mathbb{Z}\}$ only finitely many witnesses $n\in\mathbb{Z}$. 
+    We can let $a$ be the successor to the largest $n$ in the subset. 
+    Since, $T^*$ is finitely satisfiable, there exists a model $\mathcal{N}$ $\mathcal{N}\models T^*$ that is elementary equivalent to $\mathcal{M}_1$, contains $\mathcal{M}_1$ as an elementary substructure, but has an element $a\not\in\mathbb{Z}$.
+    \item [(d)] To show $s_N$ is injective we consider $x,y\in N$. If $s_N(x)=s_N(y)\Rightarrow x+1=y+1\Rightarrow x=y$.
+    To show $s_N$ is surjective, we consider two cases:\\
+    Case 1: $y\in\mathbb{Z}$. This case is trivial. We know there exists $y-1\in\mathbb{Z}$ $s_N(y-1)=y$.\\
+    Case 2: $y\not\in\mathbb{Z}$. For cases where $y\not\in\mathbb{Z}$ e.g $a$, we must find an element $b$ s.t $s_N(b)=a$. We can do so by similarly letting $b=a-1\not\in\mathbb{Z}$.\\
+    Since $s_N$ is injective and surjective, $s_N$ is a bijection onto $N$.   
+\end{itemize}
+\subsection*{Part C}
+    \begin{itemize}
+        \item [(a)] We need to show $\sigma_1(x)$ is a bijection that preserves the structure of $\mathcal{N}$. 
+        To show $\sigma_1(x)$ is injective, let $x,y\in N$. 
+        Suppose $\sigma_1(x)=\sigma(y)$. 
+        It follows either both $\sigma_1(x),\sigma(y)_1\not\in A$ or $\sigma_1(x),\sigma(y)_1\in A$. 
+        The first case is trivial because $\sigma_1$ is the identity. 
+        The second case $\sigma_1(x)=\sigma(y)=s_N^k(a)$ for some $k\in\mathbb{Z}$. 
+        It follows $x=y=s_N^{k-1}(a)$ because $s_N^{-1}$ is the inverse of $s_N$.
+        Hence, $\sigma_1$ is injective.
+        To show $\sigma_1(x)$ is surjective, let $b\in N$.
+        It follows either $b\not\in A$ or $b\in A$. 
+        The first case is trivial as $\sigma_1$ is the identity.
+        The second case $b=s_N^k(a)$ for some $k\in\mathbb{Z}$.
+        It follows there exists $x=s_N^{k-1}(a)$ s.t $\sigma_1(x)=b$.
+        Hence, $\sigma_1$ is surjective.
+        $0\not\in A$, so $\sigma_1(0)=0$ i.e $\sigma_1$ preserves constants.
+        $s_N(\sigma_1(x))=s_N(x)=\sigma_1(s_N(x))$ for $x\not\in A$ and $s_N(\sigma_1(x))=s_N(s_N(x))=\sigma_1(s_N(x))$ for $x\in A$ i.e $\sigma_1$ preserves functions.
+        Since $\sigma_1$ is a bijection that preserves the structure of $\mathcal{N}$, $\sigma_1$ is an automorphism.
+        \item [(b)] In $2Ca$ we showed $\sigma_1$ is an automorphism that moves $a$. Thus, $a$ cannot be definable in $\mathcal{N}$.
+    \end{itemize}
+\subsection*{Part D}
+    \begin{itemize}
+        \item [(a)] Assume $2\mathbb{Z}$ is definable in $\mathcal{M}_1$ by a formula $\phi(x)$. 
+        Let $B\subseteq N$ be the definable subset of $N$ defined by $\phi(x)$ in $\mathcal{N}$. 
+        Moreover $\mathcal{M}_1\models\phi(n)\Leftrightarrow n\in 2\mathbb{Z}$ and $\mathcal{N}\models\phi(n)\Leftrightarrow n\in B$.
+        In $\mathcal{M}_1$ $B$ corresponds to $2\mathbb{Z}$, and since $\mathcal{M}_1$ and $\mathcal{N}$ are elementary equivalent.
+        Since $\phi(x)$ defines $2\mathbb{Z}$ in $\mathcal{M}_1$, $B$ must have similar properties in $\mathcal{N}$ by elementary equivalence.
+        In $\mathcal{M}_1$ $s$ maps even integers to odd integers to odd integers and vice versa. 
+        $\mathcal{M}_1\models\phi(s(n))\Leftrightarrow n\not\in 2\mathbb{Z}$ and $\mathcal{M}_1\models\phi(n)\Leftrightarrow s(n)\not\in 2\mathbb{Z}$
+        To maintain elementary equivalence, $s_N$ must map elements in $B$ to elements not in $B$ and vice versa.
+        Formally, if we consider any $x\in N$, $x\in B\Leftrightarrow s_N(x)\not\in B$ by properties of the successor function. 
+        Thus, for any $x\in N$ either $x\in B$ or $s_N(x)\in B$ but not both.
+        \item [(b)] $\sigma_1$ is an automorphism on $N$. 
+        If $B$ were definable then $x\in B$ iff $\sigma_1(x)\in B$.
+        However, we showed in Part D(a) for and $x\in N$ or $s_N(x)\in N$ but not both. 
+        Thus, either $x\in B$ or $\sigma(x)\in B$ but not both.
+        It follows $\phi(x)$ does not define $B$ in $\mathcal{N}$, so by elementary equivalence, $\phi(x)$ cannot define $2\mathbb{Z}$ in $\mathcal{M}_1$.
+    \end{itemize}
+\section*{Problem 3}
+\subsection*{Part A}
+\begin{itemize}
+    \item [(a)] Reflexivity: $\forall x E(x,x)$, Symmetry: $\forall x\forall y E(x,y)\rightarrow E(y,x)$, Transitivity: $\forall x\forall y\forall z (E(x,y)\land E(y,z))\rightarrow E(x,z)$
+    \item [(b)] For every $n\ge 1$ $\forall x_1\forall x_2\ldots\forall x_n\exists y\bigwedge_{i=1}^{n}\lnot E(x_i,y)$
+    \item [(c)] Existence of a class of size $n$: For every $n>0$ $\exists x_1\exists x_2\ldots\exists x_n(\underset{1\le i<j\le n}{\bigwedge}(E(x_i,x_j)\land \forall y E(y,x_1))\rightarrow(y=x_1\lor y=x_2\lor\ldots\lor y=x_n))$\\
+    Uniqueness of a class of size $n$: For every $n>0$ $\forall x_1\exists x_2\ldots\exists x_n\forall y_1\exists y_2\ldots \exists y_n(\underset{1\le i<j\le n}{\bigwedge}E(x_i,x_j)\land\underset{1\le i<j\le n}{\bigwedge}E(y_i,y_j)\rightarrow\underset{1\le i\le n}{\bigvee}x_i=y_i)$
+\end{itemize}
+\subsection*{Part B}
+\begin{itemize}
+    \item [(a)] Let $\mathcal{M}$ be a model with the following structure:
+    \begin{itemize}
+        \item Exactly $1$ equivalence class of size $1$
+        \item Exactly $1$ equivalence class of size $2$
+        \item Exactly $1$ equivalence class of size $3$
+        \item And so on...
+    \end{itemize}
+    Let $\mathcal{N}$ be a model with the following structure:
+    \begin{itemize}
+        \item Exactly $1$ equivalence class of size $1$
+        \item Exactly $1$ equivalence class of size $2$
+        \item Exactly $1$ equivalence class of size $3$
+        \item And so on...
+        \item Additionally $\mathcal{N}$ contains an infinite equivalence class.
+    \end{itemize}
+    Both models satify all the axioms in the theory $T$. However, $\mathcal{M}$ and $\mathcal{N}$ are not isomorphic because isomorphism preserve the size and structure of equivalence classes.
+    \item [(b)] For each model $\mathcal{M}_n$ we have the following structure:
+    \begin{itemize}
+        \item Exactly $1$ equivalence class of size $1$
+        \item Exactly $1$ equivalence class of size $2$
+        \item Exactly $1$ equivalence class of size $3$
+        \item And so on...
+        \item Additionally $\mathcal{M}_n$ contains an equivalence class of size $\alpha+n$ where $\alpha$ is the smallest infinite cardinality.
+    \end{itemize}
+    Each of the models satify the axioms of $T$, but none of the $\{\mathcal{M}_n:n\in\mathbb{N}\}$ can be isomorphic to each other because the infinite equivalence classes cannot be mapped to one another because they have different cardinalities.
+\end{itemize}
+\subsection*{Part C}
+\begin{itemize}
+    \item [(a)]\begin{itemize}
+        \item [i.] Reflexivity: $\forall x E(x,x)$, Symmetry: $\forall x\forall y E(x,y)\rightarrow E(y,x)$, Transitivity: $\forall x\forall y\forall z (E(x,y)\land E(y,z))\rightarrow E(x,z)$
+        \item [ii.] For every $n\ge 1$ $\forall x_1\forall x_2\ldots\forall x_n\exists y\bigwedge_{i=1}^{n}\lnot E(x_i,y)$
+        \item [iii.] For every $n\ge 1$ $\forall x_1\ldots\forall x_n(\underset{1\le i\le j\le n}{\bigwedge}E(x_i,x_j))\rightarrow\exists y(\underset{1\le i\le n}{\bigwedge}E(y,x_i)\land \underset{1\le i\le n}{\bigwedge}y\neq x_i)$
+    \end{itemize}
+    \item [(b)] Let $\mathcal{M}$ and $\mathcal{N}$ be countable models of $T_1$. 
+    We show that we can construct an isomorphism $\sigma$ between $\mathcal{M}$ and $\mathcal{N}$.\\
+    We do so by building the isomorphism step by step checking that the structure is preserved.
+    Fix some enumeration $\{m_1,m_2\ldots\}$. 
+    For each $m_k\in M$, we can find a corresponding $\sigma(m_k)=n_k\in N$ s.t for $1\le i,j\le k$ $(m_i,m_j)\in E^M$ iff $(\sigma(m_i),\sigma(m_j))\in E^N$. 
+    We can guarantee that we can find such an $n_k$ for each $k\in\mathbb{N}$ because each model has infinitely many equivalence classes which each contains infinitely many elements. 
+    This guarantees our isomorphism is injective.
+    We also want to guarantee that our isomorphism is surjective. 
+    For any $k\in \mathbb{N}$ consider an $n\in N$ that has not already been assigned. 
+    Because $M$ is countably infinite that contains infinitely many equivalence classes which each contains infinitely many elements, we are guaranteed to be able to find an unassigned $m$ s.t for $1\le i\le k$ $(m_i,m)\in E^M$ iff $(\sigma(m_i),n)\in E^N$.
+    Proceding in this manner, we can construct an isomorphism between $M$ and $N$.
+    \item [(c)] A theory is complete if, for every sentence $\varphi$ in the language $L$, either $T_1\vdash\varphi$ or $T_1\vdash\lnot\varphi$.
+    However, we showed that any two countable models of $T_1$ are isomorphic. It follows any two countable models of $T_1$ are elementary equivalent. 
+    This implies that any two models must satisfy the same sentences in $L$. 
+    In other words, we can't have two different models of $T_1$ where one model satisfies $\varphi$ and the other satifies $\lnot\varphi$.
+    Therefore, if every model of $T_1$ satifies a sentence $\varphi$, then $T_1\models\varphi$ and $T_1\not\models\lnot\varphi$. Thus, $T_1\vdash\varphi$ and $T_1\not\vdash\lnot\varphi$ by soundedness completeness.
+\end{itemize}
+\end{document}

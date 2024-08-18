@@ -1,0 +1,127 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb, amsthm}
+
+\title{MATH 114L: Homework 2}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Questions}
+
+\textbf{Question 1:} Show the compactness theorem for \(PL_0\), i.e., Suppose \(T\) is an infinite set of formulas. Prove that if every finite subset \(T_0 \subseteq T\) is satisfiable, then \(T\) is satisfiable.
+
+\textbf{Question 2:} Let \(\Gamma \subseteq PL_0\) and \(\varphi, \psi \in PL_0\). Show that the following are equivalent:
+\begin{itemize}
+    \item \(\Gamma \cup \{\varphi\}\) logically implies \(\psi\),
+    \item \(\Gamma\) logically implies \((\varphi \to \psi)\).
+\end{itemize}
+
+\textbf{Question 3:} Two physicists, A and B, and a logician C, are wearing hats, which they know are either black or white but not all white. A can see the hats of B and C; B can see the hats of A and C; C is blind. Each is asked in turn if they know the color of their own hat. The answers are: A: “No.” B: “No.” C: “Yes.” What color is C’s hat and how does C know?
+
+\textbf{Question 4:} A set \(\Gamma \subseteq PL_0\) is independent if it is not logically equivalent to any of its proper subsets. Prove the following:
+\begin{itemize}
+    \item If \(\Gamma\) is finite, then there is a \(\Gamma_0 \subseteq \Gamma\), such that \(\Gamma\) and \(\Gamma_0\) are logically equivalent, and \(\Gamma_0\) is independent.
+    \item There is an infinite set \(\Gamma\) such that \(\Gamma\) has no independent and logically equivalent subset.
+    \item For every \(\Gamma \subseteq PL_0\), there is a \(\Delta \subseteq PL_0\) such that \(\Delta\) is independent and logically equivalent to \(\Gamma\).
+\end{itemize}
+
+\textbf{Question 5:} Let \(L = \{A_i : i \in \mathbb{N}\}\). For each of the following conditions, give an example of a non-empty \(\Gamma \subseteq L_0\) which is not satisfiable and meets the appropriate condition.
+\begin{itemize}
+    \item[(a)] Each member of \(\Gamma\) is — by itself — satisfiable.
+    \item[(b)] For any two members \(\varphi_1\) and \(\varphi_2\) of \(\Gamma\), the set \(\{\varphi_1, \varphi_2\}\) is satisfiable.
+    \item[(c)] For any three members \(\varphi_1, \varphi_2, \varphi_3\) of \(\Gamma\), the set \(\{\varphi_1, \varphi_2, \varphi_3\}\) is satisfiable.
+\end{itemize}
+
+\textbf{Question 6:} Let \(E\) be a binary relation on the set \(\{1, ..., n\}\). Let \(A_{i,j}\) for \(1 \leq i, j \leq n\) be distinct atomic sentences. The intended interpretation of these propositional sentences is \(A_{i,j} := "E \text{ holds on } (i, j)"\). Express the following statements in propositional logic.
+\begin{itemize}
+    \item[(a)] \(E\) is a graph on \(\{1, 2, ..., n\}\), i.e., \(E\) is symmetric and anti-reflexive.
+    \item[(b)] \(E\) is a graph on \(\{1, 2, ..., n\}\) and there is at least one vertex which is not adjacent to any other vertex.
+    \item[(c)] \(E\) is a graph on \(\{1, 2, ..., n\}\) and every vertex in the graph is adjacent to at least two other vertices.
+\end{itemize}
+
+\textbf{Question 7:} Please complete the following exercises from Yannis lecture notes (page 15, Section 4, Propositional logic): 1.26.
+
+\section*{Solutions}
+
+\textbf{Solution to Question 2:}
+\begin{proof}
+Suppose first that \(\Gamma \cup \{\varphi\} \models \psi\) (“\(\models\)” here means “logically implies”). This means that every truth assignment making \(\Gamma\) and \(\varphi\) true must also make \(\psi\) true. To show that \(\Gamma \models (\varphi \to \psi)\), suppose that \(f\) is a truth assignment making all the formulas in \(\Gamma\) true. Consideration of the truth table for \(\to\) shows that the only way \((\varphi \to \psi)\) can be false under the truth assignment \(f\) is if \(f\) satisfies \(\varphi\) but not \(\psi\). But this is impossible as if \(f\) satisfies \(\varphi\), then \(\Gamma \cup \{\varphi\} \models \psi\) implies that \(f\) must also satisfy \(\psi\).
+
+Conversely, suppose that \(\Gamma \models (\varphi \to \psi)\). To show that \(\Gamma \cup \{\varphi\} \models \psi\), suppose that \(f\) is a truth assignment satisfying \(\Gamma\) and \(\varphi\). If \(f\) did not satisfy \(\psi\), then \(f\) would not satisfy \((\varphi \to \psi)\) either (as we know \(f\) satisfies \(\varphi\)). But \(f\) satisfies \(\Gamma\) so this would contradict \(\Gamma \models (\varphi \to \psi)\). Hence \(f\) does satisfy \(\psi\), and we are done.
+\end{proof}
+
+\textbf{Solution to Question 4:}
+\begin{proof}
+(a) Let \(\Gamma \subseteq L_0\) be finite. If \(\Gamma\) is independent, then we can take \(\Gamma_0 = \Gamma\). Otherwise, there exists \(\Gamma_1 \subset \Gamma\) such that \(\Gamma_1\) and \(\Gamma\) are logically equivalent. Now if \(\Gamma_1\) is independent, then we can take \(\Gamma_0 = \Gamma_1\). Otherwise, there exists \(\Gamma_2 \subset \Gamma_1\) such that \(\Gamma_2\) is logically equivalent to \(\Gamma_1\) (and hence to \(\Gamma\) as well). Keep going. This process stops in finitely many steps with an independent \(\Gamma_n\) that is logically equivalent to \(\Gamma\), as \(\Gamma\) is finite.
+
+(b) Consider the set \(\Gamma = \{A_1, A_1 \land A_2, A_1 \land A_2 \land A_3, \ldots\}\). If \(\Delta\) is any subset of \(\Gamma\) containing at least two formulas, then \(\Delta\) will not be independent. On the other hand, it’s clear that any \(\Delta \subseteq \Gamma\) of size 0 or 1 is not logically equivalent to \(\Gamma\).
+
+(c) Let \(\Gamma \subseteq L_0\) be arbitrary. We can enumerate the formulas in \(\Gamma\) as \(\varphi_0, \varphi_1, \varphi_2, \ldots\). We define sets \(\Delta_n \subseteq L_0\) recursively. If \(\varphi_0\) is a tautology, let \(\Delta_0 = \emptyset\). Otherwise, let \(\Delta_0 = \{\varphi_0\}\). Assume that \(\Delta_n\) has been defined. If \(\Delta_n\) logically implies \(\varphi_{n+1}\), then let \(\Delta_{n+1} = \Delta_n\). Otherwise, define
+\[
+\Delta_{n+1} = \Delta_n \cup \left\{\left(\bigwedge_{\psi \in \Delta_n} \psi \right) \to \varphi_{n+1}\right\}.
+\]
+This defines \(\Delta_n\) for each \(n \geq 0\), and now let \(\Delta = \bigcup_{n \geq 0} \Delta_n\).
+
+We claim that \(\Delta\) is both independent and logically equivalent to \(\Gamma\). We first argue that \(\Delta\) is logically equivalent to \(\Gamma\). 
+To show this, it suffices to show that \(\Delta_n\) is logically equivalent to $\{\varphi_0, \varphi_1, \ldots, \varphi_n\}$ for each \(n\). This follows by a routine proof by induction on \(n\).
+
+Next we show that \(\Delta\) is independent. Assume for contradiction that \(\Delta\) is not independent. Then there exists \(n\) such that
+\[
+\Delta \setminus \left\{\left(\bigwedge_{\psi \in \Delta_n} \psi \right) \to \varphi_{n+1}\right\}
+\]
+is logically equivalent to \(\Delta\). But by definition of \(\Delta_{n+1}\), we know that \(\varphi_{n+1}\) is not logically implied by
+\[
+\bigwedge_{\psi \in \Delta_n} \psi.
+\]
+Hence there is a truth assignment \(f\) that satisfies each \(\psi \in \Delta_n\) but that does not satisfy \(\varphi_{n+1}\). Now each of the later formulas added to \(\Delta\) has the form
+\[
+\left(\bigwedge_{\psi \in \Delta_k} \psi \right) \to \varphi_{k+1}
+\]
+for some \(k \geq n+1\). Each of these formulas is also satisfied by \(f\) as \(\varphi_{n+1}\) is among the \(\psi\) in \(\Delta_k\) when \(k \geq n+1\) (the big “and” in the antecedent of the conditional is false, so the conditional formula is true by definition of \(\to\)). This proves that
+\[
+\Delta \setminus \left\{\left(\bigwedge_{\psi \in \Delta_n} \psi \right) \to \varphi_{n+1}\right\}
+\]
+is not logically equivalent to \(\Delta\) as it is satisfied by \(f\), while \(f\) does not satisfy the formula
+\[
+\left(\bigwedge_{\psi \in \Delta_n} \psi \right) \to \varphi_{n+1}
+\]
+that belongs to \(\Delta\). This gives the desired contradiction.
+\end{proof}
+
+\textbf{Solution to Question 5:}
+\begin{proof}
+(a) Take \(\Gamma = \{A_1, \neg A_1\}\).
+
+(b) Take \(\Gamma = \{A_1, (A_1 \to A_2), (A_2 \to \neg A_1)\}\).
+
+(c) Take $\Gamma = \{A_1, (A_1 \to A_2), (A_2 \to A_3), (A_3 \to \neg A_1)\}$.
+\end{proof}
+
+\textbf{Solution to Question 6:}
+\begin{proof}
+Note carefully that you need to express these properties using propositional logic \(L_0\), not first-order logic. In particular, there are only propositional variables, logical connectives, and parentheses in the language. There is no symbol for =, no variables, no symbols for binary relations, etc.
+
+(a) Let’s first give an explicit propositional formula in \(L_0\) for \(n = 3\):
+\[
+[(\neg A_{1,1}) \land (\neg A_{2,2}) \land (\neg A_{3,3})] \land [(A_{1,2} \leftrightarrow A_{2,1}) \land (A_{1,3} \leftrightarrow A_{3,1}) \land (A_{2,3} \leftrightarrow A_{3,2})].
+\]
+Now you are asked to give propositional formulas for any \(n \in \mathbb{N}\), say \(n = 106\), in which case you really do not want to write down the actual formula explicitly. So, for arbitrary \(n\), you need to instead give precise instructions in mathematical English for how to write down the formula. These instructions are captured in the following “formula”. Note that this is not literally a formula in \(L_0\); it is an abbreviation in “mathematical English” that indicates to the reader which formula in \(L_0\) to write down (if given sufficient time, say).
+\[
+\varphi_n := \left[\bigwedge_{1 \leq i \leq n} (\neg A_{i,i}) \right] \land \left[\bigwedge_{1 \leq i < j \leq n} (A_{i,j} \leftrightarrow A_{j,i}) \right].
+\]
+
+(b) If \(\varphi_n\) is the formula from part (a), then we can take
+\[
+\varphi_n \land \left(\bigvee_{1 \leq i \leq n} \bigwedge_{1 \leq j \leq n} \neg A_{i,j} \right).
+\]
+
+(c) If \(\varphi_n\) is the formula from part (a), then we can take
+\[
+\varphi_n \land \left(\bigwedge_{1 \leq i \leq n} \bigvee_{1 \leq j < k \leq n} (A_{i,j} \land A_{i,k}) \right).
+\]
+\end{proof}
+
+\end{document}

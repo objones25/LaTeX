@@ -1,0 +1,85 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+
+\title{\bf Math 114L\@: Problem Set 6}
+\author{\bf Owen Jones}
+\begin{document}
+\maketitle
+\section*{Problem 1}
+\begin{itemize}
+    \item [(a)] Let $T$ be the set of $\mathcal{L}$-sentences that are true in all finite fields. 
+    By construction, $T$ is satisfiable. 
+    Let $\psi_p:0\neq \underbrace{1+1+\cdots+1}_\text{n many times}$ be a sentence. 
+    Define a new theory $T^*=T\cup\{\psi_n:n\in\mathbb{N}\}$.
+    By the compactness theorem, it suffices to show $T^*$ is finitely satisfiable.
+    Consider some finite $\Delta\subset T^*$. $T$ is given to be satisfiable by any finite field. 
+    We want to show $\mathbb{F}_p$, the set of integers $\mod p$, for some sufficiently large prime $p$, $\mathbb{F}_p\models\Delta$.
+    $\mathbb{F}_p\models T$ because $\mathbb{F}_p$ is finite. 
+    If we choose $p$ large enough such that $p$ is greater than every $n$ meantioned, $\mathbb{F}_p\models\{\psi_{n}: \psi_{n}\in\Delta\}$. 
+    This implies $\mathbb{F}_p\models\Delta$.
+    It follows every finite $\Delta\subset T^*$ $\Delta$ is satisfiable, so $T^*$ is satisfiable by the compactness theorem.
+    Thus, $T^*$ has a model $K$.
+    $K$ must be characteristic $0$ because $0\neq \underbrace{1+1+\cdots+1}_\text{p many times}$ for every prime $p$.
+    \item [(b)] A rational function $f$ can be written as the ratio of two coprime polynomial functions $\frac{P(x)}{Q(x)}$ where $Q(x)\neq 0$.
+    $f(x)$ is surjective, so for every $y\in K$, there exists $x$ s.t $f(x)=y$.
+    We can write a polynomial as $P(x)=(\underbrace{1+\ldots+1}_{a_n\text{ many times}})\cdot (\underbrace{x\cdot \ldots \cdot x}_{n\text{ many times}})+\ldots +(\underbrace{1+\ldots+1}_{a_1\text{ many times}})\cdot x+(\underbrace{1+\ldots+1}_{a_0\text{ many times}})$.
+    We can use the additive inverse to define negative coefficients. 
+    Consider the $\mathcal{L}$-sentence $\phi^*:\forall y\exists x(P(x)=y\cdot Q(x))\rightarrow \forall x_1\forall x_2(P(x_1)\cdot Q(x_2)=P(x_2)\cdot Q(x_1)\rightarrow x_1=x_2)$.
+    $\phi^*$ is true in all finite fields because the pigeonhole principle tells us that every surjective function between finite sets of the same size must also be injective.
+    By part (a) $F\models\phi$ for every finite field $\rightarrow K\models\phi$, so $\phi^*$ is true in $K$.
+    Hence, every $f:K\rightarrow K$ rational function that is surjective is also injective.
+    \item [(c)] Consider the rational function $f(x)=x^2$. 
+    If we take $\phi^*$ with $P(x)=x\cdot x$ and $Q(x)=1$, $\phi^*$ is true in $K$ because in every finite field $F$ either $f$ is not surjective or $f$ is injective by the pigeonhole principle.
+    However, $f:\mathcal{C}\rightarrow\mathcal{C}$ is a surjective function but not injective. 
+\end{itemize}
+\section*{Problem 2}
+\begin{itemize}
+    \item [(a)]\begin{itemize}
+        \item [(i)] $\exists x_1,\exists x_2,\ldots\exists x_k (\underset{1\le i<j\le k}{\bigwedge}x_i\neq x_j)$
+        \item [(ii)] $\forall x_1,\forall x_2,\ldots\forall x_n\lnot(R(x_1,x_2)\land R(x_2,x_3)\land\ldots\land R(x_{n-1},x_n))$
+    \end{itemize}
+    \item [(b)] For each $n\ge 3$, we can let $G_n$ be $C_{n+1}$, a cycle graph consisting of $n+1$ vertices. 
+    For any vertex on the graph, you have to travel all the way around the ring to get back to the original vertex.
+\end{itemize}
+\section*{Problem 3}
+Let $\psi_n:\forall x_1\forall x_2\ldots\forall x_n \lnot(R(x_1,x_2)\land R(x_2,x_3)\land\ldots\land R(x_{n-1},x_n)\land R(x_n,x_1))$ be a sentence. Define a new theory $T=\phi\cup\{\psi_n :n\in\mathbb{N}\}$. 
+To show $T$ has a model $G$, we show that $T$ is finitely satisfiable. 
+For any finite subset $\Delta\subset T$ finitely many  $\{\psi_n \}$ are mentioned. 
+Let $\psi_{n^*}$ be the largest $n$ mentioned in $\Delta$.
+We found previously $C_{n^*+1}$ has a cycle of length $n^*+1$ and doesn't have any smaller cycles, so the graph satisfies $\psi_{n^*}$ and every other $\{\psi_{n}: \psi_{n}\in\Delta\}$. 
+Because every graph with a finite cycle satisfies $\phi$ and $C_{n^*+1}$ doesn't have any cycles smaller than $n^*+1$, $C_{n^*+1}\models\Delta$.
+Since this holds for any arbitrary finite $\Delta\subset T$, $T$ is satisfiable by the compactness theorem.
+Hence, there exists a graph that satisfies $\phi$ but has no finite cycles.
+\section*{Problem 4}
+Let $\psi_n:\exists x_1\exists x_2\ldots\exists x_n \underset{1\le i<j\le n}{\bigwedge}x_i\neq x_j$ be a sentence. 
+Define a new theory $T^*=T\cup\{\psi_n:n\in \mathbb{N}\}$. 
+To show $T$ has an infinite model, we show $T^*$ is finitely satisfiable.
+For any finite $\Delta\subset T^*$, only finitely many $\{\psi_n \}$ are mentioned.
+Let $\psi_{n^*}$ be the largest $n$ mentioned in $\Delta$.
+Any model that satisfies $\psi_{n^*}$ satisfies $\{\psi_{n}:n\le n^* \}$.
+Since $T$ has an arbitrarily large model, there exists $M\models T$ and $M\models \psi_{n^*}$.
+Thus, $M\models\Delta$ for any finite $\Delta\subset T^*$.
+By compactness, $T^*$ is satisfiable.
+Since there exists a model $M$ s.t $M\models T$ and $M\models\{\psi_n:n\in \mathbb{N}\}$, $T$ has an infinite model.
+\section*{Problem 5}
+Suppose no such a $p_0$ exists. 
+It follows for any $p$ there is a field $F$ of characteristic $p$ that makes $\phi$ false.
+Our goal is to show $T=\lnot\phi\cup\{\psi_n:n\in\mathbb{N}\}$ is consistent.
+Doing so will derive a contradiction because every field of characteristic $0$ satisfies $\phi$.
+We showed in an earlier problem there exists a field $K$ of characteristic $0$ that satisfies $\{\psi_n:n\in\mathbb{N}\}$.
+For any finite $\Delta\subset T$, only finitely many $\{\psi_n\}$ are mentioned. 
+By assumption, there exists a field $F$ of characteristic sufficiently large $p$ that satisfies $\{\psi_{n}: \psi_{n}\in\Delta\}$ and makes $\phi$ false.
+Thus, $\Delta$ is satisfiable, so by compactness $T$ is satisfiable.
+However, this is impossible because as mentioned before, every field of characteristic $0$ satisfies $\phi$.
+Thus, such a $p_0$ must exist.
+\end{document}

@@ -7,6 +7,7 @@
 \usepackage{hyperref}
 \usepackage{multicol}
 \usepackage{pgfplots}
+\usepackage{amsthm}
 \usepackage{enumitem}
 \pgfplotsset{compat=1.18}
 \usepackage{float}
@@ -213,7 +214,146 @@ For all sentences $\varphi,\psi,\exists v\varphi(v),\forall v\varphi(v)$
 \end{itemize} 
 Every Theory can be extended to a Henkin Set\\
 Every Henkin set is satisfiable\\
-\section*{Compactness Theorem*}
+\section*{Compactness Theorem}
 (PL Logic) Suppose $T$ is an infinite set of formulas. Prove that if every finite subset $T_0\subset T$ is satisfiable, then $T$ is satisfiable.\\
-(First Order) If every finite subset of a theory $T$ in a finite vocabulary has a model, then $T$ has a model.
+(First Order) If every finite subset of a theory $T$ in a finite vocabulary has a model, then $T$ has a model.\\
+(Compactness-Completeness) Let $\mathcal{L}$ be a language and $T$ be a first order theory. The following are equivalent:\\
+\begin{itemize}
+    \item [1.] $T$ is consistent
+    \item [2.] $T$ is finitely satisfiable
+    \item [3.] $T$ is satisfiable
+    \item [4.] $T$ is finitely satisfiable
+\end{itemize}
+\section*{Applications}
+\begin{itemize}
+    \item [1.] Any set $A$ can be lineraly ordered
+    \item [2.] Any torsion free group can be lineraly ordered
+    \item [3.] There is a non-archimedian field $F$ such that $F\equiv(\mathbb{R},+,\cdot,0,1)$
+    \item [4.] Ramsey's theorem: For every natural number $k$ there is a natural number $n$ such that for every coloring $c:{[n]}^2\rightarrow\{R,B\}$ there is $S\subset\{1,\ldots,n\}$ of size $k$ that is monocromatic.
+    \item [5.] Let $\mathcal{L}$ be the language of fields. For every $\phi$, a $\mathcal{L}$ sentence, there is some $N\subset\mathbb{N}$ such that for every prime number $p\ge N$ such that $(\mathbb{C},+,\cdot,0,1)\models\phi$ iff $(F^{alg}_p,+,\cdot,0,1)\models\phi$.  
+\end{itemize}
+\section*{Elementary Substructure}
+Let $M$ be a structure, and let $A$ be a subset of $M$. 
+Then $A$ is an elementary substructure of $M$ if for every formula $\phi(v_1, \dots, v_n)$ and every tuple $\bar{a} \in A^n$, if $M \models \phi(\bar{a})$, then $A \models \phi(\bar{a})$.
+\section*{Tarski Vaught criterion}
+Let $M$ be a structure, and let $A,B \subseteq M$. 
+Then $A$ is an elementary substructure of $M$ with respect to $B$, denoted by $A \prec_B M$, if for every formula $\phi(v_1, \dots, v_n)$ and every tuple $\bar{a} \in A^n$, if $M \models \phi(\bar{a}, \bar{b})$ for some $\bar{b} \in B^n$, then $A \models \phi(\bar{a})$.
+\section*{Tarski Gödel}
+\subsection{Arithmetization}
+
+The document begins by explaining the concept of arithmetization, which is the process of encoding mathematical statements and proofs as numerical sequences. This is a crucial technique used in the proofs of both Tarski's and Gödel's theorems. It introduces the coding of sequences and terms, including the coding of the language of Peano Arithmetic (PA) and how terms and formulas are represented arithmetically.
+
+\subsection{The Theorems}
+
+\begin{itemize}
+    \item \textbf{Tarski's Undefinability Theorem}: This theorem asserts that the set of all true arithmetic statements (Truth(N)) is not arithmetically definable. In other words, there is no single arithmetic formula that can capture all and only the truths about natural numbers.
+    \item \textbf{Gödel's First Incompleteness Theorem}: This theorem states that any consistent formal system that is capable of expressing basic arithmetic is incomplete. There are true statements within the system that cannot be proven using the system's axioms and rules.
+    \item \textbf{Gödel's Second Incompleteness Theorem}: This theorem extends the first by showing that such a system cannot prove its own consistency.
+\end{itemize}
+
+\subsection{Problems}
+
+The document concludes with a set of problems designed to reinforce the concepts discussed. These problems involve proving various properties of the coding functions and the relations used in the proofs of the theorems.
+
+\section{Key Concepts and Definitions}
+
+\begin{itemize}
+    \item \textbf{Arithmetization}: The technique of representing statements, sequences, and proofs in arithmetic form. This involves encoding symbols, terms, and formulas as natural numbers.
+    \item \textbf{Sequence Coding}: A method for encoding finite sequences of natural numbers. The document details specific functions and properties related to this coding.
+    \item \textbf{Formulas and Proofs}: The document explains how formulas and proofs are encoded, and how these encodings are used to state and prove the theorems of Tarski and Gödel.
+\end{itemize}
+
+\subsection{Theorem Statements}
+
+\begin{itemize}
+    \item \textbf{Tarski's Theorem}: The set of arithmetical truths (Truth(N)) is not arithmetical.
+    \item \textbf{Gödel's First Incompleteness Theorem}: No arithmetical theory can be both sound (all its theorems are true) and complete (it proves all true statements).
+    \item \textbf{Gödel's Second Incompleteness Theorem}: No consistent arithmetical theory can prove its own consistency.
+\end{itemize}
+
+\section{Proof Techniques}
+
+\begin{itemize}
+    \item \textbf{Self-Reference and Diagonalization}: Techniques used in the proofs involve creating self-referential statements and using diagonalization to show that certain sets cannot be captured by arithmetic formulas.
+    \item \textbf{Arithmetical Functions and Relations}: Various arithmetical functions and relations are defined and used to construct the necessary statements for the proofs.
+\end{itemize}
+
+\section*{Midterm Solutions}
+\subsection*{Exercise 1 (Propositional logic)}
+Let $L = \{A_i : i \in \mathbb{N}\}$ be a propositional language. Let $\varphi$ and $\theta$ be $L$-sentences and let $\Sigma$ be an $L$-theory.
+
+\begin{enumerate}[label=(\arabic*)]
+    \item State the definition of a $\Sigma$-proof of $\varphi$.
+    \item Suppose that $\Sigma \vdash (\varphi \rightarrow \theta)$. Prove that $\Sigma \vdash ((\neg \theta) \rightarrow (\neg \varphi))$.
+\end{enumerate}
+
+\textbf{Solution:}
+\begin{enumerate}[label=(\arabic*)]
+    \item See course notes.
+    \item The easiest way to do this problem is to use the Completeness Theorem for propositional logic. This says that if $\Sigma$ is an $L$-theory, and $\varphi$ is a propositional formula, then $\Sigma \vdash \varphi$ iff $\Sigma \models \varphi$. Suppose that $\Sigma \vdash (\varphi \rightarrow \theta)$. Then $\Sigma \models (\varphi \rightarrow \theta)$. We want to show that $\Sigma \models ((\neg \theta) \rightarrow (\neg \varphi))$, which will show $\Sigma \vdash ((\neg \theta) \rightarrow (\neg \varphi))$. Suppose that $v$ is a truth assignment that satisfies $\Sigma$. By assumption, $\Sigma \models (\varphi \rightarrow \theta)$, so $v$ satisfies $(\varphi \rightarrow \theta)$. But $(\varphi \rightarrow \theta)$ is logically equivalent to $((\neg \theta) \rightarrow (\neg \varphi))$, so we conclude that $v$ also satisfies $((\neg \theta) \rightarrow (\neg \varphi))$. This completes the proof.
+\end{enumerate}
+
+\subsection*{Exercise 2 (Definable sets)}
+\begin{enumerate}[label=(\arabic*)]
+    \item Let $M = (A; |, 1)$, where $A = \mathbb{N} \setminus \{0\} = \{1, 2, 3, \ldots \}$, $|$ is the binary relation on $A$ defined by $n|m$ if and only if $n$ divides $m$, and $1$ is a distinguished point. Show that $P = \{p \in \mathbb{N} : p \text{ is a prime number}\}$ is a definable set.
+    \item Consider the structure $M_1 = (\mathbb{Z}; +)$ with the standard interpretation. Prove that $\mathbb{N}$ is not a definable subset of $\mathbb{Z}$ in the language $L = \{+\}$.
+\end{enumerate}
+
+\textbf{Solution:}
+\begin{enumerate}[label=(\arabic*)]
+    \item Since a positive integer $x$ is prime iff $x \neq 1$ and every positive integer divisor of $x$ is either $1$ or $x$, the set $P$ of primes is defined by the formula
+    \[
+    \varphi(x) = ``x \neq 1 \land \forall y(y|x \rightarrow (y = 1 \lor y = x))".
+    \]
+    (Note that the number $1$ is not prime, by definition.) Alternatively, since a positive integer $x$ is prime iff $x$ has exactly two positive integer divisors, the set $P$ of primes is also defined by the formula
+    \[
+    \psi(x) = ``\exists y \exists z(y \neq z \land y|x \land z|x \land \forall w(w|x \rightarrow (w = y \lor w = z)))".
+    \]
+    \item The only rigorous way we know of to show that a subset is not definable is to use the following Fact: if $D \subseteq A$ is definable and $G : A \rightarrow A$ is an automorphism, then whenever $a \in D$ we have $G(a) \in D$. Thus, to show that a set is not definable, we need to use a nontrivial automorphism of the structure. There is only one nontrivial automorphism of $(\mathbb{Z}; +)$, namely the map $G : \mathbb{Z} \rightarrow \mathbb{Z}$ given by $G(n) = -n$ for all $n \in \mathbb{Z}$. Now just observe that $1 \in \mathbb{N}$ but $G(1) = -1 \notin \mathbb{N}$. Hence, the Fact implies that $\mathbb{N}$ is not a definable subset of $(\mathbb{Z}; +)$.
+\end{enumerate}
+
+\subsection*{Exercise 3 (Sentences and isomorphism)}
+Let $L = \{\leq\}$. Consider
+
+\begin{enumerate}[label=(\alph*)]
+    \item $M_1 = (\mathbb{N}; \leq)$, standard interpretation.
+    \item $M_2 = (\mathbb{Q}; \leq)$, standard interpretation.
+\end{enumerate}
+
+\begin{enumerate}[label=(\arabic*)]
+    \item Find an $L$-sentence $\varphi$ such that $M_1 \models \varphi$ and $M_2 \not\models \varphi$.
+    \item Conclude that $M_1$ and $M_2$ are not isomorphic, i.e. $M_1 \not\cong M_2$.
+    \item Provide an example of an automorphism of $M_2$.
+\end{enumerate}
+
+\textbf{Solution:}
+\begin{enumerate}[label=(\arabic*)]
+    \item There are many possibilities. One example of such a sentence $\varphi$ is
+    \[
+    \exists x \forall y (x \leq y).
+    \]
+    Another possibility is
+    \[
+    \exists x \exists y (x \neq y \land x \leq y \land \neg \exists z (z \neq x \land z \neq y \land x \leq z \land z \leq y)),
+    \]
+    which says that there exist consecutive elements $x$ and $y$ with no element in between them.
+    \item We proved in class that isomorphic models are always elementarily equivalent. Since $M_1$ and $M_2$ are not elementarily equivalent by part (1), we conclude that $M_1 \not\cong M_2$.
+    \item There are many examples of automorphisms of $M_2$ besides the identity map. For example, $G(q) = q + 1$ and $H(q) = q / 2$ are automorphisms.
+\end{enumerate}
+
+\subsection*{Exercise 4 (True or False)}
+\begin{enumerate}[label=(\arabic*)]
+    \item Let $L$ be a finite language containing only relational symbols and constants. Let $M$ and $N$ be $L$-structures, then $M \equiv N$ if and only if $M \cong N$.
+    \item Consider the structures $M_1 = (\mathbb{Z}; +, 0)$ and $M_2 = (2\mathbb{Z}; +, 0)$. Then $M_1 \equiv M_2$.
+    \item Let $L$ be a fixed language, and let $T$ be a first-order theory. If there is an $L$-structure $M \models T$, then $T$ is consistent.
+    \item $(\mathbb{N}, +)$ is a substructure of $(\mathbb{Z}, +)$.
+\end{enumerate}
+
+\textbf{Solution:}
+\begin{enumerate}[label=(\arabic*)]
+    \item False. We only know this is true for finite structures $M$ and $N$. We will see soon that $(\mathbb{R}; \leq) \equiv (\mathbb{Q}; \leq)$ but these structures are not isomorphic.
+    \item True. The structures $M_1$ and $M_2$ are even isomorphic via $G : \mathbb{Z} \rightarrow 2\mathbb{Z}$ given by $G(n) = 2n$. Hence they are elementarily equivalent. (Given the tools we have at our disposal at this point in the course, the only way we know how to show that two structures are elementarily equivalent is to show they are isomorphic.)
+    \item True. This follows from the Soundness Theorem for first-order logic.
+    \item True. One just has to check that $\mathbb{N}$ is closed under $+$.
+\end{enumerate}
 \end{document}

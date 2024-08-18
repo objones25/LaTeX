@@ -1,0 +1,84 @@
+\documentclass{article}
+\usepackage{amsmath, amssymb}
+\usepackage{amsthm}
+
+\title{MATH 114L: Homework 1}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\section*{Questions}
+
+\textbf{Question 1:} Show that the connectives \(\{\lor,\land\}\) can be expressed in terms of the connectives \(\{\to,\neg\}\).
+
+\textbf{Question 2:} For which natural numbers \(n\) are there elements of \(PL_0\) of length \(n\)?
+
+\textbf{Question 3:} (Unique readability) Show that a sequence \(\phi\) is an element of \(PL_0\) if and only if there is a finite sequence of sequences \((\phi_1, \ldots, \phi_n)\) such that \(\phi_n = \phi\) and for each \(i \leq n\) either there exists \(m\) such that \(\phi_i = (A_m)\) or there exists \(j < i\) such that \(\phi_i = (\neg \phi_j)\) or there exist \(j_1, j_2\) both less than \(i\) such that \(\phi_i\) is equal to \((\phi_{j_1} \to \phi_{j_2})\).
+
+\textbf{Definition 2:} For \(\phi \in PL_0\) define:
+\begin{itemize}
+    \item \(C(\phi)\) = number of instances of logical connectives in \(\phi\),
+    \item \(S(\phi)\) = total number of symbols occurring in \(\phi\) (i.e., \(S(\phi)\) is just the length of \(\phi\)),
+    \item \(D(\phi)\) = total number of instances of binary connectives which occur in \(\phi\),
+    \item \(E(\phi)\) = total number of instances of atomic propositions \(A_i\) which occur in \(\phi\).
+\end{itemize}
+Prove by induction that:
+\begin{itemize}
+    \item \(E(\phi) = D(\phi) + 1\),
+    \item \(S(\phi) \geq 3C(\phi)\).
+\end{itemize}
+
+\textbf{Question 4, 5 and 6:} Please complete the following exercises from Yannis lecture notes (page 15, Section 4, Propositional logic): 1.1, 1.6, 1.7.
+
+\section*{Solutions}
+
+\textbf{Solution to Question 2:}
+\begin{proof}
+We show that the set of natural numbers \(n\) which are the lengths of formulas in \(L_0\) is \( \mathbb{N} \setminus \{0, 2, 3, 6\} \).
+
+First note that we have length-1 formulas \(\langle A_i \rangle\). Observe that the shortest formulas involving a connective \(\neg\) or \(\to\) must have the form \((\neg A_i)\), which has length 4. So it’s clear that there are no formulas of length 2 or 3. The shortest formulas involving just one occurrence of \(\to\) have the form \((A_i \to A_j)\), which has length 5. One can check that any formula involving at least two connectives must have length at least 7, so the number 6 is ruled out as a possible length. Now note that if \(\phi\) is a formula of length \(m\), then \((\neg \phi)\) is a formula of length \(m + 3\). Since we have formula of length 4 and of length 5, we have formulas of length \(4 + 3k\) and \(5 + 3k\) for all \(k \geq 0\). Moreover, we have the following formula of length 9, \(((A_1 \to A_1) \to A_1)\), so we get formulas of length \(9 + 3k\) for all \(k \geq 0\). Putting everything together shows that \( \mathbb{N} \setminus \{0, 2, 3, 6\} \) is indeed the set of possible lengths.
+\end{proof}
+
+\textbf{Solution to Question 3:}
+\begin{proof}
+Recall the definition of \(L_0\) from class: \(L_0\) is the smallest set of (finite) sequences of symbols \((, ), \neg, \to, A_1, A_2, \ldots\) such that:
+\begin{enumerate}
+    \item \(A_i \in L_0\), for each \(i = 1, 2, \ldots\);
+    \item if \(\phi \in L_0\), then \((\neg \phi) \in L_0\);
+    \item if \(\phi, \psi \in L_0\), then \((\phi \to \psi) \in L_0\).
+\end{enumerate}
+
+We can call this definition of \(L_0\) the “top-down” definition. The right-hand side of the iff in this exercise gives a ”bottom-up” definition.
+
+For the purposes of the proof, let \(L_1\) denote the set of (finite) sequences \(\phi\) of symbols \((, ), \neg, \to, A_1, A_2, \ldots\), which satisfy the ”bottom-up” characterization on the right-hand side of the iff. We show \(L_0 = L_1\) by the method of double inclusion.
+
+Step 1: Show that \(L_0 \subseteq L_1\). Since \(L_0\) is the smallest set satisfying (1), (2), (3), it suffices to show that \(L_1\) also satisfies (1), (2), (3). We check each of these conditions for \(L_1\) in turn. For (1), note that the sequence \(\langle \phi_1, \ldots, \phi_n \rangle = \langle \phi_1 \rangle = \langle A_i \rangle\) of length 1 witnesses that the length 1 formulas \(A_i\) are in \(L_1\). For (2), suppose that \(\phi \in L_0\), in other words \(\phi = \phi_n\) for some sequence \(\langle \phi_1, \ldots, \phi_n \rangle\) as in the bottom-up characterization. But then the sequence \(\langle \phi_1, \ldots, \phi_n, (\neg \phi) \rangle\) shows that \((\neg \phi) \in L_1\). Finally, for (3), suppose that \(\phi, \psi\) are both in \(L_0\), as witnessed by the sequences \(\langle \phi_1, \ldots, \phi_n \rangle\) and \(\langle \psi_1, \ldots, \psi_m \rangle\) where \(\phi = \phi_n\) and \(\psi = \psi_m\). Then the sequence \(\langle \phi_1, \ldots, \phi_n, \psi_1, \ldots, \psi_m, (\phi \to \psi) \rangle\) shows that \((\phi \to \psi) \in L_1\).
+
+Step 2: Show that \(L_1 \subseteq L_0\). For this step, we prove by induction on \(n\) that any finite sequence \(\phi \in L_1\) whose membership in \(L_1\) is witnessed by a sequence \(\langle \phi_1, \ldots, \phi_n \rangle\) of length \(n\) must be in \(L_0\). The base case is \(n = 1\), in which case we can only have the finite sequences \(\langle \phi_1, \ldots, \phi_n \rangle = \langle A_i \rangle\). But by condition (1), \(A_i \in L_0\), so the base case holds. Now assume for the inductive hypothesis that for all \(\phi \in L_1\) whose membership in \(L_1\) is witnessed by a sequence of length \(< n\), we have \(\phi \in L_0\). Suppose that \(\langle \phi_1, \ldots, \phi_n \rangle\) is a sequence of length \(n\) witnessing the membership of \(\phi_n\) in \(L_1\). Then either \(\phi_n = (\neg \phi_i)\) for some \(i < n\) or \(\phi_n = (\phi_i \to \phi_j)\) for some \(i, j < n\). In the first case \(\phi_i \in L_0\) by the inductive hypothesis, and so by condition
+
+ (2) in the definition of \(L_0\), we must have \(\phi_n \in L_0\). In the second case, both \(\phi_i\) and \(\phi_j\) are in \(L_0\) by the inductive hypothesis, and so by condition (3) in the definition of \(L_0\), we must have \((\phi_i \to \phi_j) \in L_0\). This completes the proof.
+\end{proof}
+
+\textbf{Solution to Definition 2:}
+\begin{proof}
+We use a very common method of proof in logic for this exercise, namely induction on the length of the formula \(\phi\).
+
+\begin{itemize}
+    \item[(a)] We prove by induction on the length \(n\) of a formula \(\phi\) that \(E(\phi) = D(\phi) + 1\). The base case is \(n = 1\), in which case \(\phi\) is a length-1 formula \(A_i\). But then \(E(\phi) = 1\) and \(D(\phi) = 0\) so \(E(\phi) = D(\phi) + 1\). Assume for induction that \(E(\phi) = D(\phi) + 1\) for all formulas of length less than \(n\). Suppose that \(\phi\) has length \(n\). By the readability theorem, there exist formulas \(\psi_1\) and \(\psi_2\) of length less than \(n\) such that \(\phi\) has one of the following forms:
+    \[
+    (\neg \psi_1), (\psi_1 \to \psi_2), (\psi_1 \land \psi_2), (\psi_1 \lor \psi_2).
+    \]
+    If \(\phi = (\neg \psi_1)\), then \(E(\phi) = E(\psi_1) = D(\psi_1) + 1 = D(\phi) + 1\), where we applied the inductive hypothesis to \(\psi_1\). In the other three cases, we have \(E(\phi) = E(\psi_1) + E(\psi_2) = (D(\psi_1) + 1) + (D(\psi_2) + 1) = (D(\psi_1) + D(\psi_2) + 1) + 1 = D(\phi) + 1\). This completes the inductive step.
+    
+    \item[(b)] We prove by induction on the length \(n\) of a formula \(\phi\) that \(S(\phi) \geq 3C(\phi)\). The base case is \(n = 1\), in which case \(\phi\) is a length-1 formula \(A_i\). But then \(S(\phi) = 1\) and \(C(\phi) = 0\) so \(S(\phi) \geq 3C(\phi)\). Assume for induction that \(S(\phi) \geq 3C(\phi)\) for all formulas of length less than \(n\). Suppose that \(\phi\) has length \(n\). By the readability theorem, there exist formulas \(\psi_1\) and \(\psi_2\) of length less than \(n\) such that \(\phi\) has one of the following forms:
+    \[
+    (\neg \psi_1), (\psi_1 \to \psi_2), (\psi_1 \land \psi_2), (\psi_1 \lor \psi_2).
+    \]
+    If \(\phi = (\neg \psi_1)\), then \(S(\phi) = S(\psi_1) + 3 \geq 3C(\psi_1) + 3 = 3(C(\psi_1) + 1) = 3C(\phi)\), where we applied the inductive hypothesis to \(\psi_1\). In the other three cases, we have \(S(\phi) = S(\psi_1) + S(\psi_2) + 3 \geq (3C(\psi_1)) + (3C(\psi_2)) + 3 = 3(C(\psi_1) + C(\psi_2) + 1) = 3C(\phi)\). This completes the inductive step.
+\end{itemize}
+\end{proof}
+
+\end{document}

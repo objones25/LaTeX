@@ -1,0 +1,25 @@
+\documentclass[10pt]{article}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage[fleqn]{amsmath}
+\usepackage{nccmath}
+\usepackage{cases}
+\usepackage{hyperref}
+\usepackage{pgfplots}
+\usepackage{enumitem}
+\pgfplotsset{compat=1.18}
+\usepackage{float}
+\usepackage{pdfpages}
+\DeclareMathOperator*{\argmax}{argmax\,}
+\DeclareMathOperator*{\argmin}{argmin\,}
+
+\begin{document}
+
+$\underset{\mathbf{w}}{\argmax}p(t|x,\mathbf{w},\beta)=\underset{\mathbf{w}}{\argmax}\prod_{n=1}^{N}\mathcal{N}(t_n|y(x_n,\mathbf{w}),\beta^{-1})\\
+=\underset{\mathbf{w}}{\argmax}\prod_{n=1}^{N}\sqrt{\frac{\beta}{2\pi}}\exp\{-\frac{\beta}{2}{(t_n-\mathbf{w}^\top\phi(x_n))}^2\}\\
+=\underset{\mathbf{w}}{\argmax}\frac{N}{2}\log(\beta)-\frac{N}{2}\log(2\pi)-\frac{\beta}{2}\sum_{n=1}^{N}{(t_n-\mathbf{w}^\top\phi(x_n))}^2\\
+=\underset{\mathbf{w}}{\argmin}\frac{1}{2}\sum_{n=1}^{N}{(t_n-\mathbf{w}^\top\phi(x_n))}^2\\
+\Rightarrow \sum_{n=1}^{N}(t_n-\mathbf{w}^\top\phi(x_n))(-\phi(x_n))=0\\
+\Rightarrow \sum_{n=1}^{N}t_n\phi(x_n)=\sum_{n=1}^{N}(\mathbf{w}^\top\phi(x_n))\phi(x_n)\\
+\Rightarrow \Phi^\top t=\Phi^\top\Phi\mathbf{w}\Rightarrow \mathbf{w}={(\Phi^\top\Phi)}^{-1}\Phi^\top t$
+\end{document}
